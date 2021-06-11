@@ -1,0 +1,432 @@
+
+\subsec{Set theory}
+
+\para \textbf{Naive Definition of Sets (Georg Cantor 1882)} 
+ A set is a gathering together into a whole of definite, distinct objects of our perception 
+ or of our thought  which are called elements of the set. 
+
+\para In modern Mathematics, set theory is developed axiomatically. Axiomatic set theory goes back to Zermelo-Fraenkel and forms the basis of modern mathematics, together with formal logic. We follow the
+axiomatic approach here too, even though we will not introduce all of the set theory axioms 
+of Zermelo-Fraenkel and will not go into the subtleties of set theory. 
+
+\para \textbf{Axiomatic Definition of Sets (cf.~Zermelo-Fraenkel 1908, 1973)} 
+Sets are denoted by letters of the roman and greek alphabets :
+$a,b,c,\ldots,x,y,z$, $A,B,C,\ldots,X,Y,Z$, $\alpha,\beta,\gamma,\delta,\ldots, \chi,\psi, \omega$, and 
+$A,B,\Gamma, \Delta, \ldots,X,\Psi,\Omega$.
+The fundamental relational symbols of set theory are the \emph{equality sign} $=$ and the \emph{element sign}
+$\in$. Further symbols of set theory are the numerical constants $0,1,2,\ldots , 9$ and the 
+symbol for the empty set $\emptyset$. 
+
+
+
+\begin{axiomlist}[S]
+\item ({\sffamily Extensionality Axiom}) \\
+  Two sets $M$ and $N$ are equal if and only if they have the same elements.\\
+  Formally: $\forall M \, \forall N \: \big( (M = N) \Leftrightarrow (\forall x  \: (x\in M) \Leftrightarrow (x\in N))\big) $ \ .
+\item[] (Definition of the subset relation) \\
+  A set $M$ is called a \emph{subset} of a set $N$, in signs $M\subset N$, if every element of $M$ is an element of $N$.  \\
+  Formally: $ (M\subset N) \Leftrightarrow ( \forall x \:  (x\in M) \Rightarrow (x\in N))$ \ . 
+\item[]
+  The extensionality axiom can now be expressed equivalently as follows: \\
+  \mbox{ }\hspace{17mm}$\forall M \, \forall N \: \big( (M = N) \Leftrightarrow ( ( M \subset N) \: \& \: (N \subset M)) \big)$ \ . 
+\item ({\sffamily Axiom of Empty Set})\\
+  There exists a set which has no elements.\\
+  Formally: $\exists E \, \forall x \: \neg (x \in E)$  \ .
+  \\[1mm]
+  The set having no elements is uniquely determined by the extensionality axiom. It is 
+  denoted by $\emptyset$.  
+\item ({\sffamily Separation Scheme})\\
+  Let $M$ be  a set and $P(x)$ a formula (or in other words a property). Then there exists 
+  a set $N$ whose elements consist of all $x\in M$ such that $P(x)$ holds true. \\
+  In signs: $ N = \{ x \in M \mid P(x) \} $ \ . 
+  \\[1mm]
+  Using the separation scheme one can define the intersection of two sets $M$ and $N$ as 
+  $M \cap N = \{ x\in M\mid x\in N\}$ and the complement $M \setminus N$ as the set 
+  $\{ x\in M \mid x \notin N\}$. 
+\item ({\sffamily Axiom of Pairings})\\
+  For all sets $x$ and $y$ there exists a set containing exactly $x$ and $y$. \\
+  Formally: $\forall x \, \forall y \, \exists M \, \forall z \big( z \in M \Leftrightarrow (z = x \vee z = y )\big)$  \ .
+  \\[1mm]
+  The set containing $x$ and $y$ as elements (and no others) is denoted  $\{ x , y \}$. 
+  If $x = y$, one writes $\{ x \}$ for this set. 
+\item ({\sffamily Axiom of the Union}) \\
+  Given two sets $M$ and $N$ there exists a set consisting of all elements 
+  of $M$ and $N$ (and no others). \\
+  Formally: $\forall M \, \forall N \, \exists U \, \forall x \: \big((x \in U ) \Leftrightarrow ( x \in M \vee x \in N)\big) $.\\[1mm]
+  The set $U$ in this formula is uniquely defined by the extensionality axiom and is 
+  called the \emph{union of $M$ and $N$}. It is denoted $M \cup N$. 
+
+  More generally, if $M$ is a set, then there exists a set denoted by $\bigcup M$ consisting of all 
+  elements of elements of $M$. \\
+  Formally: $\forall M \, \exists U \, \forall x \: \big((x \in U ) \Leftrightarrow 
+  ( \exists X \: ( X \in M \: \& \: x \in X ))\big) $. \\[1mm]
+  The set $U$ in this formula then is uniquely determined and abbreviated $\bigcup M$.  
+\item ({\sffamily Power Set Axiom}) \\
+  For each set $M$ there exists a set $\power{M}$ containing all subsets of $M$ (and no others). \\
+  Formally: $\forall M \, \exists P \, \forall x \: \big( (x \subset M) \Leftrightarrow ( x\in P) \big)$. 
+  \\[1mm]
+  The set $P$ in this formula is uniquely defined by the extensionality axiom and is 
+  called the \emph{power set of $M$}. It is denoted $\power{M}$. 
+\item ({\sffamily Axiom of Infinity})
+  There exists a set which contains $\emptyset$ and with each element $x$ also the union 
+  $x \cup \{ x\}$. \\ 
+  Formally: $\exists M \: \big( \emptyset \in M \: \& \: \forall x ( x \in M \Rightarrow x \cup \{x\} \in M) \big)$ \ .
+\item ({\sffamily Axiom of Choice})
+   For any set $M$ of nonempty sets, there exists a choice function $f$ defined on $M$ that is a map
+   $M \to \bigcup M$ such that $f(x) \in x$ for all $x \in M$. \\ 
+   Formally:   $\forall M \big( \emptyset \notin M \Rightarrow \exists f : M \to \bigcup M, \: 
+   \forall x \in X \: ( f(x) \in x) \big) $ \ .
+\end{axiomlist}
+
+\begin{remark}
+  In the formulation of the Axiom of Choice we used the notion of a function introduced below in
+  \Cref{def:function}.
+\end{remark}
+
+\begin{proposition}
+  Let $L, M, N$ be sets. Then the following statements hold true. 
+  \begin{letterlist}
+  \item \textup{\sffamily (commutativity)}\\ $M \cup N = N \cup M$ and   $M \cap N = N \cap M$.
+  \item \textup{(\sffamily associativity)}\\ $M \cup (N \cup L)  = (N \cup M) \cup L$ and   
+                                 $M \cap (N  \cap L) = (N \cap M) \cap L$.
+  \item \textup{\sffamily (distributivity)} \\
+      $M \cup (N \cap L)  = (M \cup N) \cap (M \cup L)$ and   
+      $M \cap (N \cup L)  = (M \cap N) \cup (M \cap L)$.
+  \item $ M \cap N \subset M$ and $M\subset M \cup N$.
+  \item If for a set $X$ the relations $X \subset M$ and $X \subset N$ hold true, then $X \subset M \cap N$.
+     If for a set $Y$ the relations $M \subset Y$ and $N \subset Y$ are satisfied, then $M \cup N \subset Y $.
+  \item $M \setminus \emptyset = M $ and $M \setminus M = \emptyset$.
+  \item $ M \setminus (M \cap N) = M \setminus N  $ and $ M \setminus (M  \setminus N) = M \cap N$. 
+  \item \textup{\sffamily (de Morgan's laws)}\\
+      $M \setminus (N \cup L)  = (M \setminus N) \cap (M \setminus L)  $ and 
+      $M \setminus (N \cap L)  = (M \setminus N) \cup (M \setminus L)  $.
+  \end{letterlist}
+\end{proposition}
+
+\subsec{Cartesian products}
+
+\begin{definition}
+  Let $X$ and $Y$ be sets. For all $x\in X$ and $y\in Y$ the \emph{pair} $(x,y)$ is defined as
+  the set $\big\{ \{x \}, \{ x, y \} \big\}$. The \emph{cartesian product}
+  $X \times Y$ is defined as 
+  \[
+    \big\{ z \in \power{\power{X \cup Y}} \mid \exists x \in X \, \exists y \in Y : \: 
+    z = \{ \{x \}, \{ x, y \}\} \big\}  .
+  \]
+\end{definition}
+
+\begin{proposition}
+  For sets $X,Y$ and elements $x, x'\in X$ and $y,y' \in Y$ the pairs $(x,y)$ and $(x',y')$ are equal 
+  if and only if $x = x'$ and $y =y'$. 
+\end{proposition}
+
+\begin{proposition}
+  Let $L, M, N$ be sets. Then the following associativity law for the cartesian product is satisfied:
+  \begin{letterlist}
+  \item 
+      $L \times (M \times N)  = (L \times M) \times N$.
+  \end{letterlist}
+  Moreover, the following distributivity laws hold true:
+  \begin{letterlist}\setcounter{enumi}{1}
+  \item 
+      $L \times (M \cup N)  = (L \times M) \cup (L \times N)$ and   
+      $(M \cup N) \times L = (M \times L) \cup (N \times L)$,
+  \item
+      $L \times (M \cap N)  = (L \times M) \cap (L \times N)$ and   
+      $(M \cap N) \times L = (M \times L) \cap (N \times L)$, 
+  \item
+      $L \times (M \setminus N)  = (L \times M) \setminus (L \times N)$ and   
+      $(M \setminus N) \times L = (M \times L) \setminus (N \times L)$.
+  \end{letterlist}
+\end{proposition}
+
+
+\subsec{Relations} 
+
+\begin{definition}
+  A triple $R = (X,Y,\Gamma)$ with $X$ and $Y$ being sets and $\Gamma$ a subset of the cartesian product 
+  $X\times Y$ is called a \emph{relation from $X$ to $Y$}. If $Y=X$, a relation $(X,X,\Gamma)$ is called
+  a \emph{relation on $X$}. The set $\Gamma$ is called the graph of the relation. 
+
+  If $(x,y) \in \Gamma$, on says that $x$ and $y$ are in relation, and denotes that by $x \, R \, y$. 
+\end{definition}
+
+\begin{remark}
+  Usually, a relation is often denoted by a symbol like for example $\sim$, $\leq$ or $\equiv$.
+  The statement that $x$ and $y$ are in relation is then symbolically written 
+  $x \sim y$, $x \leq y$, $x \equiv y$, respectively.  
+\end{remark}
+
+\begin{definition}
+  A relation $\sim$ on a set $X$ is called an \emph{equivalence relation}
+  if it has the following properties: 
+  \begin{axiomlist}[E]
+  \item\label{axiom:equivalence-relation-reflexivity} \textup{Reflexivity}\\
+     For all $x\in X$ the relation $x \sim x$ holds true. 
+  \item\label{axiom:equivalence-relation-symmetry} \textup{Symmetry}\\
+     For all $x,y \in X$, if $x \sim y$ holds true, then $y \sim x$ is true as well. 
+  \item\label{axiom:equivalence-relation-transitivity} \textup{Transitivity}\\
+     For all $x,y,z \in X$ the relations $x\leq y$ and $y \leq x$ 
+     entail $x\leq z$.
+  \end{axiomlist}
+\end{definition}
+
+\begin{definition}
+  A set $X$ together with a relation $\leq$ on it is called an \emph{ordered set}, 
+  a \emph{partially ordered set} or a \emph{poset} if the following axioms  
+  are satisfied: 
+  \begin{axiomlist}[O]
+  \item\label{axiom:order-relation-reflexivity} \textup{\sffamily Reflexivity}\\
+     For all $x\in X$ the relation $x \leq x$ holds true. 
+  \item\label{axiom:order-relation-antisymmetry} \textup{\sffamily Antisymmetry}\\
+     If $x \leq y$ and $y \leq x$ for some $x,y\in X$, then $x =y$. 
+  \item\label{axiom:order-relation-transitivity} \textup{\sffamily Transitivity}\\
+     For all $x,y,z \in X$ the relations $x\leq y$ and $y \leq x$ 
+     entail $x\leq z$.  
+  \end{axiomlist}
+  The relation $\leq$ is then called an \emph{order relation} or an \emph{order} on $X$.   
+ 
+  If in addition Axiom \ref{axiom:order-relation-totality} below
+  holds true, $(X,\leq)$ is called a \emph{totally ordered set} and $\leq$ a \emph{total order} 
+  on $X$.  
+  \begin{axiomlist}[O]
+  \setcounter{enumi}{3}
+  \item\label{axiom:order-relation-totality} \textup{\sffamily Totality}\\
+     For all $x,y\in X$ the relation $x \leq y$ or the relation $y \leq x$ holds true.
+  \end{axiomlist}
+
+  A total order relation $\leq$ on $X$ satisfies the following law of trichotomy, where $x < y$ 
+  stands for $x \leq y$ and $ x \neq y$:
+  \begin{axiomlist}[O]
+  \setcounter{enumi}{4}
+  \item[]\hspace{-10mm}\textup{({\sffamily Law of Trichotomy})}\\
+     For all $x,y\in X$ exactly one of the statements $x < y$, $x=y$ or $y <x$ holds true. 
+  \end{axiomlist}
+\end{definition}
+
+\begin{definition}
+  Let $(X,\leq)$ be an order set and $A\subset X$ a subset. Then one calls
+  \begin{romanlist}
+  \item $ M\in X$ a \emph{maximum} if for all $x \in X$ satisfying $M \leq x$ the relation $x=M$ holds true,
+  \item $ m\in X$ a \emph{minimum} if for all $x \in X$ satisfying $x\leq m$ the relation $x=m$ holds true,
+  \item $ G\in X$ a \emph{greatest} element if for all $x \in X$ the relation $x\leq G$ holds true,
+  \item $ s\in X$ a \emph{lowest} or \emph{smallest} element if for all $x \in X$ the relation $s\leq x$ holds true,
+  \item $ B\in X$ an \emph{upper bound} of $A$ if $a \leq B$ for all $a \in A$,
+  \item $ b\in X$ a \emph{lower bound} of $A$ if $b \leq a$ for all $a \in A$,
+  \item $ S\in X$ a \emph{supremum} of $A$ if $S$ is a least upper bound of $A$, and finally
+  \item $ i\in X$ an \emph{infimum} of $A$ if $i$ is a greatest lower bound of $A$.
+  \end{romanlist}
+  If $A$ has an upper bound it is called \emph{bounded above}, if it has  alower boudn one says it is 
+  \emph{bounded below}. A subset $A \subset X$ bounded above and below is called a \emph{bounded subset} of $X$.
+\end{definition}
+
+\begin{remarks}
+  \begin{letterlist}
+  \item  A greatest or a lowest element is always uniquely determined, but such elements might not exist
+         or just one of them.  
+         Likewise, the supremum and the infimum of a subset $A \subset X$ are uniquely determined,
+         but possibly do not exist. 
+         If existent, they are denoted by $\sup A$ and $\inf A$, respectively.        
+  \item  A greatest element is always maximal, but in general not vice versa. 
+         The same holds for minimal and least elements that is a least element is always minimal but 
+         a minimal element is in general not a least element. 
+  \end{letterlist}
+ 
+\end{remarks}
+
+\subsec{Functions}
+
+\begin{definition}
+\label{def:function}
+  By a \emph{function} $f$ one understands a triple $(X,Y,\Gamma)$ consisting of
+  \begin{letterlist}
+  \item a set $X$, called the \emph{domain} of the function, 
+  \item a set $Y$, called the \emph{range} or \emph{target} of the function,
+  \item a set $\Gamma$ of pairs $(x,y)$ of points $x\in X$ and  $y\in Y$, 
+  called the \emph{graph} of the function,  such that for each $x\in X$ 
+  there is a unique $f(x)\in Y$ with $\big( x,f(x)\big) \in \Gamma$. 
+  \end{letterlist}
+  A function $f$ with domain $X$, range $Y$ and graph 
+  $\Gamma = \{ (x,y) \in X \times Y \mid y = f(x) \}$ will be denoted
+  \[
+    f:X \rightarrow Y, \: x \mapsto f(x) \ .
+  \]
+\end{definition}
+\begin{example}
+  The following are examples of functions:
+  \begin{letterlist}
+  \item 
+   the identity function on a set $X$, $\operatorname{id}_X : X \rightarrow X$,
+   $x\mapsto x$,
+  \item 
+   polynomial functions which are functions of the form  $p: \R \to \R$, 
+   $x \mapsto \sum_{k=0}^n a_k x^k$, where the $a_k$, $k= 0, \ldots ,n$ are real numbers 
+   called the coefficients of the polynomial function,
+  \item
+   the absolute value  function $ | \cdot |  :\R \rightarrow \R$, $x \mapsto |x| = \sqrt{x^2}$, \\[2mm]
+   the euclidean norm $ \| \cdot \|  :\R^2 \rightarrow \R$, $(x,y) \mapsto \sqrt{x^2 + y^2}$ on $\R^2$ and 
+    more generally the euclidean norm  
+    $ \| \cdot \| :\R^n \rightarrow \R$, $(x_1,\ldots , x_n) \mapsto \sqrt{\sum_{i=10}^nx_i^2}$
+    on $\R^n$.
+  \end{letterlist}
+  Further examples of functions defined on (subsets of) $\R$ are the exponential funtion, the logarithm, the trigonometric functions, and so on. Precise definitions of these will be introduced later. 
+\end{example}
+
+\begin{definition}
+  Functions of the form $f:\:\R^m \rightarrow \R^n$ such that 
+  \begin{axiomlist}[L]
+  \item $f (0) = 0$ and
+  \item $f(v+w) = f(v) + f(w)$ for all $v,w \in \R^m$ 
+  \end{axiomlist}
+  are called \emph{linear}. A function $g: \:\R^m \rightarrow \R^n$ is called \emph{affine} if
+  there exists an $a \in \R^n$ and a linear function $f: \:\R^m \rightarrow \R^n$ such that
+  $g(v) = f(v)+ a$ for all $v\in \R^m$.
+\end{definition}
+
+\begin{definition}
+  A function $f: X \to Y$ is called 
+  \begin{letterlist}
+  \item \emph{injective} or \emph{one-to-one} if for all $x_1,x_2 \in X$ the equality $f(x_1)= f(x_2)$ implies $x_1 = x_2$,
+  \item \emph{surjective} or \emph{onto} if for all $y\in Y$ there exists an $x\in X$ such that $f(x)= y$, and
+   \item \emph{bijective} if it is injective and bijective. 
+  \end{letterlist}
+\end{definition}
+
+\begin{definition}
+  Let $f : X \to Y$ and $g: Y \to Z$ be two functions. The \emph{composition} $g \circ f : X \to Z$  then is defined 
+  as the function with domain $X$, range $Z$ and graph $\Gamma = \{ (x,z) \in X \times Z \mid z = g(f(x)) \} $.
+  In other words, $g\circ f$ maps an element $x\in X$ to $g(f(x))\in Z$. 
+\end{definition}
+
+\begin{definition}
+  A function  $f : X \to Y$ is called \emph{invertible} if there exist a function $g: Y \to X$ such that 
+  $g \circ f = \id_X$ and  $f \circ g = \id_Y$.
+\end{definition}
+
+\begin{theorem}
+  A function  $f : X \to Y$ is invertible if and only if it is bijective. 
+\end{theorem}
+
+\begin{definition} 
+  Let $f: X \to Y$ be a function. For every subset $A \subset X$ 
+  one defines the \emph{image} of $A$ under $f$ as the set 
+  \[
+    f(A) = \{ f(x) \in Y\mid x \in A \} \ .
+  \]  
+  The set $f(X)$ is called the \emph{image} of the function $f$
+  and is usually denoted by the symbol $\im (f)$.
+  In case $B$ is a subset of $Y$, the \emph{preimage} of $B$ under $f$ 
+  is defined as  the set  
+  \[
+      f^{-1} (B) \subset X \ .
+  \]
+\end{definition}
+ 
+\begin{remarks} 
+\begin{letterlist}
+  \item 
+  The notation $f^{-1}$ in the preceding definition does not mean that $f$ 
+  is invertible. The preimage map $f^{-1}$ associated to a function 
+  $f : X \to Y$ has domain $\power{Y}$ and range $\power{X}$, 
+  whereas the inverse map $g^{-1}$ of an invertible function 
+  $g: X \to Y$ has domain $Y$ and range $X$. The context will always make 
+  clear which of these two functions is meant when using the 
+  ``to the power negative one'' symbol on functions. 
+  If $f : X \to Y$ is invertible, the preimage map 
+  $f^{-1} : \power{Y} \to \power{X}$ and the inverse map 
+  $f^{-1} : Y \to X$ are related by 
+  \[
+    f^{-1} (\{y\}) = \big\{ f^{-1} (y) \big\} \quad \text{for all } y \in Y \ .
+  \] 
+  \item
+  The image $\im (f)$ of a function $f:X \to Y$ is always contained in the 
+  range $Y$. Equality $\im (f) = Y$ holds if and only if $f$ is surjective.
+\end{letterlist}
+\end{remarks}
+
+\begin{proposition}
+  For a function $f: X \to Y$ between two sets $X$ and $Y$ the following
+  statements hold true for the images respectively preimages under $f$ of
+  subsets $A, A_i, E \subset X$ with $i\in I$ and $B, B_j, F\subset Y$ with $j\in J$: 
+  \begin{letterlist}
+  \item
+    The relations 
+    \[
+      f^{-1}\big( f (A)\big) \supset A  \quad \text{and} \quad
+      f\big( f^{-1} (B)\big) = B \cap \im (f) \subset B 
+    \]
+    hold true.
+  \item
+    The image map $f : \power{X} \to \power{Y}$ preserves unions that is 
+    \[
+      f \left( \bigcup_{i\in I} A_i \right) = \bigcup_{i\in I} f (A_i) \ . 
+    \]
+  \item
+    In regard to intersections, the image map $f : \power{X} \to \power{Y}$ 
+    fulfills the relation
+    \[
+      f \left( \bigcap_{i\in I} A_i \right) \subset \bigcap_{i\in I} f (A_i) \ . 
+    \]
+  \item
+    With respect to  set-theoretic complement 
+    the image map  $f : \power{X} \to \power{Y}$ acts as follows:
+    \[
+      f (A) \setminus f(E) \subset f(A\setminus E) \quad \text{if } E \subset A \ . 
+    \]
+  \item 
+    The preimage map $f^{-1}: \power{Y} \to \power{X}$ preserves unions that is 
+    \[
+      f^{-1}\left( \bigcup_{j\in J} B_j \right) = \bigcup_{j\in J} f^{-1} (B_j) \ .
+    \] 
+  \item 
+    The preimage map $f^{-1}: \power{Y} \to \power{X}$ preserves intersections that is 
+    \[
+      f^{-1}\left( \bigcap_{j\in J} B_j \right) = \bigcap_{j\in J} f^{-1} (B_j) \ .
+    \]     
+  \item 
+    The preimage map $f^{-1}: \power{Y} \to \power{X}$ acts as follows with respect to 
+    set-theoretic complement:
+    \[
+      f^{-1} (B) \setminus f^{-1}(F ) =  f^{-1} (B\setminus F) \quad \text{if } F \subset B \ . 
+    \]
+  \end{letterlist}
+\end{proposition}
+
+\begin{remark}
+   The image map $f : \power{X} \to \power{Y}$ does in general not preserve 
+   intersections. To see this consider the square function
+   $f: \R \to \R$, $x \mapsto x^2$. Then 
+   \[
+      f \big( (-\infty,0] \cap [0,\infty)\big) = \{ 0\}
+      \quad \text{but} \quad  
+      f \big( (-\infty,0]  \big) \cap  f \big( [0,\infty)\big) = 
+      [0,\infty ) ¸\ . 
+   \]
+   If $f$ is an injective map, the corresponding preimage map preserves 
+   all intersections. Actually this is even a sufficient criterion 
+   for injectivity of $f$. 
+ \end{remark}
+
+ \subsec{Basic algebraic structures}
+
+ \begin{definition}
+  A set $G$ together with a binary operation $* : \: G  \times G \to G$
+  and a distinguished element $e \in G$ is called a \emph{group}
+  if the following axioms hold true
+ \begin{axiomlist}[G]
+  \item \textup{\sffamily (associativity)}\\
+    $ g * (h *k) = (g*h) *k$ for all $g,h,k \in G$. 
+  \item \textup{\sffamily (neutrality of $0$)}\\ 
+    $g* e = e*g = g$ for all $g\in G$.
+  \item \textup{\sffamily (existence of inverses)}\\ 
+    For every $g\in G$ there exists an element $h\in G$ such that
+    $g* h = h*g = e$.
+  \end{axiomlist}
+  If in addition the following property holds true, the group $G$ is called
+  \emph{abelian}.
+  \begin{axiomlist}[G]
+  \setcounter{enumi}{3}
+  \item \textup{\sffamily (commutativity)}\\
+     $ g*h = h*g$ for all $g,h \in G$. 
+  \end{axiomlist} 
+ \end{definition}

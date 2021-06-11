@@ -1,0 +1,1 @@
+This project contains LaTeX style files, semantic macros, and related tools for the Liber Scientificae project. 

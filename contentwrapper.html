@@ -1,0 +1,140 @@
+
+<!--
+  Copyright 2018 The Distill Template Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!doctype html>
+<head>
+  <script src="https://distill.pub/template.v2.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf8">
+</head>
+
+<body>
+  <!--<distill-header></distill-header>-->
+  <!--"published": "1 9 2017",
+{
+        "author":"Shan Carter",
+        "authorURL":"https://shancarter.com/",
+        "affiliations": [
+          {"name": "Google Brain", "url": "https://g.co/brain"},
+          {"name": "NYT", "url": "https://nytimes.com"}
+        ]
+      }
+-->
+  <d-front-matter>
+    <script id='distill-front-matter' type="text/json">{
+    "title": "XXXtitleXXX",
+    "description": "XXXdontcareXXX",
+    "published": "XXXpublishedXXX",
+    "doi": "XXXdoiXXX",
+    "authors": [
+        XXXauthorsXXX
+    ],
+    "katex": {
+      "delimiters": []
+    }
+  }</script>
+
+  </d-front-matter>
+  <d-title>
+    <p>XXXdiscriptionXXX</p>
+  </d-title>
+  <d-byline></d-byline>
+
+<!---
+"""
+<ol class="enumeration" type="1">
+  <li value="(O1)">This is item three.</li>
+  <li value="(O2)">This is item fifty.</li>
+  <li value="(O3)">
+      Something Aweakkjlk
+      <ol class="enumeration" type="1">
+      <li value="">This is item three.</li>
+      <li value="(A5)">This is item fifty.</li>
+      <li value="(A6)">This is item one hundred.</li>
+    </ol>
+  </li>
+</ol>
+"""-->
+
+
+  <style>
+
+    ol.enumeration {
+        margin-left: 2em;
+        padding-left: 2em;
+    }
+    li {
+        display: block;
+        margin-bottom: .5em;
+        margin-left: 2em;
+    }
+    li:before {
+        content:attr(value) ' ';
+        width: 2em;
+        margin-left: -2em;
+        display: inline-block;
+    }
+  </style>
+    
+  
+<d-article>
+<p>XXXcontentXXX</p>
+</d-article>
+
+  <d-appendix>
+<p>XXXappendixXXX</p>
+
+    <d-bibliography>
+        
+
+        <!--@article{gregor2015draw,
+            title={DRAW: A recurrent neural network for image generation},
+            author={Gregor, Karol and Danihelka, Ivo and Graves, Alex and Rezende, Danilo Jimenez and Wierstra, Daan},
+            journal={arXiv preprint arXiv:1502.04623},
+            year={2015},
+            url ={https://arxiv.org/pdf/1502.04623.pdf}
+          }--->
+    <script type="text/bibtex">
+        XXXbibtexXXX
+    </script>
+
+      </d-bibliography>
+    </d-appendix>
+
+</body>
+
+<script>
+	var math_inline = document.getElementsByClassName('inline');
+    for (var i = 0; i < math_inline.length; i++) {
+      try {
+        katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
+      }catch (e) {
+      }
+    }
+
+  var math_display = document.getElementsByClassName('display');
+    for (var i = 0; i < math_display.length; i++) {
+	    try {
+      katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
+      }catch (e) {
+      }
+    }
+</script>

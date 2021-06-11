@@ -1,0 +1,128 @@
+
+
+\subsec{Natural numbers}
+\begin{definition}[Peano]
+\label{definition:system-of-natural-numbers}
+A triple $ (\N,0,s) $ consisting of a set $\N$, an element $0\in \N$ 
+called \emph{zero element} and a map $s: \N \rightarrow \N $ 
+called \emph{successor map} is called a \emph{system of natural numbers} 
+if  the following axioms hold true:
+
+\begin{axiomlist}[P]
+%\item
+%\label{axiom:peano-zero-element} 
+%  $ 0 $ is an element of $ \P $ .
+%\item
+%\label{axiom:peano-successor-map}  
+%  $ s : \P \rightarrow \P $ is a mapping.
+\item
+\label{axiom:peano-zero-not-image}
+  $ 0 $ is not in the image of $ s $.
+\item
+\label{axiom:peano-injectivity-successor}
+  $ s $ is injective.
+\item (Induction Axiom)
+\label{axiom:peano-induction}
+  Every inductive subset of $ \N $ coincides with $ \N $, where 
+  by an \emph{inductive subset of} $ \N$ one understands a set $I \subset \N$ 
+  having the following properties: 
+  \begin{axiomlist}[I]
+  \item
+    $ 0 $ is an element of $ I $.
+  \item
+    If $ n \in I $, then $ s (n) \in I $. 
+  \end{axiomlist}
+\end{axiomlist}
+\end{definition}
+
+By Axiom \ref{axiom:peano-zero-not-image}, $0$ is not in the image of the 
+successor map. But all other elements of the Peano structure are. 
+
+\begin{proposition}
+\label{prop:image-successor-map}
+  Let $ (\N,0,s) $ be a system of natural numbers. Then the image of $s$ 
+  coincides with the set $\nzN:=\{ n \in \N \mid n \neq 0 \}$ of all 
+  non-zero elements, in signs $s (\N)  = \nzN$.
+\end{proposition}
+
+
+\begin{theorem}
+  The set $\N$ of natural numbers together with addition $+ : \: \N  \times \N \to \N$,
+  multiplication $\cdot : \: \N  \times \N \to \N$ and the 
+  elements $0$ and $1 := s(0) $ satisfies the following axioms: 
+  \begin{axiomlist}[A]
+  \item \textup{\sffamily (associativity)}\\
+    $ l + (m + n) = (l+m) +n$ for all $l,m,n \in \N$. 
+  \item \textup{\sffamily (commutativity)}\\
+     $ m + n = n+m$ for all $m,n \in \N$. 
+  \item \textup{\sffamily (neutrality of $0$)}\\ 
+     $m +0 = 0 +m = m$ for all $m\in \N$. 
+  \end{axiomlist} 
+  \begin{axiomlist}[M]
+  \item \textup{\sffamily (associativity)}\\
+    $ l \cdot (m \cdot n) = (l\cdot m) \cdot n$ for all $l,m,n \in \N$. 
+  \item \textup{\sffamily (commutativity)}\\
+     $ m \cdot n = n\cdot m$ for all $m,n \in \N$. 
+  \item \textup{\sffamily (neutrality of $1$)}\\ 
+     $m \cdot 1 = 1 \cdot m = m$ for all $m\in \N$. 
+  \end{axiomlist} 
+  \begin{axiomlist}[D]
+  \item[\textup{\sffamily (D) }] \textup{\sffamily (distributivity)}\\ 
+       $ l \cdot (m +n ) = (l \cdot m) + (l \cdot n) \quad $ and \\
+    $ (m +n ) \cdot l = (m \cdot  l) +  (n \cdot l) \quad $ for all $l,m,n\in \N$.
+  \end{axiomlist} 
+  In other words, $\N$ together with $+$ and $\cdot$ and the elements $0,1$ is a semiring.  
+\end{theorem}
+
+\subsec{Real numbers}
+
+\begin{definition}
+  By  a \emph{field of real numbers} one understands a set $\R$ together together with binary operations 
+  $+ : \: \R  \times \R \to \R$ and $\cdot : \: \R  \times \R \to \R$ called \emph{addition} and \emph {multiplication}, 
+  two distinct elements $0$ and $1$  and an order relation $\leq$ such that the following axioms 
+  are satisfied:
+  \begin{axiomlist}[A]
+  \item \textup{\sffamily (associativity)}\\
+    $ x + (y + z) = (x+y) +z$ for all $x,y,z \in \R$. 
+  \item \textup{\sffamily (commutativity)}\\
+     $ x + y = y+x$ for all $x,y \in \R$. .  
+  \item \textup{\sffamily (neutrality of $0$)}\\ 
+     $x +0 = 0 +x = x$ for all $x\in \R$. 
+  \item \textup{\sffamily (additive inverses)}\\ 
+     For every $x \in \R$ there exists $y \in \R$, called \emph{negative} 
+     of $x$ such that $x +y = y +x = 0$. The negative of $x$ is usually denoted $-x$. 
+  \end{axiomlist} 
+  \begin{axiomlist}[M]
+  \item \textup{\sffamily (associativity)}\\
+    $ x \cdot (y \cdot z) = (x\cdot y) \cdot z$ for all $x,y,z \in \R$. 
+  \item \textup{\sffamily (commutativity)}\\
+     $ x \cdot y = y\cdot x$ for all $x,y \in \R$. 
+  \item \textup{\sffamily (neutrality of $1$)}\\ 
+     $x \cdot 1 = 1 \cdot x = x$ for all $x\in \R$. 
+  \item \textup{\sffamily (multiplicative inverses of nonzero elements)}\\ 
+     For every $x \in \R^* := \R \setminus \{ 0 \}$ there exists $y \in \R$, called \emph{inverse} 
+     of $x$ such that $x \cdot y = y \cdot x = 1$. The inverse of $x \neq 0$ is usually denoted $x^{-1}$.  
+  \end{axiomlist} 
+  \begin{axiomlist}[D]
+  \item[\textup{\sffamily (D) }] \textup{\sffamily (distributivity)}\\ 
+       $ x \cdot (y +z ) = (x \cdot y) + (x \cdot z) \quad $ and \\
+    $ (x +y ) \cdot z = (x \cdot z) +  (y \cdot z) \quad $ for all $x,y,z\in \R$.
+  \end{axiomlist} 
+  \begin{axiomlist}[O]
+  \setcounter{enumi}{4}
+  \item \textup{\sffamily (monotony of addition)}\\
+  For all $x,y,z \in \R$ the relation $x \leq y$ implies $x +z \leq y+z$. 
+  \item \textup{\sffamily (monotony of multiplication)}\\
+  For all $x,y,z \in \R$ with $z \geq 0$ the relation $x \leq y$ implies $x \cdot z \leq y \cdot z$. 
+  \end{axiomlist} 
+  \begin{axiomlist}[C]
+  \item[\textup{\sffamily (C) }]  \textup{\sffamily (completeness)}\\
+  Each non-empty subset $X\subset \R$ bounded above has a least upper bound. 
+  \end{axiomlist} 
+  In other words, $\R$ together with $+$ and $\cdot$, the elements $0,1$ and the order relation $\leq$ 
+  is a complete ordered field.  
+\end{definition}
+
+\begin{theorem}
+  There exists (up to isomorphism) only one field of real numbers $\R$. 
+\end{theorem}

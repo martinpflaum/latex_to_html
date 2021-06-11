@@ -1,0 +1,214 @@
+
+\subsection{Limits and Continuity}
+\begin{definition}
+  Let $(x_n)_{n\in \N}$ be a sequence of real numbers. The sequence is said to 
+  \emph{converge} to a real number $x\in \R$ if for every $\varepsilon >0$ 
+  there exists an $N\in \N$ such that 
+  \[
+     | x_n - x | < \varepsilon \: \text{for all natural } n \geq N \ . 
+  \]
+  One then calls $(x_n)_{n\in \N}$ a \emph{convergent} sequence and 
+  $x$ its \emph{limit}. 
+\end{definition}
+
+\begin{proposition}
+  The limit of a convergent sequence is uniquely determined. 
+\end{proposition}
+
+\begin{definition}
+  The function $f: \R^2 \rightarrow \R$  has the
+  \emph{limit} $L$ at the point $(a,b) \in \R^2$, written 
+  \[
+    \lim_{(x,y) \rightarrow (a,b)} f(x,y) = L ,
+  \]
+  if for every $\varepsilon >0$  there is a $\delta >0$ such that 
+  \[
+      | f (x,y) - L | < \varepsilon \text{ for all $(x,y)\neq (a,b)$ 
+      with $d\big ( (x,y),(a,b) \big) < \delta$.}
+  \] 
+\end{definition}
+\begin{remark}
+  Intuitively,  $\lim_{(x,y) \rightarrow (a,b)} f(x,y) = L$ means that 
+  $f(x,y)$ is as close to $L$ as we wish whenever the distance 
+  of the point $(x,y)$ to $(a,b)$ is sufficiently small.  
+\end{remark}
+\begin{definition}
+  The function $f: \R^2 \rightarrow \R$  is called \emph{continuous} 
+  at the point $(a,b) \in \R^2$, if 
+  \[
+    \lim_{(x,y) \rightarrow (a,b)} f(x,y) = f(a,b) .
+  \]
+  \noindent
+  The function $f$ is said to be \emph{continuous}  on a region $R\subset \R^2$, if it is continuous 
+  at every point $(a,b) \in R$.
+\end{definition}
+
+\subsection{Differentiability in one real dimension}
+\begin{definition}
+  A function $f:\R \rightarrow \R$, $x \mapsto f(x)$ is called 
+  \emph{differentiable in} 
+  $a \in \R$ if the limit
+\begin{equation*}
+  \begin{split}
+   & f'(x) := Df (a) := \frac{d f}{d x} (a) := \lim_{h\rightarrow 0} \frac{ f (a+h) - f(a)}{h} \\
+  \end{split}
+\end{equation*}
+exists. One then calls  $f' (x)$ the \emph{derivative} of $f$ at $a$. 
+If $f$  is differentiable in every  point of $\R$, then one says that $f$ is \emph{differentiable}.
+\end{definition} 
+
+
+
+\subsection{Differentiability}
+
+\begin{definition}
+  A function $f:\R^2 \rightarrow \R$, $(x,y)\mapsto f(x,y)$ is called 
+  \emph{partially differentiable in the point} 
+  $(a,b) \in \R^2$ \emph{with respect to the variable} $x$ (resp.~$y$), 
+  if the limit
+\begin{equation*}
+  \begin{split}
+   & \frac{\partial f}{\partial x} (a,b) := \lim_{h\rightarrow 0} \frac{ f (a+h,b) - f(a,b)}{h} \\
+   \Big( \: \text{resp. } &\frac{\partial f}{\partial y} (a,b) 
+   := \lim_{h\rightarrow 0} \frac{ f (a,b+h) - f(a,b)}{h} \:\:\: \Big)
+  \end{split}
+\end{equation*}
+exists. One then calls  $\frac{\partial f}{\partial x} (a,b)$ and 
+$\frac{\partial f}{\partial y} (a,b)$ the \emph{partial derivatives} of $f$ at $(a,b)$. 
+If $f$  is partially differentiable in every  point of $\R^2$ with respect to the variables $x$ and $y$, 
+then one says that $f$ is \emph{partially differentiable}.
+ 
+ A function $f:\R^2 \rightarrow \R$, $(x,y)\mapsto f(x,y)$ is called \emph{twice partially differentiable}, 
+ if it is partially differentiable, and if the partial derivatives  
+ $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ are partially differentiable as well.
+ 
+ A function $f:\R^2 \rightarrow \R$, $(x,y)\mapsto f(x,y)$ is called \emph{differentiable in the point} $(a,b) \in \R^2$, 
+ if there exists a linear function $L:\R^2\rightarrow \R$ such that 
+ \begin{displaymath}
+   \lim_{(x,y) \rightarrow (a,b)} \frac{E(x,y)}{\sqrt{(x-a)^2 + (y-b)^2}} =0,
+ \end{displaymath}
+ where $E:\R^2\rightarrow \R$ is the \emph{error function} defined by 
+ $E(x,y) := f(x,y)-f(a,b) -L(x,y)$. One then calls $L$ the \emph{linear approximation} of $f$ at $(a,b)$,
+ and writes 
+ \begin{displaymath}
+   f(x,y) \approx f(a,b) + L (x,y) .
+ \end{displaymath}
+\end{definition}
+
+\begin{definition}\hspace{-3mm}$^\star$
+  A function $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is called 
+  \emph{partially differentiable in the point} 
+  $a=(a_1,\cdots , a_n) \in \R^n$ \emph{with respect to the variable} $x_i$, 
+  if for every $i$, $1 \leq i \leq n$ the limit
+\begin{equation*}
+  \begin{split}
+   \frac{\partial f}{\partial x_i} (a) := \lim_{h\rightarrow 0} \frac{ f (a_1, \cdots, a_i+h, \cdots , a_n) - 
+   f(a_1,\cdots , a_n)}{h}
+  \end{split}
+\end{equation*}
+exists. One then calls  $\frac{\partial f}{\partial x_i} (a)$ 
+the (\emph{$i$-th}) \emph{partial derivative} of $f$ at $a$ \emph{with respect to the variable} $x_i$. 
+If $f$  is partially differentiable in every  point of $\R^n$ with respect to the variables $x_1,\ldots,x_n$, 
+then one says that $f$ is \emph{partially differentiable}.
+ 
+ A function $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is called \emph{twice partially differentiable}, 
+ if it is partially differentiable, and if the partial derivatives  
+ $\frac{\partial f}{\partial x_i}$, $1\leq i \leq n$  are partially differentiable as well.
+ 
+ A function $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is called \emph{differentiable in the point} 
+ $a \in \R^n$, if there exists a linear function $L:\R^n\rightarrow \R$ such that 
+ \begin{displaymath}
+   \lim_{x \rightarrow a} \frac{E(x)}{\sqrt{(x_1-a_1)^2 + \ldots + (x_n-a_n)^2}} =0,
+ \end{displaymath}
+ where $E:\R^n\rightarrow \R$ is the \emph{error function} defined by 
+ $E(x) := f(x)-f(a) -L(x)$. One then calls $L$ the \emph{linear approximation} of $f$ at $a$,
+ and writes 
+ \begin{displaymath}
+   f(x) \approx f(a) + L (x) .
+ \end{displaymath}
+\end{definition}
+
+\begin{theorem}
+  If  $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is differentiable at $a \in \R^n$, then $f$ is
+  partially differentiable and continuous at $a$. 
+\end{theorem}
+\begin{theorem}
+  If $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is twice partially differentiable, and the second partial 
+  derivatives
+  \begin{displaymath}
+    \frac{\partial^2f}{\partial x_i \partial x_j} :=  \frac{\partial }{\partial x_i}
+    \frac{\partial f}{ \partial x_j}
+  \end{displaymath}
+  are continuous, then 
+  \begin{displaymath}
+    \frac{\partial^2f}{\partial x_i \partial x_j} = \frac{\partial^2f}{\partial x_j \partial x_i}
+   \end{displaymath}
+  for $1\leq i,j\leq n$.
+\end{theorem}
+
+\begin{definition}
+  If $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is a partially differentiable function, 
+  and $x\in \R^n$, the vector
+  \begin{displaymath}
+    \grad f (x) := \left( \frac{\partial f}{ \partial x_1} (x) , \cdots , 
+    \frac{\partial f}{ \partial x_n} (x) \right) 
+  \end{displaymath}
+  is called the \emph{gradient} of $f$ at $x$.
+
+  Given a function $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ which 
+  is partially differentiable (up to isolated points),
+  a point $x\in \R^n$ is called a \emph{critical point} of $f$, if  $ \grad f (x) =0 $, or if 
+  $ \grad f (x) $ is not defined. 
+\end{definition}
+
+
+\subsection{Local and Global Extrema}
+
+\begin{definition}
+   If $f:\R^n \rightarrow \R$, $x\mapsto f(x)$ is a function, a point $a\in \R^n$ is called
+   a \emph{local maximum} (resp.~ \emph{local minimum}) of $f$, if
+   $f(x)\leq f(a)$ (resp.~$f(x)\geq f(a)$) for all $x\in \R^n$ near $a$.
+
+   The point $a\in \R^n$ is called a \emph{global maximum} (resp.~ \emph{global minimum}) of $f$
+   over the region $R\subset \R^n$ , if $f(x)\leq f(a)$ (resp.~$f(x)\geq f(a)$) for all $x\in R$.
+\end{definition}
+
+\begin{theorem}
+  Assume that $f:\R^2 \rightarrow \R$, $(x,y)\mapsto f(x,y)$ is a twice continuously partially 
+  differentiable function.
+  Suppose that $(a,b)$ is a point where $\grad f(a,b)=0$. Let 
+  \[
+        D = \dfrac{\partial^2f}{\partial x^2}(a,b)\cdot \dfrac{\partial^2f}{\partial y^2}(a,b) -
+            \left( \dfrac{\partial^2f}{\partial x \partial y} (a,b) \right)^2 .
+  \]
+  \begin{itemize}
+  \item If $D>0$ and $\dfrac{\partial^2f}{\partial x^2}(a,b)>0$, then $f$ has a local minimum in $a$.
+  \item If $D>0$ and $\dfrac{\partial^2f}{\partial x^2}(a,b)<0$, then $f$ has a local maximum in $a$.
+  \item If $D<0$, then $f$ has a saddle point in $a$.
+  \item If $D=0$, no conclusion can be made: $f$ can have a local maximum, a local minimum, a saddle
+  point, or none of these in the point $(a,b)$.  
+  \end{itemize}
+\end{theorem}
+  
+\begin{definition}
+   If $f:\R^2 \rightarrow \R$, $(x,y)\mapsto f(x,y)$ and $g :\R^2 \rightarrow \R$, $(x,y)\mapsto g(x,y)$ 
+   are functions, and $c\in \R$ a number, a point $(a,b) \in \R^2$ is called
+   a \emph{local maximum} (resp.~ \emph{local minimum}) of $f$ \emph{under the constraint} $g(x,y)=c$, if
+   $f(x,y)\leq f(a,b)$ (resp.~$f(x,y)\geq f(a,b)$) for all $(x,y)\in \R^2$ near $(a,b)$ 
+   which satisfy $g(x,y)=c$.
+
+   The point $(a,b)\in \R^2$ is called a \emph{global maximum} (resp.~ \emph{global minimum}) of $f$
+   \emph{under the constraint} $g(x,y)=c$, if $f(x,y)\leq f(a,b)$ (resp.~$f(x,y)\geq f(a,b)$) for all 
+   $(x,y)\in \R^2$  which satisfy $g(x,y)=c$.
+\end{definition}
+aaa
+\begin{theorem}
+  Assume that $f:\R^2 \rightarrow \R$, $x\mapsto f(x)$ is a smooth function, and 
+  $g:\R^2 \rightarrow \R$, $x\mapsto g(x)$ a smooth constraint. 
+  If $f$ has a maximum or minimum at the point $(a,b)$ under the constraint $g(x,y)=c$, 
+  then $(a,b)$ either satisfies the equations
+  \[
+     \grad f (a,b) = \lambda \grad g (a,b) \text{ and } g(a,b)=c \text{ for some $\lambda \in \R$},
+  \]
+  or $\grad g (a,b)=0$.  The number $\lambda$ is called the \emph{Lagrange multiplier}.
+\end{theorem}

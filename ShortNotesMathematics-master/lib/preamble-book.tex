@@ -1,0 +1,143 @@
+\IfFileExists{lisci-book.cls}{%
+\documentclass{lisci-book}
+}{%
+\documentclass[twoside=false,reqno,parskip=half,letterpaper]{scrbook}
+}
+\usepackage[
+  autooneside=false, % use left and right marks with a onesided document
+  automark, % set \leftmark and \rightmark automatically by \section and \subsection
+  headsepline
+]{scrlayer-scrpage}
+%\clearpairofpagestyles
+\chead{}
+\ihead{\leftmark}% chapter on the inner (oneside: left) side
+\ohead{\rightmark}% section on the outer (oneside: right) side
+%\ohead{\thesection\hspace{0.5em}\rightmark}% section on the outer (oneside: right) side, add number 
+%\addtokomafont{pageheadfoot}{\upshape}
+\textheight220mm
+\textwidth160mm
+\evensidemargin2mm
+\oddsidemargin2mm
+
+% The following AMS packages are automatically loaded with
+% the amsart documentclass:
+\usepackage{amsmath}
+\usepackage{amssymb,bbm}
+\usepackage[amsmath,hyperref,amsthm,thmmarks]{ntheorem}
+
+\usepackage{natbib}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{eucal}
+\usepackage{mathabx}
+\usepackage{mathtools}
+
+\DeclareMathAlphabet{\mathbbm}{U}{bbm}{m}{n}
+% \DeclareUnicodeCharacter{x1D7D9}{\bbone}
+% \unicode{x1D7D9}
+%\DeclareSymbolFont{mathbbm}{U}{bbm}{m}{n}
+%\DeclareMathSymbol{\bbone}{\mathalpha}{mathbbm}{`1}
+
+%provides standard size corner delimiters by AMS
+\DeclareSymbolFont{AMSa}{U}{msa}{m}{n}
+\DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
+\DeclareMathDelimiter{\ULcorner}{\mathopen} {AMSa}{"70}{AMSa}{"70}
+\DeclareMathDelimiter{\URcorner}{\mathclose}{AMSa}{"71}{AMSa}{"71}
+\DeclareMathDelimiter{\LLcorner}{\mathopen} {AMSa}{"78}{AMSa}{"78}
+\DeclareMathDelimiter{\LRcorner}{\mathclose}{AMSa}{"79}{AMSa}{"79}
+
+\usepackage[OT2,T1]{fontenc}
+\DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
+\DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
+\DeclareMathSymbol{\De}{\mathalpha}{cyrletters}{"44}
+
+
+%BOONDOX-cal %provides lowercase caligraphic letters
+\DeclareMathAlphabet{\mathboondoxcal}{U}{BOONDOX-cal}{m}{n}
+\SetMathAlphabet{\mathboondoxcal}{bold}{U}{BOONDOX-cal}{b}{n}
+\DeclareMathAlphabet{\mathbboondoxcal} {U}{BOONDOX-cal}{b}{n}
+
+% For commutative diagrams you can use
+\usepackage{tikz-cd}
+
+% For graphics you can use
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\pagestyle{scrheadings}
+
+% For type­setting text in multiple columns
+\usepackage{multicol}
+
+% For cross-file-references
+\usepackage{xr-hyper}
+
+% Packages for hypertext links:
+\usepackage{hyperref}
+\usepackage{cleveref} %for cref
+
+% Package for fancy enumerate lists:
+\usepackage{enumitem}
+
+%Package for extended tables
+\usepackage{tabularx} 
+
+\makeatletter
+ \def\input@path{{lib/}{sections/}{licenses/}}
+\makeatother
+
+% For any local file, say "hello.tex" you want to link to please
+% use \externaldocument[hello-]{hello}
+
+
+\let\raggedsection\centering
+
+\numberwithin{equation}{section}
+%\counterwithout{section}{chapter}
+%\makeatletter
+%\@addtoreset{equation}{subsection}
+
+%\makeatletter
+%\renewcommand{\thechapter}{\@arabic\c@chapter}
+%\@addtoreset{section}{chapter}
+%\renewcommand{\thesection}{\@arabic\c@section}
+%\@addtoreset{equation}{subsection}
+%\renewcommand{\theequation}{\thesubsection.\@arabic\c@equation}
+%\makeatother
+
+% define long arrows with hooks
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+
+\input{theorem-styles}
+\input{semantic-macros}
+
+\newcommand{\subsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand\para{\par\refstepcounter{subsection}\textbf{\thesubsection}\space}
+
+\newcommand\ltsbrak{%
+  \mathopen{%
+    %\mspace{1mu}%
+    \ltortoise% 
+    \mspace{1mu}%
+  }%
+}
+\newcommand\rtsbrak{%
+  \mathopen{%
+    \mspace{1mu}%
+    \rtortoise% 
+    %\mspace{1mu}%
+  }%
+}
+\newcommand\ltortoise{%
+    \tikz[baseline=0.5ex,x=1ex,y=1ex,line width=0.7pt]% cap=round,
+    {\draw (0.4,2.2) -- (0.0,1.7) -- (0.0,0.5) -- (0.4,0.0);}% 
+    %{\draw (0.4,1) -- (0.0,0.5) -- (0.0,-0.5) -- (0.4,-1.0);}%
+}
+\newcommand\rtortoise{%
+    \tikz[baseline=0.5ex,x=1ex,y=1ex,line width=0.7pt]% cap=round,
+    {\draw (0.0,2.2) -- (0.4,1.7) -- (0.4,0.5) -- (0.0,0.0);}% 
+    %{\draw (0.4,1) -- (0.0,0.5) -- (0.0,-0.5) -- (0.4,-1.0);}%
+}
+
+
+\DeclareMathVersion{normal2}

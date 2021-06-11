@@ -1,0 +1,96 @@
+% Theorem environments.
+%
+\theoremstyle{change}
+\newtheorem{theorem}[subsection]{Theorem}
+\newtheorem{proposition}[subsection]{Proposition}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{corollary}[subsection]{Corollary}
+\newtheorem{thmanddef}[subsection]{Theorem and Definition}
+\newtheorem{coranddef}[subsection]{Corollary and Definition}
+\newtheorem{propanddef}[subsection]{Proposition and Definition}
+
+\theoremstyle{change}
+\theorembodyfont{\upshape}
+\newtheorem{definition}[subsection]{Definition}
+\newtheorem{convention}[subsection]{Convention}
+\newtheorem{example}[subsection]{Example}
+\newtheorem{examples}[subsection]{Examples}
+\newtheorem{historical}[subsection]{Historical}
+\newtheorem{remark}[subsection]{Remark}
+\newtheorem{remarks}[subsection]{Remarks}
+
+\newenvironment{axiomlist}[1][TAG]{\begin{enumerate}[label={\textup{{\sffamily (#1\arabic*)}}},leftmargin=*]}{\end{enumerate}}
+\newenvironment{axiomprimedlist}[1][TAG]{\begin{enumerate}[label={\textup{{\sffamily (#1\arabic*)'}}},leftmargin=*]}{\end{enumerate}}
+
+\newenvironment{axiomletterlist}[1][TAG]{\begin{enumerate}[label={\textup{({\sffamily #1\alph*})}},leftmargin=*]}{\end{enumerate}}
+
+\newenvironment{axiomlistphantom}[2][TAG]{\begin{enumerate}[label={\textup{({\sffamily #1\arabic*})}\hspace{#2}},leftmargin=*]}{\end{enumerate}}
+
+\newenvironment{numberlist}
+{
+  \begin{enumerate}[label={\textup{({\sffamily\arabic*})}},align=left,leftmargin=*]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{letterlist}
+{
+  \begin{enumerate}[label={\textup{(\alph*)}},align=left,leftmargin=*]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{environmentlist}
+{
+  \begin{enumerate}[labelwidth=\itemindent,labelsep=0cm,label={\textup{(\alph*) }},align=left,leftmargin=0cm]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{romanlist}
+{
+  \begin{enumerate}[label={\textup{(\roman*)}},labelsep=0cm,align=left,leftmargin=*]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{claimlist}
+{
+  \begin{enumerate}[labelwidth=\itemindent,labelsep=0cm,label={\itshape Claim}{\itshape \,\arabic*. },align=left,leftmargin=0cm]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{steplist}
+{
+  \begin{enumerate}[labelwidth=\itemindent,labelsep=0cm,label={\itshape Step}{\itshape \,\arabic*. },align=left,leftmargin=0cm]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{adromanlist}
+{
+  \begin{enumerate}[labelwidth=\itemindent,labelsep=0cm,label={\itshape ad }{\textup{(}}{\itshape \roman*\hspace{1pt}}{\textup{). }},align=left,leftmargin=0cm]
+}
+{
+  \end{enumerate}
+}
+
+\newenvironment{adletterlist}
+{
+  \begin{enumerate}[labelwidth=\itemindent,labelsep=0cm,label={\itshape ad }{\textup{(}}{\itshape \alph*}{\textup{). }},align=left,leftmargin=0cm]
+}
+{
+  \end{enumerate}
+}
+
+% Counters
+%
+\newcounter{itemno}
+\newcommand{\itemlabel}[1]{\refstepcounter{itemno}\label{#1}}
