@@ -1,0 +1,1892 @@
+
+<!--
+  Copyright 2018 The Distill Template Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!doctype html>
+<head>
+  <script src="https://distill.pub/template.v2.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script>
+
+  <link rel="icon" href="icon.png" type="image/png" sizes="16x16">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf8">
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <!--<distill-header></distill-header>-->
+  <!--"published": "1 9 2017",
+{
+        "author":"Shan Carter",
+        "authorURL":"https://shancarter.com/",
+        "affiliations": [
+          {"name": "Google Brain", "url": "https://g.co/brain"},
+          {"name": "NYT", "url": "https://nytimes.com"}
+        ]
+      }
+-->
+  <d-front-matter>
+    <script id='distill-front-matter' type="text/json">{
+      "title": "Why Momentum Bla",
+      "description": "Something usefull is can not be read here!",
+      "published": "9, 10, 2017",
+      "doi":"",
+      "authors": [
+      {
+        "author":"Martin Pflaum",
+        "authorURL":"https://something/",
+        "affiliations": [{"name": "company Name"}]
+        },
+        
+        {
+        "author":"Ludwig Der Große",
+        "authorURL":"https://.vom/",
+        "affiliations": [{"name": "Xar", "url": "https://something"}]
+        },
+        {
+        "author":"Scanter X",
+        "authorURL":"https://.com/",
+        "affiliations": [
+        {"name": "Rege Universität", "url": "https://ar"},
+        {"name": "XTZ", "url": "https://a.com"}
+        ]
+        }
+      ]
+    }</script>
+
+  </d-front-matter>
+  <d-title>
+    <p>Is it really necassary to write something usefull in a place holder text? This and many more question will be discussed in this article.</p>
+  </d-title>
+  <d-byline></d-byline>
+
+<!---
+"""
+<ol class="enumeration" type="1">
+  <li value="(O1)">This is item three.</li>
+  <li value="(O2)">This is item fifty.</li>
+  <li value="(O3)">
+      Something Aweakkjlk
+      <ol class="enumeration" type="1">
+      <li value="">This is item three.</li>
+      <li value="(A5)">This is item fifty.</li>
+      <li value="(A6)">This is item one hundred.</li>
+    </ol>
+  </li>
+</ol>
+"""-->
+
+
+  <style>
+
+    ol.enumeration {
+        margin-left: 2em;
+        padding-left: 2em;
+    }
+    li {
+        display: block;
+        margin-bottom: .5em;
+        margin-left: 2em;
+    }
+    li:before {
+        content:attr(value) ' ';
+        width: 2em;
+        margin-left: -2em;
+        display: inline-block;
+    }
+  </style>
+    
+
+    
+  <script>
+
+    function adjust_fit_content_width(elem_name,right_border) {
+        document.getElementById(elem_name).style.width = "fit-content";
+        var width = window.getComputedStyle(document.getElementById('sidenav')).width;
+        width = (parseInt(width.replace(/px/,""))+right_border)+"px"
+        document.getElementById(elem_name).style.width = width; 
+    }
+    function adjust_fit_content_height(elem_name,right_border) {
+        document.getElementById(elem_name).style.height = "fit-content";
+        var height = window.getComputedStyle(document.getElementById('sidenav')).height;
+        height = (parseInt(height.replace(/px/,""))+right_border)+"px"
+        document.getElementById(elem_name).style.height = height; 
+    }
+    function enable_nav() {
+        adjust_fit_content_width("sidenav",50)
+        document.getElementById("enable_nav").style.display = "none";
+        document.getElementById("disable_nav").style.display = "table";
+    
+        
+      
+    }
+    
+    function disable_nav() {
+        document.getElementById("sidenav").style.width = "0";
+        document.getElementById("enable_nav").style.display = "table";
+        document.getElementById("disable_nav").style.display = "none";
+      
+    }
+
+        
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<div id="mySidenav"></div>
+
+<style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+
+    .enable_nav {
+        width: 100px;
+        height: 35px;
+        background-color:#ffff;
+        border-style: solid;
+        border-color: rgb(192, 192, 192);
+        color: rgb(192, 192, 192);
+        border-radius: 25px;
+        position: fixed;
+        z-index: 3;
+        bottom: 20px;
+        left: 20px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        display: table;
+        
+    }
+    
+    .disable_nav {
+        width: 100px;
+        height: 35px;
+        background-color:#ffff;
+        border-style: solid;
+        border-radius: 25px;
+        border-color: rgb(192, 192, 192);
+        color: rgb(192, 192, 192);
+        position: fixed;
+        z-index: 3;
+        bottom: 20px;
+        left: 20px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        display: none;
+        
+    }
+    .button_text{
+        display: table-cell; 
+        vertical-align: middle;
+    }
+    </style>
+
+<div id="enable_nav" class="enable_nav" onclick="enable_nav()"> 
+<div class="button_text">Navigation</div>
+</div>
+
+
+<div id="disable_nav" class="disable_nav" onclick="disable_nav()"> 
+<div class="button_text">Back</div>
+</div>
+    <div id="sidenav" class="sidenav">
+        <br>
+        <p>
+        <ol>
+        <li>Tada</li>
+    <li>Something</li>
+        <li>usefull</li>
+        </ol>
+        </p>
+    </div>
+    <script>
+        function openNav() {
+          document.getElementById("sidenav").style.width = "20%";
+        }
+        
+        function closeNav() {
+          document.getElementById("sidenav").style.width = "0";
+        }
+    </script>
+<d-article>
+<p>
+
+\titleShort Notes in Mathematics
+\subtitleFundamental concepts every student of Mathematics should know 
+\addcontentslinetocsectionTitlepage
+\author\scshape Markus J. Pflaum
+\maketitle
+
+\tableofcontents
+
+\phantomsection
+
+
+</p><h1>1 Foundations</h1><p>
+
+</p><h2>Set theory</h2><p>\addcontentslinetocsubsectionSet theory
+
+<br><br><strong>1.1</strong> <strong>Naive Definition of Sets (Georg Cantor 1882)</strong> 
+ A set is a gathering together into a whole of definite, distinct objects of our perception 
+ or of our thought  which are called elements of the set. 
+
+<br><br><strong>1.2</strong> In modern Mathematics, set theory is developed axiomatically. Axiomatic set theory goes back to Zermelo-Fraenkel and forms the basis of modern mathematics, together with formal logic. We follow the
+axiomatic approach here too, even though we will not introduce all of the set theory axioms 
+of Zermelo-Fraenkel and will not go into the subtleties of set theory. 
+
+<br><br><strong>1.3</strong> <strong>Axiomatic Definition of Sets (cf.~Zermelo-Fraenkel 1908, 1973)</strong> 
+Sets are denoted by letters of the roman and greek alphabets :
+<span class='inline'>a,b,c,\ldots,x,y,z</span>, <span class='inline'>A,B,C,\ldots,X,Y,Z</span>, <span class='inline'>\alpha,\beta,\gamma,\delta,\ldots, \chi,\psi, \omega</span>, and 
+<span class='inline'>A,B,\Gamma, \Delta, \ldots,X,\Psi,\Omega</span>.
+The fundamental relational symbols of set theory are the <i>equality sign</i> <span class='inline'>=</span> and the <i>element sign</i>
+<span class='inline'>\in</span>. Further symbols of set theory are the numerical constants <span class='inline'>0,1,2,\ldots , 9</span> and the 
+symbol for the empty set <span class='inline'>\emptyset</span>. 
+
+
+
+</p><ol class='enumeration'>
+<li value=' (S1)'> ( Extensionality Axiom) 
+
+  Two sets <span class='inline'>M</span> and <span class='inline'>N</span> are equal if and only if they have the same elements.
+
+  Formally: <span class='inline'>\forall M \, \forall N \: \big( (M = N) \Leftrightarrow (\forall x  \: (x\in M) \Leftrightarrow (x\in N))\big) </span> .
+</li><li value=''> (Definition of the subset relation) 
+
+  A set <span class='inline'>M</span> is called a <i>subset</i> of a set <span class='inline'>N</span>, in signs <span class='inline'>M\subset N</span>, if every element of <span class='inline'>M</span> is an element of <span class='inline'>N</span>.  
+
+  Formally: <span class='inline'> (M\subset N) \Leftrightarrow ( \forall x \:  (x\in M) \Rightarrow (x\in N))</span> . 
+</li><li value=''>
+  The extensionality axiom can now be expressed equivalently as follows: 
+
+  \mbox \hspace17mm<span class='inline'>\forall M \, \forall N \: \big( (M = N) \Leftrightarrow ( ( M \subset N) \: \& \: (N \subset M)) \big)</span> . 
+</li><li value=' (S2)'> ( Axiom of Empty Set)
+
+  There exists a set which has no elements.
+
+  Formally: <span class='inline'>\exists E \, \forall x \: \neg (x \in E)</span>  .
+  
+[1mm]
+  The set having no elements is uniquely determined by the extensionality axiom. It is 
+  denoted by <span class='inline'>\emptyset</span>.  
+</li><li value=' (S3)'> ( Separation Scheme)
+
+  Let <span class='inline'>M</span> be  a set and <span class='inline'>P(x)</span> a formula (or in other words a property). Then there exists 
+  a set <span class='inline'>N</span> whose elements consist of all <span class='inline'>x\in M</span> such that <span class='inline'>P(x)</span> holds true. 
+
+  In signs: <span class='inline'> N = \{ x \in M \mid P(x) \} </span> . 
+  
+[1mm]
+  Using the separation scheme one can define the intersection of two sets <span class='inline'>M</span> and <span class='inline'>N</span> as 
+  <span class='inline'>M \cap N = \{ x\in M\mid x\in N\}</span> and the complement <span class='inline'>M \setminus N</span> as the set 
+  <span class='inline'>\{ x\in M \mid x \notin N\}</span>. 
+</li><li value=' (S4)'> ( Axiom of Pairings)
+
+  For all sets <span class='inline'>x</span> and <span class='inline'>y</span> there exists a set containing exactly <span class='inline'>x</span> and <span class='inline'>y</span>. 
+
+  Formally: <span class='inline'>\forall x \, \forall y \, \exists M \, \forall z \big( z \in M \Leftrightarrow (z = x \vee z = y )\big)</span>  .
+  
+[1mm]
+  The set containing <span class='inline'>x</span> and <span class='inline'>y</span> as elements (and no others) is denoted  <span class='inline'>\{ x , y \}</span>. 
+  If <span class='inline'>x = y</span>, one writes <span class='inline'>\{ x \}</span> for this set. 
+</li><li value=' (S5)'> ( Axiom of the Union) 
+
+  Given two sets <span class='inline'>M</span> and <span class='inline'>N</span> there exists a set consisting of all elements 
+  of <span class='inline'>M</span> and <span class='inline'>N</span> (and no others). 
+
+  Formally: <span class='inline'>\forall M \, \forall N \, \exists U \, \forall x \: \big((x \in U ) \Leftrightarrow ( x \in M \vee x \in N)\big) </span>.
+[1mm]
+  The set <span class='inline'>U</span> in this formula is uniquely defined by the extensionality axiom and is 
+  called the <i>union of <span class='inline'>M</span> and <span class='inline'>N</span></i>. It is denoted <span class='inline'>M \cup N</span>. 
+
+  More generally, if <span class='inline'>M</span> is a set, then there exists a set denoted by <span class='inline'>\bigcup M</span> consisting of all 
+  elements of elements of <span class='inline'>M</span>. 
+
+  Formally: <span class='inline'>\forall M \, \exists U \, \forall x \: \big((x \in U ) \Leftrightarrow 
+  ( \exists X \: ( X \in M \: \& \: x \in X ))\big) </span>. 
+[1mm]
+  The set <span class='inline'>U</span> in this formula then is uniquely determined and abbreviated <span class='inline'>\bigcup M</span>.  
+</li><li value=' (S6)'> ( Power Set Axiom) 
+
+  For each set <span class='inline'>M</span> there exists a set <span class='inline'>\mathscr{P}(M)</span> containing all subsets of <span class='inline'>M</span> (and no others). 
+
+  Formally: <span class='inline'>\forall M \, \exists P \, \forall x \: \big( (x \subset M) \Leftrightarrow ( x\in P) \big)</span>. 
+  
+[1mm]
+  The set <span class='inline'>P</span> in this formula is uniquely defined by the extensionality axiom and is 
+  called the <i>power set of <span class='inline'>M</span></i>. It is denoted <span class='inline'>\mathscr{P}(M)</span>. 
+</li><li value=' (S7)'> ( Axiom of Infinity)
+  There exists a set which contains <span class='inline'>\emptyset</span> and with each element <span class='inline'>x</span> also the union 
+  <span class='inline'>x \cup \{ x\}</span>. 
+ 
+  Formally: <span class='inline'>\exists M \: \big( \emptyset \in M \: \& \: \forall x ( x \in M \Rightarrow x \cup \{x\} \in M) \big)</span> .
+</li><li value=' (S8)'> ( Axiom of Choice)
+   For any set <span class='inline'>M</span> of nonempty sets, there exists a choice function <span class='inline'>f</span> defined on <span class='inline'>M</span> that is a map
+   <span class='inline'>M \to \bigcup M</span> such that <span class='inline'>f(x) \in x</span> for all <span class='inline'>x \in M</span>. 
+ 
+   Formally:   <span class='inline'>\forall M \big( \emptyset \notin M \Rightarrow \exists f : M \to \bigcup M, \: 
+   \forall x \in X \: ( f(x) \in x) \big) </span> .
+</li></ol><p>
+
+<br><br><strong>Remark 1.4</strong>
+  In the formulation of the Axiom of Choice we used the notion of a function introduced below in
+  \Crefdef:function.
+<br><br>
+
+<br><br><strong>Proposition 1.5</strong>
+  Let <span class='inline'>L, M, N</span> be sets. Then the following statements hold true. 
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'>  (commutativity)
+ <span class='inline'>M \cup N = N \cup M</span> and   <span class='inline'>M \cap N = N \cap M</span>.
+  </li><li value='(b)'> ( associativity)
+ <span class='inline'>M \cup (N \cup L)  = (N \cup M) \cup L</span> and   
+                                 <span class='inline'>M \cap (N  \cap L) = (N \cap M) \cap L</span>.
+  </li><li value='(c)'>  (distributivity) 
+
+      <span class='inline'>M \cup (N \cap L)  = (M \cup N) \cap (M \cup L)</span> and   
+      <span class='inline'>M \cap (N \cup L)  = (M \cap N) \cup (M \cap L)</span>.
+  </li><li value='(d)'> <span class='inline'> M \cap N \subset M</span> and <span class='inline'>M\subset M \cup N</span>.
+  </li><li value='(e)'> If for a set <span class='inline'>X</span> the relations <span class='inline'>X \subset M</span> and <span class='inline'>X \subset N</span> hold true, then <span class='inline'>X \subset M \cap N</span>.
+     If for a set <span class='inline'>Y</span> the relations <span class='inline'>M \subset Y</span> and <span class='inline'>N \subset Y</span> are satisfied, then <span class='inline'>M \cup N \subset Y </span>.
+  </li><li value='(f)'> <span class='inline'>M \setminus \emptyset = M </span> and <span class='inline'>M \setminus M = \emptyset</span>.
+  </li><li value='(g)'> <span class='inline'> M \setminus (M \cap N) = M \setminus N  </span> and <span class='inline'> M \setminus (M  \setminus N) = M \cap N</span>. 
+  </li><li value='(h)'>  (de Morgan's laws)
+
+      <span class='inline'>M \setminus (N \cup L)  = (M \setminus N) \cap (M \setminus L)  </span> and 
+      <span class='inline'>M \setminus (N \cap L)  = (M \setminus N) \cup (M \setminus L)  </span>.
+  
+  </li></ol><p>
+
+<br><br>
+
+</p><h2>Cartesian products</h2><p>\addcontentslinetocsubsectionCartesian products
+
+<br><br><strong>Definition 1.6</strong>
+  Let <span class='inline'>X</span> and <span class='inline'>Y</span> be sets. For all <span class='inline'>x\in X</span> and <span class='inline'>y\in Y</span> the <i>pair</i> <span class='inline'>(x,y)</span> is defined as
+  the set <span class='inline'>\big\{ \{x \}, \{ x, y \} \big\}</span>. The <i>cartesian product</i>
+  <span class='inline'>X \times Y</span> is defined as 
+  <br><br><span class='display'>
+    \big\{ z \in \mathscr{P}(\mathscr{P}(X \cup Y)) \mid \exists x \in X \, \exists y \in Y : \: 
+    z = \{ \{x \}, \{ x, y \}\} \big\}  .
+  </span><br>
+<br><br>
+
+<br><br><strong>Proposition 1.7</strong>
+  For sets <span class='inline'>X,Y</span> and elements <span class='inline'>x, x'\in X</span> and <span class='inline'>y,y' \in Y</span> the pairs <span class='inline'>(x,y)</span> and <span class='inline'>(x',y')</span> are equal 
+  if and only if <span class='inline'>x = x'</span> and <span class='inline'>y =y'</span>. 
+<br><br>
+
+<br><br><strong>Proposition 1.8</strong>
+  Let <span class='inline'>L, M, N</span> be sets. Then the following associativity law for the cartesian product is satisfied:
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> 
+      <span class='inline'>L \times (M \times N)  = (L \times M) \times N</span>.
+  
+  </li></ol><p>
+
+  Moreover, the following distributivity laws hold true:
+  
+  </p><ol class='enumeration'>
+\setcounterenumi1
+  <li value='(a)'> 
+      <span class='inline'>L \times (M \cup N)  = (L \times M) \cup (L \times N)</span> and   
+      <span class='inline'>(M \cup N) \times L = (M \times L) \cup (N \times L)</span>,
+  </li><li value='(b)'>
+      <span class='inline'>L \times (M \cap N)  = (L \times M) \cap (L \times N)</span> and   
+      <span class='inline'>(M \cap N) \times L = (M \times L) \cap (N \times L)</span>, 
+  </li><li value='(c)'>
+      <span class='inline'>L \times (M \setminus N)  = (L \times M) \setminus (L \times N)</span> and   
+      <span class='inline'>(M \setminus N) \times L = (M \times L) \setminus (N \times L)</span>.
+  
+  </li></ol><p>
+
+<br><br>
+
+
+</p><h2>Relations</h2><p>\addcontentslinetocsubsectionRelations 
+
+<br><br><strong>Definition 1.9</strong>
+  A triple <span class='inline'>R = (X,Y,\Gamma)</span> with <span class='inline'>X</span> and <span class='inline'>Y</span> being sets and <span class='inline'>\Gamma</span> a subset of the cartesian product 
+  <span class='inline'>X\times Y</span> is called a <i>relation from <span class='inline'>X</span> to <span class='inline'>Y</span></i>. If <span class='inline'>Y=X</span>, a relation <span class='inline'>(X,X,\Gamma)</span> is called
+  a <i>relation on <span class='inline'>X</span></i>. The set <span class='inline'>\Gamma</span> is called the graph of the relation. 
+
+  If <span class='inline'>(x,y) \in \Gamma</span>, on says that <span class='inline'>x</span> and <span class='inline'>y</span> are in relation, and denotes that by <span class='inline'>x \, R \, y</span>. 
+<br><br>
+
+<br><br><strong>Remark 1.10</strong>
+  Usually, a relation is often denoted by a symbol like for example <span class='inline'>\sim</span>, <span class='inline'>\leq</span> or <span class='inline'>\equiv</span>.
+  The statement that <span class='inline'>x</span> and <span class='inline'>y</span> are in relation is then symbolically written 
+  <span class='inline'>x \sim y</span>, <span class='inline'>x \leq y</span>, <span class='inline'>x \equiv y</span>, respectively.  
+<br><br>
+
+<br><br><strong>Definition 1.11</strong>
+  A relation <span class='inline'>\sim</span> on a set <span class='inline'>X</span> is called an <i>equivalence relation</i>
+  if it has the following properties: 
+  </p><ol class='enumeration'>
+  <li value=' (E1)'> Reflexivity
+
+     For all <span class='inline'>x\in X</span> the relation <span class='inline'>x \sim x</span> holds true. 
+  </li><li value=' (E2)'> Symmetry
+
+     For all <span class='inline'>x,y \in X</span>, if <span class='inline'>x \sim y</span> holds true, then <span class='inline'>y \sim x</span> is true as well. 
+  </li><li value=' (E3)'> Transitivity
+
+     For all <span class='inline'>x,y,z \in X</span> the relations <span class='inline'>x\leq y</span> and <span class='inline'>y \leq x</span> 
+     entail <span class='inline'>x\leq z</span>.
+  </li></ol><p>
+<br><br>
+
+<br><br><strong>Definition 1.12</strong>
+  A set <span class='inline'>X</span> together with a relation <span class='inline'>\leq</span> on it is called an <i>ordered set</i>, 
+  a <i>partially ordered set</i> or a <i>poset</i> if the following axioms  
+  are satisfied: 
+  </p><ol class='enumeration'>
+  <li value=' (O1)'>  Reflexivity
+
+     For all <span class='inline'>x\in X</span> the relation <span class='inline'>x \leq x</span> holds true. 
+  </li><li value=' (O2)'>  Antisymmetry
+
+     If <span class='inline'>x \leq y</span> and <span class='inline'>y \leq x</span> for some <span class='inline'>x,y\in X</span>, then <span class='inline'>x =y</span>. 
+  </li><li value=' (O3)'>  Transitivity
+
+     For all <span class='inline'>x,y,z \in X</span> the relations <span class='inline'>x\leq y</span> and <span class='inline'>y \leq x</span> 
+     entail <span class='inline'>x\leq z</span>.  
+  </li></ol><p>
+  The relation <span class='inline'>\leq</span> is then called an <i>order relation</i> or an <i>order</i> on <span class='inline'>X</span>.   
+ 
+  If in addition Axiom ref_error below
+  holds true, <span class='inline'>(X,\leq)</span> is called a <i>totally ordered set</i> and <span class='inline'>\leq</span> a <i>total order</i> 
+  on <span class='inline'>X</span>.  
+  </p><ol class='enumeration'>
+  \setcounterenumi3
+  <li value=' (O1)'>  Totality
+
+     For all <span class='inline'>x,y\in X</span> the relation <span class='inline'>x \leq y</span> or the relation <span class='inline'>y \leq x</span> holds true.
+  </li></ol><p>
+
+  A total order relation <span class='inline'>\leq</span> on <span class='inline'>X</span> satisfies the following law of trichotomy, where <span class='inline'>x  <  y</span> 
+  stands for <span class='inline'>x \leq y</span> and <span class='inline'> x \neq y</span>:
+  </p><ol class='enumeration'>
+  \setcounterenumi4
+  <li value=''>\hspace-10mm( Law of Trichotomy)
+
+     For all <span class='inline'>x,y\in X</span> exactly one of the statements <span class='inline'>x  <  y</span>, <span class='inline'>x=y</span> or <span class='inline'>y  < x</span> holds true. 
+  </li></ol><p>
+<br><br>
+
+<br><br><strong>Definition 1.13</strong>
+  Let <span class='inline'>(X,\leq)</span> be an order set and <span class='inline'>A\subset X</span> a subset. Then one calls
+  
+  </p><ol class='enumeration'>
+
+  <li value='(I)'> <span class='inline'> M\in X</span> a <i>maximum</i> if for all <span class='inline'>x \in X</span> satisfying <span class='inline'>M \leq x</span> the relation <span class='inline'>x=M</span> holds true,
+  </li><li value='(II)'> <span class='inline'> m\in X</span> a <i>minimum</i> if for all <span class='inline'>x \in X</span> satisfying <span class='inline'>x\leq m</span> the relation <span class='inline'>x=m</span> holds true,
+  </li><li value='(III)'> <span class='inline'> G\in X</span> a <i>greatest</i> element if for all <span class='inline'>x \in X</span> the relation <span class='inline'>x\leq G</span> holds true,
+  </li><li value='(IV)'> <span class='inline'> s\in X</span> a <i>lowest</i> or <i>smallest</i> element if for all <span class='inline'>x \in X</span> the relation <span class='inline'>s\leq x</span> holds true,
+  </li><li value='(V)'> <span class='inline'> B\in X</span> an <i>upper bound</i> of <span class='inline'>A</span> if <span class='inline'>a \leq B</span> for all <span class='inline'>a \in A</span>,
+  </li><li value='(VI)'> <span class='inline'> b\in X</span> a <i>lower bound</i> of <span class='inline'>A</span> if <span class='inline'>b \leq a</span> for all <span class='inline'>a \in A</span>,
+  </li><li value='(VII)'> <span class='inline'> S\in X</span> a <i>supremum</i> of <span class='inline'>A</span> if <span class='inline'>S</span> is a least upper bound of <span class='inline'>A</span>, and finally
+  </li><li value='(VIII)'> <span class='inline'> i\in X</span> an <i>infimum</i> of <span class='inline'>A</span> if <span class='inline'>i</span> is a greatest lower bound of <span class='inline'>A</span>.
+  
+  </li></ol><p>
+
+  If <span class='inline'>A</span> has an upper bound it is called <i>bounded above</i>, if it has  alower boudn one says it is 
+  <i>bounded below</i>. A subset <span class='inline'>A \subset X</span> bounded above and below is called a <i>bounded subset</i> of <span class='inline'>X</span>.
+<br><br>
+
+<br><br><strong>Remarks 1.14</strong>
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'>  A greatest or a lowest element is always uniquely determined, but such elements might not exist
+         or just one of them.  
+         Likewise, the supremum and the infimum of a subset <span class='inline'>A \subset X</span> are uniquely determined,
+         but possibly do not exist. 
+         If existent, they are denoted by <span class='inline'>\sup A</span> and <span class='inline'>\inf A</span>, respectively.        
+  </li><li value='(b)'>  A greatest element is always maximal, but in general not vice versa. 
+         The same holds for minimal and least elements that is a least element is always minimal but 
+         a minimal element is in general not a least element. 
+  
+  </li></ol><p>
+
+ 
+<br><br>
+
+</p><h2>Functions</h2><p>\addcontentslinetocsubsectionFunctions
+
+<br><br><strong>Definition 1.15</strong>
+
+  By a <i>function</i> <span class='inline'>f</span> one understands a triple <span class='inline'>(X,Y,\Gamma)</span> consisting of
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> a set <span class='inline'>X</span>, called the <i>domain</i> of the function, 
+  </li><li value='(b)'> a set <span class='inline'>Y</span>, called the <i>range</i> or <i>target</i> of the function,
+  </li><li value='(c)'> a set <span class='inline'>\Gamma</span> of pairs <span class='inline'>(x,y)</span> of points <span class='inline'>x\in X</span> and  <span class='inline'>y\in Y</span>, 
+  called the <i>graph</i> of the function,  such that for each <span class='inline'>x\in X</span> 
+  there is a unique <span class='inline'>f(x)\in Y</span> with <span class='inline'>\big( x,f(x)\big) \in \Gamma</span>. 
+  
+  </li></ol><p>
+
+  A function <span class='inline'>f</span> with domain <span class='inline'>X</span>, range <span class='inline'>Y</span> and graph 
+  <span class='inline'>\Gamma = \{ (x,y) \in X \times Y \mid y = f(x) \}</span> will be denoted
+  <br><br><span class='display'>
+    f:X \rightarrow Y, \: x \mapsto f(x) .
+  </span><br>
+<br><br>
+<br><br><strong>Example 1.16</strong>
+  The following are examples of functions:
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> 
+   the identity function on a set <span class='inline'>X</span>, <span class='inline'>\operatorname{id}_X : X \rightarrow X</span>,
+   <span class='inline'>x\mapsto x</span>,
+  </li><li value='(b)'> 
+   polynomial functions which are functions of the form  <span class='inline'>p: \mathbb{R} \to \mathbb{R}</span>, 
+   <span class='inline'>x \mapsto \sum_{k=0}^n a_k x^k</span>, where the <span class='inline'>a_k</span>, <span class='inline'>k= 0, \ldots ,n</span> are real numbers 
+   called the coefficients of the polynomial function,
+  </li><li value='(c)'>
+   the absolute value  function <span class='inline'> | \cdot |  :\mathbb{R} \rightarrow \mathbb{R}</span>, <span class='inline'>x \mapsto |x| = \sqrt{x^2}</span>, 
+[2mm]
+   the euclidean norm <span class='inline'> \| \cdot \|  :\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y) \mapsto \sqrt{x^2 + y^2}</span> on <span class='inline'>\mathbb{R}^2</span> and 
+    more generally the euclidean norm  
+    <span class='inline'> \| \cdot \| :\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>(x_1,\ldots , x_n) \mapsto \sqrt{\sum_{i=10}^nx_i^2}</span>
+    on <span class='inline'>\mathbb{R}^n</span>.
+  
+  </li></ol><p>
+
+  Further examples of functions defined on (subsets of) <span class='inline'>\mathbb{R}</span> are the exponential funtion, the logarithm, the trigonometric functions, and so on. Precise definitions of these will be introduced later. 
+<br><br>
+
+<br><br><strong>Definition 1.17</strong>
+  Functions of the form <span class='inline'>f:\:\mathbb{R}^m \rightarrow \mathbb{R}^n</span> such that 
+  </p><ol class='enumeration'>
+  <li value=' (L1)'> <span class='inline'>f (0) = 0</span> and
+  </li><li value=' (L2)'> <span class='inline'>f(v+w) = f(v) + f(w)</span> for all <span class='inline'>v,w \in \mathbb{R}^m</span> 
+  </li></ol><p>
+  are called <i>linear</i>. A function <span class='inline'>g: \:\mathbb{R}^m \rightarrow \mathbb{R}^n</span> is called <i>affine</i> if
+  there exists an <span class='inline'>a \in \mathbb{R}^n</span> and a linear function <span class='inline'>f: \:\mathbb{R}^m \rightarrow \mathbb{R}^n</span> such that
+  <span class='inline'>g(v) = f(v)+ a</span> for all <span class='inline'>v\in \mathbb{R}^m</span>.
+<br><br>
+
+<br><br><strong>Definition 1.18</strong>
+  A function <span class='inline'>f: X \to Y</span> is called 
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> <i>injective</i> or <i>one-to-one</i> if for all <span class='inline'>x_1,x_2 \in X</span> the equality <span class='inline'>f(x_1)= f(x_2)</span> implies <span class='inline'>x_1 = x_2</span>,
+  </li><li value='(b)'> <i>surjective</i> or <i>onto</i> if for all <span class='inline'>y\in Y</span> there exists an <span class='inline'>x\in X</span> such that <span class='inline'>f(x)= y</span>, and
+   </li><li value='(c)'> <i>bijective</i> if it is injective and bijective. 
+  
+  </li></ol><p>
+
+<br><br>
+
+<br><br><strong>Definition 1.19</strong>
+  Let <span class='inline'>f : X \to Y</span> and <span class='inline'>g: Y \to Z</span> be two functions. The <i>composition</i> <span class='inline'>g \circ f : X \to Z</span>  then is defined 
+  as the function with domain <span class='inline'>X</span>, range <span class='inline'>Z</span> and graph <span class='inline'>\Gamma = \{ (x,z) \in X \times Z \mid z = g(f(x)) \} </span>.
+  In other words, <span class='inline'>g\circ f</span> maps an element <span class='inline'>x\in X</span> to <span class='inline'>g(f(x))\in Z</span>. 
+<br><br>
+
+<br><br><strong>Definition 1.20</strong>
+  A function  <span class='inline'>f : X \to Y</span> is called <i>invertible</i> if there exist a function <span class='inline'>g: Y \to X</span> such that 
+  <span class='inline'>g \circ f = \mathrm{id}_X</span> and  <span class='inline'>f \circ g = \mathrm{id}_Y</span>.
+<br><br>
+
+<br><br><strong>Theorem 1.21</strong>
+  A function  <span class='inline'>f : X \to Y</span> is invertible if and only if it is bijective. 
+<br><br>
+
+<br><br><strong>Definition 1.22</strong> 
+  Let <span class='inline'>f: X \to Y</span> be a function. For every subset <span class='inline'>A \subset X</span> 
+  one defines the <i>image</i> of <span class='inline'>A</span> under <span class='inline'>f</span> as the set 
+  <br><br><span class='display'>
+    f(A) = \{ f(x) \in Y\mid x \in A \} .
+  </span><br>  
+  The set <span class='inline'>f(X)</span> is called the <i>image</i> of the function <span class='inline'>f</span>
+  and is usually denoted by the symbol <span class='inline'>\operatorname{im} (f)</span>.
+  In case <span class='inline'>B</span> is a subset of <span class='inline'>Y</span>, the <i>preimage</i> of <span class='inline'>B</span> under <span class='inline'>f</span> 
+  is defined as  the set  
+  <br><br><span class='display'>
+      f^{-1} (B) \subset X .
+  </span><br>
+<br><br>
+ 
+<br><br><strong>Remarks 1.23</strong> 
+
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> 
+  The notation <span class='inline'>f^{-1}</span> in the preceding definition does not mean that <span class='inline'>f</span> 
+  is invertible. The preimage map <span class='inline'>f^{-1}</span> associated to a function 
+  <span class='inline'>f : X \to Y</span> has domain <span class='inline'>\mathscr{P}(Y)</span> and range <span class='inline'>\mathscr{P}(X)</span>, 
+  whereas the inverse map <span class='inline'>g^{-1}</span> of an invertible function 
+  <span class='inline'>g: X \to Y</span> has domain <span class='inline'>Y</span> and range <span class='inline'>X</span>. The context will always make 
+  clear which of these two functions is meant when using the 
+  ``to the power negative one'' symbol on functions. 
+  If <span class='inline'>f : X \to Y</span> is invertible, the preimage map 
+  <span class='inline'>f^{-1} : \mathscr{P}(Y) \to \mathscr{P}(X)</span> and the inverse map 
+  <span class='inline'>f^{-1} : Y \to X</span> are related by 
+  <br><br><span class='display'>
+    f^{-1} (\{y\}) = \big\{ f^{-1} (y) \big\} \quad \text{for all } y \in Y .
+  </span><br> 
+  </li><li value='(b)'>
+  The image <span class='inline'>\operatorname{im} (f)</span> of a function <span class='inline'>f:X \to Y</span> is always contained in the 
+  range <span class='inline'>Y</span>. Equality <span class='inline'>\operatorname{im} (f) = Y</span> holds if and only if <span class='inline'>f</span> is surjective.
+
+  </li></ol><p>
+
+<br><br>
+
+<br><br><strong>Proposition 1.24</strong>
+  For a function <span class='inline'>f: X \to Y</span> between two sets <span class='inline'>X</span> and <span class='inline'>Y</span> the following
+  statements hold true for the images respectively preimages under <span class='inline'>f</span> of
+  subsets <span class='inline'>A, A_i, E \subset X</span> with <span class='inline'>i\in I</span> and <span class='inline'>B, B_j, F\subset Y</span> with <span class='inline'>j\in J</span>: 
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'>
+    The relations 
+    <br><br><span class='display'>
+      f^{-1}\big( f (A)\big) \supset A  \quad \text{and} \quad
+      f\big( f^{-1} (B)\big) = B \cap \operatorname{im} (f) \subset B 
+    </span><br>
+    hold true.
+  </li><li value='(b)'>
+    The image map <span class='inline'>f : \mathscr{P}(X) \to \mathscr{P}(Y)</span> preserves unions that is 
+    <br><br><span class='display'>
+      f \left( \bigcup_{i\in I} A_i \right) = \bigcup_{i\in I} f (A_i) . 
+    </span><br>
+  </li><li value='(c)'>
+    In regard to intersections, the image map <span class='inline'>f : \mathscr{P}(X) \to \mathscr{P}(Y)</span> 
+    fulfills the relation
+    <br><br><span class='display'>
+      f \left( \bigcap_{i\in I} A_i \right) \subset \bigcap_{i\in I} f (A_i) . 
+    </span><br>
+  </li><li value='(d)'>
+    With respect to  set-theoretic complement 
+    the image map  <span class='inline'>f : \mathscr{P}(X) \to \mathscr{P}(Y)</span> acts as follows:
+    <br><br><span class='display'>
+      f (A) \setminus f(E) \subset f(A\setminus E) \quad \text{if } E \subset A . 
+    </span><br>
+  </li><li value='(e)'> 
+    The preimage map <span class='inline'>f^{-1}: \mathscr{P}(Y) \to \mathscr{P}(X)</span> preserves unions that is 
+    <br><br><span class='display'>
+      f^{-1}\left( \bigcup_{j\in J} B_j \right) = \bigcup_{j\in J} f^{-1} (B_j) .
+    </span><br> 
+  </li><li value='(f)'> 
+    The preimage map <span class='inline'>f^{-1}: \mathscr{P}(Y) \to \mathscr{P}(X)</span> preserves intersections that is 
+    <br><br><span class='display'>
+      f^{-1}\left( \bigcap_{j\in J} B_j \right) = \bigcap_{j\in J} f^{-1} (B_j) .
+    </span><br>     
+  </li><li value='(g)'> 
+    The preimage map <span class='inline'>f^{-1}: \mathscr{P}(Y) \to \mathscr{P}(X)</span> acts as follows with respect to 
+    set-theoretic complement:
+    <br><br><span class='display'>
+      f^{-1} (B) \setminus f^{-1}(F ) =  f^{-1} (B\setminus F) \quad \text{if } F \subset B . 
+    </span><br>
+  
+  </li></ol><p>
+
+<br><br>
+
+<br><br><strong>Remark 1.25</strong>
+   The image map <span class='inline'>f : \mathscr{P}(X) \to \mathscr{P}(Y)</span> does in general not preserve 
+   intersections. To see this consider the square function
+   <span class='inline'>f: \mathbb{R} \to \mathbb{R}</span>, <span class='inline'>x \mapsto x^2</span>. Then 
+   <br><br><span class='display'>
+      f \big( (-\infty,0] \cap [0,\infty)\big) = \{ 0\}
+      \quad \text{but} \quad  
+      f \big( (-\infty,0]  \big) \cap  f \big( [0,\infty)\big) = 
+      [0,\infty ) ¸. 
+   </span><br>
+   If <span class='inline'>f</span> is an injective map, the corresponding preimage map preserves 
+   all intersections. Actually this is even a sufficient criterion 
+   for injectivity of <span class='inline'>f</span>. 
+ <br><br>
+
+ </p><h2>Basic algebraic structures</h2><p>\addcontentslinetocsubsectionBasic algebraic structures
+
+ <br><br><strong>Definition 1.26</strong>
+  A set <span class='inline'>G</span> together with a binary operation <span class='inline'>* : \: G  \times G \to G</span>
+  and a distinguished element <span class='inline'>e \in G</span> is called a <i>group</i>
+  if the following axioms hold true
+ </p><ol class='enumeration'>
+  <li value=' (G1)'>  (associativity)
+
+    <span class='inline'> g * (h *k) = (g*h) *k</span> for all <span class='inline'>g,h,k \in G</span>. 
+  </li><li value=' (G2)'>  (neutrality of <span class='inline'>0</span>)
+ 
+    <span class='inline'>g* e = e*g = g</span> for all <span class='inline'>g\in G</span>.
+  </li><li value=' (G3)'>  (existence of inverses)
+ 
+    For every <span class='inline'>g\in G</span> there exists an element <span class='inline'>h\in G</span> such that
+    <span class='inline'>g* h = h*g = e</span>.
+  </li></ol><p>
+  If in addition the following property holds true, the group <span class='inline'>G</span> is called
+  <i>abelian</i>.
+  </p><ol class='enumeration'>
+  \setcounterenumi3
+  <li value=' (G1)'>  (commutativity)
+
+     <span class='inline'> g*h = h*g</span> for all <span class='inline'>g,h \in G</span>. 
+  </li></ol><p> 
+ <br><br>
+
+</p><h1>2 Number Systems</h1><p>
+
+
+</p><h2>Natural numbers</h2><p>\addcontentslinetocsubsectionNatural numbers
+<br><br><strong>Definition 2.1</strong>[Peano]
+
+A triple <span class='inline'> (\mathbb{N},0,s) </span> consisting of a set <span class='inline'>\mathbb{N}</span>, an element <span class='inline'>0\in \mathbb{N}</span> 
+called <i>zero element</i> and a map <span class='inline'>s: \mathbb{N} \rightarrow \mathbb{N} </span> 
+called <i>successor map</i> is called a <i>system of natural numbers</i> 
+if  the following axioms hold true:
+
+</p><ol class='enumeration'>
+<li value=' (P1)'>
+
+  <span class='inline'> 0 </span> is not in the image of <span class='inline'> s </span>.
+</li><li value=' (P2)'>
+
+  <span class='inline'> s </span> is injective.
+</li><li value=' (P3)'> (Induction Axiom)
+
+  Every inductive subset of <span class='inline'> \mathbb{N} </span> coincides with <span class='inline'> \mathbb{N} </span>, where 
+  by an <i>inductive subset of</i> <span class='inline'> \mathbb{N}</span> one understands a set <span class='inline'>I \subset \mathbb{N}</span> 
+  having the following properties: 
+  </p><ol class='enumeration'>
+  </ol><p></li><li value=' (P4)'>
+    <span class='inline'> 0 </span> is an element of <span class='inline'> I </span>.
+  </li><li value=' (P5)'>
+    If <span class='inline'> n \in I </span>, then <span class='inline'> s (n) \in I </span>. 
+  </li></ol><p>
+\endenumerate
+<br><br>
+
+By Axiom ref_error, <span class='inline'>0</span> is not in the image of the 
+successor map. But all other elements of the Peano structure are. 
+
+<br><br><strong>Proposition 2.2</strong>
+
+  Let <span class='inline'> (\mathbb{N},0,s) </span> be a system of natural numbers. Then the image of <span class='inline'>s</span> 
+  coincides with the set <span class='inline'>\mathbb{N}_{\ne 0}:=\{ n \in \mathbb{N} \mid n \neq 0 \}</span> of all 
+  non-zero elements, in signs <span class='inline'>s (\mathbb{N})  = \mathbb{N}_{\ne 0}</span>.
+<br><br>
+
+
+<br><br><strong>Theorem 2.3</strong>
+  The set <span class='inline'>\mathbb{N}</span> of natural numbers together with addition <span class='inline'>+ : \: \mathbb{N}  \times \mathbb{N} \to \mathbb{N}</span>,
+  multiplication <span class='inline'>\cdot : \: \mathbb{N}  \times \mathbb{N} \to \mathbb{N}</span> and the 
+  elements <span class='inline'>0</span> and <span class='inline'>1 := s(0) </span> satisfies the following axioms: 
+  </p><ol class='enumeration'>
+  <li value=' (A1)'>  (associativity)
+
+    <span class='inline'> l + (m + n) = (l+m) +n</span> for all <span class='inline'>l,m,n \in \mathbb{N}</span>. 
+  </li><li value=' (A2)'>  (commutativity)
+
+     <span class='inline'> m + n = n+m</span> for all <span class='inline'>m,n \in \mathbb{N}</span>. 
+  </li><li value=' (A3)'>  (neutrality of <span class='inline'>0</span>)
+ 
+     <span class='inline'>m +0 = 0 +m = m</span> for all <span class='inline'>m\in \mathbb{N}</span>. 
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  <li value=' (M1)'>  (associativity)
+
+    <span class='inline'> l \cdot (m \cdot n) = (l\cdot m) \cdot n</span> for all <span class='inline'>l,m,n \in \mathbb{N}</span>. 
+  </li><li value=' (M2)'>  (commutativity)
+
+     <span class='inline'> m \cdot n = n\cdot m</span> for all <span class='inline'>m,n \in \mathbb{N}</span>. 
+  </li><li value=' (M3)'>  (neutrality of <span class='inline'>1</span>)
+ 
+     <span class='inline'>m \cdot 1 = 1 \cdot m = m</span> for all <span class='inline'>m\in \mathbb{N}</span>. 
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  <li value='{\sffamily (D) }'>  (distributivity)
+ 
+       <span class='inline'> l \cdot (m +n ) = (l \cdot m) + (l \cdot n) \quad </span> and 
+
+    <span class='inline'> (m +n ) \cdot l = (m \cdot  l) +  (n \cdot l) \quad </span> for all <span class='inline'>l,m,n\in \mathbb{N}</span>.
+  </li></ol><p> 
+  In other words, <span class='inline'>\mathbb{N}</span> together with <span class='inline'>+</span> and <span class='inline'>\cdot</span> and the elements <span class='inline'>0,1</span> is a semiring.  
+<br><br>
+
+</p><h2>Real numbers</h2><p>\addcontentslinetocsubsectionReal numbers
+
+<br><br><strong>Definition 2.4</strong>
+  By  a <i>field of real numbers</i> one understands a set <span class='inline'>\mathbb{R}</span> together together with binary operations 
+  <span class='inline'>+ : \: \mathbb{R}  \times \mathbb{R} \to \mathbb{R}</span> and <span class='inline'>\cdot : \: \mathbb{R}  \times \mathbb{R} \to \mathbb{R}</span> called <i>addition</i> and <i>multiplication</i>, 
+  two distinct elements <span class='inline'>0</span> and <span class='inline'>1</span>  and an order relation <span class='inline'>\leq</span> such that the following axioms 
+  are satisfied:
+  </p><ol class='enumeration'>
+  <li value=' (A1)'>  (associativity)
+
+    <span class='inline'> x + (y + z) = (x+y) +z</span> for all <span class='inline'>x,y,z \in \mathbb{R}</span>. 
+  </li><li value=' (A2)'>  (commutativity)
+
+     <span class='inline'> x + y = y+x</span> for all <span class='inline'>x,y \in \mathbb{R}</span>. .  
+  </li><li value=' (A3)'>  (neutrality of <span class='inline'>0</span>)
+ 
+     <span class='inline'>x +0 = 0 +x = x</span> for all <span class='inline'>x\in \mathbb{R}</span>. 
+  </li><li value=' (A4)'>  (additive inverses)
+ 
+     For every <span class='inline'>x \in \mathbb{R}</span> there exists <span class='inline'>y \in \mathbb{R}</span>, called <i>negative</i> 
+     of <span class='inline'>x</span> such that <span class='inline'>x +y = y +x = 0</span>. The negative of <span class='inline'>x</span> is usually denoted <span class='inline'>-x</span>. 
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  <li value=' (M1)'>  (associativity)
+
+    <span class='inline'> x \cdot (y \cdot z) = (x\cdot y) \cdot z</span> for all <span class='inline'>x,y,z \in \mathbb{R}</span>. 
+  </li><li value=' (M2)'>  (commutativity)
+
+     <span class='inline'> x \cdot y = y\cdot x</span> for all <span class='inline'>x,y \in \mathbb{R}</span>. 
+  </li><li value=' (M3)'>  (neutrality of <span class='inline'>1</span>)
+ 
+     <span class='inline'>x \cdot 1 = 1 \cdot x = x</span> for all <span class='inline'>x\in \mathbb{R}</span>. 
+  </li><li value=' (M4)'>  (multiplicative inverses of nonzero elements)
+ 
+     For every <span class='inline'>x \in \mathbb{R}^* := \mathbb{R} \setminus \{ 0 \}</span> there exists <span class='inline'>y \in \mathbb{R}</span>, called <i>inverse</i> 
+     of <span class='inline'>x</span> such that <span class='inline'>x \cdot y = y \cdot x = 1</span>. The inverse of <span class='inline'>x \neq 0</span> is usually denoted <span class='inline'>x^{-1}</span>.  
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  <li value='{\sffamily (D) }'>  (distributivity)
+ 
+       <span class='inline'> x \cdot (y +z ) = (x \cdot y) + (x \cdot z) \quad </span> and 
+
+    <span class='inline'> (x +y ) \cdot z = (x \cdot z) +  (y \cdot z) \quad </span> for all <span class='inline'>x,y,z\in \mathbb{R}</span>.
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  \setcounterenumi4
+  <li value=' (O1)'>  (monotony of addition)
+
+  For all <span class='inline'>x,y,z \in \mathbb{R}</span> the relation <span class='inline'>x \leq y</span> implies <span class='inline'>x +z \leq y+z</span>. 
+  </li><li value=' (O2)'>  (monotony of multiplication)
+
+  For all <span class='inline'>x,y,z \in \mathbb{R}</span> with <span class='inline'>z \geq 0</span> the relation <span class='inline'>x \leq y</span> implies <span class='inline'>x \cdot z \leq y \cdot z</span>. 
+  </li></ol><p> 
+  </p><ol class='enumeration'>
+  <li value='{\sffamily (C) }'>   (completeness)
+
+  Each non-empty subset <span class='inline'>X\subset \mathbb{R}</span> bounded above has a least upper bound. 
+  </li></ol><p> 
+  In other words, <span class='inline'>\mathbb{R}</span> together with <span class='inline'>+</span> and <span class='inline'>\cdot</span>, the elements <span class='inline'>0,1</span> and the order relation <span class='inline'>\leq</span> 
+  is a complete ordered field.  
+<br><br>
+
+<br><br><strong>Theorem 2.5</strong>
+  There exists (up to isomorphism) only one field of real numbers <span class='inline'>\mathbb{R}</span>. 
+<br><br>
+
+</p><h1>3 Analysis of Functions of One Real Variable</h1><p>
+
+\subsectionLimits and Continuity
+<br><br><strong>Definition 3.1</strong>
+  Let <span class='inline'>(x_n)_{n\in \mathbb{N}}</span> be a sequence of real numbers. The sequence is said to 
+  <i>converge</i> to a real number <span class='inline'>x\in \mathbb{R}</span> if for every <span class='inline'>\varepsilon  > 0</span> 
+  there exists an <span class='inline'>N\in \mathbb{N}</span> such that 
+  <br><br><span class='display'>
+     | x_n - x |  <  \varepsilon \: \text{for all natural } n \geq N . 
+  </span><br>
+  One then calls <span class='inline'>(x_n)_{n\in \mathbb{N}}</span> a <i>convergent</i> sequence and 
+  <span class='inline'>x</span> its <i>limit</i>. 
+<br><br>
+
+<br><br><strong>Proposition 3.2</strong>
+  The limit of a convergent sequence is uniquely determined. 
+<br><br>
+
+<br><br><strong>Definition 3.3</strong>
+  The function <span class='inline'>f: \mathbb{R} \rightarrow \mathbb{R}</span>  has the
+  <i>limit</i> <span class='inline'>b</span> at the point <span class='inline'>a \in \mathbb{R}</span>, written 
+  <br><br><span class='display'>
+    \lim_{x \rightarrow a} f(x) = b ,
+  </span><br>
+  if for every <span class='inline'>\varepsilon  > 0</span>  there is a <span class='inline'>\delta  > 0</span> such that 
+  <br><br><span class='display'>
+      | f (x) - b |  <  \varepsilon \text{ for all } x \neq a
+      \text{ with } | x - a |  <  \delta .
+  </span><br> 
+<br><br>
+<br><br><strong>Remark 3.4</strong>
+  Intuitively,  <span class='inline'>\lim_{x \rightarrow a} f(x) = b</span> means that 
+  <span class='inline'>f(x)</span> is as close to <span class='inline'>b</span> as we wish whenever the distance 
+  of the point <span class='inline'>x</span> to <span class='inline'>a</span> is sufficiently small.  
+<br><br>
+<br><br><strong>Definition 3.5</strong>
+  A function <span class='inline'>f: D \rightarrow \mathbb{R}</span> defined on a  subset <span class='inline'>D \subset \mathbb{R}</span> 
+  is called <i>continuous</i> at the point <span class='inline'>a \in \mathbb{R}</span>, if 
+  <br><br><span class='display'>
+    \lim_{x \rightarrow a} f(x = f(a) .
+  </span><br>
+  
+  The function <span class='inline'>f : D \rightarrow \mathbb{R}</span> 
+  is said to be <i>continuous on</i> <span class='inline'>D</span> or just <i>continuous</i>
+  if it is continuous  at every point <span class='inline'>a \in D</span>.
+<br><br>
+
+\subsectionDifferentiability
+<br><br><strong>Definition 3.6</strong>
+  A function <span class='inline'>f:I \rightarrow \mathbb{R}</span>, <span class='inline'>x \mapsto f(x)</span> defined on an open interval
+  <span class='inline'>I\subset \mathbb{R}</span>  is called 
+  <i>differentiable in</i> 
+  <span class='inline'>a \in I</span> if the limit
+<br><br><span class='display'>
+  
+    f'(x) := \lim_{h\rightarrow 0} \frac{ f (a+h) - f(a)}{h} </span><br><br><span class='display'>
+  
+</span><br>
+exists. One then calls  <span class='inline'>f' (x)</span> the <i>derivative</i> of <span class='inline'>f</span> at <span class='inline'>a</span>. 
+The derivative of a  function <span class='inline'>f</span> differentiable at <span class='inline'>a</span> is sometimes also
+denoted by <span class='inline'>Df (a)</span> or <span class='inline'>\frac{d f}{d x} (a)</span>. 
+If <span class='inline'>f</span>  is differentiable in every  point of its domain <span class='inline'>I</span>, then one says that <span class='inline'>f</span> is <i>differentiable</i>.
+<br><br> 
+
+<br><br><strong>Proposition 3.7</strong>
+  Let <span class='inline'>f,g:I \to \mathbb{R}</span> be two functions defined on the open interval 
+  <span class='inline'>I \subset \mathbb{R}</span>. Ass ume that both <span class='inline'>f,g</span> are differentiable in the point 
+  <span class='inline'>a\in I</span>. Then the following holds true:
+  
+  </p><ol class='enumeration'>
+
+  <li value='(a)'> The sum <span class='inline'>f+g :I \to \mathbb{R}</span>, <span class='inline'>x \mapsto f(x)+g(x)</span>
+        is differentiable in <span class='inline'>a</span> with derivate  given by 
+        <span class='inline'>(f+g)'(a)=f'(a)+g'(a)</span>. 
+  </li><li value='(b)'> For every <span class='inline'>c\in \mathbb{R}</span>  the scalar multiple 
+        <span class='inline'>cf :I \to \mathbb{R}</span>, <span class='inline'>x \mapsto c \, f(x)</span>
+        is differentiable in <span class='inline'>a</span> with derivate  given by 
+        <span class='inline'>(cf)'(a)=c\, f'(a)</span>. 
+  </li><li value='(c)'> (Product rule)
+        The product <span class='inline'>f \cdot g :I \to \mathbb{R}</span>, <span class='inline'>x \mapsto f(x)\cdot g(x)</span>
+        is differentiable in <span class='inline'>a</span> with derivative  given by 
+        <span class='inline'>(f\cdot g)'(a)=f'(a) \cdot g(a) + f(a) \cdot g'(a)</span>.
+  
+  </li></ol><p>
+
+<br><br>
+
+<br><br><strong>Proposition 3.8</strong>
+  Let <span class='inline'>f:I \to \mathbb{R}</span> and <span class='inline'>g:J \to \mathbb{R} </span> be two functions defined on open intervals 
+  <span class='inline'>I,J \subset \mathbb{R}</span>. Assume that <span class='inline'>f(I) \subset J</span>.            
+  If <span class='inline'>f</span> is differentiable in some point <span class='inline'>a \in I</span> and <span class='inline'>g</span> is differentiable 
+  in the pont <span class='inline'>f(a)</span>, then the composition 
+  <span class='inline'>g\circ f : I \to \mathbb{R}</span>, <span class='inline'>x \mapsto g(f(x))</span> is differentiable in <span class='inline'>a</span> with
+  derivative 
+  <br><br><span class='display'>
+    (g\circ f)'(a) = g'(f(a)) \cdot f'(a) . 
+  </span><br>
+<br><br>
+
+<br><br><strong>Examples 3.9</strong>
+The following is a list of differentiable functions and their derivatives.
+
+  </p><ol class='enumeration'>
+
+<li value='(a)'>
+  Every polynomial function 
+  <br><br><span class='display'> 
+    p:\mathbb{R}\to\mathbb{R}, \quad x \mapsto p(x)= \sum_{k=0}^n a_k x^k ,       
+  </span><br>
+  where <span class='inline'>a_0,\ldots, a_n \in \mathbb{R}</span> are its coefficients, 
+  is differentiable and has derivative 
+  <br><br><span class='display'>
+     p' : \mathbb{R} \to \mathbb{R}, \quad x \mapsto \sum_{k=1}^n k \, a_k x^{k-1} .
+  </span><br>
+  In particular the monomials <span class='inline'>q_n: \mathbb{R} \to \mathbb{R}</span>, <span class='inline'>x \mapsto x^n</span> with <span class='inline'>n\in \mathbb{N}</span>  
+  are differentiable with derivatives given by 
+  <span class='inline'>q_n': \mathbb{R} \to\mathbb{R}</span>, <span class='inline'>x \mapsto n \, x^{n-1}</span>. 
+</li><li value='(b)'> 
+  The trigonometric functions <span class='inline'>\sin</span>, <span class='inline'>\cos</span>, <span class='inline'>\tan</span>, <span class='inline'>\cot</span> are all 
+  differentiable on their natural domains. The derivatives are given 
+  by
+  <br><br><span class='display'>
+  
+    \sin'(x)  = \cos x  \hspace{8mm}  \text{for } x \in \mathbb{R},</span><br><br><span class='display'>
+    \cos'(x)  = -\sin x    \hspace{4.7mm} \text{for } x \in \mathbb{R},</span><br><br><span class='display'>
+    \tan'(x)  = \frac{1}{\cos^2 x}   \hspace{5.5mm} \text{for } x \in 
+    \mathbb{R} \setminus \{ (2k+1)\frac{\pi}{2} \mid k \in \mathbb{N} \}, </span><br><br><span class='display'>
+    \cot'(x)  = \frac{-1}{\sin^2 x}   \hspace{6mm} \text{for } x \in 
+    \mathbb{R} \setminus \{ k \pi \mid k \in \mathbb{N} \}.
+  
+  </span><br>
+
+  </li></ol><p>
+
+<br><br>
+
+\subsectionBasic curve analysis
+
+<br><br><strong>Definition 3.10</strong> (Symmetries of a function)
+  A function <span class='inline'>f:\mathbb{R} \to \mathbb{R}</span>, <span class='inline'>x \mapsto y =f(x)</span> is called <i>even</i> if its 
+  graph is <i>symmetric to the</i> <span class='inline'>y</span>-axis meaning that 
+  <span class='inline'>f(-x)=f(x)</span> for all <span class='inline'>x\in \mathbb{R}</span>. 
+  The function <span class='inline'>f</span> is called  <i>odd</i> if its graph is 
+  <i>symmetric to the origin</i> that is if <span class='inline'>f(-x)=-f(x)</span> for all <span class='inline'>x\in \mathbb{R}</span>.
+<br><br>
+
+<br><br><strong>Definition 3.11</strong>
+   A function <span class='inline'>f:D \rightarrow \mathbb{R}</span> defined on a subset <span class='inline'>D \subset \mathbb{R}</span>
+   is called <i>strictly monotone increasing</i>, if <span class='inline'>f(x')  <  f(x)</span> 
+   whenever <span class='inline'>x'  <  x </span> for two points <span class='inline'>x,x'\in D</span>.
+   If instead <span class='inline'>f(x)  <  f(x')</span> for all points  <span class='inline'>x,x'\in D</span> with  <span class='inline'>x'  <  x </span>,
+   then <span class='inline'>f</span> is called <i>strictly monotone decreasing</i>.
+<br><br>
+
+<br><br><strong>Proposition 3.12</strong>
+   Let <span class='inline'>f:I \to \mathbb{R}</span> be a differentiable function defined on the 
+   open interval <span class='inline'>I</span>. 
+   
+  </p><ol class='enumeration'>
+
+   <li value='(a)'>   
+      If <span class='inline'>f'(x)  > 0</span> for all <span class='inline'>x \in I</span>, then 
+      <span class='inline'>f</span> is strictly monotone increasing, if <span class='inline'>f'(x)  < 0</span> for all <span class='inline'>x\in I</span>, 
+      then <span class='inline'>f</span> is strictly monotone decreasing. 
+   </li><li value='(b)'>
+      If for some <span class='inline'>x\in I</span> the derivative of <span class='inline'>f</span> in <span class='inline'>x</span> vansihes that is if 
+      <span class='inline'>f'(x) =0</span>, then the grap of <span class='inline'>f</span> has in <span class='inline'>x</span> a horizontal tangent.  
+   
+  </li></ol><p>
+
+  
+<br><br>
+
+<br><br><strong>Definition 3.13</strong>
+   Let <span class='inline'>f:I \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> be a function defined
+   on an open interval <span class='inline'>I\subset \mathbb{R}</span>. 
+   A point <span class='inline'>a\in I</span> is called a <i>relative maximum</i> 
+   (respectively a <i>relative minimum</i>) of <span class='inline'>f</span>, if
+   <span class='inline'>f(x)\leq f(a)</span> (respectively <span class='inline'>f(x)\geq f(a)</span>) for all <span class='inline'>x</span> 
+   in an <span class='inline'>\varepsilon</span>-neighborhood <span class='inline'>U_\varepsilon (a) \subset I </span> of <span class='inline'>a</span>.
+
+   The point <span class='inline'>a\in \mathbb{R}^n</span> is called a <i>global maximum</i> (resp.~ <i>global minimum</i>) of <span class='inline'>f</span>
+   over the region <span class='inline'>R\subset \mathbb{R}^n</span> , if <span class='inline'>f(x)\leq f(a)</span> (resp.~<span class='inline'>f(x)\geq f(a)</span>) for all <span class='inline'>x\in R</span>.
+<br><br>
+
+<br><br><strong>Theorem 3.14</strong>
+  Assume that <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> is a twice continuously partially 
+  differentiable function.
+  Suppose that <span class='inline'>(a,b)</span> is a point where <span class='inline'>\operatorname{grad} f(a,b)=0</span>. Let 
+  <br><br><span class='display'>
+        D = \dfrac{\partial^2f}{\partial x^2}(a,b)\cdot \dfrac{\partial^2f}{\partial y^2}(a,b) -
+            \left( \dfrac{\partial^2f}{\partial x \partial y} (a,b) \right)^2 .
+  </span><br>
+  \beginitemize
+  \item If <span class='inline'>D > 0</span> and <span class='inline'>\dfrac{\partial^2f}{\partial x^2}(a,b) > 0</span>, then <span class='inline'>f</span> has a local minimum in <span class='inline'>a</span>.
+  \item If <span class='inline'>D > 0</span> and <span class='inline'>\dfrac{\partial^2f}{\partial x^2}(a,b) < 0</span>, then <span class='inline'>f</span> has a local maximum in <span class='inline'>a</span>.
+  \item If <span class='inline'>D < 0</span>, then <span class='inline'>f</span> has a saddle point in <span class='inline'>a</span>.
+  \item If <span class='inline'>D=0</span>, no conclusion can be made: <span class='inline'>f</span> can have a local maximum, a local minimum, a saddle
+  point, or none of these in the point <span class='inline'>(a,b)</span>.  
+  \enditemize
+<br><br>
+  
+<br><br><strong>Definition 3.15</strong>
+   If <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> and <span class='inline'>g :\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto g(x,y)</span> 
+   are functions, and <span class='inline'>c\in \mathbb{R}</span> a number, a point <span class='inline'>(a,b) \in \mathbb{R}^2</span> is called
+   a <i>local maximum</i> (resp.~ <i>local minimum</i>) of <span class='inline'>f</span> <i>under the constraint</i> <span class='inline'>g(x,y)=c</span>, if
+   <span class='inline'>f(x,y)\leq f(a,b)</span> (resp.~<span class='inline'>f(x,y)\geq f(a,b)</span>) for all <span class='inline'>(x,y)\in \mathbb{R}^2</span> near <span class='inline'>(a,b)</span> 
+   which satisfy <span class='inline'>g(x,y)=c</span>.
+
+   The point <span class='inline'>(a,b)\in \mathbb{R}^2</span> is called a <i>global maximum</i> (resp.~ <i>global minimum</i>) of <span class='inline'>f</span>
+   <i>under the constraint</i> <span class='inline'>g(x,y)=c</span>, if <span class='inline'>f(x,y)\leq f(a,b)</span> (resp.~<span class='inline'>f(x,y)\geq f(a,b)</span>) for all 
+   <span class='inline'>(x,y)\in \mathbb{R}^2</span>  which satisfy <span class='inline'>g(x,y)=c</span>.
+<br><br>
+
+<br><br><strong>Theorem 3.16</strong>
+  Assume that <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is a smooth function, and 
+  <span class='inline'>g:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto g(x)</span> a smooth constraint. 
+  If <span class='inline'>f</span> has a maximum or minimum at the point <span class='inline'>(a,b)</span> under the constraint <span class='inline'>g(x,y)=c</span>, 
+  then <span class='inline'>(a,b)</span> either satisfies the equations
+  <br><br><span class='display'>
+     \operatorname{grad} f (a,b) = \lambda \operatorname{grad} g (a,b) \text{ and } g(a,b)=c \text{ for some $\lambda \in \mathbb{R}$},
+  </span><br>
+  or <span class='inline'>\operatorname{grad} g (a,b)=0</span>.  The number <span class='inline'>\lambda</span> is called the <i>Lagrange multiplier</i>.
+<br><br>
+
+
+</p><h1>4 Analysis of Functions of Several Real Variables</h1><p>
+
+\subsectionLimits and Continuity
+<br><br><strong>Definition 4.1</strong>
+  Let <span class='inline'>(x_n)_{n\in \mathbb{N}}</span> be a sequence of real numbers. The sequence is said to 
+  <i>converge</i> to a real number <span class='inline'>x\in \mathbb{R}</span> if for every <span class='inline'>\varepsilon  > 0</span> 
+  there exists an <span class='inline'>N\in \mathbb{N}</span> such that 
+  <br><br><span class='display'>
+     | x_n - x |  <  \varepsilon \: \text{for all natural } n \geq N . 
+  </span><br>
+  One then calls <span class='inline'>(x_n)_{n\in \mathbb{N}}</span> a <i>convergent</i> sequence and 
+  <span class='inline'>x</span> its <i>limit</i>. 
+<br><br>
+
+<br><br><strong>Proposition 4.2</strong>
+  The limit of a convergent sequence is uniquely determined. 
+<br><br>
+
+<br><br><strong>Definition 4.3</strong>
+  The function <span class='inline'>f: \mathbb{R}^2 \rightarrow \mathbb{R}</span>  has the
+  <i>limit</i> <span class='inline'>L</span> at the point <span class='inline'>(a,b) \in \mathbb{R}^2</span>, written 
+  <br><br><span class='display'>
+    \lim_{(x,y) \rightarrow (a,b)} f(x,y) = L ,
+  </span><br>
+  if for every <span class='inline'>\varepsilon  > 0</span>  there is a <span class='inline'>\delta  > 0</span> such that 
+  <br><br><span class='display'>
+      | f (x,y) - L |  <  \varepsilon \text{ for all $(x,y)\neq (a,b)$ 
+      with $d\big ( (x,y),(a,b) \big)  <  \delta$.}
+  </span><br> 
+<br><br>
+<br><br><strong>Remark 4.4</strong>
+  Intuitively,  <span class='inline'>\lim_{(x,y) \rightarrow (a,b)} f(x,y) = L</span> means that 
+  <span class='inline'>f(x,y)</span> is as close to <span class='inline'>L</span> as we wish whenever the distance 
+  of the point <span class='inline'>(x,y)</span> to <span class='inline'>(a,b)</span> is sufficiently small.  
+<br><br>
+<br><br><strong>Definition 4.5</strong>
+  The function <span class='inline'>f: \mathbb{R}^2 \rightarrow \mathbb{R}</span>  is called <i>continuous</i> 
+  at the point <span class='inline'>(a,b) \in \mathbb{R}^2</span>, if 
+  <br><br><span class='display'>
+    \lim_{(x,y) \rightarrow (a,b)} f(x,y) = f(a,b) .
+  </span><br>
+  
+  The function <span class='inline'>f</span> is said to be <i>continuous</i>  on a region <span class='inline'>R\subset \mathbb{R}^2</span>, if it is continuous 
+  at every point <span class='inline'>(a,b) \in R</span>.
+<br><br>
+
+\subsectionDifferentiability in one real dimension
+<br><br><strong>Definition 4.6</strong>
+  A function <span class='inline'>f:\mathbb{R} \rightarrow \mathbb{R}</span>, <span class='inline'>x \mapsto f(x)</span> is called 
+  <i>differentiable in</i> 
+  <span class='inline'>a \in \mathbb{R}</span> if the limit
+<br><br><span class='display'>
+  
+    f'(x) := Df (a) := \frac{d f}{d x} (a) := \lim_{h\rightarrow 0} \frac{ f (a+h) - f(a)}{h} </span><br><br><span class='display'>
+  
+</span><br>
+exists. One then calls  <span class='inline'>f' (x)</span> the <i>derivative</i> of <span class='inline'>f</span> at <span class='inline'>a</span>. 
+If <span class='inline'>f</span>  is differentiable in every  point of <span class='inline'>\mathbb{R}</span>, then one says that <span class='inline'>f</span> is <i>differentiable</i>.
+<br><br> 
+
+
+
+\subsectionDifferentiability
+
+<br><br><strong>Definition 4.7</strong>
+  A function <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> is called 
+  <i>partially differentiable in the point</i> 
+  <span class='inline'>(a,b) \in \mathbb{R}^2</span> <i>with respect to the variable</i> <span class='inline'>x</span> (resp.~<span class='inline'>y</span>), 
+  if the limit
+<br><br><span class='display'>
+  
+    \frac{\partial f}{\partial x} (a,b) := \lim_{h\rightarrow 0} \frac{ f (a+h,b) - f(a,b)}{h} </span><br><br><span class='display'>
+   \Big( \: \text{resp. } \frac{\partial f}{\partial y} (a,b) 
+   := \lim_{h\rightarrow 0} \frac{ f (a,b+h) - f(a,b)}{h} \:\:\: \Big)
+  
+</span><br>
+exists. One then calls  <span class='inline'>\frac{\partial f}{\partial x} (a,b)</span> and 
+<span class='inline'>\frac{\partial f}{\partial y} (a,b)</span> the <i>partial derivatives</i> of <span class='inline'>f</span> at <span class='inline'>(a,b)</span>. 
+If <span class='inline'>f</span>  is partially differentiable in every  point of <span class='inline'>\mathbb{R}^2</span> with respect to the variables <span class='inline'>x</span> and <span class='inline'>y</span>, 
+then one says that <span class='inline'>f</span> is <i>partially differentiable</i>.
+ 
+ A function <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> is called <i>twice partially differentiable</i>, 
+ if it is partially differentiable, and if the partial derivatives  
+ <span class='inline'>\frac{\partial f}{\partial x}</span> and <span class='inline'>\frac{\partial f}{\partial y}</span> are partially differentiable as well.
+ 
+ A function <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> is called <i>differentiable in the point</i> <span class='inline'>(a,b) \in \mathbb{R}^2</span>, 
+ if there exists a linear function <span class='inline'>L:\mathbb{R}^2\rightarrow \mathbb{R}</span> such that 
+ <br><br><span class='display'>
+   \lim_{(x,y) \rightarrow (a,b)} \frac{E(x,y)}{\sqrt{(x-a)^2 + (y-b)^2}} =0,
+ </span><br>
+ where <span class='inline'>E:\mathbb{R}^2\rightarrow \mathbb{R}</span> is the <i>error function</i> defined by 
+ <span class='inline'>E(x,y) := f(x,y)-f(a,b) -L(x,y)</span>. One then calls <span class='inline'>L</span> the <i>linear approximation</i> of <span class='inline'>f</span> at <span class='inline'>(a,b)</span>,
+ and writes 
+ <br><br><span class='display'>
+   f(x,y) \approx f(a,b) + L (x,y) .
+ </span><br>
+<br><br>
+
+<br><br><strong>Definition 4.8</strong>\hspace-3mm<span class='inline'>^\star</span>
+  A function <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is called 
+  <i>partially differentiable in the point</i> 
+  <span class='inline'>a=(a_1,\cdots , a_n) \in \mathbb{R}^n</span> <i>with respect to the variable</i> <span class='inline'>x_i</span>, 
+  if for every <span class='inline'>i</span>, <span class='inline'>1 \leq i \leq n</span> the limit
+<br><br><span class='display'>
+  
+   \frac{\partial f}{\partial x_i} (a) := \lim_{h\rightarrow 0} \frac{ f (a_1, \cdots, a_i+h, \cdots , a_n) - 
+   f(a_1,\cdots , a_n)}{h}
+  
+</span><br>
+exists. One then calls  <span class='inline'>\frac{\partial f}{\partial x_i} (a)</span> 
+the (<i><span class='inline'>i</span>-th</i>) <i>partial derivative</i> of <span class='inline'>f</span> at <span class='inline'>a</span> <i>with respect to the variable</i> <span class='inline'>x_i</span>. 
+If <span class='inline'>f</span>  is partially differentiable in every  point of <span class='inline'>\mathbb{R}^n</span> with respect to the variables <span class='inline'>x_1,\ldots,x_n</span>, 
+then one says that <span class='inline'>f</span> is <i>partially differentiable</i>.
+ 
+ A function <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is called <i>twice partially differentiable</i>, 
+ if it is partially differentiable, and if the partial derivatives  
+ <span class='inline'>\frac{\partial f}{\partial x_i}</span>, <span class='inline'>1\leq i \leq n</span>  are partially differentiable as well.
+ 
+ A function <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is called <i>differentiable in the point</i> 
+ <span class='inline'>a \in \mathbb{R}^n</span>, if there exists a linear function <span class='inline'>L:\mathbb{R}^n\rightarrow \mathbb{R}</span> such that 
+ <br><br><span class='display'>
+   \lim_{x \rightarrow a} \frac{E(x)}{\sqrt{(x_1-a_1)^2 + \ldots + (x_n-a_n)^2}} =0,
+ </span><br>
+ where <span class='inline'>E:\mathbb{R}^n\rightarrow \mathbb{R}</span> is the <i>error function</i> defined by 
+ <span class='inline'>E(x) := f(x)-f(a) -L(x)</span>. One then calls <span class='inline'>L</span> the <i>linear approximation</i> of <span class='inline'>f</span> at <span class='inline'>a</span>,
+ and writes 
+ <br><br><span class='display'>
+   f(x) \approx f(a) + L (x) .
+ </span><br>
+<br><br>
+
+<br><br><strong>Theorem 4.9</strong>
+  If  <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is differentiable at <span class='inline'>a \in \mathbb{R}^n</span>, then <span class='inline'>f</span> is
+  partially differentiable and continuous at <span class='inline'>a</span>. 
+<br><br>
+<br><br><strong>Theorem 4.10</strong>
+  If <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is twice partially differentiable, and the second partial 
+  derivatives
+  <br><br><span class='display'>
+    \frac{\partial^2f}{\partial x_i \partial x_j} :=  \frac{\partial }{\partial x_i}
+    \frac{\partial f}{ \partial x_j}
+  </span><br>
+  are continuous, then 
+  <br><br><span class='display'>
+    \frac{\partial^2f}{\partial x_i \partial x_j} = \frac{\partial^2f}{\partial x_j \partial x_i}
+   </span><br>
+  for <span class='inline'>1\leq i,j\leq n</span>.
+<br><br>
+
+<br><br><strong>Definition 4.11</strong>
+  If <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is a partially differentiable function, 
+  and <span class='inline'>x\in \mathbb{R}^n</span>, the vector
+  <br><br><span class='display'>
+    \operatorname{grad} f (x) := \left( \frac{\partial f}{ \partial x_1} (x) , \cdots , 
+    \frac{\partial f}{ \partial x_n} (x) \right) 
+  </span><br>
+  is called the <i>gradient</i> of <span class='inline'>f</span> at <span class='inline'>x</span>.
+
+  Given a function <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> which 
+  is partially differentiable (up to isolated points),
+  a point <span class='inline'>x\in \mathbb{R}^n</span> is called a <i>critical point</i> of <span class='inline'>f</span>, if  <span class='inline'> \operatorname{grad} f (x) =0 </span>, or if 
+  <span class='inline'> \operatorname{grad} f (x) </span> is not defined. 
+<br><br>
+
+
+\subsectionLocal and Global Extrema
+
+<br><br><strong>Definition 4.12</strong>
+   If <span class='inline'>f:\mathbb{R}^n \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is a function, a point <span class='inline'>a\in \mathbb{R}^n</span> is called
+   a <i>local maximum</i> (resp.~ <i>local minimum</i>) of <span class='inline'>f</span>, if
+   <span class='inline'>f(x)\leq f(a)</span> (resp.~<span class='inline'>f(x)\geq f(a)</span>) for all <span class='inline'>x\in \mathbb{R}^n</span> near <span class='inline'>a</span>.
+
+   The point <span class='inline'>a\in \mathbb{R}^n</span> is called a <i>global maximum</i> (resp.~ <i>global minimum</i>) of <span class='inline'>f</span>
+   over the region <span class='inline'>R\subset \mathbb{R}^n</span> , if <span class='inline'>f(x)\leq f(a)</span> (resp.~<span class='inline'>f(x)\geq f(a)</span>) for all <span class='inline'>x\in R</span>.
+<br><br>
+
+<br><br><strong>Theorem 4.13</strong>
+  Assume that <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> is a twice continuously partially 
+  differentiable function.
+  Suppose that <span class='inline'>(a,b)</span> is a point where <span class='inline'>\operatorname{grad} f(a,b)=0</span>. Let 
+  <br><br><span class='display'>
+        D = \dfrac{\partial^2f}{\partial x^2}(a,b)\cdot \dfrac{\partial^2f}{\partial y^2}(a,b) -
+            \left( \dfrac{\partial^2f}{\partial x \partial y} (a,b) \right)^2 .
+  </span><br>
+  \beginitemize
+  \item If <span class='inline'>D > 0</span> and <span class='inline'>\dfrac{\partial^2f}{\partial x^2}(a,b) > 0</span>, then <span class='inline'>f</span> has a local minimum in <span class='inline'>a</span>.
+  \item If <span class='inline'>D > 0</span> and <span class='inline'>\dfrac{\partial^2f}{\partial x^2}(a,b) < 0</span>, then <span class='inline'>f</span> has a local maximum in <span class='inline'>a</span>.
+  \item If <span class='inline'>D < 0</span>, then <span class='inline'>f</span> has a saddle point in <span class='inline'>a</span>.
+  \item If <span class='inline'>D=0</span>, no conclusion can be made: <span class='inline'>f</span> can have a local maximum, a local minimum, a saddle
+  point, or none of these in the point <span class='inline'>(a,b)</span>.  
+  \enditemize
+<br><br>
+  
+<br><br><strong>Definition 4.14</strong>
+   If <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto f(x,y)</span> and <span class='inline'>g :\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>(x,y)\mapsto g(x,y)</span> 
+   are functions, and <span class='inline'>c\in \mathbb{R}</span> a number, a point <span class='inline'>(a,b) \in \mathbb{R}^2</span> is called
+   a <i>local maximum</i> (resp.~ <i>local minimum</i>) of <span class='inline'>f</span> <i>under the constraint</i> <span class='inline'>g(x,y)=c</span>, if
+   <span class='inline'>f(x,y)\leq f(a,b)</span> (resp.~<span class='inline'>f(x,y)\geq f(a,b)</span>) for all <span class='inline'>(x,y)\in \mathbb{R}^2</span> near <span class='inline'>(a,b)</span> 
+   which satisfy <span class='inline'>g(x,y)=c</span>.
+
+   The point <span class='inline'>(a,b)\in \mathbb{R}^2</span> is called a <i>global maximum</i> (resp.~ <i>global minimum</i>) of <span class='inline'>f</span>
+   <i>under the constraint</i> <span class='inline'>g(x,y)=c</span>, if <span class='inline'>f(x,y)\leq f(a,b)</span> (resp.~<span class='inline'>f(x,y)\geq f(a,b)</span>) for all 
+   <span class='inline'>(x,y)\in \mathbb{R}^2</span>  which satisfy <span class='inline'>g(x,y)=c</span>.
+<br><br>
+aaa
+<br><br><strong>Theorem 4.15</strong>
+  Assume that <span class='inline'>f:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto f(x)</span> is a smooth function, and 
+  <span class='inline'>g:\mathbb{R}^2 \rightarrow \mathbb{R}</span>, <span class='inline'>x\mapsto g(x)</span> a smooth constraint. 
+  If <span class='inline'>f</span> has a maximum or minimum at the point <span class='inline'>(a,b)</span> under the constraint <span class='inline'>g(x,y)=c</span>, 
+  then <span class='inline'>(a,b)</span> either satisfies the equations
+  <br><br><span class='display'>
+     \operatorname{grad} f (a,b) = \lambda \operatorname{grad} g (a,b) \text{ and } g(a,b)=c \text{ for some $\lambda \in \mathbb{R}$},
+  </span><br>
+  or <span class='inline'>\operatorname{grad} g (a,b)=0</span>.  The number <span class='inline'>\lambda</span> is called the <i>Lagrange multiplier</i>.
+<br><br>
+
+
+</p><h1>5 ERROR</h1><p>*Licensing
+
+\addcontentslinetocsectionLicensing
+\cheadCreative Commons Attribution 4.0 International
+</p><h2>Creative Commons Attribution 4.0 International</h2><p>\addcontentslinetocsubsectionCC BY 4.0
+\documentclass[]article
+\usepackagelmodern
+\usepackageamssymb,amsmath
+\usepackageifxetex,ifluatex
+\usepackagefixltx2e \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0   \usepackage[T1]fontenc
+  \usepackage[utf8]inputenc
+\else   \ifxetex
+    \usepackagemathspec
+  \else
+    \usepackagefontspec
+  \fi
+  \defaultfontfeaturesLigatures=TeX,Scale=MatchLowercase
+\fi
+\usepackageupquote
+\usepackagemicrotype
+\UseMicrotypeSet[protrusion]basicmath \usepackagehyperref
+\hypersetupunicode=true,
+            pdfborder=0 0 0,
+            breaklinks=true
+\urlstylesame  \usepackageparskip
+\setlength\parindent0pt
+\setlength\parskip6pt plus 2pt minus 1pt
+\setlength\emergencystretch3em  \providecommand\tightlist  \setlength\itemsep0pt\setlength\parskip0pt
+\setcountersecnumdepth0
+\ifx<strong>ERROR</strong>\undefined\else
+\let\oldparagraph<strong>ERROR</strong>\renewcommand<strong>ERROR</strong>[1]\oldparagraph#1\mbox
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand\subparagraph[1]\oldsubparagraph#1\mbox
+\fi
+
+\date
+
+\begindocument
+
+Attribution 4.0 International
+
+=======================================================================
+
+Creative Commons Corporation (``Creative Commons'') is not a law firm
+and does not provide legal services or legal advice. Distribution of
+Creative Commons public licenses does not create a lawyer-client or
+other relationship. Creative Commons makes its licenses and related
+information available on an ``as-is'' basis. Creative Commons gives no
+warranties regarding its licenses, any material licensed under their
+terms and conditions, or any related information. Creative Commons
+disclaims all liability for damages resulting from their use to the
+fullest extent possible.
+
+Using Creative Commons Public Licenses
+
+Creative Commons public licenses provide a standard set of terms and
+conditions that creators and other rights holders may use to share
+original works of authorship and other material subject to copyright and
+certain other rights specified in the public license below. The
+following considerations are for informational purposes only, are not
+exhaustive, and do not form part of our licenses.
+
+\beginverbatim
+ Considerations for licensors: Our public licenses are
+ intended for use by those authorized to give the public
+ permission to use material in ways otherwise restricted by
+ copyright and certain other rights. Our licenses are
+ irrevocable. Licensors should read and understand the terms
+ and conditions of the license they choose before applying it.
+ Licensors should also secure all rights necessary before
+ applying our licenses so that the public can reuse the
+ material as expected. Licensors should clearly mark any
+ material not subject to the license. This includes other CC-
+ licensed material, or material used under an exception or
+ limitation to copyright. More considerations for licensors:
+wiki.creativecommons.org/Considerations_for_licensors
+
+ Considerations for the public: By using one of our public
+ licenses, a licensor grants the public permission to use the
+ licensed material under specified terms and conditions. If
+ the licensor's permission is not necessary for any reason--for
+ example, because of any applicable exception or limitation to
+ copyright--then that use is not regulated by the license. Our
+ licenses grant only permissions under copyright and certain
+ other rights that a licensor has authority to grant. Use of
+ the licensed material may still be restricted for other
+ reasons, including because others have copyright or other
+ rights in the material. A licensor may make special requests,
+ such as asking that all changes be marked or described.
+ Although not required by our licenses, you are encouraged to
+ respect those requests where reasonable. More_considerations
+ for the public: 
+wiki.creativecommons.org/Considerations_for_licensees
+\endverbatim
+
+=======================================================================
+
+Creative Commons Attribution 4.0 International Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree
+to be bound by the terms and conditions of this Creative Commons
+Attribution 4.0 International Public License (``Public License''). To
+the extent this Public License may be interpreted as a contract, You are
+granted the Licensed Rights in consideration of Your acceptance of these
+terms and conditions, and the Licensor grants You such rights in
+consideration of benefits the Licensor receives from making the Licensed
+Material available under these terms and conditions.
+
+Section 1 -- Definitions.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  Adapted Material means material subject to Copyright and Similar
+  Rights that is derived from or based upon the Licensed Material and in
+  which the Licensed Material is translated, altered, arranged,
+  transformed, or otherwise modified in a manner requiring permission
+  under the Copyright and Similar Rights held by the Licensor. For
+  purposes of this Public License, where the Licensed Material is a
+  musical work, performance, or sound recording, Adapted Material is
+  always produced where the Licensed Material is synched in timed
+  relation with a moving image.
+</li><li value='2.'>
+  Adapter's License means the license You apply to Your Copyright and
+  Similar Rights in Your contributions to Adapted Material in accordance
+  with the terms and conditions of this Public License.
+</li><li value='3.'>
+  Copyright and Similar Rights means copyright and/or similar rights
+  closely related to copyright including, without limitation,
+  performance, broadcast, sound recording, and Sui Generis Database
+  Rights, without regard to how the rights are labeled or categorized.
+  For purposes of this Public License, the rights specified in Section
+  2(b)(1)-(2) are not Copyright and Similar Rights.
+</li><li value='4.'>
+  Effective Technological Measures means those measures that, in the
+  absence of proper authority, may not be circumvented under laws
+  fulfilling obligations under Article 11 of the WIPO Copyright Treaty
+  adopted on December 20, 1996, and/or similar international agreements.
+</li><li value='5.'>
+  Exceptions and Limitations means fair use, fair dealing, and/or any
+  other exception or limitation to Copyright and Similar Rights that
+  applies to Your use of the Licensed Material.
+</li><li value='6.'>
+  Licensed Material means the artistic or literary work, database, or
+  other material to which the Licensor applied this Public License.
+</li><li value='7.'>
+  Licensed Rights means the rights granted to You subject to the terms
+  and conditions of this Public License, which are limited to all
+  Copyright and Similar Rights that apply to Your use of the Licensed
+  Material and that the Licensor has authority to license.
+</li><li value='8.'>
+  Licensor means the individual(s) or entity(ies) granting rights under
+  this Public License.
+</li><li value='9.'>
+  Share means to provide material to the public by any means or process
+  that requires permission under the Licensed Rights, such as
+  reproduction, public display, public performance, distribution,
+  dissemination, communication, or importation, and to make material
+  available to the public including in ways that members of the public
+  may access the material from a place and at a time individually chosen
+  by them.
+</li><li value='10.'>
+  Sui Generis Database Rights means rights other than copyright
+  resulting from Directive 96/9/EC of the European Parliament and of the
+  Council of 11 March 1996 on the legal protection of databases, as
+  amended and/or succeeded, as well as other essentially equivalent
+  rights anywhere in the world.
+</li><li value='11.'>
+  You means the individual or entity exercising the Licensed Rights
+  under this Public License. Your has a corresponding meaning.
+</li></ol><p>
+
+Section 2 -- Scope.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  License grant.
+
+  </p><ol class='enumeration'>
+  \def\labelenumii\arabicenumii.
+  </ol><p></li><li value='2.'>
+    Subject to the terms and conditions of this Public License, the
+    Licensor hereby grants You a worldwide, royalty-free,
+    non-sublicensable, non-exclusive, irrevocable license to exercise
+    the Licensed Rights in the Licensed Material to:
+
+\beginverbatim
+a. reproduce and Share the Licensed Material, in whole or
+   in part; and
+
+b. produce, reproduce, and Share Adapted Material.
+\endverbatim
+  </li><li value='3.'>
+    Exceptions and Limitations. For the avoidance of doubt, where
+    Exceptions and Limitations apply to Your use, this Public License
+    does not apply, and You do not need to comply with its terms and
+    conditions.
+  </li><li value='4.'>
+    Term. The term of this Public License is specified in Section 6(a).
+  </li><li value='5.'>
+    Media and formats; technical modifications allowed. The Licensor
+    authorizes You to exercise the Licensed Rights in all media and
+    formats whether now known or hereafter created, and to make
+    technical modifications necessary to do so. The Licensor waives
+    and/or agrees not to assert any right or authority to forbid You
+    from making technical modifications necessary to exercise the
+    Licensed Rights, including technical modifications necessary to
+    circumvent Effective Technological Measures. For purposes of this
+    Public License, simply making modifications authorized by this
+    Section 2(a)
+
+    </p><ol class='enumeration'>
+    \def\labelenumiii(\arabicenumiii)
+    \setcounterenumiii3
+    \tightlist
+    </ol><p></li><li value='6.'>
+      never produces Adapted Material.
+    </li></ol><p>
+  \item
+    Downstream recipients.
+
+\beginverbatim
+a. Offer from the Licensor -- Licensed Material. Every
+   recipient of the Licensed Material automatically
+   receives an offer from the Licensor to exercise the
+   Licensed Rights under the terms and conditions of this
+   Public License.
+
+b. No downstream restrictions. You may not offer or impose
+   any additional or different terms or conditions on, or
+   apply any Effective Technological Measures to, the
+   Licensed Material if doing so restricts exercise of the
+   Licensed Rights by any recipient of the Licensed
+   Material.
+\endverbatim
+  \item
+    No endorsement. Nothing in this Public License constitutes or may be
+    construed as permission to assert or imply that You are, or that
+    Your use of the Licensed Material is, connected with, or sponsored,
+    endorsed, or granted official status by, the Licensor or others
+    designated to receive attribution as provided in Section
+    3(a)(1)(A)(i).
+  \endenumerate
+\item
+  Other rights.
+
+  </p><ol class='enumeration'>
+  \def\labelenumii\arabicenumii.
+  <li value='1.'>
+    Moral rights, such as the right of integrity, are not licensed under
+    this Public License, nor are publicity, privacy, and/or other
+    similar personality rights; however, to the extent possible, the
+    Licensor waives and/or agrees not to assert any such rights held by
+    the Licensor to the limited extent necessary to allow You to
+    exercise the Licensed Rights, but not otherwise.
+  </li><li value='2.'>
+    Patent and trademark rights are not licensed under this Public
+    License.
+  </li><li value='3.'>
+    To the extent possible, the Licensor waives any right to collect
+    royalties from You for the exercise of the Licensed Rights, whether
+    directly or through a collecting society under any voluntary or
+    waivable statutory or compulsory licensing scheme. In all other
+    cases the Licensor expressly reserves any right to collect such
+    royalties.
+  </li></ol><p>
+\endenumerate
+
+Section 3 -- License Conditions.
+
+Your exercise of the Licensed Rights is expressly made subject to the
+following conditions.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  Attribution.
+
+  </p><ol class='enumeration'>
+  \def\labelenumii\arabicenumii.
+  </ol><p></li><li value='2.'>
+    If You Share the Licensed Material (including in modified form), You
+    must:
+
+\beginverbatim
+a. retain the following if it is supplied by the Licensor
+   with the Licensed Material:
+
+     i. identification of the creator(s) of the Licensed
+        Material and any others designated to receive
+        attribution, in any reasonable manner requested by
+        the Licensor (including by pseudonym if
+        designated);
+
+    ii. a copyright notice;
+
+   iii. a notice that refers to this Public License;
+
+    iv. a notice that refers to the disclaimer of
+        warranties;
+
+     v. a URI or hyperlink to the Licensed Material to the
+        extent reasonably practicable;
+
+b. indicate if You modified the Licensed Material and
+   retain an indication of any previous modifications; and
+
+c. indicate the Licensed Material is licensed under this
+   Public License, and include the text of, or the URI or
+   hyperlink to, this Public License.
+\endverbatim
+  </li><li value='3.'>
+    You may satisfy the conditions in Section 3(a)(1) in any reasonable
+    manner based on the medium, means, and context in which You Share
+    the Licensed Material. For example, it may be reasonable to satisfy
+    the conditions by providing a URI or hyperlink to a resource that
+    includes the required information.
+  </li><li value='4.'>
+    If requested by the Licensor, You must remove any of the information
+    required by Section 3(a)(1)(A) to the extent reasonably practicable.
+  </li><li value='5.'>
+    If You Share Adapted Material You produce, the Adapter's License You
+    apply must not prevent recipients of the Adapted Material from
+    complying with this Public License.
+  </li></ol><p>
+\endenumerate
+
+Section 4 -- Sui Generis Database Rights.
+
+Where the Licensed Rights include Sui Generis Database Rights that apply
+to Your use of the Licensed Material:
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  for the avoidance of doubt, Section 2(a)(1) grants You the right to
+  extract, reuse, reproduce, and Share all or a substantial portion of
+  the contents of the database;
+</li><li value='2.'>
+  if You include all or a substantial portion of the database contents
+  in a database in which You have Sui Generis Database Rights, then the
+  database in which You have Sui Generis Database Rights (but not its
+  individual contents) is Adapted Material; and
+</li><li value='3.'>
+  You must comply with the conditions in Section 3(a) if You Share all
+  or a substantial portion of the contents of the database.
+</li></ol><p>
+
+For the avoidance of doubt, this Section 4 supplements and does not
+replace Your obligations under this Public License where the Licensed
+Rights include other Copyright and Similar Rights.
+
+Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE EXTENT
+  POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS AND
+  AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND
+  CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS, IMPLIED, STATUTORY,
+  OR OTHER. THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OF TITLE,
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT,
+  ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OR
+  ABSENCE OF ERRORS, WHETHER OR NOT KNOWN OR DISCOVERABLE. WHERE
+  DISCLAIMERS OF WARRANTIES ARE NOT ALLOWED IN FULL OR IN PART, THIS
+  DISCLAIMER MAY NOT APPLY TO YOU.
+</li><li value='2.'>
+  TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE TO YOU
+  ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE) OR
+  OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL,
+  CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES, COSTS, EXPENSES,
+  OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR USE OF THE LICENSED
+  MATERIAL, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF
+  SUCH LOSSES, COSTS, EXPENSES, OR DAMAGES. WHERE A LIMITATION OF
+  LIABILITY IS NOT ALLOWED IN FULL OR IN PART, THIS LIMITATION MAY NOT
+  APPLY TO YOU.
+</li><li value='3.'>
+  The disclaimer of warranties and limitation of liability provided
+  above shall be interpreted in a manner that, to the extent possible,
+  most closely approximates an absolute disclaimer and waiver of all
+  liability.
+</li></ol><p>
+
+Section 6 -- Term and Termination.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  This Public License applies for the term of the Copyright and Similar
+  Rights licensed here. However, if You fail to comply with this Public
+  License, then Your rights under this Public License terminate
+  automatically.
+</li><li value='2.'>
+  Where Your right to use the Licensed Material has terminated under
+  Section 6(a), it reinstates:
+
+  </p><ol class='enumeration'>
+  \def\labelenumii\arabicenumii.
+  </ol><p></li><li value='3.'>
+    automatically as of the date the violation is cured, provided it is
+    cured within 30 days of Your discovery of the violation; or
+  </li><li value='4.'>
+    upon express reinstatement by the Licensor.
+  </li></ol><p>
+
+  For the avoidance of doubt, this Section 6(b) does not affect any
+  right the Licensor may have to seek remedies for Your violations of
+  this Public License.
+\item
+  For the avoidance of doubt, the Licensor may also offer the Licensed
+  Material under separate terms or conditions or stop distributing the
+  Licensed Material at any time; however, doing so will not terminate
+  this Public License.
+\item
+  Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
+\endenumerate
+
+Section 7 -- Other Terms and Conditions.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  The Licensor shall not be bound by any additional or different terms
+  or conditions communicated by You unless expressly agreed.
+</li><li value='2.'>
+  Any arrangements, understandings, or agreements regarding the Licensed
+  Material not stated herein are separate from and independent of the
+  terms and conditions of this Public License.
+</li></ol><p>
+
+Section 8 -- Interpretation.
+
+</p><ol class='enumeration'>
+\def\labelenumi\alphenumi.
+<li value='1.'>
+  For the avoidance of doubt, this Public License does not, and shall
+  not be interpreted to, reduce, limit, restrict, or impose conditions
+  on any use of the Licensed Material that could lawfully be made
+  without permission under this Public License.
+</li><li value='2.'>
+  To the extent possible, if any provision of this Public License is
+  deemed unenforceable, it shall be automatically reformed to the
+  minimum extent necessary to make it enforceable. If the provision
+  cannot be reformed, it shall be severed from this Public License
+  without affecting the enforceability of the remaining terms and
+  conditions.
+</li><li value='3.'>
+  No term or condition of this Public License will be waived and no
+  failure to comply consented to unless expressly agreed to by the
+  Licensor.
+</li><li value='4.'>
+  Nothing in this Public License constitutes or may be interpreted as a
+  limitation upon, or waiver of, any privileges and immunities that
+  apply to the Licensor or You, including from the legal processes of
+  any jurisdiction or authority.
+</li></ol><p>
+
+=======================================================================
+
+Creative Commons is not a party to its public licenses. Notwithstanding,
+Creative Commons may elect to apply one of its public licenses to
+material it publishes and in those instances will be considered the
+``Licensor.'' Except for the limited purpose of indicating that material
+is shared under a Creative Commons public license or as otherwise
+permitted by the Creative Commons policies published at
+creativecommons.org/policies, Creative Commons does not authorize the
+use of the trademark ``Creative Commons'' or any other trademark or logo
+of Creative Commons without its prior written consent including, without
+limitation, in connection with any unauthorized modifications to any of
+its public licenses or any other arrangements, understandings, or
+agreements concerning use of licensed material. For the avoidance of
+doubt, this paragraph does not form part of the public licenses.
+
+Creative Commons may be contacted at creativecommons.org.
+
+</p>
+</d-article>
+
+  <d-appendix>
+<p>XXXappendixXXX</p>
+
+    <d-bibliography>
+        
+
+        <!--@article{gregor2015draw,
+            title={DRAW: A recurrent neural network for image generation},
+            author={Gregor, Karol and Danihelka, Ivo and Graves, Alex and Rezende, Danilo Jimenez and Wierstra, Daan},
+            journal={arXiv preprint arXiv:1502.04623},
+            year={2015},
+            url ={https://arxiv.org/pdf/1502.04623.pdf}
+          }--->
+    <script type="text/bibtex">
+        @book{AtiKT,
+  title={Michael Atiyah Collected Works: Volume 2: K-Theory},
+  author={Atiyah, Michael},
+  volume={2},
+  year={1988},
+  publisher={Oxford University Press}
+}
+
+@book{KarKT,
+  title={K-theory: An introduction},
+  author={Karoubi, Max},
+  volume={226},
+  year={2008},
+  publisher={Springer Science \& Business Media}
+}
+    </script>
+
+      </d-bibliography>
+    </d-appendix>
+
+</body>
+
+<script>
+	var math_inline = document.getElementsByClassName('inline');
+    for (var i = 0; i < math_inline.length; i++) {
+      try {
+        katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
+      }catch (e) {
+      }
+    }
+
+  var math_display = document.getElementsByClassName('display');
+    for (var i = 0; i < math_display.length; i++) {
+	    try {
+      katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
+      }catch (e) {
+      }
+    }
+</script>
