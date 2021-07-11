@@ -452,7 +452,10 @@ def load_file(file_name):
     return data
 
 def load_latex_file(file_name,visible_paths,loaded_files):
-    latex_file = load_file(file_name + ".tex")
+    #file_name = file_name
+    if file_name[-4:] != ".tex":
+        file_name = file_name + ".tex"
+    latex_file = load_file(file_name)
     visible_paths.append(".")
     latex_file = latex_file.split("\input")
     out = latex_file[0]
@@ -746,6 +749,7 @@ def convert_latex(input,all_classes_prio):
     document.globals.number_within_equation = number_within_equation
     
     expand_on = []
+    print("len all_classes_prio",len(all_classes_prio))
     for all_classes in all_classes_prio:
         expand_on.extend(all_classes)
 
@@ -804,4 +808,3 @@ class OneArgumentCommandSearch():
         name,post = split_on_first_brace(post)
         return pre,Undefined(self.begin + name + self.end,parent),post
 
-#
