@@ -42,3 +42,6 @@ http://www.libermath.org/ShortNotesMathematics/
 Latex Code
 
 https://gitlab.com/MarkJoe/ShortNotesMathematics
+
+# emergency backup:
+if any styles are running offline in some distant future you will need to manually set the stylefile provided in emergency_backup.zip
