@@ -33,7 +33,7 @@ def splitargs_in_key_val():
 
 args = splitargs_in_key_val()
 if not "tex_file" in args.keys():
-    raise RuntimeError("usage: --tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex")
+    raise RuntimeError("usage: python main.py --tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex")
 
 file_name = args["tex_file"]
 bib_file = args["biblio"]
