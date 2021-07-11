@@ -1,9 +1,25 @@
 # latex to html
 This is an alpha version of a compiler from latex to html. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
 # usage:
-python main.py --tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex
+python .\main.py --tex_file=ShortNotesMathematics-master/ShortNotesMathematics.tex --biblio=bibliography.bibtex --discription=MY_discription.txt --article_header=MY_article_header.txt --out=something.html
 
 This programm runs only with python3! so you may replace python with python3 if you have python2 installed
+
+For help type python main.py --help
+
+the odering of --key=val doesn't matter
+so 
+
+
+python main.py --tex_file=some.tex --out=tada.html
+
+
+
+is equal to 
+
+
+python main.py --out=tada.html  --tex_file=some.tex
+
 # state of development:
 
 features included right now

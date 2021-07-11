@@ -481,17 +481,18 @@ def load_latex_file(file_name,visible_paths,loaded_files):
     return out
         
 
-def create_final_file(file_name,author_header,article_header,article,bibliography):
+def create_final_file(file_name,article_header,discription,article,bibliography):
     out = None
+    
+
     with open('contentwrapper.html', 'r') as file:
         out = file.read()
-    
+
+        out = out.split("XXXarticle_headerXXX")
+        out = out[0] + article_header + out[1]
         
-        #out = out.split("XXXauthor_headerXXX")
-        #out = out[0] + author_header + out[1]
-        
-        #out = out.split("XXXarticle_headerXXX")
-        #out = out[0] + article_header + out[1]
+        out = out.split("XXXdiscriptionXXX")
+        out = out[0] + discription + out[1]
         
         out = out.split("XXXcontentXXX")
         out = out[0] + article + out[1]
@@ -505,23 +506,6 @@ def create_final_file(file_name,author_header,article_header,article,bibliograph
         file.write(out)
 
     
-def authors_header(authors:dict,affiliations:dict):
-    out = "  authors:"
-    for elem in list(authors.keys()):
-        out += "\n  - " + elem + ": " + authors[elem] 
-    
-    out += "\n  affiliations:"
-    for elem in list(affiliations.keys()):
-        out += "\n  - " + elem + ": " + affiliations[elem]
-
-    return out
-
-def article_header(article_name,short_discription=None):
-    if short_discription is None:
-        return f"<h1>{article_name}</h1>"
-    else:    
-        return f"<h1>{article_name}</h1><h2>{short_discription}</h2>"
-
 
 def execute_on_pattern(input,arg_num,command_name,command_pattern):
     out = ""
@@ -749,7 +733,6 @@ def convert_latex(input,all_classes_prio):
     document.globals.number_within_equation = number_within_equation
     
     expand_on = []
-    print("len all_classes_prio",len(all_classes_prio))
     for all_classes in all_classes_prio:
         expand_on.extend(all_classes)
 

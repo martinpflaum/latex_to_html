@@ -31,12 +31,35 @@ def splitargs_in_key_val():
             out[key] = val
     return out
 
+if sys.argv[1] == "--help":
+    print("options are")
+    print("--tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex --article_header=path/to/MY_article_header.txt --out=something.html --description=MY_disrciption.txt".replace(" ","\n"))
+    exit()
+
+
 args = splitargs_in_key_val()
+print(args.keys())
 if not "tex_file" in args.keys():
-    raise RuntimeError("usage: python main.py --tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex")
+    raise RuntimeError("usage: python main.py --tex_file=parh/to/input.tex --biblio=parh/to/bibliography.bibtex --article_header=path/to/MY_article_header.txt --out=something.html --description=MY_disrciption.txt")
 
 file_name = args["tex_file"]
-bib_file = args["biblio"]
+
+bibliography = "" 
+if "biblio" in args.keys():
+    bibliography = load_file(args["biblio"])
+
+article_header = ""
+if "article_header" in args.keys():
+    article_header = load_file(args["article_header"])
+    
+out_file = "output.html"
+if "out" in args.keys():
+    out_file = args["out"]
+
+discription = ""
+if "discription" in args.keys():
+    discription = load_file(args["discription"])
+    print("discription")
 #"ShortNotesMathematics-master/ShortNotesMathematics"
 
 folder_name = os.path.dirname(file_name)
@@ -46,10 +69,8 @@ input = load_latex_file(file_name,get_subdic(folder_name),[])
 #ShortNotesMathematics-master/ShortNotesMathematics
 
 article = convert_latex(input,[[JunkSearch("\sffamily")],[Section,Para],[Subsection_star],[Proof],[Emph,Textbf],[Enumeration],get_all_latex_searchers(),junkSearcher,replaceSearcher,[Label],[Ref,Cite]])
-_author_header = authors_header({"Markus Pflaum":"htpps"},{"Universität":"htpps"})
-_article_header = article_header("Algebraic K-Theory in Low Degrees")
+#article_header("Algebraic K-Theory in Low Degrees")
 
-bibliography = load_file(bib_file)
-create_final_file("test23.html",_author_header,_article_header,article,bibliography)
+create_final_file(out_file,article_header,discription,article,bibliography)
 
 # %%
