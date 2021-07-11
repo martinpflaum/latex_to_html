@@ -1,7 +1,20 @@
 # latex to html
 This is an alpha version of a compiler from latex to html. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
-# usage:
+# usage
+
+minimal call:
+
+
+python main.py --tex_file=in.tex
+
+
+advacend call:
+
+
 python main.py --tex_file=in.tex --biblio=bib.bibtex --discription=disc.txt --article_header=artheader.txt --out=out.html
+
+
+With article_header you can define stuff like authors and their affiliations and doi. The syntax is not that hard its exactly like python lists and dictionaries, just take a quick look in the MY_article_header.txt file.
 
 This programm runs only with python3! so you may replace python with python3 if you have python2 installed
 
