@@ -1,7 +1,7 @@
 # latex to html
 This is an alpha version of a compiler from latex to html. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
 # usage:
-python .\main.py --tex_file=in.tex --biblio=bib.bibtex --discription=disc.txt --article_header=artheader.txt --out=out.html
+python main.py --tex_file=in.tex --biblio=bib.bibtex --discription=disc.txt --article_header=artheader.txt --out=out.html
 
 This programm runs only with python3! so you may replace python with python3 if you have python2 installed
 
