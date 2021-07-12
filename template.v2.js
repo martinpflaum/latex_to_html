@@ -4258,11 +4258,7 @@ ${css}
   :host {
   
   }
-  
-  sup {
-    position: relative;
-    vertical-align: baseline;
-  }
+
   
   span {
     color: hsla(206, 90%, 20%, 0.7);
@@ -4281,9 +4277,7 @@ ${css}
     </div>
   </d-hover-box>
   
-  <sup>
-    <span id="fn-" data-hover-ref=""></span>
-  </sup>
+<span id="fn-" data-hover-ref=""></span>
   
   `);
 
