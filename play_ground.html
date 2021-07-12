@@ -1,0 +1,422 @@
+
+<!--
+  Copyright 2018 The Distill Template Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!doctype html>
+
+<head>
+  <script src="template.v2.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script>
+
+<script>
+    function start_katex(){
+	var math_inline = document.getElementsByClassName('inline');
+    for (var i = 0; i < math_inline.length; i++) {
+      try {
+        if(!math_inline[i].hasAttribute('katex_rendered')) {
+            math_inline[i].setAttribute('katex_rendered','none');
+            katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
+        }
+        }catch (e) {
+         
+      }
+    }
+   
+  var math_display = document.getElementsByClassName('display');
+    for (var i = 0; i < math_display.length; i++) {
+	    try {
+            if(!math_display[i].hasAttribute('katex_rendered')) {
+                math_display[i].setAttribute('katex_rendered','none');
+                katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
+            }
+        }catch (e) {
+
+      }
+    }
+    }
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    start_katex();
+    
+    sleep(500).then(() => {
+        start_katex();
+    });
+    sleep(1000).then(() => {
+        start_katex();
+    });
+    sleep(3000).then(() => {
+        start_katex();
+    });
+</script>
+</head>
+
+<body>
+  <distill-header></distill-header>
+  <d-front-matter>
+    <script id='distill-front-matter' type="text/json">{
+    "title": "Why Momentum Really Works",
+    "description": "Although \" extremely useful for visualizing high-dimensional data, t-SNE plots can sometimes be mysterious or misleading.",
+    "published": "Jan 10, 2017",
+    "authors": [
+      {
+        "author":"Chris Olah",
+        "authorURL":"https://colah.github.io/",
+        "affiliations": [{"name": "Google Brain"}]
+      },
+      {
+        "author":"Ludwig Schubert",
+        "authorURL":"https://shancarter.com/",
+        "affiliations": [{"name": "Google Brain", "url": "https://g.co/brain"}]
+      },
+      {
+        "author":"Shan Carter",
+        "authorURL":"https://shancarter.com/",
+        "affiliations": [
+          {"name": "Google Brain", "url": "https://g.co/brain"},
+          {"name": "NYT", "url": "https://nytimes.com"}
+        ]
+      }
+    ],
+    "katex": {
+      "delimiters": [
+        {"left": "$$", "right": "$$", "display": false}
+      ]
+    }
+  }</script>
+
+  <script type="text/javascript" src="index.bundle.js"></script>
+
+  </d-front-matter>
+  <d-title>
+    <figure style="grid-column: page; margin: 1rem 0;"><img src="momentum.png"
+        style="width:100%; border: 1px solid rgba(0, 0, 0, 0.2);" /></figure>
+    <p>We often think of Momentum<d-cite key="mercier2011humans"></d-cite> as a means of dampening oscillations and
+      speeding up the iterations, leading to faster convergence. But it has other interesting behavior. It allows a
+      larger range of step-sizes to be used, and creates its own oscillations. What is going on?</p>
+  </d-title>
+  <d-byline></d-byline>
+  <d-article>
+    <a class="marker" href="#section-1"><span>1 A brief survey</span></a>
+    <a class="marker" href="#section-1.1"><span>1.1 Citations</span></a>
+    <d-contents id="leftdiv"><nav class="lnav"><h3>Contents</h3> 
+        <div><a href="#introduction">Introduction</a></div> 
+        <div><a href="#interactive-articles">Interactive Articles: Theory &amp; Practice</a></div> 
+        <ul><li><a href="#connecting-people-and-data">Connecting People and Data</a></li> 
+          <li><a href="#making-systems-playful">Making Systems Playful</a></li> 
+          <li><a href="#prompting-self-reflection">Prompting Self-Reflection</a></li> 
+          <li><a href="#personalizing-reading">Personalizing Reading</a></li> 
+          <li><a href="#reducing-cognitive-load">Reducing Cognitive Load</a></li></ul> 
+        <div><a href="#challenges">Challenges for Authoring Interactives</a></div> 
+        <div><a href="#critical-reflections">Critical Reflections</a></div> 
+        <div><a href="#looking-forward">Looking Forward</a></div></nav></d-contents>
+    <h2 id="section-1">A Brief Survey of Techniques</h2>
+    <p>Before diving in: if you haven’t encountered t-SNE before, here’s what you need to know about the math behind it.
+      The goal is to take a set of points in a high-dimensional space and find a faithful representation of those points
+      in a lower-dimensional space, typically the 2D plane. The algorithm is non-linear and adapts to the underlying
+      data, performing different transformations on different regions. Those differences can be a major source of
+      confusion.</p>
+    <p>This is the first paragraph of the article. Test a long&thinsp;&mdash;&thinsp;dash -- here it is.</p>
+    <p>Test for owner's possessive. Test for "quoting a passage." And another sentence. Or two. Some flopping fins; for
+      diving.</p>
+    <aside>Some text in an aside, margin notes, etc...</aside>
+    <p>Here's a test of an inline equation <d-math>c = a^2 + b^2 * \frac{3}{4}</d-math>. Also with configurable katex standards just
+      using inline '$' signs: $$x^2$$ And then there's a block equation:</p>
+    <d-math block>
+      c = \pm \sqrt{ \sum_{i=0}^{n}{a^{222} + b^2}}
+    </d-math>
+    <p>Math can also be quite involved:</p>
+    <d-math block>
+      \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}}
+      {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\cdots} } } }
+    </d-math>
+    <h3 id="section-1.1">Citations</h3>
+    <p>
+      <d-slider style="width: 200px;"></d-slider>
+    </p>
+    <p>We can<d-cite bibtex-key="mercier2011humans"></d-cite> also cite <d-cite
+        key="gregor2015draw,mercier2011humans,openai2018charter"></d-cite> external publications. <d-cite
+        key="dong2014image,dumoulin2016guide,mordvintsev2015inceptionism"></d-cite>. We should also be testing footnotes
+      <d-footnote>This will become a hoverable footnote. This will become a hoverable footnote. This will become a
+        hoverable footnote. This will become a hoverable footnote. This will become a hoverable footnote. This will
+        become a hoverable footnote. This will become a hoverable footnote. This will become a hoverable footnote.
+      </d-footnote>. There are multiple footnotes, and they appear in the appendix<d-footnote>Given I have coded them
+        right. Also, here's math in a footnote: <span class="inline">c = \sum_0^i{x}</span>. Also, a citation. Box-ception<d-cite
+          key='gregor2015draw'></d-cite>!</d-footnote> as well.</p>
+    <a class="marker" href="#section-2" id="section-2"><span>2</span></a>
+    <h2>Displaying code snippets</h2>
+    <p>Some inline javascript:<d-code language="javascript">var x = 25;</d-code>. And here's a javascript code block.
+    </p>
+    <d-code block language="javascript">
+      var x = 25;
+      function(x){
+      return x * x;
+      }
+    </d-code>
+    <p>We also support python.</p>
+    <d-code block language="python">
+      # Python 3: Fibonacci series up to n
+      def fib(n):
+      a, b = 0, 1
+      while a < n: print(a, end=' ' ) a, b=b, a+b </d-code>
+        <p>And a table</p>
+        <table>
+          <thead>
+            <tr>
+              <th>First</th>
+              <th>Second</th>
+              <th>Third</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>23</td>
+              <td>654</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>54</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td>234</td>
+              <td>54</td>
+              <td>23</td>
+            </tr>
+          </tbody>
+        </table>
+        <d-figure id="last-figure"></d-figure>
+        <script>
+          const figure = document.querySelector("d-figure#last-figure");
+          const initTag = document.createElement("span");
+          initTag.textContent = "initialized!"
+          figure.appendChild(initTag);
+          figure.addEventListener("ready", function () {
+            const initTag = figure.querySelector("span");
+            initTag.textContent = "ready"
+            console.log('ready')
+          });
+          figure.addEventListener("onscreen", function () {
+            const initTag = figure.querySelector("span");
+            initTag.textContent = "onscreen"
+            console.log('onscreen')
+          });
+          figure.addEventListener("offscreen", function () {
+            const initTag = figure.querySelector("span");
+            initTag.textContent = "offscreen!"
+            console.log('offscreen')
+          });
+        </script>
+        <p>That's it for the example article!</p>
+        <p>We can<d-cite bibtex-key="mercier2011humans"></d-cite> also cite <d-cite key="gregor2015draw,mercier2011humans,openai2018charter"></d-cite> external publications. <d-cite key="dong2014image,dumoulin2016guide,mordvintsev2015inceptionism"></d-cite>. We should also be testing footnotes
+            <d-footnote id="d-footnote-1">This will become a hoverable footnote. This will become a hoverable footnote. This will become a
+              hoverable footnote. This will become a hoverable footnote. This will become a hoverable footnote. This will
+              become a hoverable footnote. This will become a hoverable footnote. This will become a hoverable footnote.
+            </d-footnote>. There are multiple footnotes, and they appear in the appendix<d-footnote id="d-footnote-2">Given I have coded them
+              right. Also, here's math in a footnote: <d-math>c = \sum_0^i{x}</d-math>. Also, a citation. Box-ception<d-cite key="gregor2015draw"></d-cite>!</d-footnote> as well.</p>
+              
+
+              <d-hover-box id="hover-box"><ul>
+                <style>
+                    :host {
+                      position: absolute;
+                      width: 100%;
+                      left: 0px;
+                      z-index: 10000;
+                      display: none;
+                      white-space: normal
+                    }
+                    
+                    .container {
+                      position: relative;
+                      width: 704px;
+                      max-width: 100vw;
+                      margin: 0 auto;
+                    }
+                    
+                    .panel {
+                      position: absolute;
+                      font-size: 1rem;
+                      line-height: 1.5em;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      border: 1px solid rgba(0, 0, 0, 0.1);
+                      background-color: rgba(250, 250, 250, 0.95);
+                      box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+                      border-radius: 4px;
+                      box-sizing: border-box;
+                    
+                      backdrop-filter: blur(2px);
+                      -webkit-backdrop-filter: blur(2px);
+                    }
+                    </style>              
+                  
+                <li><strong>Why do humans reason? Arguments for an argumentative theory</strong><br>H. Mercier, D. Sperber.<br>Behavioral and brain sciences, Vol 34(02), pp. 57--74. Cambridge Univ Press. 2011. <br> <a href="https://doi.org/10.1017/S0140525X10000968" style="text-decoration:inherit;">DOI: 10.1017/S0140525X10000968</a></li>
+              </ul></d-hover-box>
+<p>XXXXX
+    <d-hovercontent val='a has' onclick="alert('hey there')" onmouseover="start_katex()"><strong>Definition 1.6</strong>
+        Let <span class='inline'>X</span> and <span class='inline'>Y</span> be sets. For all <span class='inline'>x\in X</span> and <span class='inline'>y\in Y</span> the <i>pair</i> <span class='inline'>(x,y)</span> is defined as
+        the set <span class='inline'>\big\{ \{x \}, \{ x, y \} \big\}</span>. The <i>cartesian product</i>
+        <span class='inline'>X \times Y</span> is defined as 
+        <br><br><span class='display'>
+          \big\{ z \in \mathscr{P}(\mathscr{P}(X \cup Y)) \mid \exists x \in X \, \exists y \in Y : \: 
+          z = \{ \{x \}, \{ x, y \}\} \big\}  .
+        </span>
+      </d-hovercontent>
+    XXXXXXXX</p>
+a ji 
+<br> 
+<br>
+<br>
+<br>             
+  </d-article>
+
+  <d-appendix>
+
+    <h3>Contributions</h3>
+    <p>Some text describing who did what.</p>
+    <h3>Reviewers</h3>
+    <p>Some text with links describing who reviewed the article.</p>
+
+    <d-bibliography>
+        
+    <script type="text/bibtex">
+        @article{gregor2015draw,
+            title={DRAW: A recurrent neural network for image generation},
+            author={Gregor, Karol and Danihelka, Ivo and Graves, Alex and Rezende, Danilo Jimenez and Wierstra, Daan},
+            journal={arXiv preprint arXiv:1502.04623},
+            year={2015},
+            url ={https://arxiv.org/pdf/1502.04623.pdf}
+          }
+          @article{mercier2011humans,
+            title={Why do humans reason? Arguments for an argumentative theory},
+            author={Mercier, Hugo and Sperber, Dan},
+            journal={Behavioral and brain sciences},
+            volume={34},
+            number={02},
+            pages={57--74},
+            year={2011},
+            publisher={Cambridge Univ Press},
+            doi={10.1017/S0140525X10000968}
+          }
+          
+          @article{dong2014image,
+            title={Image super-resolution using deep convolutional networks},
+            author={Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+            journal={arXiv preprint arXiv:1501.00092},
+            year={2014},
+            url={https://arxiv.org/pdf/1501.00092.pdf}
+          }
+          
+          @article{dumoulin2016adversarially,
+            title={Adversarially Learned Inference},
+            author={Dumoulin, Vincent and Belghazi, Ishmael and Poole, Ben and Lamb, Alex and Arjovsky, Martin and Mastropietro, Olivier and Courville, Aaron},
+            journal={arXiv preprint arXiv:1606.00704},
+            year={2016},
+            url={https://arxiv.org/pdf/1606.00704.pdf}
+          }
+          
+          @article{dumoulin2016guide,
+            title={A guide to convolution arithmetic for deep learning},
+            author={Dumoulin, Vincent and Visin, Francesco},
+            journal={arXiv preprint arXiv:1603.07285},
+            year={2016},
+            url={https://arxiv.org/pdf/1603.07285.pdf}
+          }
+          
+          @article{gauthier2014conditional,
+            title={Conditional generative adversarial nets for convolutional face generation},
+            author={Gauthier, Jon},
+            journal={Class Project for Stanford CS231N: Convolutional Neural Networks for Visual Recognition, Winter semester},
+            volume={2014},
+            year={2014},
+            url={http://www.foldl.me/uploads/papers/tr-cgans.pdf}
+          }
+          
+          @article{johnson2016perceptual,
+            title={Perceptual losses for real-time style transfer and super-resolution},
+            author={Johnson, Justin and Alahi, Alexandre and Fei-Fei, Li},
+            journal={arXiv preprint arXiv:1603.08155},
+            year={2016},
+            url={https://arxiv.org/pdf/1603.08155.pdf}
+          }
+          
+          @article{mordvintsev2015inceptionism,
+            title={Inceptionism: Going deeper into neural networks},
+            author={Mordvintsev, Alexander and Olah, Christopher and Tyka, Mike},
+            journal={Google Research Blog},
+            year={2015},
+            url={https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html}
+          }
+          
+          @misc{mordvintsev2016deepdreaming,
+            title={DeepDreaming with TensorFlow},
+            author={Mordvintsev, Alexander},
+            year={2016},
+            url={https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/tutorials/deepdream/deepdream.ipynb},
+          }
+          
+          @article{radford2015unsupervised,
+            title={Unsupervised representation learning with deep convolutional generative adversarial networks},
+            author={Radford, Alec and Metz, Luke and Chintala, Soumith},
+            journal={arXiv preprint arXiv:1511.06434},
+            year={2015},
+            url={https://arxiv.org/pdf/1511.06434.pdf}
+          }
+          
+          @inproceedings{salimans2016improved,
+            title={Improved techniques for training gans},
+            author={Salimans, Tim and Goodfellow, Ian and Zaremba, Wojciech and Cheung, Vicki and Radford, Alec and Chen, Xi},
+            booktitle={Advances in Neural Information Processing Systems},
+            pages={2226--2234},
+            year={2016},
+            url={https://arxiv.org/pdf/1606.03498.pdf}
+          }
+          
+          @article{shi2016deconvolution,
+            title={Is the deconvolution layer the same as a convolutional layer?},
+            author={Shi, Wenzhe and Caballero, Jose and Theis, Lucas and Huszar, Ferenc and Aitken, Andrew and Ledig, Christian and Wang, Zehan},
+            journal={arXiv preprint arXiv:1609.07009},
+            year={2016},
+            url={https://arxiv.org/pdf/1609.07009.pdf}
+          }
+          
+          @misc{openai2018charter,
+            author={OpenAI},
+            title={OpenAI Charter},
+            type={Blog},
+            number={April 9},
+            year={2018},
+            url={https://blog.openai.com/charter},
+          }
+          
+    </script>
+
+      </d-bibliography>
+    </d-appendix>
+
+  <distill-footer></distill-footer>
+
+  
+</body>
+
