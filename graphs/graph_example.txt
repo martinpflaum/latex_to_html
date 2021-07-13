@@ -1,0 +1,14 @@
+digraph G {
+  { 
+    node [margin=0  fontcolor=blue fontsize=12 width=0.8 shape=circle style=filled color=white fixedsize=shape]
+  
+    b [label="$X_G$"]
+    a [label="$\sum^4_i i^2$"]
+    c [label="$K_\varphi$"]
+
+  }
+  a -> c [label="$G_\varphi$" len=2.0]
+  c -> b [len=2.0]
+  b -> a [len=2.0]
+  
+}

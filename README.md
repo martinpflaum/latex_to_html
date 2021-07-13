@@ -32,16 +32,19 @@ is equal to
 
 
 python main.py --out=out.html  --tex_file=in.tex
+# graphs:
+in the graphs folder run python graphs.py --help to see how it works 
 
+the graph example contains the code that is compiled to html
 # state of development:
 
 features included right now
 - inplace execution of defined theoremenviroments and commands
 - enumerations,sections,subsections,equations (see example.html :) )
+- a progamm with which you can create diagramms with latex equations in it using katex and svg
 
 features that will be added
 - nested enumerations
-- a progamm with which you can create diagramms with latex equations in it using katex and svg
 - documentation
 - better structure of the python files
 
