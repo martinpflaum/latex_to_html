@@ -64,8 +64,9 @@ if "discription" in args.keys():
 
 folder_name = os.path.dirname(file_name)
 
-
+print(get_subdic(folder_name))
 input = load_latex_file(file_name,get_subdic(folder_name),[])
+
 #ShortNotesMathematics-master/ShortNotesMathematics
 
 article = convert_latex(input,[[JunkSearch("\sffamily")],[Section,Para],[Subsection_star],[Proof],[Emph,Textbf],[Enumeration],get_all_latex_searchers(),junkSearcher,replaceSearcher,[Label],[Ref,Cite]])

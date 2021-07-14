@@ -4304,6 +4304,64 @@ ${css}
         }
   }  
 
+  const T$199 = Template('d-contentreference', `
+  <style>
+  
+  d-math[block] {
+    display: block;
+  }
+  
+  :host {
+  
+  }
+
+  
+  span {
+    color: hsla(206, 90%, 20%, 0.7);
+    cursor: default;
+  }
+  
+  .contentreference-container {
+    padding: 10px;
+  }
+  
+  </style>
+  
+  <d-hover-box>
+    <div class="contentreference-container">
+      <slot id="slot"></slot>
+    </div>
+  </d-hover-box>
+  
+<span id="fn-" data-hover-ref=""></span>
+  
+  `);
+
+
+  class ReferenceVis extends T$199(HTMLElement) {
+
+    connectedCallback() {
+        // listen and notify about changes to slotted content
+        // const slot = this.shadowRoot.querySelector('#slot');
+        // console.warn(slot.textContent);
+        // slot.addEventListener('slotchange', this.notify);
+        var ref = this.getAttribute('ref')
+        ref = document.getElementById(ref);
+        ref = ref.innerHTML
+        this.innerHTML = ref
+        this.hoverBox = this.root.querySelector('d-hover-box');
+        const val = this.getAttribute('val')
+
+        window.customElements.whenDefined('d-hover-box').then(() => {
+          this.hoverBox.listen(this);
+        }
+        );
+        const span = this.root.querySelector('#fn-');
+        span.textContent = val;
+
+        }
+  }  
+
   // Copyright 2018 The Distill Template Authors
 
   const T$5 = Template('d-footnote', `
@@ -9265,7 +9323,7 @@ distill-header .nav a {
     /* 4. Register components */
     const components = [
       Abstract, Appendix, Article, Bibliography, Byline, Cite, CitationList, Code,
-      Hovercontent,Footnote, FootnoteList, FrontMatter$1, HoverBox, Title, DMath, References, TOC, Figure,
+      Hovercontent,ReferenceVis,Footnote, FootnoteList, FrontMatter$1, HoverBox, Title, DMath, References, TOC, Figure,
       Slider, Interstitial
     ];
 

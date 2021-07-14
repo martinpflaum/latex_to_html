@@ -41,7 +41,7 @@ class Section(SectionEnumerate):
     @staticmethod
     def split_and_create(input,parent):
         pre,content = split_on_next(input,"\\section")
-
+        
         section_number = parent.search_class(SectionEnumerate).generate_child_section_number()
         name,content =  split_on_first_brace(content)
         if "\\section" in content:
@@ -49,6 +49,7 @@ class Section(SectionEnumerate):
             post = "\\section" + post
         else:
             post = ""
+        
         return pre,Section(content,name,section_number,parent),post
 
     def to_string(self):
@@ -58,6 +59,7 @@ class Section(SectionEnumerate):
         out = "</p><h1>" + str(self.section_number) + " "+ self.children[0].to_string()  + "</h1><p>"
         for child in self.children[1:]:
             out += child.to_string()
+        #print("out ",out)
         return out
 
 

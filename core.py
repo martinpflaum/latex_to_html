@@ -39,6 +39,7 @@ def save_command_split(input,split_on):
     if split_on == "$":
         return input.split("$")
     for appendix in get_all_allchars_no_abc():
+        #if isinstance(input)
         input = input.replace(split_on + appendix,"XXXsplit_meXXX"+appendix)
     input = input.split("XXXsplit_meXXX")
     return input
@@ -114,6 +115,8 @@ def split_on_first_brace(input,begin_brace = "{",end_brace = "}"):
 
 def split_rename(input):
     input = remove_empty_at_begin(input)
+    if len(input) == 0:
+        return None
     if input[0] == "[":
         name,post = split_on_first_brace(input,"[","]")
         return name,post
@@ -131,15 +134,39 @@ def split_on_next(input,split_on,save_split = True):
     post = input[len(pre + split_on):]
     return pre, post
 
+
+def begin_end_split_old(input,beginname,endname):
+    """
+    """
+    pre,tmp = split_on_next(input,beginname)
+    middle,post = split_on_next(tmp,endname)
+    return pre,middle,post
 def begin_end_split(input,beginname,endname):
     """
     """
-    pre,elem = split_on_next(input,beginname)
+    #print("begin_end ",beginname)
+    return begin_end_split_old(input,beginname,endname)
+    pre,xtmp = split_on_next(input,beginname)
     #elem = beginname + elem
     #middle,post = split_on_first_brace(elem,beginname,endname)
-
-    middle,post = split_on_next(elem,endname)
-    return pre,middle,post
+    tmp = xtmp.split(beginname)
+    begin_num = 0
+    middle = ""
+    for k in range(len(tmp)):
+        if endname in tmp[k]:
+            if begin_num == 0:
+                xmiddle,post = split_on_next(tmp[k],endname)
+                middle += xmiddle
+                return pre,middle,post
+            else:
+                begin_num = begin_num - len(tmp[k].split(endname)) + 1
+        if k!=0:
+            middle += beginname + tmp[k]
+        else:
+            middle += tmp[k]
+        begin_num = begin_num + 1
+    print("begin_end_split error")
+    return begin_end_split_old(input,beginname,endname)
 
 def position_of(input,beginname,save_split = True):
     if beginname in input:
@@ -373,10 +400,13 @@ class SectionEnumerate(Element):
             search_func = lambda instance : has_value_equal(instance,"theorem_env_name",self.enum_parent_class)
 
             section_enum = self.search_up_on_func(search_func)
+            out = None
             if section_enum is None:
-                raise RuntimeError("couldn't find enumaration parent: --"+self.enum_parent_class +"-- in enviroment: --" + self.theorem_env_name +"--")
-
-            out = section_enum.get_section_enum()
+                out = "E"
+                #raise RuntimeError("couldn't find enumaration parent: --"+self.enum_parent_class +"-- in enviroment: --" + self.theorem_env_name +"--")
+                print("couldn't find enumaration parent: --"+self.enum_parent_class +"-- in enviroment: --" + self.theorem_env_name +"--")
+            else:
+                out = section_enum.get_section_enum()
             out += str(self.section_number) + "."
             return out
 
@@ -462,18 +492,19 @@ def load_latex_file(file_name,visible_paths,loaded_files):
     for elem in latex_file[1:]:
         name,post = split_on_first_brace(elem)
         if name in loaded_files:
-            print("not loading",name)
+            #print("not loading",name)
             out += post
         else:
             tmp = ""
             for path in visible_paths:
                 try:
+                    tmp = load_latex_file(path + "/" + name,visible_paths,loaded_files+[name])
                     loaded_files.append(name)
-                    tmp = load_latex_file(path + "/" + name,visible_paths,loaded_files)
-                    #print(loaded_files)
+                    print("loaded ",name)
+                    #print(tmp)
                     break
                     #print("Succesfully Loaded File: ",name)
-                except FileNotFoundError:
+                except:
                     pass
             if tmp == "":
                 RuntimeError("\\input error File " + name + " could not be found")

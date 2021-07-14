@@ -12,9 +12,12 @@ def edit_property(input,prop_name,func):
 
 def add_func(input,k):
   return str(float(input)+k)
+
+def set_func(input,k):
+  return str(k)
 from functools import partial
 
-def post_process(input,bgcolor = "white",x_offset=-10,y_offset=-15):
+def post_process(input,bgcolor = "white",x_offset=-100,y_offset=-15):
   xinput = input.split("<text")
   input = xinput[0]
   for elem in xinput[1:]:
@@ -22,11 +25,17 @@ def post_process(input,bgcolor = "white",x_offset=-10,y_offset=-15):
       xelem = elem.split(">",1)
       xelem[0] = edit_property(xelem[0],"x",partial(add_func,k=x_offset))
       xelem[0] = edit_property(xelem[0],"y",partial(add_func,k=y_offset))
-      
+      xelem[0] = edit_property(xelem[0],"font-size",partial(set_func,k=12.00))
+      xelem[0] = edit_property(xelem[0],"text-anchor",partial(set_func,k="start"))
+      #if "XXXedgeXXX" in xelem[1]:
+      #  xelem[1] = xelem[1].replace("XXXedgeXXX","")
+      #  xelem[0] = edit_property(xelem[0],"x",partial(set_func,k=x_offset))
+      #  xelem[0] = edit_property(xelem[0],"y",partial(set_func,k=y_offset))
+        
 
       elem = "<text" + xelem[0] + ">\\colorbox{"+bgcolor+"}{" + xelem[1]
     input += elem
-  input = input.replace("<text",'<foreignObject class="inline" width="500" height="500"')
+  input = input.replace("<text",'<foreignObject class="inline" width="500" height="100"')
   input = input.replace("</text>",'}</foreignObject>')
   input = input.replace("XXXbackslashXXX","\\")
   return input
@@ -61,12 +70,12 @@ args = splitargs_in_key_val()
 out_file = "graph_output.html"
 if "out" in args.keys():
   out_file = args["out"]
-
+#x="177.106" y="-12.1333" 
 
 source = load_file(args["graph"])
 source = pre_process(source)
 input = graph_to_svg(source)
-input = post_process(input)
+#input = post_process(input)
 create_final_file(input,out_file)
 
 # %%

@@ -29,7 +29,7 @@ class BeginEquationEnumElement(Element):
    
     def get_section_enum(self):
         number_within_equation = self.search_class(Document).globals.number_within_equation
-        print("number_within_equation",number_within_equation)
+        #print("number_within_equation",number_within_equation)
         if number_within_equation is None:
             return str(self.section_number) + "."
         else:
