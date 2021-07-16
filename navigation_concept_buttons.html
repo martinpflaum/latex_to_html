@@ -77,7 +77,6 @@ var currentScrollPos = window.pageYOffset;
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<div id="mySidenav"></div>
 
 <style>
     body {
@@ -94,7 +93,11 @@ var currentScrollPos = window.pageYOffset;
       background-color: rgb(255, 255, 255);
       box-shadow: 0 3px 3px rgba(0,0,0,0.2);
       overflow-x: hidden;
+      font-weight: bold;
       transition: 0.5s;
+    }
+    .sidenav.a {
+      color:black;
     }
 
     .enable_nav {
@@ -114,6 +117,7 @@ var currentScrollPos = window.pageYOffset;
       text-align: center;
       cursor: pointer;
       display: none;
+       
     }
     
     .disable_nav {
@@ -152,17 +156,30 @@ vertical_split
     close
     </span>
 </div>
-    <div id="sidenav" class="sidenav">
-        <br>
+
+<div id="sidenav" class="sidenav">
+  <div style="margin-left: 30px;margin-top: 20px;">
+  <ol>
+    <a href="#2 Number Systems"><li>contnet
+      <ol>
+        <a href="#2 Number Systems"><li>contnet</li></a>
+        <li>hjjkla</li>
+        <li>hjjkla</li>
+    
+      </ol>
         
-        <ol>
-        <li>Tada</li>
-        <li>Something</li>
-        <li>usefull</li>
-        </ol>
-        
-    </div>
-    <script>
+
+    </li></a>
+    <li>hjjkla</li>
+    <li>hjjkla</li>
+
+  </ol>
+    
+  </div>
+</div>
+
+
+<script>
         downticks = 0
         const downticks_max = 64
         $(window).bind('mousewheel', function(event) {
@@ -242,12 +259,12 @@ vertical_split
         margin-left: 2em;
         padding-left: 2em;
     }
-    li {
+    ol.enumeration > li {
         display: block;
         margin-bottom: .5em;
         margin-left: 2em;
     }
-    li:before {
+    ol.enumeration > li:before {
         content:attr(value) ' ';
         width: 2em;
         margin-left: -2em;
@@ -291,7 +308,7 @@ distill-header .nav a {
 \phantomsection
 
 
-</p><h1>1 Foundations</h1><p>
+</p><h1 id="1 Foundations">1 Foundations</h1><p>
 
 </p><h2>Set theory</h2><p>\addcontentslinetocsubsectionSet theory
 
@@ -806,7 +823,7 @@ symbol for the empty set <span class='inline'>\emptyset</span>.
   </li></ol><p> 
  <br><br>
 
-</p><h1>2 Number Systems</h1><p>
+</p><h1 id="2 Number Systems">2 Number Systems</h1><p>
 
 
 </p><h2>Natural numbers</h2><p>\addcontentslinetocsubsectionNatural numbers
