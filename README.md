@@ -1,5 +1,5 @@
 # latex to html
-This is an alpha version of a compiler from latex to html. This projected is not related with distill, we just use their code because its great. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
+This is an alpha version of a compiler from latex to html. It is heavily under development and things are going to be changed :D. This projected is not related with distill, we just use their code because its great. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
 # usage
 
 minimal call:
