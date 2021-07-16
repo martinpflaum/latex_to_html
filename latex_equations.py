@@ -102,17 +102,17 @@ class InlineLatex(Element):
         
     @staticmethod
     def split_and_create(input,parent):
-        pre,modifiable_content = split_on_next(input,"$")
+        pre,modifiable_content = split_on_next(input,"$",save_split=False)
         in_outer_dollar = ""
         post = "" 
         content = ""
 
         while True:
-            pending_pre_end,post = split_on_next(modifiable_content,"$")
+            pending_pre_end,post = split_on_next(modifiable_content,"$",save_split=False)
             if not "\\text" in pending_pre_end:
                 content = in_outer_dollar + pending_pre_end
                 break
-            content_unknown,tmp_post = split_on_next(modifiable_content,"\\text")
+            content_unknown,tmp_post = split_on_next(modifiable_content,"\\text",save_split=False)
             brace_content,modifiable_content = split_on_first_brace(tmp_post)
             in_outer_dollar += content_unknown + "\\text{" + brace_content + "}"
             
@@ -207,8 +207,39 @@ def get_all_latex_searchers():
     multiline = ["split", "multline","align","breqn","equation"]
     multiline_enum = [BeginAlignSearcher("\\begin{"+ elem+"}","\\end{"+ elem+"}") for elem in multiline]
     multiline_no_enum = [BeginAlignStar("\\begin{"+ elem+"*}","\\end{"+ elem+"*}") for elem in multiline]
-    out = [BeginAlignStar("\\[","\\]"),BeginAlignStar("\\begin{displaymath}","\\end{displaymath}") ,InlineLatex,ReplaceSearch("\\\\","\n")]
+    out = []#DoubleDolarLatex
+    out += [BeginAlignStar("\\[","\\]"),BeginAlignStar("\\begin{displaymath}","\\end{displaymath}") ,InlineLatex,ReplaceSearch("\\\\","\n")]
     out.extend(multiline_enum)
     out.extend(multiline_no_enum)
     return out
     
+
+
+class DoubleDolarLatex(Element):
+    def __init__(self,modifiable_content,parent):
+        super().__init__(modifiable_content,parent)
+
+    @staticmethod
+    def position(input):
+        return position_of(input,"$$")
+        
+    @staticmethod
+    def split_and_create(input,parent):
+        pre,modifiable_content = split_on_next(input,"$$",save_split=False)
+        content,post = split_on_next(input,"$$",save_split=False)  
+
+            
+        out = InlineLatex(content,parent)
+        out = apply_latex_protection(out)
+        
+
+        #pre,content,post = begin_end_split(input,"\\begin{document}","\\end{document}")
+        return pre,out,post
+
+    def to_string(self):
+        out = "<span class='display'>"
+        for child in self.children:
+            out += child.to_string()
+        out += "</span>"
+        return out
+

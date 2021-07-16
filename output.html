@@ -395,11 +395,13 @@ As a corollary, the composite of a measurable and a continuous function is measu
 <br><br><strong>Example 2.13</strong> 
   Let <span class='inline'>X</span> be a measure space, and let <span class='inline'>E\subseteq X</span> be a measurable set.  Then the function
   <span class='inline'>\chi_E \colon X\rightarrow {\mathbb C}</span> given by the formula
-  <span class='inline'></span>\chi_E (x) = \left\ \beginarrayll 1 & x\in E 
+  <span class='inline'> given by the formula
+  </span>\chi_E (x) = \left\ \beginarrayll 1 & x\in E 
 
   0 & x\not\in E 
 
-  \endarray \right.<span class='inline'></span>
+  \endarray \right.<span class='inline'>
+  \end{array} \right.</span>
 is measurable.
 <br><br>
 
@@ -409,13 +411,13 @@ The function <span class='inline'>\chi_E</span> is called the \em characteristic
 
 <br><br><strong>Proposition 2.14</strong> 
 Let <span class='inline'>u,v\colon X\rightarrow {\mathbb R}</span> be measurable functions, and let <span class='inline'>\Phi \colon {\mathbb R}^2 \rightarrow Y</span> be continuous.  Define a function <span class='inline'>h\colon X\rightarrow Y</span> by the formula
-<span class='inline'></span>h(x) = \Phi (u(x),v(x))<span class='inline'></span>
+<span class='inline'></span>h(x) = \Phi (u(x),v(x))<span class='inline'>h(x) = \Phi (u(x),v(x))</span>
 Then the function <span class='inline'>h</span> is measurable.
 <br><br>
 
 <br><i>Proof.</i>
 Define <span class='inline'>f\colon X\rightarrow {\mathbb R}^2</span> by the formula <span class='inline'>f(x) = (u(x),v(x))</span>.  In view of proposition 2.12 it suffices to prove that the function <span class='inline'>f</span> is measurable.  Observe that:
-<span class='inline'></span>f^-1((a,b)\times (c,d)) = u^-1(a,b)\cap v^-1(c,d)<span class='inline'></span>
+<span class='inline'></span>f^-1((a,b)\times (c,d)) = u^-1(a,b)\cap v^-1(c,d)<span class='inline'>f^{-1}((a,b)\times (c,d)) = u^{-1}(a,b)\cap v^{-1}(c,d)</span>
 so the inverse image <span class='inline'>f^{-1}((a,b)\times (c,d))</span> is measurable since <span class='inline'>u</span> and <span class='inline'>v</span> are measurable functions.
 
 But every open set <span class='inline'>U\subseteq {\mathbb R}^2</span> is a countable union of rectangles of the form <span class='inline'>(a,b)\times (c,d)</span>.  The <span class='inline'>\sigma</span>-algebra axioms thus ensure that the inverse image <span class='inline'>f^{-1}[U]</span> is measurable whenever <span class='inline'>U\subseteq {\mathbb R}^2</span> is an open set.
@@ -449,7 +451,8 @@ Let <span class='inline'>f\colon X\rightarrow {\mathbb C}</span> be a measurable
 
 <br><i>Proof.</i>
 Let <span class='inline'>E = \{ x\in X |f(x)=0 \}</span>.  Then the set <span class='inline'>E</span> is the inverse image of a closed subset, and so measurable.  We can define a continuous function <span class='inline'>\varphi \colon {\mathbb C}\backslash \{ 0\} \rightarrow {\mathbb C}</span> by the formula <span class='inline'>\varphi (z) = z/|z|</span>.  It follows from example 2.13, corollary 2.16, and proposition 2.12 that the function <span class='inline'>\alpha \colon X\rightarrow {\mathbb C}</span> defined by the formula
-<span class='inline'></span>\alpha (x) = \varphi (f(x) + \chi_E (x))<span class='inline'></span>
+<span class='inline'> defined by the formula
+</span>\alpha (x) = \varphi (f(x) + \chi_E (x))<span class='inline'>\alpha (x) = \varphi (f(x) + \chi_E (x))</span>
 is measurable.  The formulae <span class='inline'>|\alpha (x)| =1</span> and <span class='inline'>f=\alpha |f|</span> are easy to check.
 
 
@@ -457,30 +460,45 @@ is measurable.  The formulae <span class='inline'>|\alpha (x)| =1</span> and <sp
 
 <br><br><strong>Definition 2.18</strong>
 Let <span class='inline'>(a_n)</span> be a sequence of real numbers.  Then we define
-<span class='inline'></span>\lim \sup_n\rightarrow \infty a_n = \lim \sup_n\rightarrow \infty \ a_n , a_n+1 , a_n+2 , \ldots \<span class='inline'></span>
+<span class='inline'> be a sequence of real numbers.  Then we define
+</span>\lim \sup_n\rightarrow \infty a_n = \lim \sup_n\rightarrow \infty \ a_n , a_n+1 , a_n+2 , \ldots \<span class='inline'>{\lim \sup}_{n\rightarrow \infty} a_n = {\lim \sup}_{n\rightarrow \infty} \{ a_n , a_{n+1} , a_{n+2} , \ldots \}</span>
 and
-<span class='inline'></span>\lim \inf_n\rightarrow \infty a_n = \lim \inf_n\rightarrow \infty \ a_n , a_n+1 , a_n+2 , \ldots \<span class='inline'></span>
+<span class='inline'>
+and
+</span>\lim \inf_n\rightarrow \infty a_n = \lim \inf_n\rightarrow \infty \ a_n , a_n+1 , a_n+2 , \ldots \<span class='inline'>{\lim \inf}_{n\rightarrow \infty} a_n = {\lim \inf}_{n\rightarrow \infty} \{ a_n , a_{n+1} , a_{n+2} , \ldots \}</span>
 <br><br>
 
 We can pass from results about <span class='inline'>\lim \sup</span> to results about <span class='inline'>\lim \inf</span>, or conversely, by the observation
-<span class='inline'></span>\lim \sup_n\rightarrow \infty a_n = - \lim \inf_n\rightarrow \infty (-a_n)<span class='inline'></span>
+<span class='inline'>, or conversely, by the observation
+</span>\lim \sup_n\rightarrow \infty a_n = - \lim \inf_n\rightarrow \infty (-a_n)<span class='inline'>{\lim \sup}_{n\rightarrow \infty} a_n = - {\lim \inf}_{n\rightarrow \infty} (-a_n)</span>
 
 It will occasionally be convenient to us to allow <span class='inline'>\infty</span> and <span class='inline'>-\infty</span> as values of limits and functions.  This is a safe enough option provided we do not attempt to do arithmetic with these symbols; for example, expressions such as `<span class='inline'>\infty - \infty</span>' are completely meaningless.
 
 However, we can form `intervals'
-<span class='inline'></span>[a,\infty ] = [a ,\infty )\cup \ \infty \  \qquad [\infty ,b] = (\infty ,b]\cup \ \infty \<span class='inline'></span>
+<span class='inline'>' are completely meaningless.
+
+However, we can form `intervals'
+</span>[a,\infty ] = [a ,\infty )\cup \ \infty \  \qquad [\infty ,b] = (\infty ,b]\cup \ \infty \<span class='inline'>[a,\infty ] = [a ,\infty )\cup \{ \infty \}  \qquad [\infty ,b] = (\infty ,b]\cup \{ \infty \}</span>
 and so on.  These intervals are topological spaces.  We can also allow ourselves the inequality
-<span class='inline'></span>-\infty  <  a  <  \infty<span class='inline'></span>
+<span class='inline'>
+and so on.  These intervals are topological spaces.  We can also allow ourselves the inequality
+</span>-\infty  <  a  <  \infty<span class='inline'>-\infty  <  a  <  \infty</span>
 for all <span class='inline'>a\in {\mathbb R}</span>.  The standard result about <span class='inline'>\lim \sup</span> and <span class='inline'>\lim \inf</span> can now be expressed quite simply; although a number of special cases need to be examined in the proof.
 
 <br><br><strong>Theorem 2.19</strong>
 Let <span class='inline'>(a_n)</span> be a real-valued sequence.  Then the limits
-<span class='inline'></span>\lim \inf_n\rightarrow \infty a_n \in [-\infty , \infty ) \qquad \lim \sup_n\rightarrow \infty a_n \in (-\infty , \infty ]<span class='inline'></span>
+<span class='inline'> be a real-valued sequence.  Then the limits
+</span>\lim \inf_n\rightarrow \infty a_n \in [-\infty , \infty ) \qquad \lim \sup_n\rightarrow \infty a_n \in (-\infty , \infty ]<span class='inline'>{\lim \inf}_{n\rightarrow \infty} a_n \in [-\infty , \infty ) \qquad {\lim \sup}_{n\rightarrow \infty} a_n \in (-\infty , \infty ]</span>
 exist and satisfy the inequality
-<span class='inline'></span>\lim \inf_n\rightarrow \infty a_n \leq \lim \sup_n\rightarrow \infty a_n<span class='inline'></span>
+<span class='inline'>
+exist and satisfy the inequality
+</span>\lim \inf_n\rightarrow \infty a_n \leq \lim \sup_n\rightarrow \infty a_n<span class='inline'>{\lim \inf}_{n\rightarrow \infty} a_n \leq {\lim \sup}_{n\rightarrow \infty} a_n</span>
 
 Further, the equality
-<span class='inline'></span>\lim \inf_n\rightarrow \infty a_n = a = \lim \sup_n\rightarrow \infty a_n<span class='inline'></span>
+<span class='inline'>
+
+Further, the equality
+</span>\lim \inf_n\rightarrow \infty a_n = a = \lim \sup_n\rightarrow \infty a_n<span class='inline'>{\lim \inf}_{n\rightarrow \infty} a_n = a = {\lim \sup}_{n\rightarrow \infty} a_n</span>
 holds precisely when the sequence <span class='inline'>(a_n)</span> converges to the real number <span class='inline'>a</span>.
 <strong>proof to be filled in!</strong>
 <br><br>
@@ -493,30 +511,38 @@ Let <span class='inline'>\Omega</span> be a measurable space, and let <span clas
 
 <br><i>Proof.</i>
 Let
-<span class='inline'></span>\mathcal M = \ E\subseteq [-\infty ,\infty]|f^-1[E] \textrm is measurable  \<span class='inline'></span>
+<span class='inline'>
+Let
+</span>\mathcal M = \ E\subseteq [-\infty ,\infty]|f^-1[E] \textrm is measurable  \<span class='inline'>{\mathcal M} = \{ E\subseteq [-\infty ,\infty]|f^{-1}[E] \textrm{ is measurable } \}</span>
 
 By proposition 2.10 the set <span class='inline'>\mathcal M</span> is a <span class='inline'>\sigma</span>-algebra.  Choose points <span class='inline'>\alpha \in {\mathbb R}</span> and <span class='inline'>\alpha_n  <  \alpha</span> such that <span class='inline'>\lim_{n\rightarrow \infty} \alpha_n = \alpha</span>.  Since the set <span class='inline'>(\alpha_n , \infty ]</span> is measurable by hypothesis, and
-<span class='inline'></span>[-\infty , \alpha ) = \bigcup_n=1^\infty [-\infty , \alpha_n ] = \bigcup_n=1^\infty [-\infty , \infty ]\backslash (\alpha_n , \infty]<span class='inline'></span>
+<span class='inline'> is measurable by hypothesis, and
+</span>[-\infty , \alpha ) = \bigcup_n=1^\infty [-\infty , \alpha_n ] = \bigcup_n=1^\infty [-\infty , \infty ]\backslash (\alpha_n , \infty]<span class='inline'>[-\infty , \alpha ) = \bigcup_{n=1}^\infty [-\infty , \alpha_n ] = \bigcup_{n=1}^\infty [-\infty , \infty ]\backslash (\alpha_n , \infty]</span>
 it follows that <span class='inline'>[-\infty , \alpha )\in \Omega</span>.  Hence
-<span class='inline'></span>(\alpha , \beta ) = [-\infty , \beta ) \cap (\alpha , \infty ] \in \Omega<span class='inline'></span>
+<span class='inline'>.  Hence
+</span>(\alpha , \beta ) = [-\infty , \beta ) \cap (\alpha , \infty ] \in \Omega<span class='inline'>(\alpha , \beta ) = [-\infty , \beta ) \cap (\alpha , \infty ] \in \Omega</span>
 for every point <span class='inline'>\alpha , \beta \in {\mathbb R}</span>.  Since every open set in <span class='inline'>[-\infty , \infty ]</span> is a countable union of such open intervals, the collection <span class='inline'>\mathcal M</span> contains every open set.  Thus the map <span class='inline'>f</span> is measurable.
 
 
 <br><br><strong>Corollary 2.21</strong>
 Let <span class='inline'>f_n\colon X\rightarrow [-\infty , \infty]</span> be measurable functions for <span class='inline'>n\in {\mathbb N}</span>.  Then the functions
-<span class='inline'></span>\sup \ f_n \ \quad \lim \sup_n\rightarrow \infty f_n \quad \inf \ f_n \ \quad \lim \inf_n\rightarrow \infty f_n<span class='inline'></span>
+<span class='inline'>.  Then the functions
+</span>\sup \ f_n \ \quad \lim \sup_n\rightarrow \infty f_n \quad \inf \ f_n \ \quad \lim \inf_n\rightarrow \infty f_n<span class='inline'>\sup \{ f_n \} \quad {\lim \sup}_{n\rightarrow \infty} f_n \quad \inf \{ f_n \} \quad {\lim \inf}_{n\rightarrow \infty} f_n</span>
 are measurable.
 <br><br> 
 
 <br><i>Proof.</i>
 Let <span class='inline'>a\in {\mathbb R}</span>.  Observe that the set
-<span class='inline'></span>(\sup \ f_n \)^-1 (a,\infty ] = \bigcup_n=1^\infty f_n^-1(a,\infty ]<span class='inline'></span>
+<span class='inline'>.  Observe that the set
+</span>(\sup \ f_n \)^-1 (a,\infty ] = \bigcup_n=1^\infty f_n^-1(a,\infty ]<span class='inline'>(\sup \{ f_n \})^{-1} (a,\infty ] = \bigcup_{n=1}^\infty f_n^{-1}(a,\infty ]</span>
 is measurable.  Hence by the above proposition, the function <span class='inline'>\sup \{ f_n \}</span> is measurable.  The formula <span class='inline'>\inf \{ f_n \} = - \sup \{ -f_n \}</span> tells us that the function <span class='inline'>\inf \{ f_n \}</span> is also measurable.
 
 Now, for each point <span class='inline'>x\in \Omega</span>, the sequence of numbers
-<span class='inline'></span>g_n (x) = \sup \ f_n (x) , f_n+1 (x) , f_n+2(x) , \ldots \<span class='inline'></span>
+<span class='inline'></span>g_n (x) = \sup \ f_n (x) , f_n+1 (x) , f_n+2(x) , \ldots \<span class='inline'>g_n (x) = \sup \{ f_n (x) , f_{n+1} (x) , f_{n+2}(x) , \ldots \}</span>
 is monotonic increasing.  It follows that
-<span class='inline'></span>\lim \sup _n\rightarrow \infty f_n (x) = \inf \ g_n (x) \<span class='inline'></span>
+<span class='inline'>
+is monotonic increasing.  It follows that
+</span>\lim \sup _n\rightarrow \infty f_n (x) = \inf \ g_n (x) \<span class='inline'>{\lim \sup }_{n\rightarrow \infty} f_n (x) = \inf \{ g_n (x) \}</span>
 
 We know that each function <span class='inline'>f_n</span> is measurable.  The above argument tells us that each function <span class='inline'>g_n</span> is measurable, and that the function <span class='inline'>{\lim \sup}_{n\rightarrow \infty}f_n</span> is measurable.  A similar argument tells us that the function <span class='inline'>{\lim \inf}_{n\rightarrow \infty}g_n</span> is measurable.
 
@@ -556,12 +582,14 @@ Let <span class='inline'>\Omega</span> be a measurable space.  For any measurabl
 
 <br><br><strong>Example 3.3</strong>
 Let <span class='inline'>\Omega</span> be a measurable space, and let <span class='inline'>x_0 \in \Omega</span>.  For any measurable set <span class='inline'>E\subseteq \Omega</span>, let us define
-<span class='inline'></span>\mu (E) = \left\ \beginarrayll
+<span class='inline'>, let us define
+</span>\mu (E) = \left\ \beginarrayll
 1 & x_0 \in E 
 
 0 & x_0 \not\in E 
 
-\endarray \right.<span class='inline'></span>
+\endarray \right.<span class='inline'>
+\end{array} \right.</span>
 
 Then <span class='inline'>\mu</span> is a measure on <span class='inline'>\Omega</span>, called the \em Dirac measure.
 <br><br>
@@ -572,13 +600,15 @@ Let <span class='inline'>\Omega</span> be a measure space, with measure <span cl
 
 <br><i>Proof.</i>
 Choose a measurable set <span class='inline'>A</span> such that <span class='inline'>\mu (A) < \infty</span>.  Then
-<span class='inline'></span>\mu (A) =  \mu (A) + \mu (\emptyset ) + \mu (\emptyset ) +\cdots<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\mu (A) =  \mu (A) + \mu (\emptyset ) + \mu (\emptyset ) +\cdots<span class='inline'>\mu (A) =  \mu (A) + \mu (\emptyset ) + \mu (\emptyset ) +\cdots</span>
 Hence <span class='inline'>\mu (\emptyset ) =0</span>.
 
 
 <br><br><strong>Corollary 3.5</strong>
 Let <span class='inline'>A_1 , \ldots , A_n</span> be disjoint measurable sets.  Then
-<span class='inline'></span>\mu (A_1 \cup \cdots \cup A_n ) = \mu (A_1 ) + \cdots + \mu (A_n)<span class='inline'></span>
+<span class='inline'> be disjoint measurable sets.  Then
+</span>\mu (A_1 \cup \cdots \cup A_n ) = \mu (A_1 ) + \cdots + \mu (A_n)<span class='inline'>\mu (A_1 \cup \cdots \cup A_n ) = \mu (A_1 ) + \cdots + \mu (A_n)</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
@@ -588,7 +618,8 @@ Let <span class='inline'>A</span> and <span class='inline'>B</span> be measurabl
 
 <br><i>Proof.</i>
 The set <span class='inline'>B\backslash A = B\cap (\Omega \backslash A )</span> is measurable, the sets <span class='inline'>A</span> and <span class='inline'>B\backslash A</span> are disjoint, and <span class='inline'>B = A\cup B\backslash A</span>.  By the above corollary
-<span class='inline'></span>\mu (B) = \mu (A) + \mu (B\backslash A)<span class='inline'></span>
+<span class='inline'>.  By the above corollary
+</span>\mu (B) = \mu (A) + \mu (B\backslash A)<span class='inline'>\mu (B) = \mu (A) + \mu (B\backslash A)</span>
 
 The inequality <span class='inline'>\mu (A)\leq \mu (B)</span> follows since <span class='inline'>\mu (B\backslash A)\geq 0</span>.
 
@@ -599,10 +630,13 @@ Let <span class='inline'>(A_n )</span> be a sequence of measurable sets such tha
 
 <br><i>Proof.</i>
 Let <span class='inline'>B_1 =A_1</span>, and <span class='inline'>B_n = A_n \backslash A_{n-1}</span> when <span class='inline'>n\geq 2</span>.  Then the sets <span class='inline'>B_n</span> are measurable and disjoint.  Further
-<span class='inline'></span>A_n = B_1 \cup \cdots \cup A_n \qquad A= \bigcup_n=1^\infty B_n<span class='inline'></span>
+<span class='inline'></span>A_n = B_1 \cup \cdots \cup A_n \qquad A= \bigcup_n=1^\infty B_n<span class='inline'>A_n = B_1 \cup \cdots \cup A_n \qquad A= \bigcup_{n=1}^\infty B_n</span>
 
 Hence
-<span class='inline'></span>\mu (A) = \sum_n=1^\infty \mu (B_n) = \lim_N\rightarrow \sum_n=1^N \mu (B_n) = \lim_N\rightarrow \infty\mu (A_N)<span class='inline'></span>
+<span class='inline'>
+
+Hence
+</span>\mu (A) = \sum_n=1^\infty \mu (B_n) = \lim_N\rightarrow \sum_n=1^N \mu (B_n) = \lim_N\rightarrow \infty\mu (A_N)<span class='inline'>\mu (A) = \sum_{n=1}^\infty \mu (B_n) = \lim_{N\rightarrow} \sum_{n=1}^N \mu (B_n) = \lim_{N\rightarrow \infty}\mu (A_N)</span>
 
 
 <br><br><strong>Corollary 3.8</strong>
@@ -611,13 +645,18 @@ Let <span class='inline'>(A_n)</span> be a sequence of measurable sets such that
 
 <br><i>Proof.</i>
 Let <span class='inline'>C_n =A_1\backslash A_n</span>.  Then the set <span class='inline'>C_n</span> is measurable, <span class='inline'>C_n\subseteq C_{n+1}</span> for all <span class='inline'>n</span>, and <span class='inline'>\bigcup_{n=1}^\infty C_n = A_1 \backslash A</span>.  Hence, by the above proposition
-<span class='inline'></span>\lim_n\rightarrow \infty\mu (C_n) = \mu (A_1 \backslash A)<span class='inline'></span>
+<span class='inline'>.  Hence, by the above proposition
+</span>\lim_n\rightarrow \infty\mu (C_n) = \mu (A_1 \backslash A)<span class='inline'>\lim_{n\rightarrow \infty}\mu (C_n) = \mu (A_1 \backslash A)</span>
 
-We know that the measure <span class='inline'>\mu (A_1)</span> is finite, and that we have disjoint unions<span class='inline'></span>A_1 = A_n \cup C_n \qquad A_1 = A_1\backslash A \cup A<span class='inline'></span>
+We know that the measure <span class='inline'>\mu (A_1)</span> is finite, and that we have disjoint unions<span class='inline'></span>A_1 = A_n \cup C_n \qquad A_1 = A_1\backslash A \cup A<span class='inline'>A_1 = A_n \cup C_n \qquad A_1 = A_1\backslash A \cup A</span>
 Hence
-<span class='inline'></span>\mu (A_1 )- \lim_n\rightarrow \infty \mu (A_n) = \mu (A_1 ) - \mu (A)<span class='inline'></span>
+<span class='inline'>
+Hence
+</span>\mu (A_1 )- \lim_n\rightarrow \infty \mu (A_n) = \mu (A_1 ) - \mu (A)<span class='inline'>\mu (A_1 )- \lim_{n\rightarrow \infty} \mu (A_n) = \mu (A_1 ) - \mu (A)</span>
 and
-<span class='inline'></span>\lim_n\rightarrow \infty \mu (A_n ) = \mu (A)<span class='inline'></span>
+<span class='inline'>
+and
+</span>\lim_n\rightarrow \infty \mu (A_n ) = \mu (A)<span class='inline'>\lim_{n\rightarrow \infty} \mu (A_n ) = \mu (A)</span>
 
 
 The above corollary is false if we omit the assumption that <span class='inline'>\mu (A_1) < \infty</span>.
@@ -632,7 +671,7 @@ A function <span class='inline'>s\colon \Omega \rightarrow {\mathbb C}</span> on
 <br><br>
 
 Let <span class='inline'>s\colon \Omega \rightarrow {\mathbb C}</span> be a simple function, with image <span class='inline'>s[X] = \{ 0 \} \cup \{ \alpha_1 , \ldots , \alpha_n \}</span>.  Write <span class='inline'>A_i = s^{-1}(\alpha_i )</span>.  Then clearly
-<span class='inline'></span>s = \sum_i=1^n \alpha_i \chi_A_i<span class='inline'></span>
+<span class='inline'></span>s = \sum_i=1^n \alpha_i \chi_A_i<span class='inline'>s = \sum_{i=1}^n \alpha_i \chi_{A_i}</span>
 and the function <span class='inline'>s</span> is measurable if and only if each set <span class='inline'>A_i</span> is measurable.
 
 <br><br><strong>Proposition 4.2</strong> 
@@ -641,18 +680,22 @@ Let <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> be a meas
 
 <br><i>Proof.</i>
 Let <span class='inline'>n\in {\mathbb N}</span>, and <span class='inline'>t\in [0,\infty ]</span>.  Then there is a unique integer <span class='inline'>k_n (t)</span> such that
-<span class='inline'></span>k_n (T) 2^-n \leq t \leq (k_n (t) +1)2^-n<span class='inline'></span>
+<span class='inline'></span>k_n (T) 2^-n \leq t \leq (k_n (t) +1)2^-n<span class='inline'>k_n (T) 2^{-n} \leq t \leq (k_n (t) +1)2^{-n}</span>
 
 Define
-<span class='inline'></span>\varphi_n (t) = \left\ \beginarrayll
+<span class='inline'>
+
+Define
+</span>\varphi_n (t) = \left\ \beginarrayll
 k_n (t)2^-n & 0\leq t <  n 
 
 n & n\leq t\leq \infty 
 
-\endarray \right.<span class='inline'></span>
+\endarray \right.<span class='inline'>
+\end{array} \right.</span>
 
 The function <span class='inline'>\varphi_n \colon [0,\infty ]\rightarrow [0,\infty ]</span> is a Borel function, and
-<span class='inline'></span>t-2^-n \leq \varphi_n (t) \leq t<span class='inline'></span>
+<span class='inline'></span>t-2^-n \leq \varphi_n (t) \leq t<span class='inline'>t-2^{-n} \leq \varphi_n (t) \leq t</span>
 if <span class='inline'>0\leq t\leq n</span>.  Thus we have a monotonically increasing sequence <span class='inline'>(\varphi_n (t))</span> with limit <span class='inline'>t</span>.  If we write <span class='inline'>s_n = \varphi_n \circ f</span>, then <span class='inline'>(s_n)</span> is a monotonically increasing sequence of simple measurable functions, with pointwise limit <span class='inline'>f</span> as required.
 
 
@@ -660,59 +703,74 @@ We now come to the first of our definitions of the integral.
 
 <br><br><strong>Definition 4.3</strong>
 Let <span class='inline'>\Omega</span> be a measure space, with measure <span class='inline'>\mu</span>.  Let <span class='inline'>s\colon \Omega \rightarrow {\mathbb C}</span> be a measurable simple function, with set of non-zero values <span class='inline'>\{ \alpha_1 ,\ldots , \alpha_n \}</span>.  Write
-<span class='inline'></span>s = \sum_k=1^n \alpha_k \chi_A_k<span class='inline'></span>
+<span class='inline'></span>s = \sum_k=1^n \alpha_k \chi_A_k<span class='inline'>s = \sum_{k=1}^n \alpha_k \chi_{A_k}</span>
 
 Let <span class='inline'>E\subseteq \Omega</span> be a measurable subset of <span class='inline'>\Omega</span>.  Then we define the \em integral of <span class='inline'>s</span> over <span class='inline'>E</span> to be the complex number
-<span class='inline'></span>\int_E sd\mu = \sum_k=1^n \alpha_k \mu (A_k \cap E )<span class='inline'></span>
+<span class='inline'> to be the complex number
+</span>\int_E sd\mu = \sum_k=1^n \alpha_k \mu (A_k \cap E )<span class='inline'>\int_E sd\mu = \sum_{k=1}^n \alpha_k \mu (A_k \cap E )</span>
 <br><br>
 
 There are several simple computations we can do immediately with integrals.  For example, with <span class='inline'>s</span> as above:
-<span class='inline'></span>\int_\Omega s\chi_E d\mu = \sum_k=1^\infty \alpha_k \mu (A_k \cap E) = \int_E sd\mu<span class='inline'></span>
+<span class='inline'> as above:
+</span>\int_\Omega s\chi_E d\mu = \sum_k=1^\infty \alpha_k \mu (A_k \cap E) = \int_E sd\mu<span class='inline'>\int_\Omega s\chi_E d\mu = \sum_{k=1}^\infty \alpha_k \mu (A_k \cap E) = \int_E sd\mu</span>
 
 <br><br><strong>Lemma 4.4</strong> 
 Let <span class='inline'>\Omega</span> be a measure space, with measure <span class='inline'>\mu</span>.  Let <span class='inline'>s\colon \Omega \rightarrow [0,\infty )</span> be a measurable simple function.  Then we can define a new measure <span class='inline'>\varphi</span> on <span class='inline'>\Omega</span> by the formula
-<span class='inline'></span>\varphi (E) = \int_E sd\mu<span class='inline'></span>
+<span class='inline'> by the formula
+</span>\varphi (E) = \int_E sd\mu<span class='inline'>\varphi (E) = \int_E sd\mu</span>
 <br><br>
 
 <br><i>Proof.</i>
 To begin with, observe that <span class='inline'>\varphi (E)\geq 0</span> for every measurable set <span class='inline'>E</span>, and that if <span class='inline'>\mu (E) < \infty</span>, then <span class='inline'>\varphi (E) < \infty</span>, so there is at least one measurable set with finite measure.  We need to test <span class='inline'>\sigma</span>-additivity.
 
 Let <span class='inline'>(E_n)</span> be a sequence of disjoint measurable sets.  We know that
-<span class='inline'></span>\mu (\bigcup_i=1^\infty E_i ) = \sum_i=1^\infty \mu (E_i)<span class='inline'></span>
+<span class='inline'> be a sequence of disjoint measurable sets.  We know that
+</span>\mu (\bigcup_i=1^\infty E_i ) = \sum_i=1^\infty \mu (E_i)<span class='inline'>\mu (\bigcup_{i=1}^\infty E_i ) = \sum_{i=1}^\infty \mu (E_i)</span>
 
 Let <span class='inline'>\{ \alpha_1 , \ldots , \alpha_k \}</span> be the set of non-zero values of the simple function <span class='inline'>s</span>.  Then
-<span class='inline'></span>\varphi (\bigcup_i=1^\infty E_i ) = \sum_k=1^n \sum_i=1^\infty \alpha_k \mu (A_k \cap E_i )<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\varphi (\bigcup_i=1^\infty E_i ) = \sum_k=1^n \sum_i=1^\infty \alpha_k \mu (A_k \cap E_i )<span class='inline'>\varphi (\bigcup_{i=1}^\infty E_i ) = \sum_{k=1}^n \sum_{i=1}^\infty \alpha_k \mu (A_k \cap E_i )</span>
 
 Exchanging the summation signs is possible since all of the numbers involved in the above equation are positive.  Therefore
-<span class='inline'></span>\varphi (\bigcup_i=1^\infty E_i ) = \sum_i=1^\infty \sum_k=1^n \alpha_k \mu (A_k \cap E_i ) = \sum_i=1^\infty \varphi (E_i)<span class='inline'></span>
+<span class='inline'>
+
+Exchanging the summation signs is possible since all of the numbers involved in the above equation are positive.  Therefore
+</span>\varphi (\bigcup_i=1^\infty E_i ) = \sum_i=1^\infty \sum_k=1^n \alpha_k \mu (A_k \cap E_i ) = \sum_i=1^\infty \varphi (E_i)<span class='inline'>\varphi (\bigcup_{i=1}^\infty E_i ) = \sum_{i=1}^\infty \sum_{k=1}^n \alpha_k \mu (A_k \cap E_i ) = \sum_{i=1}^\infty \varphi (E_i)</span>
 and we are done.
 
 
 <br><br><strong>Proposition 4.5</strong> 
 Let <span class='inline'>s,t\colon \Omega \rightarrow [0,\infty ]</span> be simple functions.  Then
-<span class='inline'></span>\int_\Omega s+td\mu = \int_\Omega sd\mu + \int_\Omega td\mu<span class='inline'></span>
+<span class='inline'> be simple functions.  Then
+</span>\int_\Omega s+td\mu = \int_\Omega sd\mu + \int_\Omega td\mu<span class='inline'>\int_\Omega s+td\mu = \int_\Omega sd\mu + \int_\Omega td\mu</span>
 <br><br>
 
 <br><i>Proof.</i>
 Write as usual
-<span class='inline'></span>s = \sum_i=1^m \alpha_k \chi_A_i \qquad t = \sum_j=1^n \beta_j \chi_B_j<span class='inline'></span>
+<span class='inline'></span>s = \sum_i=1^m \alpha_k \chi_A_i \qquad t = \sum_j=1^n \beta_j \chi_B_j<span class='inline'>s = \sum_{i=1}^m \alpha_k \chi_{A_i} \qquad t = \sum_{j=1}^n \beta_j \chi_{B_j}</span>
 
 Let <span class='inline'>E_{ij} = A_i \cap B_j</span>.  Then certainly
-<span class='inline'></span>int_E_ij (s+t)d\mu = (\alpha_i +\beta_j)\mu (E_ij) = \int_E_ijsd\mu + \int_E_ijtd\mu<span class='inline'></span>
+<span class='inline'></span>int_E_ij (s+t)d\mu = (\alpha_i +\beta_j)\mu (E_ij) = \int_E_ijsd\mu + \int_E_ijtd\mu<span class='inline'>int_{E_{ij}} (s+t)d\mu = (\alpha_i +\beta_j)\mu (E_{ij}) = \int_{E_{ij}}sd\mu + \int_{E_{ij}}td\mu</span>
 
 Now the sets <span class='inline'>\{ 0, \alpha_1 , \ldots , \alpha_m \}</span> and <span class='inline'>\{ 0, \beta_1 , \ldots ,\beta_n \}</span> are the ranges of the functions <span class='inline'>s</span> and <span class='inline'>t</span> respectively.  Let <span class='inline'>A_0 = s^{-1}[0]</span> and <span class='inline'>B_0 = t^{-1}[0]</span>.  Then
-<span class='inline'></span>\Omega = \bigcup_i=0^m A_i = \bigcup_j=0^n B_j<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\Omega = \bigcup_i=0^m A_i = \bigcup_j=0^n B_j<span class='inline'>\Omega = \bigcup_{i=0}^m A_i = \bigcup_{j=0}^n B_j</span>
 
 Hence
-<span class='inline'></span>\Omega = \bigcup_i,j=0^m,nE_ij<span class='inline'></span>
+<span class='inline'>
+
+Hence
+</span>\Omega = \bigcup_i,j=0^m,nE_ij<span class='inline'>\Omega = \bigcup_{i,j=0}^{m,n}E_{ij}</span>
 
 The sets <span class='inline'>E_{ij}</span> are certainly disjoint.  Hence by the above lemma, we know that
-<span class='inline'></span>\int_\Omega s+t d\mu = int_\Omega sd\mu + \int_\Omega td\mu<span class='inline'></span>
+<span class='inline'> are certainly disjoint.  Hence by the above lemma, we know that
+</span>\int_\Omega s+t d\mu = int_\Omega sd\mu + \int_\Omega td\mu<span class='inline'>\int_\Omega s+t d\mu = int_\Omega sd\mu + \int_\Omega td\mu</span>
 and we are done.
 
 
 If <span class='inline'>s</span> is a step function, and <span class='inline'>\alpha \in {\mathbb C}</span>, then clearly
-<span class='inline'></span>\int_\Omega \alpha sd\mu = \alpha \int_\Omega sd\mu<span class='inline'></span>
+<span class='inline'>, then clearly
+</span>\int_\Omega \alpha sd\mu = \alpha \int_\Omega sd\mu<span class='inline'>\int_\Omega \alpha sd\mu = \alpha \int_\Omega sd\mu</span>
 
 Hence we have proven linearity for integrals of positive-valued step functions.
 
@@ -720,7 +778,8 @@ Hence we have proven linearity for integrals of positive-valued step functions.
 
 <br><br><strong>Definition 5.1</strong>
 Let <span class='inline'>\Omega</span> be a measure space, with measure <span class='inline'>\mu</span>.  Let <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> be a measurable function, and let <span class='inline'>E\subseteq \Omega</span> be a measurable set.  Let <span class='inline'>S</span> be the set of simple functions, <span class='inline'>s\colon \Omega \rightarrow [0,\infty )</span>, such that <span class='inline'>s(x) \leq f(x)</span> for all <span class='inline'>x\in \Omega</span>.  Then we define the \em integral of <span class='inline'>f</span> over <span class='inline'>E</span>:
-<span class='inline'></span>\int_E fd\mu = \sup \ \int_E sd\mu |s\in S \<span class='inline'></span>
+<span class='inline'>:
+</span>\int_E fd\mu = \sup \ \int_E sd\mu |s\in S \<span class='inline'>\int_E fd\mu = \sup \{ \int_E sd\mu |s\in S \}</span>
 <br><br>
 
 A few properties of the integral are easy to prove.  For example:
@@ -728,11 +787,13 @@ A few properties of the integral are easy to prove.  For example:
 \beginitemize
 
 \item Let <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> and <span class='inline'>E\subseteq \Omega</span> be measurable.  Then
-<span class='inline'></span>\int_\Omega fd\mu = \int_\Omega f\chi_Ed\mu<span class='inline'></span>
+<span class='inline'> be measurable.  Then
+</span>\int_\Omega fd\mu = \int_\Omega f\chi_Ed\mu<span class='inline'>\int_\Omega fd\mu = \int_\Omega f\chi_Ed\mu</span>
 
 
 \item Let <span class='inline'>f,g\colon \Omega \rightarrow [0,\infty ]</span> be measurable functions such that <span class='inline'>f\leq g</span>, that is to say <span class='inline'>f(x)\leq g(x)</span> for all <span class='inline'>x\in \Omega</span>.  Then
-<span class='inline'></span>\int_E f \leq \int_E g<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\int_E f \leq \int_E g<span class='inline'>\int_E f \leq \int_E g</span>
 whenever <span class='inline'>E\subseteq \Omega</span> is a measurable subset.
 
 \enditemize
@@ -740,85 +801,111 @@ whenever <span class='inline'>E\subseteq \Omega</span> is a measurable subset.
 <br><br><strong>Theorem 5.2</strong>[The Monotone Convergence Theorem]
 
 Let <span class='inline'>f_n\colon \Omega \rightarrow [0,\infty ]</span> be a sequence of measurable functions, such that for each point <span class='inline'>x\in \Omega</span> the sequence <span class='inline'>(f_n (x))</span> is monotonically increasing, with limit <span class='inline'>f(x)</span>.  Then the function <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> is measurable, and
-<span class='inline'></span>\int_\Omega fd\mu = \lim_n\rightarrow \infty \int_\Omega f_n d\mu<span class='inline'></span>
+<span class='inline'> is measurable, and
+</span>\int_\Omega fd\mu = \lim_n\rightarrow \infty \int_\Omega f_n d\mu<span class='inline'>\int_\Omega fd\mu = \lim_{n\rightarrow \infty} \int_\Omega f_n d\mu</span>
 <br><br>
 
 <br><i>Proof.</i>
 As the limit of a sequence of measurable functions, the function <span class='inline'>f</span> is measurable.  Since the seqyebce <span class='inline'>(f_n (x))</span> is monotonic increasing, with limit <span class='inline'>f(x)</span>, we know that <span class='inline'>F_n \leq f_{n+1} \leq f</span> for all <span class='inline'>n</span>.  Therefore the sequence of integrals <span class='inline'>\left( \int_\Omega f_n \right)</span> is monotonic increasing, and
-<span class='inline'></span>\int_\Omega f_n d\mu \leq \int_\Omega f d\mu<span class='inline'></span>
+<span class='inline'> is monotonic increasing, and
+</span>\int_\Omega f_n d\mu \leq \int_\Omega f d\mu<span class='inline'>\int_\Omega f_n d\mu \leq \int_\Omega f d\mu</span>
 for all <span class='inline'>n</span>.
 
 Choose a simple function <span class='inline'>s</span> such that <span class='inline'>0\leq s\leq f</span>.  Let <span class='inline'>0 < \alpha  < 1</span>, and write
-<span class='inline'></span>E_n = \ x\in \Omega |f_n (x) \geq \alpha s(x) \<span class='inline'></span>
+<span class='inline'></span>E_n = \ x\in \Omega |f_n (x) \geq \alpha s(x) \<span class='inline'>E_n = \{ x\in \Omega |f_n (x) \geq \alpha s(x) \}</span>
 
 Each set <span class='inline'>E_n</span> is measurable, and <span class='inline'>E_n \subseteq E_{n+1}</span> for all <span class='inline'>n</span> since the sequence <span class='inline'>(f_n)</span> is monotonic increasing.  Since the sequence <span class='inline'>(f_n)</span> has pointwise limit <span class='inline'>f</span>, we see that
-<span class='inline'></span>\Omega = \bigcup_n=1^\infty E_n<span class='inline'></span>
+<span class='inline'>, we see that
+</span>\Omega = \bigcup_n=1^\infty E_n<span class='inline'>\Omega = \bigcup_{n=1}^\infty E_n</span>
 
 Further
-<span class='inline'></span>\int_\Omega f_nd\mu \geq \int_E_n f_n d\mu \geq \alpha \int_E_nsd\mu \qquad (\ast )<span class='inline'></span>
+<span class='inline'>
+
+Further
+</span>\int_\Omega f_nd\mu \geq \int_E_n f_n d\mu \geq \alpha \int_E_nsd\mu \qquad (\ast )<span class='inline'>\int_\Omega f_nd\mu \geq \int_{E_n} f_n d\mu \geq \alpha \int_{E_n}sd\mu \qquad (\ast )</span>
 
 By lemma 4.4 we can define a measure on the set <span class='inline'>\Omega</span> by the formula
-<span class='inline'></span>\varphi (E) = \int_E sd\mu<span class='inline'></span>
+<span class='inline'> by the formula
+</span>\varphi (E) = \int_E sd\mu<span class='inline'>\varphi (E) = \int_E sd\mu</span>
 Hence
-<span class='inline'></span>\int_\Omega sd\mu = \varphi (\Omega ) = \lim_n\rightarrow \infty \varphi (E_n ) = \lim_n\rightarrow \infty \int_E_nsd\mu<span class='inline'></span>
+<span class='inline'>
+Hence
+</span>\int_\Omega sd\mu = \varphi (\Omega ) = \lim_n\rightarrow \infty \varphi (E_n ) = \lim_n\rightarrow \infty \int_E_nsd\mu<span class='inline'>\int_\Omega sd\mu = \varphi (\Omega ) = \lim_{n\rightarrow \infty} \varphi (E_n ) = \lim_{n\rightarrow \infty} \int_{E_n}sd\mu</span>
 by proposition 3.7.
 
 Taking limits in inequality <span class='inline'>(\ast )</span>, we see that
-<span class='inline'></span>\lim_n\rightarrow \infty  \int_\Omega f_n d\mu \geq \alpha \int_\Omega sd\mu<span class='inline'></span>
+<span class='inline'>, we see that
+</span>\lim_n\rightarrow \infty  \int_\Omega f_n d\mu \geq \alpha \int_\Omega sd\mu<span class='inline'>\lim_{n\rightarrow \infty } \int_\Omega f_n d\mu \geq \alpha \int_\Omega sd\mu</span>
 
 In particular, this inequality holds whenever <span class='inline'>0 < \alpha  < 1</span> and <span class='inline'>s\leq f</span>.  By the definition of the integral, it follows that
-<span class='inline'></span>\lim_n\rightarrow \infty\int_\Omega f_n d\mu \geq \int_\Omega f d\mu<span class='inline'></span>
+<span class='inline'>.  By the definition of the integral, it follows that
+</span>\lim_n\rightarrow \infty\int_\Omega f_n d\mu \geq \int_\Omega f d\mu<span class='inline'>\lim_{n\rightarrow \infty}\int_\Omega f_n d\mu \geq \int_\Omega f d\mu</span>
 and we are done.
 
 
 Let <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> be a measurable function.  By proposition 4.2, there is a monotonically increasing sequence of simple functions <span class='inline'>s\colon \Omega \rightarrow [0,\infty )</span> with pointwise limit <span class='inline'>f</span>.
 
 The monotone convergence theorem tells us that
-<span class='inline'></span>\int_\Omega f = \lim_n\rightarrow \infty \int_\Omega s_n<span class='inline'></span>
+<span class='inline'>.
+
+The monotone convergence theorem tells us that
+</span>\int_\Omega f = \lim_n\rightarrow \infty \int_\Omega s_n<span class='inline'>\int_\Omega f = \lim_{n\rightarrow \infty} \int_\Omega s_n</span>
 and so gives us a new way of viewing the definition of the integral.  Using this viewpoint, the following result follows immediately from proposition 4.5
 
 <br><br><strong>Corollary 5.3</strong>
 Let <span class='inline'>f,g\colon \Omega \rightarrow [0,\infty ]</span> be measurable functions, and let <span class='inline'>\alpha, \beta \in [0, \infty )</span>.  Then
-<span class='inline'></span>\int_\Omega (\alpha f+ \beta g)d\mu = \alpha \int_\Omega fd\mu + \beta \int_\Omega gd\mu<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\int_\Omega (\alpha f+ \beta g)d\mu = \alpha \int_\Omega fd\mu + \beta \int_\Omega gd\mu<span class='inline'>\int_\Omega (\alpha f+ \beta g)d\mu = \alpha \int_\Omega fd\mu + \beta \int_\Omega gd\mu</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
 We can also immediately deduce the following result from the monotone convergence theorem.
 
 <br><br><strong>Corollary 5.4</strong>
-Consider a sequence of measurable functions <span class='inline'>f_n \colon \Omega \rightarrow [0,\infty ]</span>.  Then for any measurable subset <span class='inline'>E\subseteq \Omega</span> we have the formula<span class='inline'></span>\sum_n=1^\infty \int_E f_nd\mu = \int_E \left( \sum_n=1^\infty f_n \right) d\mu<span class='inline'></span>
+Consider a sequence of measurable functions <span class='inline'>f_n \colon \Omega \rightarrow [0,\infty ]</span>.  Then for any measurable subset <span class='inline'>E\subseteq \Omega</span> we have the formula<span class='inline'> we have the formula</span>\sum_n=1^\infty \int_E f_nd\mu = \int_E \left( \sum_n=1^\infty f_n \right) d\mu<span class='inline'>\sum_{n=1}^\infty \int_E f_nd\mu = \int_E \left( \sum_{n=1}^\infty f_n \right) d\mu</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
 <br><br><strong>Theorem 5.5</strong>[Fatou's lemma]
 
 Let <span class='inline'>f_n \colon \Omega \rightarrow [0,\infty ]</span> be a sequence of measurable functions.  Then
-<span class='inline'></span>\int_\Omega \lim \inf_n\rightarrow \infty f_n \leq \lim \inf_n\rightarrow \infty \int_\Omega f_n<span class='inline'></span>
+<span class='inline'> be a sequence of measurable functions.  Then
+</span>\int_\Omega \lim \inf_n\rightarrow \infty f_n \leq \lim \inf_n\rightarrow \infty \int_\Omega f_n<span class='inline'>\int_\Omega {\lim \inf}_{n\rightarrow \infty} f_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega f_n</span>
 <br><br>
 
 <br><i>Proof.</i>
 Let
-<span class='inline'></span>g_n (x) = \inf \ f_n (x) , f_n+1 (x) , f_n+2 (x) , \ldots \<span class='inline'></span>
+<span class='inline'></span>g_n (x) = \inf \ f_n (x) , f_n+1 (x) , f_n+2 (x) , \ldots \<span class='inline'>g_n (x) = \inf \{ f_n (x) , f_{n+1} (x) , f_{n+2} (x) , \ldots \}</span>
 
 Then the function <span class='inline'>g_n</span> is measurable, the sequence <span class='inline'>(g_n)</span> is monotonic increasing, and the inequality <span class='inline'>g_n \leq f_n</span> holds for all <span class='inline'>n</span>.
 
 We know that
-<span class='inline'></span>\lim_n\rightarrow \infty g_n (x) = \lim \inf_n\rightarrow \infty f_n (x)<span class='inline'></span>
+<span class='inline'>.
+
+We know that
+</span>\lim_n\rightarrow \infty g_n (x) = \lim \inf_n\rightarrow \infty f_n (x)<span class='inline'>\lim_{n\rightarrow \infty} g_n (x) = {\lim \inf}_{n\rightarrow \infty} f_n (x)</span>
 
 Hence, by the monotone convergence theorem
-<span class='inline'></span>\int_\Omega \lim \inf_n\rightarrow \infty f_n  = \lim_n\rightarrow \infty \int_\Omega g_n \leq \lim \inf_n\rightarrow \infty \int_\Omega f_n<span class='inline'></span>
+<span class='inline'>
+
+Hence, by the monotone convergence theorem
+</span>\int_\Omega \lim \inf_n\rightarrow \infty f_n  = \lim_n\rightarrow \infty \int_\Omega g_n \leq \lim \inf_n\rightarrow \infty \int_\Omega f_n<span class='inline'>\int_\Omega {\lim \inf}_{n\rightarrow \infty} f_n  = \lim_{n\rightarrow \infty} \int_\Omega g_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega f_n</span>
 and we are done.
 
 
 The inequality 
-<span class='inline'></span>\int_\Omega \lim \sup_n\rightarrow \infty f_n \geq \lim \sup_n\rightarrow \infty \int_\Omega f_n<span class='inline'></span>
+<span class='inline'>
+
+The inequality 
+</span>\int_\Omega \lim \sup_n\rightarrow \infty f_n \geq \lim \sup_n\rightarrow \infty \int_\Omega f_n<span class='inline'>\int_\Omega {\lim \sup}_{n\rightarrow \infty} f_n \geq {\lim \sup}_{n\rightarrow \infty} \int_\Omega f_n</span>
 is easily deduced from Fatou's lemma.
 
 </p><h1>6 Integration of Complex-Valued Functions</h1><p>
 
 <br><br><strong>Definition 6.1</strong>
 Let <span class='inline'>\Omega</span> be a measure space, with measure <span class='inline'>\mu</span>.  We call a measurable function <span class='inline'>f\colon \Omega \rightarrow {\mathbb C}</span> \em integrable if
-<span class='inline'></span>\int_\Omega |f|d\mu  <  \infty<span class='inline'></span>
+<span class='inline'> {\em integrable} if
+</span>\int_\Omega |f|d\mu  <  \infty<span class='inline'>\int_\Omega |f|d\mu  <  \infty</span>
 
 We write <span class='inline'>L^1 (\Omega )</span> to denote the set of all integrable functions.
 <br><br>
@@ -827,7 +914,7 @@ Suppose we have a measurable function <span class='inline'>f</span> and a positi
 
 <br><br><strong>Definition 6.2</strong>
 Let <span class='inline'>f\colon \Omega \rightarrow {\mathbb R}</span> be any real-valued function.  Then we define functions <span class='inline'>f^+ , f^- \colon \Omega \rightarrow [0, \infty )</span> by the formulae
-<span class='inline'></span>f^+ (x) = \max (f(x), 0)) \qquad f^- (x) = \max (-f(x) , 0)<span class='inline'></span>
+<span class='inline'></span>f^+ (x) = \max (f(x), 0)) \qquad f^- (x) = \max (-f(x) , 0)<span class='inline'>f^+ (x) = \max (f(x), 0)) \qquad f^- (x) = \max (-f(x) , 0)</span>
 respectively.
 <br><br>
 
@@ -845,41 +932,52 @@ The proof that the function <span class='inline'>f^-</span> is integrable is ide
 
 <br><br><strong>Definition 6.4</strong>
 Let <span class='inline'>f\colon \Omega \rightarrow {\mathbb R}</span> be an integrable function.  Then we define we define the integral
-<span class='inline'></span>\int_\Omega fd\mu := \int_\Omega f^+d\mu - \int_\Omega f^-d\mu<span class='inline'></span>
+<span class='inline'> be an integrable function.  Then we define we define the integral
+</span>\int_\Omega fd\mu := \int_\Omega f^+d\mu - \int_\Omega f^-d\mu<span class='inline'>\int_\Omega fd\mu := \int_\Omega f^+d\mu - \int_\Omega f^-d\mu</span>
 <br><br>
 
 It is easy to see that definition agrees with the previous definition when the function <span class='inline'>f</span> is positive-valued.  Further, the equation
-<span class='inline'></span>\int_\Omega (\alpha f + \beta g)d\mu = \alpha \int_\Omega f d\mu + \beta \int_\Omega gd\mu<span class='inline'></span>
+<span class='inline'> is positive-valued.  Further, the equation
+</span>\int_\Omega (\alpha f + \beta g)d\mu = \alpha \int_\Omega f d\mu + \beta \int_\Omega gd\mu<span class='inline'>\int_\Omega (\alpha f + \beta g)d\mu = \alpha \int_\Omega f d\mu + \beta \int_\Omega gd\mu</span>
 holds for all real numbers <span class='inline'>\alpha , \beta \in {\mathbb R}</span> and integrable functions <span class='inline'>f,g\colon \Omega \rightarrow {\mathbb R}</span>.
 
 <br><br><strong>Definition 6.5</strong>
 Let <span class='inline'>f,g\colon \Omega \rightarrow {\mathbb C}</span> be integrable functions.  Then we define the integral
-<span class='inline'></span>\int_\Omega fd\mu := \int_\Omega \Re (f)d\mu +i \int_\Omega \Im (f)d\mu<span class='inline'></span>
+<span class='inline'> be integrable functions.  Then we define the integral
+</span>\int_\Omega fd\mu := \int_\Omega \Re (f)d\mu +i \int_\Omega \Im (f)d\mu<span class='inline'>\int_\Omega fd\mu := \int_\Omega \Re (f)d\mu +i \int_\Omega \Im (f)d\mu</span>
 <br><br>
 
 An argument similar to that made above tells us that this integral is well-defined, agrees with the previous definition for real-valued functions, and is linear.
 
 <br><br><strong>Proposition 6.6</strong> 
 Let <span class='inline'>f\colon \Omega \rightarrow {\mathbb C}</span> be an integrable function.  Then
-<span class='inline'></span>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu<span class='inline'></span>
+<span class='inline'> be an integrable function.  Then
+</span>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu<span class='inline'>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu</span>
 <br><br>
 
 <br><i>Proof.</i>
 Choose <span class='inline'>\alpha \in {\mathbb C}</span> such that <span class='inline'>|\alpha |=1</span> and
-<span class='inline'></span>\left| \inf_\Omega fd\mu \right| = \alpha \int_\Omega fd\mu = \int_\Omega \alpha fd\mu<span class='inline'></span>
+<span class='inline'> and
+</span>\left| \inf_\Omega fd\mu \right| = \alpha \int_\Omega fd\mu = \int_\Omega \alpha fd\mu<span class='inline'>\left| \inf_\Omega fd\mu \right| = \alpha \int_\Omega fd\mu = \int_\Omega \alpha fd\mu</span>
 
 Let <span class='inline'>g = \Re (\alpha f )</span> and <span class='inline'>h= \Im (\alpha f)</span>.  Then
-<span class='inline'></span>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu + i \int_\Omega hd\mu<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu + i \int_\Omega hd\mu<span class='inline'>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu + i \int_\Omega hd\mu</span>
 
 Certainly, <span class='inline'>\left| \inf_\Omega fd\mu \right| \in {\mathbb R}</span>, so
-<span class='inline'></span>\int_\Omega hd\mu<span class='inline'></span>
+<span class='inline'>, so
+</span>\int_\Omega hd\mu<span class='inline'>\int_\Omega hd\mu</span>
 and
-<span class='inline'></span>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu<span class='inline'></span>
+<span class='inline'>
+and
+</span>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu<span class='inline'>\left| \inf_\Omega fd\mu \right| = \int_\Omega gd\mu</span>
 
 However
-<span class='inline'></span>g\leq  |g| \leq |\alpha f| = |f|<span class='inline'></span>  
+<span class='inline'></span>g\leq  |g| \leq |\alpha f| = |f|<span class='inline'>g\leq  |g| \leq |\alpha f| = |f|</span>  
 It follows that
-<span class='inline'></span>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu<span class='inline'></span>
+<span class='inline'>  
+It follows that
+</span>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu<span class='inline'>\left| \inf_\Omega fd\mu \right| \leq \int_\Omega |f|d\mu</span>
 and we are done.
 
 
@@ -891,7 +989,7 @@ Let <span class='inline'>(f_n)</span> be a sequence of measurable functions <spa
 \beginitemize
 
 \item The limit
-<span class='inline'></span>f(x) = \lim_n\rightarrow \infty f_n (x)<span class='inline'></span>
+<span class='inline'></span>f(x) = \lim_n\rightarrow \infty f_n (x)<span class='inline'>f(x) = \lim_{n\rightarrow \infty} f_n (x)</span>
 exists for all <span class='inline'>x\in \Omega</span>.
 
 \item There is an integrable function <span class='inline'>g\in L^1 (\Omega )</span> such that <span class='inline'>|f_n (x)|\leq g(x)</span> for all <span class='inline'>x\in \Omega</span> and <span class='inline'>n\in {\mathbb N}</span>.
@@ -899,24 +997,31 @@ exists for all <span class='inline'>x\in \Omega</span>.
 \enditemize
 
 Then <span class='inline'>f\in L^1 (\Omega )</span>, and
-<span class='inline'></span>\lim_n\rightarrow \infty \int_\Omega |f_n - f|d\mu =0<span class='inline'></span>
+<span class='inline'>, and
+</span>\lim_n\rightarrow \infty \int_\Omega |f_n - f|d\mu =0<span class='inline'>\lim_{n\rightarrow \infty} \int_\Omega |f_n - f|d\mu =0</span>
 <br><br>
 
 <br><i>Proof.</i>
 Since each fucntion <span class='inline'>f_n</span> is measurable, the limit function <span class='inline'>f</span> is also measurable.  We know that <span class='inline'>|f_n|\leq g</span> for all <span class='inline'>n</span>.  Therefore <span class='inline'>|f|\leq g</span>.  It follows that <span class='inline'>f\in L^1 (\Omega )</span>.
 
 Now, let
-<span class='inline'></span>h_n = 2g - |f_n -f |<span class='inline'></span>
+<span class='inline'></span>h_n = 2g - |f_n -f |<span class='inline'>h_n = 2g - |f_n -f |</span>
 
 Observe that <span class='inline'>h_n \geq 0</span> for all <span class='inline'>n</span>.  Hence by Fatou's lemma
-<span class='inline'></span>\int_\Omega \lim \inf_n\rightarrow \infty h_n \leq \lim \inf_n\rightarrow \infty \int_\Omega h_n<span class='inline'></span>
+<span class='inline'>.  Hence by Fatou's lemma
+</span>\int_\Omega \lim \inf_n\rightarrow \infty h_n \leq \lim \inf_n\rightarrow \infty \int_\Omega h_n<span class='inline'>\int_\Omega {\lim \inf}_{n\rightarrow \infty} h_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega h_n</span>
 that is
-<span class='inline'></span>\int_\Omega 2gd\mu \leq \int_\Omega 2gd\mu - \lim \inf_n\rightarrow \infty \int_\Omega |f_n -f| d\mu<span class='inline'></span>
+<span class='inline'>
+that is
+</span>\int_\Omega 2gd\mu \leq \int_\Omega 2gd\mu - \lim \inf_n\rightarrow \infty \int_\Omega |f_n -f| d\mu<span class='inline'>\int_\Omega 2gd\mu \leq \int_\Omega 2gd\mu - {\lim \inf}_{n\rightarrow \infty} \int_\Omega |f_n -f| d\mu</span>
 and so
-<span class='inline'></span>\lim \inf_n\rightarrow \infty \int_\Omega |f_n -f| d\mu \leq 0<span class='inline'></span>
+<span class='inline'>
+and so
+</span>\lim \inf_n\rightarrow \infty \int_\Omega |f_n -f| d\mu \leq 0<span class='inline'>{\lim \inf}_{n\rightarrow \infty} \int_\Omega |f_n -f| d\mu \leq 0</span>
 
 Since <span class='inline'>|f_n -f | \geq 0</span> for all <span class='inline'>n</span>, we deduce that
-<span class='inline'></span>\lim_n\rightarrow \infty \int_\Omega |f_n - f|d\mu =0<span class='inline'></span>
+<span class='inline'>, we deduce that
+</span>\lim_n\rightarrow \infty \int_\Omega |f_n - f|d\mu =0<span class='inline'>\lim_{n\rightarrow \infty} \int_\Omega |f_n - f|d\mu =0</span>
 as required.
 
 
@@ -928,7 +1033,7 @@ Let <span class='inline'>(f_n)</span> be a sequence of measurable functions <spa
 \beginitemize
 
 \item The limit
-<span class='inline'></span>f(x) = \lim_n\rightarrow \infty f_n (x)<span class='inline'></span>
+<span class='inline'></span>f(x) = \lim_n\rightarrow \infty f_n (x)<span class='inline'>f(x) = \lim_{n\rightarrow \infty} f_n (x)</span>
 exists for all <span class='inline'>x\in \Omega</span>.
 
 \item There is an integrable function <span class='inline'>g\in L^1 (\Omega )</span> such that <span class='inline'>|f_n (x)|\leq g(x)</span> for all <span class='inline'>x\in \Omega</span> and <span class='inline'>n\in {\mathbb N}</span>.
@@ -936,7 +1041,8 @@ exists for all <span class='inline'>x\in \Omega</span>.
 \enditemize
 
 Then <span class='inline'>f\in L^1 (\Omega )</span>, and
-<span class='inline'></span>\lim_n\rightarrow \infty \int_\Omega f_n d\mu = \int_\Omega fd\mu<span class='inline'></span>
+<span class='inline'>, and
+</span>\lim_n\rightarrow \infty \int_\Omega f_n d\mu = \int_\Omega fd\mu<span class='inline'>\lim_{n\rightarrow \infty} \int_\Omega f_n d\mu = \int_\Omega fd\mu</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
@@ -952,10 +1058,12 @@ The usual manipulations of the axioms tell us that every measure space is contai
 
 <br><br><strong>Proposition 7.2</strong>
 Let <span class='inline'>\Omega</span> be a measure space, equipped with <span class='inline'>\sigma</span>-algbebra <span class='inline'>\mathcal M</span>, and measure <span class='inline'>\mu</span>.  Let us define 
-<span class='inline'></span>\mathcal M^\star := \ E\subseteq \Omega |A\subseteq E\subseteq B,\, A,B\in \Omega ,\, \mu (B\backslash A) = 0 \<span class='inline'></span>
+<span class='inline'>.  Let us define 
+</span>\mathcal M^\star := \ E\subseteq \Omega |A\subseteq E\subseteq B,\, A,B\in \Omega ,\, \mu (B\backslash A) = 0 \<span class='inline'>{\mathcal M}^\star := \{ E\subseteq \Omega |A\subseteq E\subseteq B,\, A,B\in \Omega ,\, \mu (B\backslash A) = 0 \}</span>
 
 Then the set <span class='inline'>{\mathcal M}^\star</span> is a <span class='inline'>\sigma</span>-algebra.  We can define a measure <span class='inline'>\mu^\star</span> on the set <span class='inline'>{\mathcal M}^\star</span> by writing
-<span class='inline'></span>\mu^\star (E) = \mu (A) \qquad A\subseteq E\subseteq B,A,B\in \Omega ,\mu (B\backslash A) =0<span class='inline'></span>
+<span class='inline'> by writing
+</span>\mu^\star (E) = \mu (A) \qquad A\subseteq E\subseteq B,A,B\in \Omega ,\mu (B\backslash A) =0<span class='inline'>\mu^\star (E) = \mu (A) \qquad A\subseteq E\subseteq B,A,B\in \Omega ,\mu (B\backslash A) =0</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
@@ -967,20 +1075,28 @@ Let <span class='inline'>f\colon \Omega \rightarrow [0,\infty ]</span> be a meas
 
 <br><i>Proof.</i>
 Suppose that the set
-<span class='inline'></span>N = \ x\in \Omega |f(x)\neq 0 \<span class='inline'></span>
+<span class='inline'></span>N = \ x\in \Omega |f(x)\neq 0 \<span class='inline'>N = \{ x\in \Omega |f(x)\neq 0 \}</span>
 is a null set.  Let <span class='inline'>s\colon \Omega \rightarrow [0,\infty ]</span> be a simple function such that <span class='inline'>s\leq f</span>.  Then <span class='inline'>s(x)=0</span> when <span class='inline'>x\not\in N</span>.  The definition of the integral of a simple function tells us that
-<span class='inline'></span>\int_\Omega s d\mu =0<span class='inline'></span>
+<span class='inline'>.  The definition of the integral of a simple function tells us that
+</span>\int_\Omega s d\mu =0<span class='inline'>\int_\Omega s d\mu =0</span>
 
 The definition of the integral of a non-negative function now implies that
-<span class='inline'></span>\int_\Omega fd\mu =0<span class='inline'></span>
+<span class='inline'>
+
+The definition of the integral of a non-negative function now implies that
+</span>\int_\Omega fd\mu =0<span class='inline'>\int_\Omega fd\mu =0</span>
 
 Conversely, suppose that the integral of the function <span class='inline'>f</span> is zero.  Let
-<span class='inline'></span>A_n = \ x\in \Omega |f(x) >  1/n \<span class='inline'></span>
+<span class='inline'></span>A_n = \ x\in \Omega |f(x) >  1/n \<span class='inline'>A_n = \{ x\in \Omega |f(x) >  1/n \}</span>
 
 Then clearly
-<span class='inline'></span>\frac1n \mu (A_n ) \leq \int_A_n fd\mu \leq \int_\Omega f d\mu =0<span class='inline'></span>
+<span class='inline'>
+
+Then clearly
+</span>\frac1n \mu (A_n ) \leq \int_A_n fd\mu \leq \int_\Omega f d\mu =0<span class='inline'>\frac{1}{n} \mu (A_n ) \leq \int_{A_n} fd\mu \leq \int_\Omega f d\mu =0</span>
 so <span class='inline'>\mu (A_n ) =0</span>.  But
-<span class='inline'></span>\ x\in \Omega |f(x)  > 0 \ = \bigcup_n=1^\infty A_n<span class='inline'></span>
+<span class='inline'>.  But
+</span>\ x\in \Omega |f(x)  > 0 \ = \bigcup_n=1^\infty A_n<span class='inline'>\{ x\in \Omega |f(x)  > 0 \} = \bigcup_{n=1}^\infty A_n</span>
 
 Thus <span class='inline'>\sigma</span>-additivity implies that the set of all points <span class='inline'>x\in \Omega</span> such that <span class='inline'>f(x)\neq 0</span> has measure zero.
 
@@ -989,25 +1105,29 @@ Given two functions <span class='inline'>f,g\colon \Omega \rightarrow {\mathbb C
 
 <br><br><strong>Corollary 7.4</strong>
 Let <span class='inline'>f,g\colon \Omega \rightarrow {\mathbb C}</span> be integrable functions that are equal almost everywhere.  Then
-<span class='inline'></span>\int_\Omega f = \int_\Omega g<span class='inline'></span>
+<span class='inline'> be integrable functions that are equal almost everywhere.  Then
+</span>\int_\Omega f = \int_\Omega g<span class='inline'>\int_\Omega f = \int_\Omega g</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 
 <br><br><strong>Corollary 7.5</strong>
 Let <span class='inline'>f\colon \Omega \rightarrow {\mathbb C}</span> be an integrable function.  Suppose that
-<span class='inline'></span>\int_E f =0<span class='inline'></span>
+<span class='inline'> be an integrable function.  Suppose that
+</span>\int_E f =0<span class='inline'>\int_E f =0</span>
 whenever the subset <span class='inline'>E\subseteq \Omega</span> is measurable.  Then the function <span class='inline'>f</span> is equal to zero almost everywhere.
 <br><br>
 
 <br><i>Proof.</i>
 Let us write
-<span class='inline'></span>f(x) = u(x) + iv(x) = (u^+(x)- u^- (x)) + i(v^+(x) - v^-(x))<span class='inline'></span>
+<span class='inline'></span>f(x) = u(x) + iv(x) = (u^+(x)- u^- (x)) + i(v^+(x) - v^-(x))<span class='inline'>f(x) = u(x) + iv(x) = (u^+(x)- u^- (x)) + i(v^+(x) - v^-(x))</span>
 where the functions <span class='inline'>u</span> and <span class='inline'>v</span> are real and integrable, and the functions <span class='inline'>u^\pm</span> and <span class='inline'>v^\pm</span> are integrable and non-negative.
 
 Let
-<span class='inline'></span>E = \ x\in \Omega |u(x)\geq 0 \<span class='inline'></span>
+<span class='inline'></span>E = \ x\in \Omega |u(x)\geq 0 \<span class='inline'>E = \{ x\in \Omega |u(x)\geq 0 \}</span>
 Then
-<span class='inline'></span>\Re \left( \int_E f \right) = \int_E u^+ =0<span class='inline'></span>
+<span class='inline'>
+Then
+</span>\Re \left( \int_E f \right) = \int_E u^+ =0<span class='inline'>\Re \left( \int_E f \right) = \int_E u^+ =0</span>
 
 By the above theorem, it follows that <span class='inline'>u^+ =0</span> except on a null set.  Similarly, it follows that <span class='inline'>u^- =0</span> except on a null set.  Since the union of two null sets is also a null set, we have shown that <span class='inline'>u=0</span> almost everywhere.
 
@@ -1020,7 +1140,8 @@ Before we are ready to state the Riesz representation theorem, we need some term
 
 <br><br><strong>Definition 8.1</strong>
 Let <span class='inline'>X</span> be a topological space.  Then we define the \em support of a continuous function <span class='inline'>f\colon X\rightarrow {\mathbb C}</span> to be the closure
-<span class='inline'></span>\operatornamesupp (f):= \overline \ x\in X |f(x)\neq 0 \ <span class='inline'></span>
+<span class='inline'> to be the closure
+</span>\operatornamesupp (f):= \overline \ x\in X |f(x)\neq 0 \ <span class='inline'>\operatorname{supp} (f):= \overline{ \{ x\in X |f(x)\neq 0 \} }</span>
 <br><br>
 
 We write <span class='inline'>C_c (X)</span> to denote the set of all continuous compactly supported functions <span class='inline'>f\colon X\rightarrow {\mathbb C}</span>.  The set <span class='inline'>C_c (X)</span> is a vector space under the operations of pointwise addition and scalar multiplication.
@@ -1030,7 +1151,7 @@ A linear map <span class='inline'>\Lambda \colon C_c (X) \rightarrow {\mathbb C}
 <br><br>
 
 Let <span class='inline'>X</span> be a topological space equipped with a Borel measure <span class='inline'>\mu</span> such that <span class='inline'>\mu (K)  < \infty</span> whenever <span class='inline'>K\subseteq X</span> is a compact subspace.  Then the integration map
-<span class='inline'></span>f\mapsto \int_X f<span class='inline'></span>
+<span class='inline'></span>f\mapsto \int_X f<span class='inline'>f\mapsto \int_X f</span>
 defines a positive linear functional.
 
 The Riesz representation theorem is essentially a converse of the above observation.
@@ -1039,7 +1160,8 @@ The Riesz representation theorem is essentially a converse of the above observat
 Let <span class='inline'>X</span> be a locally compact Hausdorff space, and let <span class='inline'>\Lambda \colon C_c (X) \rightarrow {\mathbb C}</span> be a positive linear functional.
 
 Then the set <span class='inline'>X</span> has a <span class='inline'>\sigma</span>-algebra <span class='inline'>\Omega</span> containing all Borel sets, and a unique measure <span class='inline'>\mu</span> on <span class='inline'>\Omega</span> such that
-<span class='inline'></span>\Lambda (f) = \int_X fd\mu<span class='inline'></span>
+<span class='inline'> such that
+</span>\Lambda (f) = \int_X fd\mu<span class='inline'>\Lambda (f) = \int_X fd\mu</span>
 whenever <span class='inline'>f\in C_c (X)</span>.
 <br><br>
 
@@ -1047,7 +1169,8 @@ The proof of this theorem is in a series of lemmas; the proof is quite long.  Be
 
 <br><br><strong>Theorem 8.4</strong> 
 Let <span class='inline'>X</span> be a locally compact Hausdorff space, and let <span class='inline'>{\mathcal U} = \{ U_\alpha |\alpha \in A \}</span> be an open cover of the space <span class='inline'>X</span>.  Then there is a \em partition of unity subordinate to the cover <span class='inline'>\mathcal U</span>, that is to say a set of continuous functions <span class='inline'>u_\alpha \colon X\rightarrow [0,1]</span> such that <span class='inline'>\operatorname{supp} u_\alpha \subseteq U_\alpha</span> and
-<span class='inline'></span>\sum_\alpha \in A u_\alpha (x) =1<span class='inline'></span>
+<span class='inline'> and
+</span>\sum_\alpha \in A u_\alpha (x) =1<span class='inline'>\sum_{\alpha \in A} u_\alpha (x) =1</span>
 whenever <span class='inline'>x\in X</span>.
 <strong>proof to be filled in!</strong>
 <br><br>
@@ -1057,7 +1180,9 @@ The following corollary is known as \em Urysohn's lemma.
 <br><br><strong>Corollary 8.5</strong>
 Let <span class='inline'>X</span> be a locally compact Hausdorff space, and let <span class='inline'>K\subseteq X</span> be a compact set, and let <span class='inline'>U</span> be an open set containing <span class='inline'>K</span>.  Then there is a continuous function <span class='inline'>f\colon X\rightarrow [0,1]</span>
 such that
-<span class='inline'></span>\chi_K(x) \leq f(x) \leq \chi_U (x)<span class='inline'></span>
+<span class='inline'>
+such that
+</span>\chi_K(x) \leq f(x) \leq \chi_U (x)<span class='inline'>\chi_K(x) \leq f(x) \leq \chi_U (x)</span>
 <br><br>
 
 <br><i>Proof.</i>
@@ -1070,10 +1195,12 @@ We now begin our proof of the Riesz representation theorem with the definition o
 
 <br><br><strong>Definition 8.6</strong>
 Let <span class='inline'>\Lambda \colon C_c (X) \rightarrow {\mathbb C}</span> be a positive linear functional.  Let <span class='inline'>U\subseteq X</span> be open.  Then we define
-<span class='inline'></span>\mu (U):= \sup \ \Lambda f |f\leq \chi_U \<span class='inline'></span>
+<span class='inline'> be open.  Then we define
+</span>\mu (U):= \sup \ \Lambda f |f\leq \chi_U \<span class='inline'>\mu (U):= \sup \{ \Lambda f |f\leq \chi_U \}</span>
 
 In general, for a subset, <span class='inline'>E\subset X</span>, we define
-<span class='inline'></span>\mu (E) = \inf \ \ \mu (U) |U \textrm open , E\subseteq U \<span class='inline'></span>
+<span class='inline'>, we define
+</span>\mu (E) = \inf \ \ \mu (U) |U \textrm open , E\subseteq U \<span class='inline'>\mu (E) = \inf \{ \{ \mu (U) |U \textrm{ open }, E\subseteq U \}</span>
 <br><br>
 
 <br><br><strong>Proposition 8.7</strong>
@@ -1093,7 +1220,8 @@ Although we have defined a function <span class='inline'>\mu</span> for every su
 
 <br><br><strong>Definition 8.9</strong>
 We define <span class='inline'>\Omega_F</span> to be the sollection of all subsets <span class='inline'>E\subseteq X</span> such that <span class='inline'>\mu (E) < \infty</span> and
-<span class='inline'></span>\mu (E) = \sup \ \mu (K) |K\subseteq E, K \textrm compact \<span class='inline'></span>
+<span class='inline'> and
+</span>\mu (E) = \sup \ \mu (K) |K\subseteq E, K \textrm compact \<span class='inline'>\mu (E) = \sup \{ \mu (K) |K\subseteq E, K \textrm{ compact} \}</span>
 
 We define <span class='inline'>\Omega</span> to be the collection of all subsets <span class='inline'>E\subseteq X</span> such that <span class='inline'>E\cap K \in \Omega_F</span> whenever <span class='inline'>K</span> is compact.
 <br><br>
@@ -1108,7 +1236,8 @@ Let <span class='inline'>V\subseteq X</span> be an open subset such that <span c
 Choose a number <span class='inline'>a <  \mu (V)</span>.  By the definition of <span class='inline'>\mu</span>, there is a function <span class='inline'>f\in C_c (X)</span> such that <span class='inline'>f\leq \chi_V</span> and <span class='inline'>a <  \Lambda f</span>.  Write <span class='inline'>K=\operatorname{supp} (f)</span>, and let <span class='inline'>W</span> be an open set that contains <span class='inline'>K</span>.  Then <span class='inline'>\Lambda f \leq \mu (W)</span>, so <span class='inline'>\Lambda f \leq \mu (K)</span>, using the above proposition and corollary, and the definition of the function <span class='inline'>\mu</span>.
 
 Thus <span class='inline'>K\subseteq V</span> and <span class='inline'>\mu (K)  > a</span>.  It follows that
-<span class='inline'></span>\mu (V) = \sup \ \mu (K) |K\subseteq E, K \textrm compact \<span class='inline'></span>
+<span class='inline'>.  It follows that
+</span>\mu (V) = \sup \ \mu (K) |K\subseteq E, K \textrm compact \<span class='inline'>\mu (V) = \sup \{ \mu (K) |K\subseteq E, K \textrm{ compact} \}</span>
 and we are done.
 
 
@@ -1120,33 +1249,41 @@ Let <span class='inline'>U_1 , \ldots , U_N\subseteq X</span> be open sets.  The
 
 <br><i>Proof.</i>
 Let <span class='inline'>N=2</span>.  Choose a function <span class='inline'>g\in C_c (X)</span> such that <span class='inline'>g\leq \chi_{U_1\cup U_2}</span>.  By theorem 8.4 there are functions <span class='inline'>u_1 , u_2\in C_c (X)</span> such that <span class='inline'>u_1\leq \chi_{U_1}</span>, <span class='inline'>u_2\leq \chi_{u_2}</span>, and <span class='inline'>u_1(x) + u_2 (x) =1</span> whenever <span class='inline'>x\in U_1\cup U_2</span>.  It follows that
-<span class='inline'></span>u_1 g\leq \chi_U_1,u_2g \leq \chi_U_2 \qquad g=u_1 g + u_2 g<span class='inline'></span>
+<span class='inline'></span>u_1 g\leq \chi_U_1,u_2g \leq \chi_U_2 \qquad g=u_1 g + u_2 g<span class='inline'>u_1 g\leq \chi_{U_1},u_2g \leq \chi_{U_2} \qquad g=u_1 g + u_2 g</span>
 and therefore
-<span class='inline'></span>\Lambda g = \Lambda (u_1 g) +\Lambda (u_2 g) \leq \mu (U_1) + \mu (U_2)<span class='inline'></span>
+<span class='inline'>
+and therefore
+</span>\Lambda g = \Lambda (u_1 g) +\Lambda (u_2 g) \leq \mu (U_1) + \mu (U_2)<span class='inline'>\Lambda g = \Lambda (u_1 g) +\Lambda (u_2 g) \leq \mu (U_1) + \mu (U_2)</span>
 
 Since the above inequality holds for every function <span class='inline'>g\in C_c (X)</span> such that <span class='inline'>g\leq \chi_{U_1\cup U_2}</span>, the result follows from the definition of <span class='inline'>\mu</span> when <span class='inline'>N=2</span>.  The general result follows by induction.
 
 
 <br><br><strong>Lemma 8.12</strong> 
 Let <span class='inline'>E_1,E_2,E_3,\ldots</span> be subsets of the space <span class='inline'>X</span>.    Write
-<span class='inline'></span>E = \bigcup_n=1^\infty E_n<span class='inline'></span>
+<span class='inline'></span>E = \bigcup_n=1^\infty E_n<span class='inline'>E = \bigcup_{n=1}^\infty E_n</span>
 
 Then
-<span class='inline'></span>\mu (E) \leq \sum_n=1^\infty \mu (E_n)<span class='inline'></span>
+<span class='inline'>
+
+Then
+</span>\mu (E) \leq \sum_n=1^\infty \mu (E_n)<span class='inline'>\mu (E) \leq \sum_{n=1}^\infty \mu (E_n)</span>
 <br><br>
 
 <br><i>Proof.</i>
 If <span class='inline'>\mu (E_n )=\infty</span> for some <span class='inline'>n</span>, then the result is obviously true.  Thus, let us suppose that <span class='inline'>\mu (E_n) < \infty</span> for all <span class='inline'>n</span>.  Choose <span class='inline'>\varepsilon  > 0</span>.  By definition of the function <span class='inline'>\mu</span>, there are open sets <span class='inline'>U_n \supseteq V_n</span> such that
-<span class='inline'></span>\mu (V_n)  <  \mu (E_n) +2^-n \varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (V_n)  <  \mu (E_n) +2^-n \varepsilon<span class='inline'>\mu (V_n)  <  \mu (E_n) +2^{-n} \varepsilon</span>
 for all <span class='inline'>n</span>.
 
 Let <span class='inline'>U = \bigcup_{n=1}^\infty U</span>, and choose <span class='inline'>f\in C_c (X)</span> such that <span class='inline'>f\leq \chi_U</span>.  The support of the function <span class='inline'>f</span> is covered by the collection of sets <span class='inline'>\{ U_n |n=1,2,3,\ldots \}</span>.  Since the function <span class='inline'>f</span> has compact support, it follows that it has a finite subcovering, and so 
-<span class='inline'></span>f\leq \chi_U_1 \cup \cdots \cup U_N <span class='inline'></span>
+<span class='inline'></span>f\leq \chi_U_1 \cup \cdots \cup U_N <span class='inline'>f\leq \chi_{U_1 \cup \cdots \cup U_N }</span>
 for some <span class='inline'>N</span>.  By the above proposition, we see that
-<span class='inline'></span>\Lambda f \leq \mu (U_1 \cup \cdots \cup U_N) \leq \mu(V_1 ) + \cdots + \mu (V_N) \leq \sum_n=1^\infty \mu (E_n) + \varepsilon<span class='inline'></span>
+<span class='inline'>.  By the above proposition, we see that
+</span>\Lambda f \leq \mu (U_1 \cup \cdots \cup U_N) \leq \mu(V_1 ) + \cdots + \mu (V_N) \leq \sum_n=1^\infty \mu (E_n) + \varepsilon<span class='inline'>\Lambda f \leq \mu (U_1 \cup \cdots \cup U_N) \leq \mu(V_1 ) + \cdots + \mu (V_N) \leq \sum_{n=1}^\infty \mu (E_n) + \varepsilon</span>
 
 Since the above inueqality holds for every funtion <span class='inline'>f\subseteq \chi_U</span>, and <span class='inline'>E\subseteq U</span>, we see that 
-<span class='inline'></span>\mu (E) \leq \sum_n=1^\infty \mu (E_n) +\varepsilon<span class='inline'></span>
+<span class='inline'>, we see that 
+</span>\mu (E) \leq \sum_n=1^\infty \mu (E_n) +\varepsilon<span class='inline'>\mu (E) \leq \sum_{n=1}^\infty \mu (E_n) +\varepsilon</span>
 
 But this inequality holds whenever <span class='inline'>\varepsilon  > 0</span>, so the result follows.
 
@@ -1157,67 +1294,85 @@ Let <span class='inline'>K\subseteq X</span> be compact.  Then <span class='inli
 
 <br><i>Proof.</i>
 Let <span class='inline'>0 < a < 1</span>, and choose <span class='inline'>f\in C_c (X)</span> such that <span class='inline'>f\geq \chi_K</span>.  Write
-<span class='inline'></span>V_a = \ x\in X |f(x) > a \<span class='inline'></span>
+<span class='inline'></span>V_a = \ x\in X |f(x) > a \<span class='inline'>V_a = \{ x\in X |f(x) > a \}</span>
 
 Then <span class='inline'>K\subseteq V_a</span>, and <span class='inline'>ag\leq f</span> whenever <span class='inline'>f\leq \chi_{V_a}</span>.  Therefore
-<span class='inline'></span>\mu (K) \leq \mu (V_a ) = \sup \ \Lambda g | g\leq \chi_V_a \ \leq a^-1\Lambda f<span class='inline'></span>
+<span class='inline'>.  Therefore
+</span>\mu (K) \leq \mu (V_a ) = \sup \ \Lambda g | g\leq \chi_V_a \ \leq a^-1\Lambda f<span class='inline'>\mu (K) \leq \mu (V_a ) = \sup \{ \Lambda g | g\leq \chi_{V_a} \} \leq a^{-1}\Lambda f</span>
 
 Since this inequaltity holds whenever <span class='inline'>0 < a < 1</span>, it follows that <span class='inline'>\mu (K)\leq \Lambda f</span>.  It follows that <span class='inline'>\mu (K) <  \infty</span>, and so <span class='inline'>K\in \Omega_F</span>.
 
 
 <br><br><strong>Lemma 8.14</strong> 
 Let <span class='inline'>K\subseteq X</span> be compact.  Then
-<span class='inline'></span>\mu (K) =\inf \ \Lambda f |\chi_K \leq f \<span class='inline'></span>
+<span class='inline'> be compact.  Then
+</span>\mu (K) =\inf \ \Lambda f |\chi_K \leq f \<span class='inline'>\mu (K) =\inf \{ \Lambda f |\chi_K \leq f \}</span>
 <br><br>
 
 <br><i>Proof.</i>
 Let <span class='inline'>\varepsilon  > 0</span>.  Then there is an open set <span class='inline'>U\supseteq K</span> such that <span class='inline'>\mu (U)  <  \mu (K) +\varepsilon</span>.  By Urysohn's lemma there is a continuous function <span class='inline'>f\colon [0,1]\rightarrow X</span> such that <span class='inline'>\chi_K \leq f \leq \chi_U</span>.  It follows that
-<span class='inline'></span>\Lambda f\leq \mu(U)  <  \mu (K) +\varepsilon<span class='inline'></span>
+<span class='inline'>.  It follows that
+</span>\Lambda f\leq \mu(U)  <  \mu (K) +\varepsilon<span class='inline'>\Lambda f\leq \mu(U)  <  \mu (K) +\varepsilon</span>
 
 The result follows from the above inequality combined with the previous proposition.
 
 
 <br><br><strong>Proposition 8.15</strong> 
 Let <span class='inline'>K_1,\ldots K_N</span> be disjoint compact sets.  Then
-<span class='inline'></span>\mu (K_1 \cup \cdots \cup K_N) \leq \mu (K_1 ) + \cdots + \mu (K_N)<span class='inline'></span>
+<span class='inline'> be disjoint compact sets.  Then
+</span>\mu (K_1 \cup \cdots \cup K_N) \leq \mu (K_1 ) + \cdots + \mu (K_N)<span class='inline'>\mu (K_1 \cup \cdots \cup K_N) \leq \mu (K_1 ) + \cdots + \mu (K_N)</span>
 <br><br>
 
 <br><i>Proof.</i>
 Let <span class='inline'>N=2</span>.  We can find an open set <span class='inline'>U</span> such that <span class='inline'>U\supseteq K_1</span> and <span class='inline'>U\cap K_2 = \emptyset</span>.  It follows by Urysohn's lemma that we can find a compactly supported function <span class='inline'>u\colon X\rightarrow [0,1]</span> such that <span class='inline'>u(x)=1</span> whenever <span class='inline'>x\in K_1</span>, and <span class='inline'>u(x) =0</span> whenever <span class='inline'>x\in K_2</span>.
 
 Let <span class='inline'>\varepsilon  > 0</span>.  By lemma 8.14 there is a function <span class='inline'>g\in C_c (X)</span> such that
-<span class='inline'></span>\chi_K_1 \cup K_2\leq g \qquad \Lambda g \leq \mu (K_1 + K_2) +\varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\chi_K_1 \cup K_2\leq g \qquad \Lambda g \leq \mu (K_1 + K_2) +\varepsilon<span class='inline'>\chi_{K_1 \cup K_2}\leq g \qquad \Lambda g \leq \mu (K_1 + K_2) +\varepsilon</span>
 
 Observe that
-<span class='inline'></span>\chi_K_1 \leq fg \qquad \chi_K_2 \leq (1-f)g<span class='inline'></span>
+<span class='inline'>
+
+Observe that
+</span>\chi_K_1 \leq fg \qquad \chi_K_2 \leq (1-f)g<span class='inline'>\chi_{K_1} \leq fg \qquad \chi_{K_2} \leq (1-f)g</span>
 
 Hence
-<span class='inline'></span>\mu (K_1 ) + \mu (K_2) \leq \Lambda (fg) + \Lambda (g-fg) \leq \mu (K_1 \cup K_2 ) + \varepsilon<span class='inline'></span>
+<span class='inline'>
+
+Hence
+</span>\mu (K_1 ) + \mu (K_2) \leq \Lambda (fg) + \Lambda (g-fg) \leq \mu (K_1 \cup K_2 ) + \varepsilon<span class='inline'>\mu (K_1 ) + \mu (K_2) \leq \Lambda (fg) + \Lambda (g-fg) \leq \mu (K_1 \cup K_2 ) + \varepsilon</span>
 
 Since the above inequality holds whenever <span class='inline'>\varepsilon  > 0</span>, the desired result follows when <span class='inline'>N=2</span>.  The general result follows by induction.
 
 
 <br><br><strong>Lemma 8.16</strong> 
 Let <span class='inline'>E_1,E_2,E_3,\ldots</span> be pairwise disjoint members of the collection <span class='inline'>\Omega_F</span>.  Write
-<span class='inline'></span>E = \bigcup_n=1^\infty E_n<span class='inline'></span>
+<span class='inline'></span>E = \bigcup_n=1^\infty E_n<span class='inline'>E = \bigcup_{n=1}^\infty E_n</span>
 
 Then
-<span class='inline'></span>\mu (E) = \sum_n=1^\infty \mu (E_n)<span class='inline'></span>
+<span class='inline'>
+
+Then
+</span>\mu (E) = \sum_n=1^\infty \mu (E_n)<span class='inline'>\mu (E) = \sum_{n=1}^\infty \mu (E_n)</span>
 
 Further, if <span class='inline'>\mu (E)  < \infty</span>, then <span class='inline'>E\in \Omega_F</span>.
 <br><br>
 
 <br><i>Proof.</i>
 Observe that the result follows from lemma 8.12 when <span class='inline'>\mu (E)=\infty</span>.  Let us therefore assume that <span class='inline'>\mu (E) < \infty</span>.  Choose <span class='inline'>\varepsilon  > 0</span>.  Since <span class='inline'>E_n\in \Omega_F</span>, we can find a compact set <span class='inline'>K_n \subseteq E_n</span> such that
-<span class='inline'></span>\mu (K_n ) >  \mu (E_n ) - 2^-n \varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (K_n ) >  \mu (E_n ) - 2^-n \varepsilon<span class='inline'>\mu (K_n ) >  \mu (E_n ) - 2^{-n} \varepsilon</span>
 for each <span class='inline'>n</span>.  Let <span class='inline'>H_N = K_1 \cup \cdots \cup K_N</span>.  Then by the above propositiion:
-<span class='inline'></span>\mu E) \geq \mu (H_N) = \sum_n=1^N \mu (K_n)  >  \sum_n=1^N \mu (E_n) - \varepsilon<span class='inline'></span>
+<span class='inline'>.  Then by the above propositiion:
+</span>\mu E) \geq \mu (H_N) = \sum_n=1^N \mu (K_n)  >  \sum_n=1^N \mu (E_n) - \varepsilon<span class='inline'>\mu E) \geq \mu (H_N) = \sum_{n=1}^N \mu (K_n)  >  \sum_{n=1}^N \mu (E_n) - \varepsilon</span>
 
 Since the above inequality holds whenever <span class='inline'>\varepsilon  > 0</span>, combining it with the inequality in lemma 8.12, we see that
-<span class='inline'></span>\mu (E) = \sum_n=1^\infty \mu (E_n)<span class='inline'></span>
+<span class='inline'>, we see that
+</span>\mu (E) = \sum_n=1^\infty \mu (E_n)<span class='inline'>\mu (E) = \sum_{n=1}^\infty \mu (E_n)</span>
 
 Now, if <span class='inline'>\mu (E) < \infty</span>, and <span class='inline'>\varepsilon  > 0</span>, then we can find <span class='inline'>N</span> such that
-<span class='inline'></span>\mu (E) \leq \sum_n=1^N \mu (E_n) + \varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (E) \leq \sum_n=1^N \mu (E_n) + \varepsilon<span class='inline'>\mu (E) \leq \sum_{n=1}^N \mu (E_n) + \varepsilon</span>
 
 It follows that <span class='inline'>\mu (E)\leq \mu (H_N) +2\varepsilon</span>, and so <span class='inline'>E\in \Omega_F</span>.
 
@@ -1228,10 +1383,12 @@ Let <span class='inline'>E\subseteq \Omega_F</span>, and let <span class='inline
 
 <br><i>Proof.</i>
 by definition of the collection <span class='inline'>\Omega_F</span>, we can find a compact set <span class='inline'>K\subseteq E</span> and an open set <span class='inline'>U\supseteq E</span> such that
-<span class='inline'></span>\mu (V) - \frac\varepsilon2  <  \mu (E)  <  \mu(K) + \frac\varepsilon2<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (V) - \frac\varepsilon2  <  \mu (E)  <  \mu(K) + \frac\varepsilon2<span class='inline'>\mu (V) - \frac{\varepsilon}{2}  <  \mu (E)  <  \mu(K) + \frac{\varepsilon}{2}</span>
 
 By lemma 8.10, we see that <span class='inline'>V\backslash K \in \Omega_F</span>.  By lemma 8.16, we see
-<span class='inline'></span>\mu (K) + \mu (U\backslash K) = \mu (U)  <  \mu (K) +\varepsilon<span class='inline'></span>
+<span class='inline'>, we see
+</span>\mu (K) + \mu (U\backslash K) = \mu (U)  <  \mu (K) +\varepsilon<span class='inline'>\mu (K) + \mu (U\backslash K) = \mu (U)  <  \mu (K) +\varepsilon</span>
 and we are done.
 
 
@@ -1241,15 +1398,18 @@ Let <span class='inline'>A,B\in \Omega_F</span>.  Then the sets <span class='inl
 
 <br><i>Proof.</i>
 By the above proposition, there are compact sets <span class='inline'>K</span> and <span class='inline'>K'</span>, and open sets <span class='inline'>U</span> and <span class='inline'>U'</span> such that
-<span class='inline'></span>K\subseteq A\subseteq U \qquad K'\subseteq B\subseteq U'<span class='inline'></span>
+<span class='inline'></span>K\subseteq A\subseteq U \qquad K'\subseteq B\subseteq U'<span class='inline'>K\subseteq A\subseteq U \qquad K'\subseteq B\subseteq U'</span>
 and
-<span class='inline'></span>\mu (U\backslash K) <  \varepsilon \qquad \mu (U'\backslash K')  < \varepsilon<span class='inline'></span>
+<span class='inline'>
+and
+</span>\mu (U\backslash K) <  \varepsilon \qquad \mu (U'\backslash K')  < \varepsilon<span class='inline'>\mu (U\backslash K) <  \varepsilon \qquad \mu (U'\backslash K')  < \varepsilon</span>
 
 Observe
-<span class='inline'></span>A\backslash B \subseteq U\backslash K' \subseteq U\backslash K \cup K\backslash U'\cup U'\backslash K'<span class='inline'></span>
+<span class='inline'></span>A\backslash B \subseteq U\backslash K' \subseteq U\backslash K \cup K\backslash U'\cup U'\backslash K'<span class='inline'>A\backslash B \subseteq U\backslash K' \subseteq U\backslash K \cup K\backslash U'\cup U'\backslash K'</span>
 
 Hence by lemme 8.12:
-<span class='inline'></span>\mu (A\backslash B) \subseteq \mu (K\backslash V') +2\varepsilon<span class='inline'></span>
+<span class='inline'>:
+</span>\mu (A\backslash B) \subseteq \mu (K\backslash V') +2\varepsilon<span class='inline'>\mu (A\backslash B) \subseteq \mu (K\backslash V') +2\varepsilon</span>
 
 Further, the set <span class='inline'>K\backslash V'</span> is compact, so the above inequality tells us that <span class='inline'>A\backslash B \in \Omega_F</span>.
 
@@ -1266,10 +1426,10 @@ The set <span class='inline'>\Omega</span> is a <span class='inline'>\sigma</spa
 Let <span class='inline'>K\subseteq X</span> be compact.  If <span class='inline'>A\in \Omega</span>, then <span class='inline'>X\backslash A \cap K = K \backslash (A\cap K)</span>, so <span class='inline'>X\backslash A \cap K\in \Omega_F</span>  by the above proposition, and <span class='inline'>X\backslash A\in \Omega</span>.
 
 Suppose that
-<span class='inline'></span>A = \bigcup_n=1^\infty A_n \qquad A_n \in \Omega<span class='inline'></span>
+<span class='inline'></span>A = \bigcup_n=1^\infty A_n \qquad A_n \in \Omega<span class='inline'>A = \bigcup_{n=1}^\infty A_n \qquad A_n \in \Omega</span>
 
 Let <span class='inline'>B_1 = A_1 \cap K</span>, and
-<span class='inline'></span>B_n = (A_n \cap K) \backslash (B_1 \cup \cdots \cup B_n) \qquad n\geq 2<span class='inline'></span>
+<span class='inline'></span>B_n = (A_n \cap K) \backslash (B_1 \cup \cdots \cup B_n) \qquad n\geq 2<span class='inline'>B_n = (A_n \cap K) \backslash (B_1 \cup \cdots \cup B_n) \qquad n\geq 2</span>
 
 Then the collection <span class='inline'>\{ B_n |n=1,2,\ldots \}</span> is a pairwise disjoint, and <span class='inline'>B_n \in \Omega_F</span> for all <span class='inline'>n</span> by the above lemma.  But <span class='inline'>A\cap K =\bigcup_{n=1}^\infty B_n</span>, so <span class='inline'>A\cap K \in \Omega_F</span> by lemma 8.16.  It follows that <span class='inline'>A\in \Omega</span>.
 
@@ -1277,7 +1437,8 @@ We have proved that the collection <span class='inline'>\Omega</span> is a <span
 
 
 <br><br><strong>Lemma 8.20</strong> 
-<span class='inline'></span>\Omega_F = \ E\in \Omega |\mu (E) < \infty \<span class='inline'></span>
+<span class='inline'>
+</span>\Omega_F = \ E\in \Omega |\mu (E) < \infty \<span class='inline'>\Omega_F = \{ E\in \Omega |\mu (E) < \infty \}</span>
 <br><br>
 
 <br><i>Proof.</i>
@@ -1286,10 +1447,12 @@ Let <span class='inline'>E\in \Omega_F</span>.  Then by lemmas 8.14 and 8.16, we
 Conversely, suppose that <span class='inline'>E\in \Omega</span> and <span class='inline'>\mu (E) < \infty</span>.  Let <span class='inline'>\varepsilon  > 0</span>.  We can certainly find an open set <span class='inline'>U\supseteq E</span> such that <span class='inline'>\mu (E) < \infty</span>.  By propositions 8.10 and 8.17, there is a compact set <span class='inline'>K\subseteq U</span> such that <span class='inline'>\mu (U\backslash K) < \varepsilon</span>.
 
 We know that <span class='inline'>E\cap K\in \Omega_F</span>.  There is therefore a compact set <span class='inline'>H\subseteq E\cap K</span> such that
-<span class='inline'></span>\mu (E\cap K)  <  \mu (H) +\varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (E\cap K)  <  \mu (H) +\varepsilon<span class='inline'>\mu (E\cap K)  <  \mu (H) +\varepsilon</span>
 
 But <span class='inline'>E\subseteq (E\cap K) \cup (U\backslash K)</span>.  Therefore
-<span class='inline'></span>\mu (E)\subseteq \mu (E\cap K) + \mu (V\backslash K)  <  \mu (H)+\varepsilon<span class='inline'></span>
+<span class='inline'>.  Therefore
+</span>\mu (E)\subseteq \mu (E\cap K) + \mu (V\backslash K)  <  \mu (H)+\varepsilon<span class='inline'>\mu (E)\subseteq \mu (E\cap K) + \mu (V\backslash K)  <  \mu (H)+\varepsilon</span>
 and we see that <span class='inline'>E\in \Omega_F</span>.
 
 
@@ -1297,55 +1460,76 @@ We can now prove our main result.
 
 <br><br><strong>Theorem 8.21</strong>
 The function <span class='inline'>\mu</span> is a measure on the <span class='inline'>\sigma</span>-algebra <span class='inline'>\Omega</span>.  It is the unique measure with the property
-<span class='inline'></span>\Lambda f = \int_X f(x)d\mu (x)<span class='inline'></span>
+<span class='inline'>.  It is the unique measure with the property
+</span>\Lambda f = \int_X f(x)d\mu (x)<span class='inline'>\Lambda f = \int_X f(x)d\mu (x)</span>
 for all <span class='inline'>f\in C_c (X)</span>.
 <br><br>
 
 <br><i>Proof.</i>
 It follows immediately that <span class='inline'>\mu</span> is a measure from lemmas 8.16 and 8.20.  Our next step is to prove the inequality
-<span class='inline'></span>\Lambda f \leq \int_X f(x)d\mu (x)<span class='inline'></span>
+<span class='inline'>.  Our next step is to prove the inequality
+</span>\Lambda f \leq \int_X f(x)d\mu (x)<span class='inline'>\Lambda f \leq \int_X f(x)d\mu (x)</span>
 for every real-valued compactly supported function <span class='inline'>f</span>.  To do this, let <span class='inline'>K = \operatorname{supp} (f)</span>, and choose <span class='inline'>a,b\in {\mathbb R}</span> such that <span class='inline'>f[K]\subseteq [a,b]</span>.  Let <span class='inline'>\varepsilon  > 0</span>, and choose <span class='inline'>y_0 ,\ldots ,y_N</span> such that
-<span class='inline'></span>a=y_0  <  \cdots  <  y_N \qquad y_n - y_n-1  < \varepsilon \textrm for all n<span class='inline'></span>
+<span class='inline'></span>a=y_0  <  \cdots  <  y_N \qquad y_n - y_n-1  < \varepsilon \textrm for all n<span class='inline'>a=y_0  <  \cdots  <  y_N \qquad y_n - y_{n-1}  < \varepsilon \textrm{ for all }n</span>
 
 We can form Borel sets
-<span class='inline'></span>E_n := \ x\in X | y_n-1  <  f(x) \leq y_n \<span class='inline'></span>
+<span class='inline'></span>E_n := \ x\in X | y_n-1  <  f(x) \leq y_n \<span class='inline'>E_n := \{ x\in X | y_{n-1}  <  f(x) \leq y_n \}</span>
 
 The sets <span class='inline'>E_n</span> are pairwise disjoint with union <span class='inline'>K</span>.  We can find open sets <span class='inline'>U_n \supseteq E_n</span> such that
-<span class='inline'></span>\mu (U_k )  <  \mu (E_k ) + \frac\varepsilonn \qquad f(x)  <  y_n + \varepsilon<span class='inline'></span>
+<span class='inline'> such that
+</span>\mu (U_k )  <  \mu (E_k ) + \frac\varepsilonn \qquad f(x)  <  y_n + \varepsilon<span class='inline'>\mu (U_k )  <  \mu (E_k ) + \frac{\varepsilon}{n} \qquad f(x)  <  y_n + \varepsilon</span>
 whenever <span class='inline'>x\in U_n</span>.
 
 By theorem 8.4, we can choose a partition of unity <span class='inline'>\{ u_1 , \ldots , u_N \}</span> subordinate to the open cover <span class='inline'>\{ U_1 ,\ldots , U_N \}</span>.  It follows that
-<span class='inline'></span>f = \sum_n=1^N u_n f<span class='inline'></span>
+<span class='inline'></span>f = \sum_n=1^N u_n f<span class='inline'>f = \sum_{n=1}^N u_n f</span>
 and by lemma 8.14
-<span class='inline'></span>\mu (K) \leq \Lambda \left( \sum_n=1^N u_n \right) = \sum_n=1^N \Lambda (u_n)<span class='inline'></span>
+<span class='inline'>
+</span>\mu (K) \leq \Lambda \left( \sum_n=1^N u_n \right) = \sum_n=1^N \Lambda (u_n)<span class='inline'>\mu (K) \leq \Lambda \left( \sum_{n=1}^N u_n \right) = \sum_{n=1}^N \Lambda (u_n)</span>
 
 But by construction <span class='inline'>u_nf \leq (y+n + \varepsilon )u_n</span>, and <span class='inline'>y_n - \varepsilon <  f(x)</span> for all <span class='inline'>x\in E_n</span>, so
-<span class='inline'></span>\Lambda f \leq \sum_n=1^N (y_k + \varepsilon) \Lambda (u_n) = \sum_n=1^N (|a|+ y_k + \varepsilon) \Lambda (u_n) - |a| \sum_n=1^N \Lambda (u_n)<span class='inline'></span>
+<span class='inline'>, so
+</span>\Lambda f \leq \sum_n=1^N (y_k + \varepsilon) \Lambda (u_n) = \sum_n=1^N (|a|+ y_k + \varepsilon) \Lambda (u_n) - |a| \sum_n=1^N \Lambda (u_n)<span class='inline'>\Lambda f \leq \sum_{n=1}^N (y_k + \varepsilon) \Lambda (u_n) = \sum_{n=1}^N (|a|+ y_k + \varepsilon) \Lambda (u_n) - |a| \sum_{n=1}^N \Lambda (u_n)</span>
 and
-<span class='inline'></span>\Lambda f \leq \sum_n=1^N (|a|+ y_k + \varepsilon) (\mu (E_n) + \varepsilon /n ) - |a| \mu (K)<span class='inline'></span>
+<span class='inline'>
+and
+</span>\Lambda f \leq \sum_n=1^N (|a|+ y_k + \varepsilon) (\mu (E_n) + \varepsilon /n ) - |a| \mu (K)<span class='inline'>\Lambda f \leq \sum_{n=1}^N (|a|+ y_k + \varepsilon) (\mu (E_n) + \varepsilon /n ) - |a| \mu (K)</span>
 
 Multiplying out, we see that
-<span class='inline'></span>\Lambda f \leq \sum_n=1^N (y_n - \varepsilon )\mu (E_n) + 2\varepsilon \mu (K) \frac\varepsilonn \sum_n=1^N (|a| + y_n + \varepsilon )<span class='inline'></span>
+<span class='inline'>
+
+Multiplying out, we see that
+</span>\Lambda f \leq \sum_n=1^N (y_n - \varepsilon )\mu (E_n) + 2\varepsilon \mu (K) \frac\varepsilonn \sum_n=1^N (|a| + y_n + \varepsilon )<span class='inline'>\Lambda f \leq \sum_{n=1}^N (y_n - \varepsilon )\mu (E_n) + 2\varepsilon \mu (K) \frac{\varepsilon}{n} \sum_{n=1}^N (|a| + y_n + \varepsilon )</span>
 so by construction of the integral
-<span class='inline'></span>\Lambda f \leq \int_X fd\mu + \varepsilon (2\mu (K) + |a| +b +\varepsilon )<span class='inline'></span>
+<span class='inline'>
+so by construction of the integral
+</span>\Lambda f \leq \int_X fd\mu + \varepsilon (2\mu (K) + |a| +b +\varepsilon )<span class='inline'>\Lambda f \leq \int_X fd\mu + \varepsilon (2\mu (K) + |a| +b +\varepsilon )</span>
 
 Since the above inequality must hold for every choice of <span class='inline'>\varepsilon  > 0</span>, we see that
-<span class='inline'></span>\Lambda f \leq \int_X f(x)d\mu (x)<span class='inline'></span>
+<span class='inline'>, we see that
+</span>\Lambda f \leq \int_X f(x)d\mu (x)<span class='inline'>\Lambda f \leq \int_X f(x)d\mu (x)</span>
 as required.
 
 Now, if we replace the function <span class='inline'>f</span> by the function <span class='inline'>-f</span>, we see that
-<span class='inline'></span>-\Lambda f \leq -\int_X f(x)d\mu (x)<span class='inline'></span>
+<span class='inline'>, we see that
+</span>-\Lambda f \leq -\int_X f(x)d\mu (x)<span class='inline'>-\Lambda f \leq -\int_X f(x)d\mu (x)</span>
 
 Combining the above two inequalities, we have the equation
-<span class='inline'></span>\Lambda f = \int_X f(x)d\mu (x)<span class='inline'></span>
+<span class='inline'>
+
+Combining the above two inequalities, we have the equation
+</span>\Lambda f = \int_X f(x)d\mu (x)<span class='inline'>\Lambda f = \int_X f(x)d\mu (x)</span>
 for every real-valued compactly supported function <span class='inline'>f</span>.  The proof of the above equation for complex-valued functions follows by splitting such a function into real and imaginary parts, and using linearity.
 
 All that remains is to show uniqueness.  Let <span class='inline'>\mu'</span> be a measure such that the eqation
-<span class='inline'></span>\Lambda f = \int_X f(x)d\mu' (x)<span class='inline'></span>
+<span class='inline'> be a measure such that the eqation
+</span>\Lambda f = \int_X f(x)d\mu' (x)<span class='inline'>\Lambda f = \int_X f(x)d\mu' (x)</span>
 holds for every compactly supported function <span class='inline'>f</span>.  Let <span class='inline'>K</span> be a compact set.  By theorem 8.4, given an open set <span class='inline'>U\supseteq K</span>, there is a compactly supported function <span class='inline'>g</span> such that <span class='inline'>\chi_K \leq g\leq \chi_U</span>.  Hence
-<span class='inline'></span>\mu' (K) \leq \int_X f d\mu' \leq \mu' (U)<span class='inline'></span>
+<span class='inline'>.  Hence
+</span>\mu' (K) \leq \int_X f d\mu' \leq \mu' (U)<span class='inline'>\mu' (K) \leq \int_X f d\mu' \leq \mu' (U)</span>
 and
-<span class='inline'></span>\mu'(U) = \sup \ \Lambda f |f\leq \chi_U \ = \mu (U)<span class='inline'></span>
+<span class='inline'>
+and
+</span>\mu'(U) = \sup \ \Lambda f |f\leq \chi_U \ = \mu (U)<span class='inline'>\mu'(U) = \sup \{ \Lambda f |f\leq \chi_U \} = \mu (U)</span>
 
 It follows that <span class='inline'>\mu (B)= \mu' (B)</span> whenever <span class='inline'>B</span> is a Borel set, and we are done.
 
@@ -1357,12 +1541,15 @@ It follows that <span class='inline'>\mu (B)= \mu' (B)</span> whenever <span cla
 We would like to use the Riesz representation theorem to define a measure on the real line <span class='inline'>\mathbb R</span> that gives the usual integral expected from elementary calculus.  To apply the Reisz representation theorem, we need a sensible definition of the integral of a continuous compactly supported function.
 
 Let us consider a continuous function <span class='inline'>f\colon [a,b]\rightarrow {\mathbb R}</span>.  Let <span class='inline'>n</span> be a positive integer.  Then the interval <span class='inline'>[a,b]</span> can be divided into <span class='inline'>S^n</span> equal-sized pieces:
-<span class='inline'></span>a <  a+ 2^-n(b-a)  <  a+ 2(2^-n)(b-a)  <  \cdots  <  a+ (2^n -1)(2^-n)(b-a)  <  b<span class='inline'></span>
+<span class='inline'></span>a <  a+ 2^-n(b-a)  <  a+ 2(2^-n)(b-a)  <  \cdots  <  a+ (2^n -1)(2^-n)(b-a)  <  b<span class='inline'>a <  a+ 2^{-n}(b-a)  <  a+ 2(2^{-n})(b-a)  <  \cdots  <  a+ (2^n -1)(2^{-n})(b-a)  <  b</span>
 
 Let us define
-<span class='inline'></span>\mu_n,r  = \inf \ f(x) |a+r2^-n(b-a) \leq f(x)  <  a+ (r+1)2^-n(b-a)<span class='inline'></span>
+<span class='inline'>
+
+Let us define
+</span>\mu_n,r  = \inf \ f(x) |a+r2^-n(b-a) \leq f(x)  <  a+ (r+1)2^-n(b-a)<span class='inline'>\mu_{n,r}  = \inf \{ f(x) |a+r2^{-n}(b-a) \leq f(x)  <  a+ (r+1)2^{-n}(b-a)</span>
 and
-<span class='inline'></span>I_n (f) = \sum_r=0^2^n -1 2^-n(b-a) \mu_n,r<span class='inline'></span>
+<span class='inline'></span>I_n (f) = \sum_r=0^2^n -1 2^-n(b-a) \mu_n,r<span class='inline'>I_n (f) = \sum_{r=0}^{2^n -1} 2^{-n}(b-a) \mu_{n,r}</span>
 
 The following observations are clear.
 
@@ -1375,17 +1562,24 @@ The following observations are clear.
 \enditemize
 
 It follows that we have a well-defined limit
-<span class='inline'></span>\Lambda (f) := \lim_n\rightarrow \infty I_n (f)<span class='inline'></span>
+<span class='inline'>.
+
+\end{itemize}
+
+It follows that we have a well-defined limit
+</span>\Lambda (f) := \lim_n\rightarrow \infty I_n (f)<span class='inline'>\Lambda (f) := \lim_{n\rightarrow \infty} I_n (f)</span>
 
 We would like to extend the definition of the function <span class='inline'>\Lambda</span>.  There are two stages to this extension.
 
 \beginitemize
 
 \item Let <span class='inline'>f\colon [a,b]\rightarrow {\mathbb C}</span> be a continuous function.  Write <span class='inline'>f(x) = u(x) + iv(x)</span>, where <span class='inline'>u,v\colon [a,b]\rightarrow {\mathbb R}</span>, and define
-<span class='inline'></span>\Lambda (f) = \Lambda (u) + i \Lambda (v)<span class='inline'></span>
+<span class='inline'>, and define
+</span>\Lambda (f) = \Lambda (u) + i \Lambda (v)<span class='inline'>\Lambda (f) = \Lambda (u) + i \Lambda (v)</span>
 
 \item Let <span class='inline'>f\in C_c ({\mathbb R})</span>.  Let <span class='inline'>[a,b]\supseteq \operatorname{supp} (f)</span>.  Then we define 
-<span class='inline'></span>\Lambda (f) = \Lambda (f|_[a,b])<span class='inline'></span>
+<span class='inline'>.  Then we define 
+</span>\Lambda (f) = \Lambda (f|_[a,b])<span class='inline'>\Lambda (f) = \Lambda (f|_{[a,b]})</span>
 
 \enditemize
 
@@ -1404,12 +1598,16 @@ Let <span class='inline'>f\in C_c ({\mathbb R})</span>.  Then the number <span c
 
 <br><br><strong>Definition 10.1</strong>
 Let <span class='inline'>\Lambda \colon C_c ({\mathbb R})\rightarrow {\mathbb C}</span> be the Riemann integral.  Then the \em Lebesgue measure on <span class='inline'>\mathbb R</span> is the unique measure such that
-<span class='inline'></span>\int_\mathbb R fd\mu = \Lambda (f)<span class='inline'></span>
+<span class='inline'> is the unique measure such that
+</span>\int_\mathbb R fd\mu = \Lambda (f)<span class='inline'>\int_{\mathbb R} fd\mu = \Lambda (f)</span>
 whenever <span class='inline'>f\in C_c ({\mathbb R})</span>.
 <br><br>
 
 By the Riesz representation, the Lebesgue measure exists and is unique on the collection of all Borel sets.  The integral of a Borel measurable function with respect to the Lebesgue measure is termed the \em Lebesgue integral.  We will normally write
-<span class='inline'></span>\int_a^b fd\mu := \int_\mathbb R f\chi_(a,b)d\mu<span class='inline'></span>
+<span class='inline'>
+
+By the Riesz representation, the Lebesgue measure exists and is unique on the collection of all Borel sets.  The integral of a Borel measurable function with respect to the Lebesgue measure is termed the {\em Lebesgue integral}.  We will normally write
+</span>\int_a^b fd\mu := \int_\mathbb R f\chi_(a,b)d\mu<span class='inline'>\int_a^b fd\mu := \int_{\mathbb R} f\chi_{(a,b)}d\mu</span>
 
 <br><br><strong>Proposition 10.2</strong>
 Let <span class='inline'>a < b</span> be real numbers.  Then <span class='inline'>\mu (a,b) = b-a</span>.
@@ -1419,16 +1617,20 @@ Let <span class='inline'>a < b</span> be real numbers.  Then <span class='inline
 Let <span class='inline'>[c,d]\subseteq (a,b)</span> be a compact interval.  By Urysohn's lemma, there is a function <span class='inline'>f\in C_c ({\mathbb R})</span> such that <span class='inline'>\chi_{[c,d]} \leq f \leq \chi_{(a,b)}</span>.
 
 By definition of the Riemann integral:
-<span class='inline'></span>d-c \leq \int_\mathbb R f \leq b-a<span class='inline'></span>
+<span class='inline'></span>d-c \leq \int_\mathbb R f \leq b-a<span class='inline'>d-c \leq \int_{\mathbb R} f \leq b-a</span>
 
 Let <span class='inline'>c\rightarrow a</span> and <span class='inline'>d\rightarrow b</span>.  Then <span class='inline'>f\rightarrow \chi_{(a,b)}</span> and by the dominated convergence theroem, 
-<span class='inline'></span>\int_\mathbb R f \rightarrow \mu (a,b)<span class='inline'></span>
+<span class='inline'> and by the dominated convergence theroem, 
+</span>\int_\mathbb R f \rightarrow \mu (a,b)<span class='inline'>\int_{\mathbb R} f \rightarrow \mu (a,b)</span>
 
 It follows that <span class='inline'>\mu (a,b) = b-a</span>, and we are done.
 
 
 A similar computation tells us that
-<span class='inline'></span>\mu [a,b] = \mu [a,b) = \mu (a,b] = b-a<span class='inline'></span>
+<span class='inline'>
+
+A similar computation tells us that
+</span>\mu [a,b] = \mu [a,b) = \mu (a,b] = b-a<span class='inline'>\mu [a,b] = \mu [a,b) = \mu (a,b] = b-a</span>
 whenever <span class='inline'>a < b</span>.
 
 The next fundamental property of the Lebesgue measure follows from a topological property of the real line, which we will state without proof.
@@ -1467,14 +1669,15 @@ To see the first claim, suppose that <span class='inline'>x\in (r+E)\cap (s+E)</
 As for the second claim, let <span class='inline'>x\in {\mathbb R}</span>.  Construction of the set <span class='inline'>E</span> means that we can find a point <span class='inline'>y\in E</span> such that <span class='inline'>x-y \in {\mathbb Q}</span>.  But <span class='inline'>x = y + (x-y)</span> so the claim is established.
 
 We now use the above to claims to prove the theorem.  Let <span class='inline'>t\in {\mathbb Q}</span>, and define <span class='inline'>A_t := A\cap (t+E)</span>.  The set <span class='inline'>A_t</span> is measurable since it is a subset of the set <span class='inline'>A</span>.  Consider a compact subset <span class='inline'>K\subseteq A_t</span>, and let
-<span class='inline'></span>H = \bigcup_r\in \mathbb Q\cap [0,1] (r+K)<span class='inline'></span>
+<span class='inline'></span>H = \bigcup_r\in \mathbb Q\cap [0,1] (r+K)<span class='inline'>H = \bigcup_{r\in {\mathbb Q}\cap [0,1]} (r+K)</span>
 
 Then the set <span class='inline'>H</span> is bounded and measurable, so <span class='inline'>\mu (H) < \infty</span>.  The first of the above claims tells us that the sets <span class='inline'>r+K</span> are pair-wise disjoint, so
-<span class='inline'></span>\mu (H) = \sum_r\in \mathbb Q\cap [0,1] \mu (r+K) = \sum_r\in \mathbb Q\cap [0,1] \mu (K)<span class='inline'></span>
+<span class='inline'> are pair-wise disjoint, so
+</span>\mu (H) = \sum_r\in \mathbb Q\cap [0,1] \mu (r+K) = \sum_r\in \mathbb Q\cap [0,1] \mu (K)<span class='inline'>\mu (H) = \sum_{r\in {\mathbb Q}\cap [0,1]} \mu (r+K) = \sum_{r\in {\mathbb Q}\cap [0,1]} \mu (K)</span>
 by corollary 10.4.  It follows that <span class='inline'>\mu (K)=0</span> whenever <span class='inline'>K\subseteq A_t</span> is compact.
 
 So <span class='inline'>\mu (A_t) =0</span>.  But
-<span class='inline'></span>A = \bigcup_t\in \mathbb Q A_t<span class='inline'></span>
+<span class='inline'></span>A = \bigcup_t\in \mathbb Q A_t<span class='inline'>A = \bigcup_{t\in {\mathbb Q}} A_t</span>
 and it follows that <span class='inline'>\mu (A)=0</span>.
 
 
@@ -1491,13 +1694,18 @@ There are non-measurable subsets of the space <span class='inline'>\mathbb R</sp
 </p><h1>11 The Fundamental Theorem of Calculus</h1><p>
 
 By convention, when <span class='inline'>a < b</span> are real numbers, and <span class='inline'>\mu</span> is the Lebesgue measure on the space <span class='inline'>\mathbb R</span>, we simplfy our notation slightly and write just
-<span class='inline'></span>\int_a^b f(x)dx := \int_a^b fd\mu<span class='inline'></span>
+<span class='inline'>, we simplfy our notation slightly and write just
+</span>\int_a^b f(x)dx := \int_a^b fd\mu<span class='inline'>\int_a^b f(x)dx := \int_a^b fd\mu</span>
 
 If <span class='inline'>b < a</span>, we write
-<span class='inline'></span>\int_a^b f(x)dx := - \int_b^a f(x)dx<span class='inline'></span>
+<span class='inline'>, we write
+</span>\int_a^b f(x)dx := - \int_b^a f(x)dx<span class='inline'>\int_a^b f(x)dx := - \int_b^a f(x)dx</span>
 
 Linearity of the integral gives us the equation
-<span class='inline'></span>\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b f(x)dx<span class='inline'></span>
+<span class='inline'>
+
+Linearity of the integral gives us the equation
+</span>\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b f(x)dx<span class='inline'>\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b f(x)dx</span>
 whenever <span class='inline'>a,b,c\in {\mathbb R}</span>.
 
 This new notation is convenient when integating a concrete function given by some definite formula.
@@ -1506,25 +1714,29 @@ In this section we will focus on one major result, which is of absolutely vital 
 
 <br><br><strong>Theorem 11.1</strong>
 Let <span class='inline'>f\colon [a,b] \rightarrow {\mathbb C}</span> be a continuous function.  Define a function <span class='inline'>F\colon [a,b]\rightarrow {\mathbb C}</span> by the formula
-<span class='inline'></span>F(x) = \int_a^x f(y)dy<span class='inline'></span>
+<span class='inline'></span>F(x) = \int_a^x f(y)dy<span class='inline'>F(x) = \int_a^x f(y)dy</span>
 
 Then the function <span class='inline'>F</span> is differentiable on the open interval <span class='inline'>(a,b)</span>, and has a one-sided derivative at the end-points <span class='inline'>a</span> and <span class='inline'>b</span>.  In all cases, the derivative is given by the formula
-<span class='inline'></span>F'(x) = f(x)<span class='inline'></span>
+<span class='inline'></span>F'(x) = f(x)<span class='inline'>F'(x) = f(x)</span>
 <br><br>
 
 <br><i>Proof.</i>
 Let <span class='inline'>\varepsilon  > 0</span>, and let <span class='inline'>x\in [a,b]</span>.  Since the function <span class='inline'>f</span> is continuous, we can choose <span class='inline'>\delta  > 0</span> such that <span class='inline'>|f(x+h) -f(x)|  < \varepsilon</span> whenever <span class='inline'>|h| < \delta</span> and <span class='inline'>x+h\in [a,b]</span>.  
 
 Let <span class='inline'>x\in [a,b]</span>, and <span class='inline'>x+h\in [a,b]</span>.  Observe:
-<span class='inline'></span>F(x+h)- F(x)= \int_x^h+h f(y)dy<span class='inline'></span>
+<span class='inline'></span>F(x+h)- F(x)= \int_x^h+h f(y)dy<span class='inline'>F(x+h)- F(x)= \int_x^{h+h} f(y)dy</span>
 and
-<span class='inline'></span>hf(x) = f(x)\mu (x,x+h) = \int_x^x+h f(x)dy<span class='inline'></span>
+<span class='inline'></span>hf(x) = f(x)\mu (x,x+h) = \int_x^x+h f(x)dy<span class='inline'>hf(x) = f(x)\mu (x,x+h) = \int_x^{x+h} f(x)dy</span>
 
 Suppose that <span class='inline'>|h| < \delta</span>.  Then <span class='inline'>|f(y)-f(x)|  <  \varepsilon</span> whenever <span class='inline'>y\in [x,x+h]</span>, and so:
-<span class='inline'></span>\left| \int_x^x+h f(y)-f(x)dy \right| \leq \int_x^x+h |f(y) -f(x)|dy \leq \varepsilon |h|<span class='inline'></span>
+<span class='inline'>, and so:
+</span>\left| \int_x^x+h f(y)-f(x)dy \right| \leq \int_x^x+h |f(y) -f(x)|dy \leq \varepsilon |h|<span class='inline'>\left| \int_x^{x+h} f(y)-f(x)dy \right| \leq \int_x^{x+h} |f(y) -f(x)|dy \leq \varepsilon |h|</span>
 
 Thus:
-<span class='inline'></span>|F(x+h) -F(x) - hf(x)| \leq \varepsilon |h|<span class='inline'></span>
+<span class='inline'>
+
+Thus:
+</span>|F(x+h) -F(x) - hf(x)| \leq \varepsilon |h|<span class='inline'>|F(x+h) -F(x) - hf(x)| \leq \varepsilon |h|</span>
 whenver <span class='inline'>|h| < \delta</span>.  It follows that the function <span class='inline'>F</span> is differentiable, and <span class='inline'>F'(x) =f(x)</span> as claimed.
 
 
@@ -1532,17 +1744,18 @@ In actual fact, the more useful form of the fundmantal theorem of calculus is a 
 
 <br><br><strong>Corollary 11.2</strong>
 Let <span class='inline'>F\colon [a,b]\rightarrow {\mathbb C}</span> be a function with a continuous derivative <span class='inline'>f</span>.  Then
-<span class='inline'></span>\int_a^b f(x)dx = F(b)-F(a)<span class='inline'></span>
+<span class='inline'>.  Then
+</span>\int_a^b f(x)dx = F(b)-F(a)<span class='inline'>\int_a^b f(x)dx = F(b)-F(a)</span>
 <br><br>
 
 <br><i>Proof.</i>
 Define
-<span class='inline'></span>F_0 (x) = \int_a^x f(y)dy<span class='inline'></span>
+<span class='inline'></span>F_0 (x) = \int_a^x f(y)dy<span class='inline'>F_0 (x) = \int_a^x f(y)dy</span>
 
 Then by the above version of the fundamental theorem of calculus, <span class='inline'>F_0'(x) = f(x)</span> whenever <span class='inline'>x\in [a,b]</span>.  Hence <span class='inline'>F_0'(x) = F'(x)</span> whenever <span class='inline'>x\in [a,b]</span>, so there is a constant <span class='inline'>C</span> such that <span class='inline'>F_0(x) = F(x) +C</span> for all <span class='inline'>x\in [a,b]</span>.
 
 We know that <span class='inline'>F_0 (a)=0</span>.  Therefore <span class='inline'>C=-F(a)</span>.  We see that
-<span class='inline'></span>int_a^b f(x)dx = F_0 (b) = F(b) - F(a)<span class='inline'></span> 
+<span class='inline'></span>int_a^b f(x)dx = F_0 (b) = F(b) - F(a)<span class='inline'>int_a^b f(x)dx = F_0 (b) = F(b) - F(a)</span> 
 as claimed.
 
 
@@ -1582,7 +1795,7 @@ The <span class='inline'>\sigma</span>-algebra <span class='inline'>{\mathcal M}
 <br><br>
 
 Given a subset <span class='inline'>E\subseteq \Omega_1 \times \Omega_2</span>, and points <span class='inline'>x\in Omega_1</span> and <span class='inline'>y\in \Omega_2</span>, let us write
-<span class='inline'></span>E_x = \ y\in \Omega_2 |(x,y)\in E \ \qquad E^y = \ x\in \Omega_1 |(x,y)\in E \<span class='inline'></span>
+<span class='inline'></span>E_x = \ y\in \Omega_2 |(x,y)\in E \ \qquad E^y = \ x\in \Omega_1 |(x,y)\in E \<span class='inline'>E_x = \{ y\in \Omega_2 |(x,y)\in E \} \qquad E^y = \{ x\in \Omega_1 |(x,y)\in E \}</span>
 
 <br><br><strong>Proposition 12.4</strong>
 Let <span class='inline'>E\in {\mathcal M}_{12}</span>.  Then <span class='inline'>E_xin {\mathcal M}_1</span> and <span class='inline'>E^y\in {\mathcal M}_2</span> whenever <span class='inline'>x\in \Omega_1</span> and <span class='inline'>y\in \Omega_2</span>.
@@ -1596,7 +1809,7 @@ The corresponding statement concerning sets of the form <span class='inline'>E^y
 
 <br><br><strong>Corollary 12.5</strong> 
 Let <span class='inline'>X</span> be a topological space, and let <span class='inline'>f\colon \Omega_1 \times \Omega_2 \rightarrow X</span> be a measurable function.  Choose points <span class='inline'>x\in \Omega_1</span> and <span class='inline'>y\in \Omega_2</span>.  Then the functions
-<span class='inline'></span>f(x,-) \colon \Omega_2 \rightarrow X \qquad f(-,y) \colon \Omega_1 \rightarrow X<span class='inline'></span>
+<span class='inline'></span>f(x,-) \colon \Omega_2 \rightarrow X \qquad f(-,y) \colon \Omega_1 \rightarrow X<span class='inline'>f(x,-) \colon \Omega_2 \rightarrow X \qquad f(-,y) \colon \Omega_1 \rightarrow X</span>
 are measurable.
 <strong>proof to be filled in!</strong>
 <br><br>
@@ -1613,56 +1826,69 @@ The following result lets us define measures on products of <span class='inline'
 
 <br><br><strong>Theorem 12.8</strong> 
 Let <span class='inline'>\Omega_1</span> and <span class='inline'>\Omega_2</span> be <span class='inline'>\sigma</span>-finite measure spaces.  Let <span class='inline'>E\subseteq \Omega_1\times \Omega_2</span> be a measurable subset.  Then we can define measurable functions <span class='inline'>f\colon \Omega_1\rightarrow [0,\infty]</span> and <span class='inline'>g\colon \Omega_1\rightarrow [0,\infty]</span> by the formulae
-<span class='inline'></span>f_E(x) = \mu_2 (E_x) \qquad g_E(y) = \mu_1 (E^y)<span class='inline'></span>
+<span class='inline'></span>f_E(x) = \mu_2 (E_x) \qquad g_E(y) = \mu_1 (E^y)<span class='inline'>f_E(x) = \mu_2 (E_x) \qquad g_E(y) = \mu_1 (E^y)</span>
 respectively.  Further,
-<span class='inline'></span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'></span>
+<span class='inline'>
+respectively.  Further,
+</span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'>\int_{\Omega_1} f_E = \int_{\Omega_2} g_E</span>
 <br><br>
 
 <br><i>Proof.</i>
 Measurability of the functions <span class='inline'>f_E</span> and <span class='inline'>g_E</span> associated as above to a measurable set <span class='inline'>E\subseteq X\times Y</span> follows from the above proposition and corollary; all that remains it to prove the main equation.
 
 Let <span class='inline'>{\mathcal M}</span> be the set of all measurable subsets <span class='inline'>E\subseteq \Omega_1 \times \Omega_2</span> such that the equation
-<span class='inline'></span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'></span>
+<span class='inline'> such that the equation
+</span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'>\int_{\Omega_1} f_E = \int_{\Omega_2} g_E</span>
 holds.
 
 Let <span class='inline'>E=A\times B</span> be a measurable rectangle.  Then <span class='inline'>f_E = \mu_2 (B)\chi_A</span> and <span class='inline'>g_E = \mu_1 (A)\chi_B</span>.  It follows that
-<span class='inline'></span>\int_\Omega_1 f_E = \int_A \mu_2 (B) = \mu_1 (A) \mu_2 (B) \qquad \int_\Omega_1 g_E = \int_B \mu_1 (A) = \mu_1 (A) \mu_2 (B)<span class='inline'></span>
+<span class='inline'>.  It follows that
+</span>\int_\Omega_1 f_E = \int_A \mu_2 (B) = \mu_1 (A) \mu_2 (B) \qquad \int_\Omega_1 g_E = \int_B \mu_1 (A) = \mu_1 (A) \mu_2 (B)<span class='inline'>\int_{\Omega_1} f_E = \int_A \mu_2 (B) = \mu_1 (A) \mu_2 (B) \qquad \int_{\Omega_1} g_E = \int_B \mu_1 (A) = \mu_1 (A) \mu_2 (B)</span>
 so <span class='inline'>E\in {\mathcal M}</span>.
 
 Let <span class='inline'>(E_n)</span> be a sequence of sets in the collection <span class='inline'>\mathcal M</span> such that <span class='inline'>E_n\subseteq E_{n+1}</span> for all <span class='inline'>n</span>.  Write
-<span class='inline'></span>E= \bigcup_n=1^\infty E_n<span class='inline'></span>
+<span class='inline'></span>E= \bigcup_n=1^\infty E_n<span class='inline'>E= \bigcup_{n=1}^\infty E_n</span>
 
 Then the sequences of functions <span class='inline'>(f_{E_n})</span> and <span class='inline'>(g_{E_n})</span> are monotonic increasing, with limits <span class='inline'>f_E</span> and <span class='inline'>g_E</span> respectively.  We know that <span class='inline'>E_n \in {\mathcal M}</span> for all <span class='inline'>n</span>, so that the equation
-<span class='inline'></span>\int_\Omega_1 f_E_n = \int_\Omega_2 g_E_n<span class='inline'></span>
+<span class='inline'>, so that the equation
+</span>\int_\Omega_1 f_E_n = \int_\Omega_2 g_E_n<span class='inline'>\int_{\Omega_1} f_{E_n} = \int_{\Omega_2} g_{E_n}</span>
 holds for all <span class='inline'>n</span>.  The monotone convergence theorem gives us the equation
-<span class='inline'></span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'></span>
+<span class='inline'>.  The monotone convergence theorem gives us the equation
+</span>\int_\Omega_1 f_E = \int_\Omega_2 g_E<span class='inline'>\int_{\Omega_1} f_E = \int_{\Omega_2} g_E</span>
 and so tells us that <span class='inline'>E\in {\mathcal M}</span>.
 
 As a consequence of the above calculation, we can easily show that the union of a discrete sequence of measurable sets in the set <span class='inline'>\mathcal M</span> also belongs to the set <span class='inline'>\mathcal M</span>.  Let <span class='inline'>(E_n)</span> be a sequence of sets in the collection <span class='inline'>\mathcal M</span> such that <span class='inline'>E_1\subseteq A\times B</span>, where <span class='inline'>\mu_1 (A) < \infty</span>, <span class='inline'>\mu_2 (B) < \infty</span>, and <span class='inline'>E_n\supseteq E_{n+1}</span> for all <span class='inline'>n</span>.  Write
-<span class='inline'></span>E= \bigcup_n=1^\infty E_n<span class='inline'></span>
+<span class='inline'></span>E= \bigcup_n=1^\infty E_n<span class='inline'>E= \bigcup_{n=1}^\infty E_n</span>
 
 Then an argument similar to the above one, only using the dominated convergence theorem rather than the monotone convergence theorem, tells us that the set <span class='inline'>E</span> belongs to the collection <span class='inline'>\mathcal M</span>.
 
 Now, let <span class='inline'>\Omega_1 = \cup_{n=1}^\infty \Omega_1^{(n)}</span> and <span class='inline'>\Omega_2 = \cup_{n=1}^\infty \Omega_2^{(n)}</span>, where <span class='inline'>\mu_1 (\Omega_1^{(m)})  < \infty</span> and <span class='inline'>\mu_2 (\Omega_2^{(n)})  < \infty</span> for all <span class='inline'>m,n\in {\mathbb N}</span>.  Given a set <span class='inline'>E\subseteq \Omega_1\times \Omega_2</span>, let us write
-<span class='inline'></span>E_mn = E \cap (\Omega_1^(m) \times \Omega_2^(n)<span class='inline'></span>
+<span class='inline'></span>E_mn = E \cap (\Omega_1^(m) \times \Omega_2^(n)<span class='inline'>E_{mn} = E \cap (\Omega_1^{(m)} \times \Omega_2^{(n)}</span>
 
 Let <span class='inline'>{\mathcal C}</span> be the collection of all measurable sets <span class='inline'>E\subseteq \Omega_1 \times \Omega_2</span> such that <span class='inline'>E_{mn}\in {\mathcal M}</span> for all natural numbers <span class='inline'>m</span> and <span class='inline'>n</span>.  Then the above calculations tell us that the collection <span class='inline'>\mathcal C</span> is a monotone class that contains every elementary rectangle.  It follows from lemma 12.3 <span class='inline'>{\mathcal M}_{12}\subseteq {\mathcal C}</span>, and we are done.
 
 
 To paraphrase the above theorem, the equation
-<span class='inline'></span>\int_\Omega_1 \left( \int_\Omega_2  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'></span> 
+<span class='inline'>
+
+To paraphrase the above theorem, the equation
+</span>\int_\Omega_1 \left( \int_\Omega_2  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'>\int_{\Omega_1} \left( \int_{\Omega_2}  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)</span> 
 holds for every measurable set <span class='inline'>E\subseteq \Omega_1 \times \Omega_2</span>.
 
 <br><br><strong>Definition 12.9</strong>
 Let <span class='inline'>\Omega_1</span> and <span class='inline'>\Omega_2</span> be <span class='inline'>\sigma</span>-finite measure sets.  Then we define a measure <span class='inline'>\mu</span> on the product <span class='inline'>\Omega_1 \times \Omega_2</span> by writing
-<span class='inline'></span>\mu (E) := \int_\Omega_1 \left( \int_\Omega_2  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'></span> 
+<span class='inline'> by writing
+</span>\mu (E) := \int_\Omega_1 \left( \int_\Omega_2  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'>\mu (E) := \int_{\Omega_1} \left( \int_{\Omega_2}  \chi_E (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} \chi_E (x,y) d\mu_1 (x) \right) d\mu_2 (y)</span> 
 whenever the set <span class='inline'>E\subseteq \Omega_1 \times \Omega_2</span> is measurable.
 <br><br>
 
 It is easy to check that the above definition satisfies the axioms required of a measure.  As a special case of the above definition, we can now define a Lebesgue measure on the space <span class='inline'>{\mathbb R}^n</span> by viewing it as a product of copies of the space <span class='inline'>\mathbb R</span>.  This measure is defined on every Borel set, and the measure of the <span class='inline'>n</span>-dimensional cuboid
-<span class='inline'></span>[a_1 , b_1] \times \cdots \times [a_n , b_n]<span class='inline'></span>
+<span class='inline'>-dimensional cuboid
+</span>[a_1 , b_1] \times \cdots \times [a_n , b_n]<span class='inline'>[a_1 , b_1] \times \cdots \times [a_n , b_n]</span>
 is the product
-<span class='inline'></span>(b_1 - a_1)(b_2-a_2) \cdots (b_n-a_n)<span class='inline'></span>
+<span class='inline'>
+is the product
+</span>(b_1 - a_1)(b_2-a_2) \cdots (b_n-a_n)<span class='inline'>(b_1 - a_1)(b_2-a_2) \cdots (b_n-a_n)</span>
  
 </p><h1>13 Fubini's Theorem</h1><p>
 
@@ -1670,18 +1896,24 @@ In the previous section, we saw how to define measures on products of <span clas
 
 <br><br><strong>Theorem 13.1</strong>
 Let <span class='inline'>\Omega_1</span> and <span class='inline'>\Omega_2</span> be <span class='inline'>\sigma</span>-finite measure spaces, and let <span class='inline'>f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}</span> be an integrable function.  Then the functions <span class='inline'>f(x,-)</span> and <span class='inline'>f(-,y)</span> are integrable almost everywhere, and the functions
-<span class='inline'></span>x\mapsto \int_\Omega_2 f(x,y) d\mu_2 (y) \qquad y\mapsto \int_\Omega_2 f(x,y) d\mu_2 (y)<span class='inline'></span>
+<span class='inline'></span>x\mapsto \int_\Omega_2 f(x,y) d\mu_2 (y) \qquad y\mapsto \int_\Omega_2 f(x,y) d\mu_2 (y)<span class='inline'>x\mapsto \int_{\Omega_2} f(x,y) d\mu_2 (y) \qquad y\mapsto \int_{\Omega_2} f(x,y) d\mu_2 (y)</span>
 are integrable.  Moreover,
-<span class='inline'></span>\int_\Omega_1 \times \Omega_2 f(x,y) d\mu (x,y)
-=\int_\Omega_1 \left( \int_\Omega_2  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 f (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'></span> 
+<span class='inline'>
+are integrable.  Moreover,
+</span>\int_\Omega_1 \times \Omega_2 f(x,y) d\mu (x,y)
+=\int_\Omega_1 \left( \int_\Omega_2  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 f (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'>\int_{\Omega_1 \times \Omega_2} f(x,y) d\mu (x,y)
+=\int_{\Omega_1} \left( \int_{\Omega_2}  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} f (x,y) d\mu_1 (x) \right) d\mu_2 (y)</span> 
 <br><br>
 
 <br><i>Proof.</i>
 Let <span class='inline'>s\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}</span> be a simple function.  Then the functions <span class='inline'>s(x,-)</span> and <span class='inline'>s(-,y)</span> are integrable almost everywhere, the functions
-<span class='inline'></span>x\mapsto \int_\Omega_2 s(x,y) d\mu_2 (y) \qquad y\mapsto \int_\Omega_2 s(x,y) d\mu_2 (y)<span class='inline'></span>
+<span class='inline'></span>x\mapsto \int_\Omega_2 s(x,y) d\mu_2 (y) \qquad y\mapsto \int_\Omega_2 s(x,y) d\mu_2 (y)<span class='inline'>x\mapsto \int_{\Omega_2} s(x,y) d\mu_2 (y) \qquad y\mapsto \int_{\Omega_2} s(x,y) d\mu_2 (y)</span>
 are integrable, and the equation
-<span class='inline'></span>\int_\Omega_1 \times \Omega_2 s(x,y) d\mu (x,y)
-=\int_\Omega_1 \left( \int_\Omega_2  s (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 s (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'></span> 
+<span class='inline'>
+are integrable, and the equation
+</span>\int_\Omega_1 \times \Omega_2 s(x,y) d\mu (x,y)
+=\int_\Omega_1 \left( \int_\Omega_2  s (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_\Omega_2 \left( \int_\Omega_1 s (x,y) d\mu_1 (x) \right) d\mu_2 (y)<span class='inline'>\int_{\Omega_1 \times \Omega_2} s(x,y) d\mu (x,y)
+=\int_{\Omega_1} \left( \int_{\Omega_2}  s (x,y) d\mu_2 (y) \right) d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} s (x,y) d\mu_1 (x) \right) d\mu_2 (y)</span> 
 holds by theorem 12.8 and the definition of the product measure.
 
 Now, suppose that <span class='inline'>f(x,y)\geq 0</span> for all points <span class='inline'>(x,y)\in \Omega_1 \times \Omega_2</span>.  Since the function <span class='inline'>f</span> is measurable, by proposition 4.2 there is a monotonically increasing sequence, <span class='inline'>(s_n)</span>, of simple functions, with point-wise limit <span class='inline'>f</span>.  The result therefore follows in this case by the monotone convergence theorem.
@@ -1693,9 +1925,12 @@ For the above theorem to be useful, we would like a criterion for a function <sp
 
 <br><br><strong>Theorem 13.2</strong>
 Let <span class='inline'>\Omega_1</span> and <span class='inline'>\Omega_2</span> be <span class='inline'>\sigma</span>-finite measure spaces, and let <span class='inline'>f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}</span> be an integrable function.  Suppose that
-<span class='inline'></span>\int_\Omega_1 \left( \int_\Omega_2  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'></span>
+<span class='inline'> be an integrable function.  Suppose that
+</span>\int_\Omega_1 \left( \int_\Omega_2  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'>\int_{\Omega_1} \left( \int_{\Omega_2}  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty</span>
 or
-<span class='inline'></span>\int_\Omega_2 \left( \int_\Omega_1 |f (x,y)| d\mu_1 (x) \right) d\mu_2 (y) <  \infty<span class='inline'></span> 
+<span class='inline'>
+or
+</span>\int_\Omega_2 \left( \int_\Omega_1 |f (x,y)| d\mu_1 (x) \right) d\mu_2 (y) <  \infty<span class='inline'>\int_{\Omega_2} \left( \int_{\Omega_1} |f (x,y)| d\mu_1 (x) \right) d\mu_2 (y) <  \infty</span> 
 Then the function <span class='inline'>f\colon \Omega_1\times \Omega_2 \rightarrow {\mathbb C}</span> is integrable.
 <br><br>
 
@@ -1707,10 +1942,14 @@ Combining the two theorems in this section (ie: the two halves of Fubini's theor
 
 <br><br><strong>Corollary 13.3</strong>
 Let <span class='inline'>\Omega_1</span> and <span class='inline'>\Omega_2</span> be <span class='inline'>\sigma</span>-finite measure spaces, and let <span class='inline'>f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}</span> be an integrable function.  Suppose that
-<span class='inline'></span>\int_\Omega_1 \left( \int_\Omega_2  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'></span>
+<span class='inline'> be an integrable function.  Suppose that
+</span>\int_\Omega_1 \left( \int_\Omega_2  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'>\int_{\Omega_1} \left( \int_{\Omega_2}  |f (x,y)| d\mu_2 (y) \right) d\mu_1 (x)  < \infty</span>
 
 Then
-<span class='inline'></span>\int_\Omega_2 \left( \int_\Omega_1 f (x,y) d\mu_1 (x) \right) d\mu_2 (y) <  \infty = \int_\Omega_1 \left( \int_\Omega_2  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'></span>
+<span class='inline'>
+
+Then
+</span>\int_\Omega_2 \left( \int_\Omega_1 f (x,y) d\mu_1 (x) \right) d\mu_2 (y) <  \infty = \int_\Omega_1 \left( \int_\Omega_2  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)  < \infty<span class='inline'>\int_{\Omega_2} \left( \int_{\Omega_1} f (x,y) d\mu_1 (x) \right) d\mu_2 (y) <  \infty = \int_{\Omega_1} \left( \int_{\Omega_2}  f (x,y) d\mu_2 (y) \right) d\mu_1 (x)  < \infty</span>
 <strong>proof to be filled in!</strong>
 <br><br>
 

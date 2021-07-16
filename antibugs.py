@@ -83,6 +83,7 @@ def no_more_bugs_begin(input):
     input = no_more_html_bugs(input)
     input = no_more_dolar_bugs_begin(input)
     input = no_more_textup_bugs_begin(input)
+    
     return input
 
 def no_more_bugs_end(input):
