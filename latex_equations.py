@@ -7,13 +7,45 @@ from textfilters import *
 def apply_latex_protection(input):
     multiline = ["split", "multline","align","breqn","equation"]
     
-    input.expand([JunkSearch("\\begin{" + elem + "}",save_split=False) for elem in multiline])
-    input.expand([JunkSearch("\\end{" + elem + "}",save_split=False) for elem in multiline])
+    expandon = [JunkSearch("\\begin{" + elem + "}",save_split=False) for elem in multiline]
+    expandon += [JunkSearch("\\end{" + elem + "}",save_split=False) for elem in multiline]
+
     
-    input.expand([Label,Cases,LatexText,ReplaceSearch("\mathbbm","\mathbb"),ReplaceSearch("\widebar","\overline")])
-    input.expand([GuardianSearch("{",save_split=False),GuardianSearch("}",save_split=False)])
+    #"array"
+
+    expandon += [Label,Cases,LatexText,ReplaceSearch("\mathbbm","\mathbb"),ReplaceSearch("\widebar","\overline")]
+    expandon += [TexArray,GuardianSearch("{",save_split=False),GuardianSearch("}",save_split=False)]
+    input.expand(expandon)
     return input
 
+
+class TexArray(Element):
+    def __init__(self,modifiable_content,parent):
+        super().__init__(modifiable_content,parent)
+        
+    @staticmethod
+    def position(input):
+        if "\\begin{array}" in input:
+            return position_of(input,"\\begin{array}")
+        else:
+            return -1
+        
+    @staticmethod
+    def split_and_create(input,parent):
+        pre,content,post = begin_end_split(input,"\\begin{array}","\\end{array}")
+        out = TexArray(content,parent)
+        out.expand([LatexText])
+        out.expand([GuardianSearch("\\\\"),GuardianSearch("\\&"),GuardianSearch("&")])
+        
+        return pre,out,post
+
+    def to_string(self):
+        out = "\\begin{array}"
+        for child in self.children:
+            out += child.to_string()
+
+        out += "\\end{array}"
+        return out
 
 class BeginEquationEnumElement(Element):
     def __init__(self,modifiable_content,parent):

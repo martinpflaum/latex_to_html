@@ -33,20 +33,20 @@
    
   <script>
     var nav_enabled = false;
-    function adjust_fit_content_width(elem_name,right_border) {
-        document.getElementById(elem_name).style.width = "fit-content";
+    function adjust_fit_content_width(element,right_border) {
+        element.style.width = "fit-content";
         var width = window.getComputedStyle(document.getElementById('sidenav')).width;
         width = (parseInt(width.replace(/px/,""))+right_border)+"px"
-        document.getElementById(elem_name).style.width = width; 
+        element.style.width = width; 
     }
-    function adjust_fit_content_height(elem_name,right_border) {
-        document.getElementById(elem_name).style.height = "fit-content";
+    function adjust_fit_content_height(element,right_border) {
+        element.style.height = "fit-content";
         var height = window.getComputedStyle(document.getElementById('sidenav')).height;
         height = (parseInt(height.replace(/px/,""))+right_border)+"px"
-        document.getElementById(elem_name).style.height = height; 
+        element.style.height = height; 
     }
     function enable_nav() {
-        adjust_fit_content_width("sidenav",50)
+        adjust_fit_content_width(document.getElementById("sidenav"),50)
         document.getElementById("enable_nav").style.display = "none";
         document.getElementById("disable_nav").style.display = "table";
         nav_enabled=true

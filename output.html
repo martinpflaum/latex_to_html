@@ -67,10 +67,22 @@
         display: inline-block;
     }
     
-    .katex-display {
+    
+    .katex-display{
+    overflow-y: hidden;
     overflow-x: auto;
-    overflow-y: visible;
     }
+
+
+    
+    .katex-display>.katex>.katex-html>.tag {
+    margin-left: 10px;
+    position: relative;
+    right: 0;
+    color: hsla(206, 90%, 20%, 0.7);
+    }
+
+
   </style>
     
   
@@ -400,8 +412,8 @@ As a corollary, the composite of a measurable and a continuous function is measu
 <br><br><strong>Example 3.1.13</strong> 
   Let <span class='inline'>X</span> be a measure space, and let <span class='inline'>E\subseteq X</span> be a measurable set.  Then the function
   <span class='inline'>\chi_E \colon X\rightarrow {\mathbb C}</span> given by the formula
-  <br><br><span class='display'>\chi_E (x) = \left\{ \begin{array}{ll} 1  x\in E </span><br><br><span class='display'>
-  0  x\not\in E </span><br><br><span class='display'>
+  <br><br><span class='display'>\chi_E (x) = \left\{ \begin{array}{ll} 1 & x\in E \\
+  0 & x\not\in E \\
   \end{array} \right.</span><br>
 is measurable.
 <br><br>
@@ -560,8 +572,8 @@ Let <span class='inline'>\Omega</span> be a measurable space.  For any measurabl
 <br><br><strong>Example 3.2.3</strong>
 Let <span class='inline'>\Omega</span> be a measurable space, and let <span class='inline'>x_0 \in \Omega</span>.  For any measurable set <span class='inline'>E\subseteq \Omega</span>, let us define
 <br><br><span class='display'>\mu (E) = \left\{ \begin{array}{ll}
-1  x_0 \in E </span><br><br><span class='display'>
-0  x_0 \not\in E </span><br><br><span class='display'>
+1 & x_0 \in E \\
+0 & x_0 \not\in E \\
 \end{array} \right.</span><br>
 
 Then <span class='inline'>\mu</span> is a measure on <span class='inline'>\Omega</span>, called the \em Dirac measure.
@@ -646,8 +658,8 @@ Let <span class='inline'>n\in {\mathbb N}</span>, and <span class='inline'>t\in 
 
 Define
 <br><br><span class='display'>\varphi_n (t) = \left\{ \begin{array}{ll}
-k_n (t)2^{-n}  0\leq t <  n </span><br><br><span class='display'>
-n  n\leq t\leq \infty </span><br><br><span class='display'>
+k_n (t)2^{-n} & 0\leq t <  n \\
+n & n\leq t\leq \infty \\
 \end{array} \right.</span><br>
 
 The function <span class='inline'>\varphi_n \colon [0,\infty ]\rightarrow [0,\infty ]</span> is a Borel function, and
@@ -2158,9 +2170,9 @@ is called a <i>topological vector space</i> (<i>over</i> <span class='inline'>R<
     The homothety <span class='inline'>\ell_{t,w}</span> is continuous since addition and multiplication by a scalar
     are continuous maps on a \textt.v.s.Since for all <span class='inline'>v\in V</span> 
     <br><br><span class='display'> \tag{4.2.1}
-      \nonumber
+      
        \ell_{t^{-1},-t^{-1}w}\circ \ell_{t,w} (v) = t^{-1} (tv +w) - t^{-1}w = v, \text{ and}</span><br><br><span class='display'>
-      \nonumber
+      
        \ell_{t,w} \circ \ell_{t^{-1},-t^{-1}w} (v) = t (t^{-1}v  - t^{-1}w) + w = v
     </span><br><br>
     the homothety <span class='inline'>\ell_{t,w}</span>  is invertible, and its inverse is <span class='inline'>\ell_{t^{-1},-t^{-1}w}</span>.
@@ -2460,9 +2472,9 @@ is called a <i>topological vector space</i> (<i>over</i> <span class='inline'>R<
   <span class='inline'>R</span>-vector spaces where addition and scalar multiplication on the hom-spaces
   <span class='inline'>\operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F})</span>  are given by
   <br><br><span class='display'> \tag{4.2.2}
-  \nonumber  
+    
     +:\:\operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F}) \times \operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F}) \to \operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F}),\:
-        (f,g) \mapsto f+g = \left(\mathrm{E} \ni v \mapsto f(v)+g(v)\in \mathrm{F}\right), </span><br><br><span class='display'> \nonumber
+        (f,g) \mapsto f+g = \left(\mathrm{E} \ni v \mapsto f(v)+g(v)\in \mathrm{F}\right), </span><br><br><span class='display'> 
     \cdot:\:R  \times \operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F}) \to \operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F}),\:
         (r,f) \mapsto r \cdot f = \left(\mathrm{E} \ni v \mapsto r \cdot f(v) \in \mathrm{F}\right) .
   </span><br><br>
@@ -2492,12 +2504,12 @@ is called a <i>topological vector space</i> (<i>over</i> <span class='inline'>R<
   <span class='inline'>f,f_1,f_2\in \operatorname{Hom}\nolimits (\mathrm{E},\mathrm{F})</span>, <span class='inline'>g,g_1,g_2 \in \operatorname{Hom}\nolimits (\mathrm{F},\mathrm{G})</span>,
   <span class='inline'>r\in R</span>, and <span class='inline'>v\in \mathrm{E}</span> show:
   <br><br><span class='display'> \tag{4.2.3}
-    \nonumber
-    (f \circ (g_1+g_2)) (v) = f( (g_1+g_2) (v) ) = f( g_1(v) +g_2(v) ) = </span><br><br><span class='display'> \nonumber
-     \quad = f\circ g_1(v) + f\circ g_2(v) =  (f\circ g_1+ f\circ g_2) (v), </span><br><br><span class='display'> \nonumber
-    (f \circ (r g)) (v) = f( (rg) (v) ) = f(r g(v))  = r f( g(v)) =  (r(f\circ g)) (v),  </span><br><br><span class='display'> \nonumber
-    ((f_1+f_2) \circ g) (v) = (f_1+f_2) ( g (v)) = f_1(g(v)) + f_2 (g(v)) = </span><br><br><span class='display'> \nonumber
-     \quad = f_1\circ g(v) + f_2\circ g(v) =  (f_1\circ g+ f_2\circ g) (v), </span><br><br><span class='display'> \nonumber
+    
+    (f \circ (g_1+g_2)) (v) = f( (g_1+g_2) (v) ) = f( g_1(v) +g_2(v) ) = </span><br><br><span class='display'> 
+     \quad = f\circ g_1(v) + f\circ g_2(v) =  (f\circ g_1+ f\circ g_2) (v), </span><br><br><span class='display'> 
+    (f \circ (r g)) (v) = f( (rg) (v) ) = f(r g(v))  = r f( g(v)) =  (r(f\circ g)) (v),  </span><br><br><span class='display'> 
+    ((f_1+f_2) \circ g) (v) = (f_1+f_2) ( g (v)) = f_1(g(v)) + f_2 (g(v)) = </span><br><br><span class='display'> 
+     \quad = f_1\circ g(v) + f_2\circ g(v) =  (f_1\circ g+ f_2\circ g) (v), </span><br><br><span class='display'> 
     ((rf) \circ g) (v) = (rf)( g (v)) = r (f(g(v)))  = r (f \circ g (v)) =  (r(f\circ g)) (v) .
   </span><br><br>
   Hence <span class='inline'>R\text{-}\mathsf{TVS}</span> is a category enriched over the category of <span class='inline'>R</span>-vector spaces.
@@ -4323,7 +4335,7 @@ respectively by the  <i>polarization identity for</i> <span class='inline'>\math
 <br><br>
 <br><i>Proof.</i>
 The forward direction is a consequence of
-label_error, Eq.~(6.1.1). 
+6.1, Eq.~(6.1.1). 
 To show the backward direction we consider two cases <span class='inline'>\mathbb{K} = \mathbb{R}</span> and 
 <span class='inline'>\mathbb{K} = \mathbb{C}</span> separately.
 
@@ -6160,7 +6172,7 @@ the maps <span class='inline'>f+g</span> and <span class='inline'>rf</span> are 
   <span class='inline'>\prod_{i\in I} M_i \to M_k</span> and <span class='inline'>\prod_{j\in J} M_j \to M_k</span> whenever <span class='inline'>k\in J \subset I</span>. 
   Likewise we use the same notation for the two canonical embeddings 
   <span class='inline'>M_k \hookrightarrow \prod_{i\in I} M_i </span> and <span class='inline'>M_k \hookrightarrow \prod_{j\in J} M_j </span>
-  defined in label_error and denote them both by <span class='inline'>\iota_k</span>.
+  defined in 7.1 and denote them both by <span class='inline'>\iota_k</span>.
 
   
   </li></ol><p>
@@ -6839,7 +6851,6 @@ sometimes even impossible to construct or even define
     for (var i = 0; i < math_inline.length; i++) {
       try {
         katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
-        
       }catch (e) {
       }
     }
@@ -6848,7 +6859,6 @@ sometimes even impossible to construct or even define
     for (var i = 0; i < math_display.length; i++) {
 	    try {
       katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
-        
       }catch (e) {
       }
     }

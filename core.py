@@ -683,6 +683,7 @@ def do_newenvironment(input):
 
 
 class TheoremElement(SectionEnumerate):
+    #hsla(206, 90%, 20%, 0.7);
     def __init__(self,modifiable_content,section_number,parent,display_name,theorem_env_name,enum_parent_class):
         super().__init__(modifiable_content,parent,theorem_env_name,enum_parent_class)
         self.section_number = section_number 
@@ -805,7 +806,7 @@ def convert_latex(input,all_classes_prio):
     document.expand([JunkSearch("{",save_split=False),JunkSearch("}",save_split=False)])
     document.expand([JunkSearch("\\ ",save_split=False)])
     #pre_content are just commands
-    print("processing finished! now the final file is created.")
+    print("processing finished! now the final file will be created.")
     document._finish_up()
     out = document.to_string()
     out = antibugs.no_more_bugs_end(out)    
