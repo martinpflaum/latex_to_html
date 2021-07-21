@@ -135,17 +135,17 @@ def split_on_next(input,split_on,save_split = True):
     return pre, post
 
 
-def begin_end_split_old(input,beginname,endname):
+def begin_end_split_old(input,beginname,endname,save_split=False):
     """
     """
-    pre,tmp = split_on_next(input,beginname)
-    middle,post = split_on_next(tmp,endname)
+    pre,tmp = split_on_next(input,beginname,save_split)
+    middle,post = split_on_next(tmp,endname,save_split)
     return pre,middle,post
-def begin_end_split(input,beginname,endname):
+def begin_end_split(input,beginname,endname,save_split=False):
     """
     """
     #print("begin_end ",beginname)
-    return begin_end_split_old(input,beginname,endname)
+    return begin_end_split_old(input,beginname,endname,save_split)
     pre,xtmp = split_on_next(input,beginname)
     #elem = beginname + elem
     #middle,post = split_on_first_brace(elem,beginname,endname)
@@ -180,6 +180,7 @@ def position_of(input,beginname,save_split = True):
         return len(tmp[0])
     else:
         return -1
+call_num = 0
 
 class Element():
     """
@@ -308,7 +309,16 @@ class Element():
     #def develop(self):
 
     def expand(self,all_classes):
+        global call_num 
         while True:
+            call_num = call_num + 1
+
+            if call_num % 100==0:
+                print(".",end='')
+        
+            if call_num % 2000==0:
+                print("\nnumber of expand calls ",call_num," ")
+                
             if self._process_children(all_classes) == False:
                 break
 
@@ -390,24 +400,42 @@ class SectionEnumerate(Element):
     
     def __init__(self,modifiable_content,parent,theorem_env_name,enum_parent_class):
         super().__init__(modifiable_content,parent)
+        if (not isinstance(enum_parent_class,list)) and (not enum_parent_class is None):            
+            enum_parent_class = [enum_parent_class]
         self.enum_parent_class = enum_parent_class
         self.theorem_env_name = theorem_env_name
+    
+    def label_name(self):
+        return self.get_section_enum()[:-1]
+
+    def try_get_section_enum(self,class_name):
+        if class_name is None:
+            return str(self.section_number) + "."
+        else:
+            search_func = lambda instance : has_value_equal(instance,"theorem_env_name",class_name)
+
+            section_enum = self.search_up_on_func(search_func)
+            
+            if section_enum is None:
+                return None
+            else:
+                out = section_enum.get_section_enum()
+                out += str(self.section_number) + "."
+                return out
+
     def get_section_enum(self):
 
         if self.enum_parent_class is None:
             return str(self.section_number) + "."
         else:
-            search_func = lambda instance : has_value_equal(instance,"theorem_env_name",self.enum_parent_class)
-
-            section_enum = self.search_up_on_func(search_func)
             out = None
-            if section_enum is None:
+            for elem in self.enum_parent_class:
+                out = self.try_get_section_enum(elem)
+                if not out is None:
+                    break
+            if out is None:
                 out = "E"
-                #raise RuntimeError("couldn't find enumaration parent: --"+self.enum_parent_class +"-- in enviroment: --" + self.theorem_env_name +"--")
                 print("couldn't find enumaration parent: --"+self.enum_parent_class +"-- in enviroment: --" + self.theorem_env_name +"--")
-            else:
-                out = section_enum.get_section_enum()
-            out += str(self.section_number) + "."
             return out
 
     def generate_child_equation_number(self):
@@ -476,8 +504,8 @@ def load_file(file_name):
     with open(file_name, 'r') as file:
         data = file.read()
     
-    if "IfFileExists" in data:
-        raise RuntimeError("Please remove IfFileExists from " +file_name + " thx.")
+    #if "IfFileExists" in data:
+    #    raise RuntimeError("Please remove IfFileExists from " +file_name + " thx.")
     
     return data
 
@@ -491,6 +519,9 @@ def load_latex_file(file_name,visible_paths,loaded_files):
     out = latex_file[0]
     for elem in latex_file[1:]:
         name,post = split_on_first_brace(elem)
+        name = name.split("/")[-1]
+        name = name.split("\\")[-1]
+        
         if name in loaded_files:
             #print("not loading",name)
             out += post
@@ -509,6 +540,10 @@ def load_latex_file(file_name,visible_paths,loaded_files):
             if tmp == "":
                 RuntimeError("\\input error File " + name + " could not be found")
             out += tmp + post
+        
+        if not name in loaded_files:
+            print("\\input error File " + name + " could not be found")
+            
     return out
         
 
@@ -686,6 +721,8 @@ class TheoremSearcher():
         pre,content,post = begin_end_split(input,"\\begin{"+self.theorem_env_name+"}","\\end{"+self.theorem_env_name+"}")
         
         search_func = lambda instance : has_value_equal(instance,"theorem_env_name",self.enum_parent_class)
+        
+        #potential bug - normaly you would have a space or new line
         section_enum = parent.children[-1].search_up_on_func(search_func)
         section_number = section_enum.generate_child_section_number()
         
@@ -763,15 +800,12 @@ def convert_latex(input,all_classes_prio):
     pre_docmuent,document,post_document = Document.split_and_create(input,None)
     document.globals.number_within_equation = number_within_equation
     
-    expand_on = []
-    for all_classes in all_classes_prio:
-        expand_on.extend(all_classes)
-
-    document.expand(expand_on)
+    for expand_on in all_classes_prio:
+        document.expand(expand_on)
     document.expand([JunkSearch("{",save_split=False),JunkSearch("}",save_split=False)])
     document.expand([JunkSearch("\\ ",save_split=False)])
     #pre_content are just commands
-    
+    print("processing finished! now the final file is created.")
     document._finish_up()
     out = document.to_string()
     out = antibugs.no_more_bugs_end(out)    

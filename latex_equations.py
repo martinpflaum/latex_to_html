@@ -10,7 +10,7 @@ def apply_latex_protection(input):
     input.expand([JunkSearch("\\begin{" + elem + "}",save_split=False) for elem in multiline])
     input.expand([JunkSearch("\\end{" + elem + "}",save_split=False) for elem in multiline])
     
-    input.expand([Label,Cases,LatexText])
+    input.expand([Label,Cases,LatexText,ReplaceSearch("\mathbbm","\mathbb"),ReplaceSearch("\widebar","\overline")])
     input.expand([GuardianSearch("{",save_split=False),GuardianSearch("}",save_split=False)])
     return input
 
@@ -207,7 +207,7 @@ def get_all_latex_searchers():
     multiline = ["split", "multline","align","breqn","equation"]
     multiline_enum = [BeginAlignSearcher("\\begin{"+ elem+"}","\\end{"+ elem+"}") for elem in multiline]
     multiline_no_enum = [BeginAlignStar("\\begin{"+ elem+"*}","\\end{"+ elem+"*}") for elem in multiline]
-    out = []#DoubleDolarLatex
+    out = [DoubleDolarLatex]#DoubleDolarLatex
     out += [BeginAlignStar("\\[","\\]"),BeginAlignStar("\\begin{displaymath}","\\end{displaymath}") ,InlineLatex,ReplaceSearch("\\\\","\n")]
     out.extend(multiline_enum)
     out.extend(multiline_no_enum)
@@ -221,25 +221,15 @@ class DoubleDolarLatex(Element):
 
     @staticmethod
     def position(input):
-        return position_of(input,"$$")
+        return position_of(input,"$$",save_split=False)
         
     @staticmethod
     def split_and_create(input,parent):
         pre,modifiable_content = split_on_next(input,"$$",save_split=False)
-        content,post = split_on_next(input,"$$",save_split=False)  
-
-            
-        out = InlineLatex(content,parent)
+        content,post = split_on_next(modifiable_content,"$$",save_split=False)  
+        out = Undefined("<br><br><span class='display'>" + content + "</span><br>",parent)
         out = apply_latex_protection(out)
-        
-
-        #pre,content,post = begin_end_split(input,"\\begin{document}","\\end{document}")
+        out.expand([ReplaceSearch("\\\\","</span><br><br><span class='display'>"),JunkSearch("&")])
         return pre,out,post
 
-    def to_string(self):
-        out = "<span class='display'>"
-        for child in self.children:
-            out += child.to_string()
-        out += "</span>"
-        return out
 

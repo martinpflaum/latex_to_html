@@ -7,7 +7,7 @@ import os
 import sys
 
 
-junk_math = ["\\noindent","\\functor","\\textup","\\category","\\indent","\\newpage"]
+junk_math = ["\\nonumber","\\noindent","\\functor","\\textup","\\category","\\indent","\\newpage"]
 #replace_mentdict = {"\\noindent":""}#"\\prerequisites ":"</p><h1 style=\"font-size:20px\">Prerequisites</h1><p>","\\N ":"\\mathbb{N}","\\id ":"id","\\GL ":"GL","\\Mat ":"\mathfrak{M}"}
 replace_mentdict = {}
 
@@ -68,8 +68,13 @@ print(get_subdic(folder_name))
 input = load_latex_file(file_name,get_subdic(folder_name),[])
 
 #ShortNotesMathematics-master/ShortNotesMathematics
+#
+basic_expands = [Chapter,JunkSearch("\sffamily"),Section,Para,Subsection_star,Proof,Emph,Textbf,Enumeration]+get_all_latex_searchers()+junkSearcher+replaceSearcher
 
-article = convert_latex(input,[[JunkSearch("\sffamily")],[Section,Para],[Subsection_star],[Proof],[Emph,Textbf],[Enumeration],get_all_latex_searchers(),junkSearcher,replaceSearcher,[Label],[Ref,Cite]])
+
+
+
+article = convert_latex(input,[basic_expands,[Label],[Ref,Cite]])
 #article_header("Algebraic K-Theory in Low Degrees")
 
 create_final_file(out_file,article_header,discription,article,bibliography)

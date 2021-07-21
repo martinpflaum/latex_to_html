@@ -25,12 +25,49 @@ class Para(SectionEnumerate):
         pre,post = split_on_next(input,"\\para")
         section_number = parent.search_class(SectionEnumerate).generate_child_section_number()
         return pre,Para("",section_number,parent),post
- 
+
+    
+class Chapter(SectionEnumerate):
+
+    def __init__(self,modifiable_content,section_name,section_number,parent):
+        super().__init__(modifiable_content,parent,"chapter","document")
+        self.children = [Undefined(section_name,self)]
+        self.section_number = section_number
+        
+    @staticmethod
+    def position(input):
+        return position_of(input,"\\chapter")
+            
+    @staticmethod
+    def split_and_create(input,parent):
+        pre,content = split_on_next(input,"\\chapter")
+        
+        section_number = parent.search_class(SectionEnumerate).generate_child_section_number()
+        name,content =  split_on_first_brace(content)
+        if "\\chapter" in content:
+            content,post = split_on_next(content,"\\chapter")
+            post = "\\chapter" + post
+        else:
+            post = ""
+        
+        return pre,Chapter(content,name,section_number,parent),post
+
+    def to_string(self):
+        """
+        first children ist name of Section
+        """
+        out = "</p><h1 style='font-size:50px;line-height: 80%;'>" + str(self.section_number) + " "+ self.children[0].to_string()  + "</h1><p>"
+        for child in self.children[1:]:
+            out += child.to_string()
+        #print("out ",out)
+        return out
+
+
     
 class Section(SectionEnumerate):
 
     def __init__(self,modifiable_content,section_name,section_number,parent):
-        super().__init__(modifiable_content,parent,"section","document")
+        super().__init__(modifiable_content,parent,"section",["chapter","document"])
         self.children = [Undefined(section_name,self)]
         self.section_number = section_number
         
@@ -56,7 +93,7 @@ class Section(SectionEnumerate):
         """
         first children ist name of Section
         """
-        out = "</p><h1>" + str(self.section_number) + " "+ self.children[0].to_string()  + "</h1><p>"
+        out = "</p><h1>" + self.get_section_enum()[:-1] + " "+ self.children[0].to_string()  + "</h1><p>"
         for child in self.children[1:]:
             out += child.to_string()
         #print("out ",out)
