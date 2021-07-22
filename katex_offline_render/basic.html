@@ -1,0 +1,20 @@
+
+
+<html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+    function pycall() {
+      $.getJSON('/pycall', {content: "content from js"},function(data) {
+          //run here your function on if(data.result==0)
+          alert(data.result);
+      });
+    }
+</script>
+
+
+<button type="button" onclick="pycall()">click me</button>
+ 
+
+</html>
