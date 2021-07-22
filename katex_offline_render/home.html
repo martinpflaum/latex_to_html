@@ -1,0 +1,220 @@
+
+<html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script>
+<script src="balancetext.min.js"></script>
+
+<head>
+  
+  <script src="template.v2.js"></script>
+    
+<style>
+  
+  .navigation {
+    overflow: hidden;
+  }
+  
+  .navigation a {
+    float: right;
+    color: #ffffff;
+    font-family: 'Segoe UI';
+    font-size: 30px;
+    text-align: center;
+    padding: 28px 28px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 8px;
+  }
+  
+  .navigation a.home {
+    float: left;
+    padding: 28px 40px;
+    font-weight: bold;
+  }
+
+  .navigation a:hover {
+    color: rgb(255, 255, 255);
+  }
+  div.top_header {
+    background-color: #3a86ff;
+    background-image: url('background.png');background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100vh;
+  }
+  body{
+  margin: 0 auto;
+  }
+
+  .main_content{
+    padding: 28px 40px;
+    overflow: hidden;
+  }
+
+  .main_content p {
+    color: #383838;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-weight: 300;
+  font-size: 1.2rem;
+  
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 8px;
+  }
+
+  .main_content h1 {
+    color: #383838;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+-webkit-text-size-adjust: 100%;
+color: rgba(0, 0, 0, 0.8);
+grid-column: text;
+font-weight: 600;
+font-size: 24px;
+line-height: 1.25em;
+margin: 2rem 0 1.5rem 0;
+
+    text-decoration: none;
+    font-size: 30px;
+    border-radius: 8px;
+  }
+
+
+  #papers_container > section {
+  width: 25%;
+	display: block;
+	float: left;
+  
+  padding-right: 45px;
+  padding-bottom: 50px;
+	min-width: 200px;
+  }
+  #papers_container h1 {
+    font-size: 20px;
+  }
+
+  #papers_container a {
+    color: #515b5f;
+    font-family: 'Segoe UI', 'Ubuntu Mono', monospace;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+ 
+  #papers_container a:hover {
+    color: rgb(33, 37, 37);
+  }
+ 
+
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="./Balance Text Demo_files/main.css">
+
+</head>
+<body>
+  <!--flex-wrap: wrap;
+overflow-wrap
+text nextline
+balance-text
+-->
+    
+<div class="top_header">
+<div class="navigation">
+  <a class="home" href="home.html">  K-THEORY</a>
+  <a href="#news">ABOUT</a>
+  <a href="schoen.html">SUBMIT</a>
+  <a class="home" href="#home">        </a>
+</div>
+
+<div style="max-width: 75%;padding: 28px 40px;bottom: 0;position:absolute;">
+    <h1 style="font-size: 40px;line-height: 130%;color: #ffffff;font-family: 'Segoe UI';"> Lorem ipsum dolod </h1>
+    <p style="font-size: 28px;line-height: 110%;color: #ffffff;font-family: 'Segoe UI';"> takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipWm dolor sitdolor sit amet. Lorem dolor sit amet.</p>
+</div>
+
+</div>
+
+<div class = "main_content">
+<h1>Papers</h1>
+    <div id = "papers_container">
+    <section>
+        <h1>Image GPT</h1>
+        <p>We find that, just as a large transformer model
+          trained on language can generate coherent text, the
+          same exact model trained on pixel sequences can
+          generate coherent image completions and samples.</p>
+        <a href="schoen.html">Read paper > </a>
+    </section>
+    
+    <section>
+      <h1>CLIP: Connecting
+        Text and Images</h1>
+        <p>We’re introducing a neural
+          network called CLIP
+          which efficiently learns
+          visual concepts from natural
+          language supervision.</p>
+          <a href="schoen.html">Read paper > </a>
+    </section>
+    <section>
+        <h1>An Overview of Multi-Task Learning in Deep Neural Networks</h1>
+        <p>Multi-task learning (MTL) has led to successes in many applications of machine learning, from natural language processing and speech recognition to computer vision and drug discovery. </p>
+        <a href="schoen.html">Read paper > </a>
+
+    </section>
+    
+    <section>
+      <h1>CLIP: Connecting
+        Text and Images</h1>
+        <p>We’re introducing a neural
+          network called CLIP
+          which efficiently learns
+          visual concepts from natural
+          language supervision.</p>
+          <a href="schoen.html">Read paper > </a>
+    </section>
+    
+    <section>
+      <h1>CLIP: Connecting
+        Text and Images</h1>
+        <p>We’re introducing a neural
+          network called CLIP
+          which efficiently learns
+          visual concepts from natural
+          language supervision.</p>
+          <a href="schoen.html">Read paper > </a>
+    </section>
+</div>
+
+</div>
+
+
+
+  <distill-footer></distill-footer>
+</body>
+
+
+
+<script>
+	var math_inline = document.getElementsByClassName('inline');
+    for (var i = 0; i < math_inline.length; i++) {
+      try {
+        katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
+      }catch (e) {
+      }
+    }
+
+  var math_display = document.getElementsByClassName('display');
+    for (var i = 0; i < math_display.length; i++) {
+	    try {
+      katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
+      }catch (e) {
+      }
+    }
+</script>
+<script>
+  balanceText();
+</script>
+</html>
