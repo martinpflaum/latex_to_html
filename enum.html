@@ -1,0 +1,155 @@
+<!doctype html>
+<head>
+  <script src="https://distill.pub/template.v2.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script>
+
+  <link rel="icon" href="icon.png" type="image/png" sizes="16x16">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf8">
+</head>
+
+<body>
+  <!--<distill-header></distill-header>-->
+  <!--"published": "1 9 2017",
+{
+        "author":"Shan Carter",
+        "authorURL":"https://shancarter.com/",
+        "affiliations": [
+          {"name": "Google Brain", "url": "https://g.co/brain"},
+          {"name": "NYT", "url": "https://nytimes.com"}
+        ]
+      }
+-->
+  <d-front-matter>
+    <script id='distill-front-matter' type="text/json">XXXarticle_headerXXX</script>
+
+  </d-front-matter>
+  <d-title>
+    <p>XXXdiscriptionXXX</p>
+  </d-title>
+  <d-byline></d-byline>
+
+
+
+  <style>
+
+    ol.enumeration {
+        margin-left: 2em;
+        padding-left: 2em;
+    }
+    ol.enumeration > li {
+        display: block;
+        margin-bottom: .5em;
+        margin-left: 2em;
+    }
+    ol.enumeration > li:before {
+        content:attr(value) ' ';
+        width: 2em;
+        margin-left: -2em;
+        display: inline-block;
+    }
+    
+    
+    .katex-display{
+    overflow-y: hidden;
+    overflow-x: auto;
+    }
+
+
+    
+    .katex-display>.katex>.katex-html>.tag {
+    margin-left: 10px;
+    position: relative;
+    right: 0;
+    color: hsla(206, 90%, 20%, 0.7);
+    }
+
+
+  </style>
+    
+<script>
+    class Sec extends HTMLElement {
+        constructor() {
+        super();
+           
+        }         
+    }
+    
+    function apply_xsec(elem,current_enum){
+        elem.enum 
+
+
+        xname = elem.getAttribute("x-name");
+        xarray = elem.querySelectorAll('x-sec[anchor="'+ xname + '"]')
+        for (var i = 0; i < xarray.length; i++) {
+            current_enum = current_enum + String(i+1) + "."
+            apply_xsec(xarray[i],current_enum)
+        }
+
+    }
+    window.customElements.define('x-sec', Sec);
+    window.onload = function () {
+        
+        alert(document.querySelectorAll('x-sec[x-name="section"]').length);
+        var elem = document.querySelector('x-sec');
+
+        alert(elem.querySelectorAll('x-sec').length)
+        
+        
+        alert("onload")
+    }
+</script>
+<d-article>
+<p>XXXcontentXXX
+    <x-sec x-name="document" display="none" anchor="none">
+    <x-sec x-name="section">
+
+    <x-sec x-name="theorem" display="Theorem" anchor="section">
+        
+        
+    </x-sec>
+
+    </x-sec>
+    <x-sec x-name="section" display="Theorem" anchor="section">
+        
+        
+    </x-sec>
+    </x-sec>
+
+</p>
+</d-article>
+
+  <d-appendix>
+<p>XXXappendixXXX</p>
+
+    <d-bibliography>
+        
+    <script type="text/bibtex">
+        XXXbibtexXXX
+    </script>
+
+      </d-bibliography>
+    </d-appendix>
+
+</body>
+
+<script>
+	var math_inline = document.getElementsByClassName('inline');
+    for (var i = 0; i < math_inline.length; i++) {
+      try {
+        katex.render(math_inline[i].textContent, math_inline[i],{throwOnError: false});
+      }catch (e) {
+      }
+    }
+
+  var math_display = document.getElementsByClassName('display');
+    for (var i = 0; i < math_display.length; i++) {
+	    try {
+      katex.render(math_display[i].textContent, math_display[i],{ displayMode: true ,throwOnError: false});
+      }catch (e) {
+      }
+    }
+</script>

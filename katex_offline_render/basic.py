@@ -21,6 +21,10 @@ def index():
     return load_file("basic.html")
 
 
+@app.route("/zoo")
+def hello():
+  return "<html>hello</html>"
+
 
 import webbrowser
 print("opening localhost")
