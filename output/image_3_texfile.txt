@@ -1,0 +1,4 @@
+\begin{tikzcd}
+       \prod\limits_{i\in I}M_i  \ar[d,"\tau",swap] \ar[r,"f"] & \bigotimes\limits_{i\in I}N_i   \\
+       \bigotimes\limits_{i\in I}M_i \ar[ru,"\bigotimes\limits_{i\in I}f_i",swap]
+   \end{tikzcd}

@@ -141,33 +141,58 @@ def begin_end_split_old(input,beginname,endname,save_split=False):
     pre,tmp = split_on_next(input,beginname,save_split)
     middle,post = split_on_next(tmp,endname,save_split)
     return pre,middle,post
+
+
 def begin_end_split(input,beginname,endname,save_split=False):
-    """
-    """
-    #print("begin_end ",beginname)
-    return begin_end_split_old(input,beginname,endname,save_split)
-    pre,xtmp = split_on_next(input,beginname)
-    #elem = beginname + elem
-    #middle,post = split_on_first_brace(elem,beginname,endname)
-    tmp = xtmp.split(beginname)
-    begin_num = 0
+    ##return begin_end_split_old(input,beginname,endname,save_split)
+    pre,xanda = split_on_next(input,beginname,save_split)
+    begin_num = 1
     middle = ""
-    for k in range(len(tmp)):
-        if endname in tmp[k]:
+
+    while True:
+        posbegin = position_of(xanda,beginname,save_split)
+        posend = position_of(xanda,endname,save_split)
+        if posbegin!=-1 and posbegin < posend:
+            #print(f"posbegin {posbegin} < posend {posend}")
+            ptmp,xtmp = split_on_next(xanda,beginname,save_split)
+            middle += ptmp + beginname
+            xanda = xtmp
+            begin_num = begin_num + 1
+        else:
+
+            ptmp,xtmp = split_on_next(xanda,endname,save_split)
+            begin_num = begin_num - 1
             if begin_num == 0:
-                xmiddle,post = split_on_next(tmp[k],endname)
+                middle += ptmp
+                return pre,middle,xtmp
+            else:
+                middle += ptmp + endname
+                xanda = xtmp
+        print("one iter")
+
+    """while True:
+        current = tmp[0]
+        tmp = tmp[1:]
+        if endname in current:
+            begin_num = begin_num - len(current.split(endname))
+            if begin_num == 0:
+                xmiddle,post = split_on_next(current,endname,save_split=False)
                 middle += xmiddle
+                for elem in tmp:
+                    post += beginname + elem
+
                 return pre,middle,post
             else:
-                begin_num = begin_num - len(tmp[k].split(endname)) + 1
-        if k!=0:
-            middle += beginname + tmp[k]
+                middle += beginname + current    
+                
         else:
-            middle += tmp[k]
+            middle += beginname + current
         begin_num = begin_num + 1
     print("begin_end_split error")
     return begin_end_split_old(input,beginname,endname)
 
+    """
+    
 def position_of(input,beginname,save_split = True):
     if beginname in input:
         if save_split:
@@ -257,8 +282,8 @@ class Element():
             if elem == self:
                 split_on = k
                 break
-        if split_on == -1:
-            raise RuntimeError("FATAL ERROR couldn t find own class in roots all_childs " + str(self.__class__))
+        #if split_on == -1:
+        #    raise RuntimeError("FATAL ERROR couldn t find own class in roots all_childs " + str(self.__class__))
         all_childs = all_childs[:split_on]
 
         all_childs = all_childs[::-1]
@@ -673,6 +698,7 @@ def do_newenvironment(input):
     while True:
         tmp = input
         for environment_name,arg_num,begin,end in all_env:
+            print("applying enviroment ",environment_name)
             tmp = execute_enviroment_on_pattern(tmp,environment_name,arg_num,begin,end)
         if tmp == input:
             break
@@ -791,6 +817,7 @@ class JunkSearch():
 def convert_latex(input,all_classes_prio):
     if not isinstance(all_classes_prio[0],list):
         all_classes_prio = [all_classes_prio]
+
     input = antibugs.no_more_bugs_begin(input)
     input = do_commands(input)
     input = do_newenvironment(input)
@@ -812,7 +839,6 @@ def convert_latex(input,all_classes_prio):
     out = antibugs.no_more_bugs_end(out)    
     
     return out
-
 
 
 class ReplaceSearch():
@@ -844,6 +870,19 @@ class GuardianSearch():
 
 
 
+
+
+class OneArgumentJunkSearch():
+    def __init__(self,command_name,begin_brace="{",end_brace="}"):
+        self.command_name,self.begin,self.end = command_name,begin_brace,end_brace
+
+    def position(self,input):
+        return position_of(input,self.command_name)
+
+    def split_and_create(self,input,parent):
+        pre,post = split_on_next(input,self.command_name)
+        name,post = split_on_first_brace(post,self.begin,self.end)
+        return pre,Undefined("",parent),post
 
 class OneArgumentCommandSearch():
     def __init__(self,command_name,begin,end):

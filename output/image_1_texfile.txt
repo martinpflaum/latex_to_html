@@ -1,0 +1,8 @@
+\begin{tikzcd}
+      ( \mathfrak{H}_1 {\,\widehat{\otimes}\,} \mathbb{K}) {\,\widehat{\otimes}\,} \mathfrak{H}_2 
+      \ar[rrrr,"\widehat{a}_{\mathfrak{H}_1,\mathbb{K},\mathfrak{H}_3}"] 
+      \ar[drr,"{}_{\mathfrak{H}_1}\!\widehat{u} \, {\,\widehat{\otimes}\,} \,\mathbbm{1}_{\mathfrak{H}_2}",swap]& & && 
+      \mathfrak{H}_1 {\,\widehat{\otimes}\,} (\mathbb{K} {\,\widehat{\otimes}\,} \mathfrak{H}_2 )
+      \ar[dll,"\mathbbm{1}_{\mathfrak{H}_1} {\,\widehat{\otimes}\,} \, \widehat{u}_{\mathfrak{H}_2}"]  \\
+      & & \mathfrak{H}_1 {\,\widehat{\otimes}\,} \mathfrak{H}_2 &  & 
+  \end{tikzcd}

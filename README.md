@@ -2,53 +2,17 @@
 This is an alpha version of a compiler from latex to html. It is heavily under development and things are going to be changed :D. This projected is not related with distill, we just use their code because its great. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
 # usage
 
-minimal call:
+USAGE: python main.py path/to/folder
+
+in this folder there need to be certain things:
+
+1. the main tex file called input.tex
+2. a bibliography called bibliography.bibtex - make it empty if you are not citing anyone
+3. a discription called discription.txt
+4. a article_header called article_header.txt 
 
 
-python main.py --tex_file=in.tex
-
-
-advacend call:
-
-
-python main.py --tex_file=in.tex --biblio=bib.bibtex --discription=disc.txt --article_header=artheader.txt --out=out.html
-
-
-With article_header you can define stuff like authors and their affiliations and doi. The syntax is not that hard its exactly like python lists and dictionaries, just take a quick look in the MY_article_header.txt file.
-
-This programm runs only with python3! so you may replace python with python3 if you have python2 installed
-
-For help type python main.py --help
-
-the odering of --key=val doesn't matter
-so 
-
-
-python main.py --tex_file=in.tex --out=out.html
-
-
-
-is equal to 
-
-
-python main.py --out=out.html  --tex_file=in.tex
-# graphs:
-in the graphs folder run python graphs.py --help to see how it works 
-
-the graph example contains the code that is compiled to html
-# state of development:
-
-features included right now
-- inplace execution of defined theoremenviroments and commands
-- enumerations,sections,subsections,equations (see example.html :) )
-- a progamm with which you can create diagramms with latex equations in it using katex and svg
-
-features that will be added
-- nested enumerations
-- documentation
-- better structure of the python files
-
-
+the article_header is in a really simple file format just look at the given example
 
 # used code:
 we are using distill for styles since it looks really good https://github.com/distillpub/template

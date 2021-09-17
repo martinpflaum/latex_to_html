@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+\node (P0) at (90:2.8cm) {$((\mathfrak{H}_1 {\,\widehat{\otimes}\,} \mathfrak{H}_2) {\,\widehat{\otimes}\,} \mathfrak{H}_3) {\,\widehat{\otimes}\,} \mathfrak{H}_4$};
+\node (P1) at (90+72:2.5cm) {$(\mathfrak{H}_1{\,\widehat{\otimes}\,} (\mathfrak{H}_2{\,\widehat{\otimes}\,} \mathfrak{H}_3)){\,\widehat{\otimes}\,} \mathfrak{H}_4$} ;
+\node (P2) at (90+2*72:2.5cm) {$\mathllap{\mathfrak{H}_1{\,\widehat{\otimes}\,} ((\mathfrak{H}_2{\,\widehat{\otimes}\,} \mathfrak{H}_3)}{\,\widehat{\otimes}\,} \mathfrak{H}_4)$};
+\node (P3) at (90+3*72:2.5cm) {$\mathfrak{H}_1{\,\widehat{\otimes}\,} (\mathfrak{H}_2\mathrlap{{\,\widehat{\otimes}\,} (\mathfrak{H}_3{\,\widehat{\otimes}\,} \mathfrak{H}_4))}$};
+\node (P4) at (90+4*72:2.5cm) {$(\mathfrak{H}_1{\,\widehat{\otimes}\,} \mathfrak{H}_2){\,\widehat{\otimes}\,} (\mathfrak{H}_3{\,\widehat{\otimes}\,} \mathfrak{H}_4)$};
+\draw
+(P0) edge[- > , > =angle 90] node[left] {$\widehat{a}_{\mathfrak{H}_1,\mathfrak{H}_2,\mathfrak{H}_3} {\,\widehat{\otimes}\,} \, \mathbbm{1}_{\mathfrak{H}_4}\hspace{2mm}$} (P1)
+(P1) edge[- > , > =angle 90] node[left] {$\widehat{a}_{\mathfrak{H}_1,\mathfrak{H}_2{\,\widehat{\otimes}\,} \mathfrak{H}_3 , \mathfrak{H}_4}$} (P2)
+(P2) edge[- > , > =angle 90] node[below] {$\hspace{5mm}\mathbbm{1}_{\mathfrak{H}_1}{\,\widehat{\otimes}\,} \, \widehat{a}_{\mathfrak{H}_2,\mathfrak{H}_3,\mathfrak{H}_4}$} (P3)
+(P4) edge[- > , > =angle 90] node[right] {$ \widehat{a}_{\mathfrak{H}_1 , \mathfrak{H}_2,\mathfrak{H}_3 {\,\widehat{\otimes}\,}  \mathfrak{H}_4}$} (P3)
+(P0) edge[- > , > =angle 90] node[right] {$ \widehat{a}_{\mathfrak{H}_1{\,\widehat{\otimes}\,} \mathfrak{H}_2, \mathfrak{H}_3 , \mathfrak{H}_4}$} (P4);
+  \end{tikzpicture}

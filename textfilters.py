@@ -172,6 +172,28 @@ class Ref(Element):
     def to_string(self):
         return self.label_name
 
+
+class EqRef(Element):
+    def __init__(self, modifiable_content, parent,label_ref):
+        super().__init__(modifiable_content, parent)
+        try:
+            self.label_name = self.search_class(Document).globals.labels[label_ref]
+        except Exception:
+            self.label_name = "ref_error"
+
+    @staticmethod
+    def position(input):
+        return position_of(input,"\\eqref")
+
+    @staticmethod
+    def split_and_create(input,parent):
+        pre,post = split_on_next(input,"\\eqref")
+        label_ref,post = split_on_first_brace(post)
+        return pre,Ref("",parent,label_ref),post
+
+    def to_string(self):
+        return self.label_name
+
 class Proof(Element):
     def __init__(self,modifiable_content,parent):
         self.name = "Proof"
@@ -195,6 +217,7 @@ class Proof(Element):
     def to_string(self):
         out = f"<br><i>{self.name}</i>"
         for child in self.children:
+            #print(type(child))
             out += child.to_string()
         return out
 

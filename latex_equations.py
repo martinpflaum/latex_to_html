@@ -1,7 +1,7 @@
 #%%
 from core import *
 from textfilters import *
-
+from drawtex import contains_drawtex,get_drawtex_searchers
 
 
 def apply_latex_protection(input):
@@ -104,6 +104,12 @@ class BeginAlignSearcher():
         
     def split_and_create(self,input,parent):
         pre,content,post = begin_end_split(input,self.begin,self.end)
+        if contains_drawtex(content):
+            out = Undefined(content,parent)
+            out.expand(get_drawtex_searchers())
+            out = apply_latex_protection(out)
+            return pre,out,post
+     
         out = BeginEquationEnumElement(content,parent)
         out = apply_latex_protection(out)
         out.expand([ReplaceSearch("\\\\","</span><br><br><span class='display'>"),JunkSearch("&")])
@@ -199,6 +205,12 @@ class BeginAlignStar():
     
     def split_and_create(self,input,parent):
         pre,content,post = begin_end_split(input,self.begin,self.end)
+        if contains_drawtex(content):
+            out = Undefined(content,parent)
+            out.expand(get_drawtex_searchers())
+            out = apply_latex_protection(out)
+            return pre,out,post
+     
         out = Undefined("<br><br><span class='display'>" + content + "</span><br>",parent)
         out = apply_latex_protection(out)
         out.expand([ReplaceSearch("\\\\","</span><br><br><span class='display'>"),JunkSearch("&")])

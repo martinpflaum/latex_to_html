@@ -19,21 +19,22 @@ from core import *
 
 class EnumerationItem(Element):
     def __init__(self,modifiable_content,parent,label = None):
-        super().__init__(modifiable_content,parent)
+        super().__init__("",parent)
 
-        self.label = ""
+        label = ""
         if label is None:
             enumeration = self.search_class(Enumeration)
-            self.label = enumeration.generate_item_label()
-        else:
-            self.label = label
+            label = enumeration.generate_item_label()
+        self.label = label
         
+        self.children = [Undefined(label,self),Undefined(modifiable_content,self)]
     def label_name(self):
-        return self.label
+        return self.label#self.children[0].to_string()
 
     def to_string(self):
         
-        out = "<li value='"+self.label+"'>" 
+        out = "<li value='"+self.children[0].to_string()+"'>" 
+        self.children = self.children[1:]
         for child in self.children:
             out += child.to_string()
         out += "</li>"

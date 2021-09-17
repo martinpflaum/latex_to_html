@@ -1,0 +1,4 @@
+\begin{tikzcd}
+       \prod\limits_{i\in I}M_i  \ar[d,"\tau",swap] \ar[r,"f"]  & N \\
+       \bigotimes\limits_{i\in I}M_i \ar[ru,"\overline{f}",swap]
+   \end{tikzcd}
