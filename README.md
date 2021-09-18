@@ -19,7 +19,7 @@ in DEFAULT_PACKAGES_AND_COMMANDS.txt contains all packages that are relevant for
 
 If you are using avast you might run into problems with miktex. just add the pdflatex command as an expection and you should be good to go. Or try rebooting.
 
-Additionally if you are running the with miktex you will probably need to press r and enter some times. when the compiler ask you something.
+Additionally if you are running the code with miktex you will probably need to press r and enter some times. when the compiler ask you something.
 
 In case miktex doesn't work you will need to compile the latex code in the output folder byhand to an pdf and
 then convert the pdf to png
