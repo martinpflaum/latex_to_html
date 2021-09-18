@@ -1,0 +1,9 @@
+\usepackage{url}
+\usepackage{amsmath} 
+\usepackage{dcolumn}
+\setcounter{tocdepth}{4}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{intersections}
+\usepackage{tikz-cd}
+\usetikzlibrary{cd}

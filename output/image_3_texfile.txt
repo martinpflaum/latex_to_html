@@ -1,4 +1,23 @@
+
+\documentclass[a4paper, 10pt]{article}
+\usepackage{url}
+\usepackage{amsmath} 
+\usepackage{dcolumn}
+\setcounter{tocdepth}{4}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{intersections}
+\usepackage{tikz-cd}
+\usetikzlibrary{cd}
+\hoffset=-1in
+\voffset=-1in
+\setbox0\hbox{
 \begin{tikzcd}
        \prod\limits_{i\in I}M_i  \ar[d,"\tau",swap] \ar[r,"f"] & \bigotimes\limits_{i\in I}N_i   \\
        \bigotimes\limits_{i\in I}M_i \ar[ru,"\bigotimes\limits_{i\in I}f_i",swap]
    \end{tikzcd}
+}
+\pdfpageheight=\dimexpr\ht0+\dp0\relax
+\pdfpagewidth=\wd0
+\shipout\box0
+\stop

@@ -17,19 +17,87 @@ from core import *
 </ol>
 """
 
+
+class ItemizeItem(Element):
+    def __init__(self,modifiable_content,parent,label = "•"):
+        super().__init__("",parent)
+        self.label = label
+
+        self.children = [Undefined(label,self),Undefined(modifiable_content,self)]
+    def label_name(self):
+        return self.label#self.children[0].to_string()
+
+    def to_string(self):
+        
+        out = "<li value='"+self.children[0].to_string()+"'>" 
+        self.children = self.children[1:]
+        for child in self.children:
+            out += child.to_string()
+        out += "</li>"
+        return out
+
+    @staticmethod
+    def position(input):
+        return position_of(input,"\\item")
+            
+    @staticmethod
+    def split_and_create(input,parent):
+        pre,content = split_on_next(input,"\\item")
+
+        if "\\item" in content:
+            content,post = split_on_next(content,"\\item")
+            post = "\\item" + post
+        else:
+            post = ""
+
+        label = ""
+        if first_char_brace(content,"["):
+            label,content = split_on_first_brace(content,"[","]")
+        elem_out = ItemizeItem(content,parent,label)
+        
+        return pre,elem_out,post
+
+class Itemize(Element):
+    current_index = 0
+    def __init__(self,modifiable_content,parent):
+        super().__init__(modifiable_content,parent)
+        
+    def to_string(self):
+        out = "</p><ol class='enumeration'>" 
+        for child in self.children:
+            out += child.to_string()
+        out += "</ol><p>"
+        return out
+    @staticmethod
+    def position(input):
+        return position_of(input,"\\begin{itemize}")
+
+    @staticmethod
+    def split_and_create(input,parent):
+        
+        pre,content,post = begin_end_split(input,"\\begin{itemize}","\\end{itemize}")
+        
+        elem_out = Itemize(content,parent)
+        elem_out.expand([ItemizeItem])
+
+        return pre,elem_out,post
+
+
 class EnumerationItem(Element):
     def __init__(self,modifiable_content,parent,label = None):
         super().__init__("",parent)
 
-        label = ""
+        self.label = ""
         if label is None:
             enumeration = self.search_class(Enumeration)
-            label = enumeration.generate_item_label()
-        self.label = label
-        
-        self.children = [Undefined(label,self),Undefined(modifiable_content,self)]
+            self.label = enumeration.generate_item_label()
+        else:
+            self.label = label
+            
+        self.children = [Undefined(self.label,self),Undefined(modifiable_content,self)]
+    
     def label_name(self):
-        return self.label#self.children[0].to_string()
+        return self.label
 
     def to_string(self):
         

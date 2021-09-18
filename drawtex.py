@@ -1,5 +1,12 @@
-from easylatex2image import latex_to_image
+from easylatex2image_core import latex_to_image,generate_latexfile
 from core import *
+
+def load_file(file_name):
+    data = None
+    with open(file_name, 'r') as file:
+        data = file.read()
+    return data
+
 image_count = 0
 
 class DrawTexElement(Element):
@@ -9,11 +16,10 @@ class DrawTexElement(Element):
         super().__init__("",parent)
     def to_string(self):
         global image_count
-        out_file_name = f"output/image_{image_count}"
-        with open(out_file_name+"_texfile.txt", "w") as file:
-            file.write(self.content)
+        out_file_name = f"image_{image_count}"
+        generate_latexfile(self.packages_and_commands,self.content,"output/"+out_file_name+"_texfile.txt")
         try:
-            latex_to_image(self.packages_and_commands,self.content,out_file_name+".png",dpi=600,img_type="PNG")
+            latex_to_image(self.packages_and_commands,self.content,"output/"+out_file_name+".png",dpi=1000,img_type="PNG")
         except:
             print("**********")
             print("**********")
@@ -25,7 +31,7 @@ class DrawTexElement(Element):
             print("**********")
             print("**********")
             print("**********")
-        out = f"<img src='{out_file_name}.png' width='60%' class='teximg'>"
+        out = f"<img src='{out_file_name}.png' width='70%' class='teximg'>"
         
         image_count = image_count + 1
         return out
@@ -42,20 +48,7 @@ class DrawTexSearch():
         content = self.begin + content + self.end
         return pre,DrawTexElement(self.packages_and_commands,content,parent),post
 
-DEFAULT_PACKAGES_AND_COMMANDS = r"""
-\usepackage{silence}
-\WarningFilter[pdftoc]{hyperref}{Token not allowed in a PDF string}
-\ActivateWarningFilters[pdftoc]
-\usepackage{url}
-\usepackage{amsmath} 
-\usepackage{dcolumn}
-\setcounter{tocdepth}{4}
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
-\usetikzlibrary{intersections}
-\usepackage{tikz-cd}
-\usetikzlibrary{cd}
-"""
+DEFAULT_PACKAGES_AND_COMMANDS = load_file("DEFAULT_PACKAGES_AND_COMMANDS.txt")
 
 draw_tex_stuff = ["tikzpicture","tikzcd"]
 

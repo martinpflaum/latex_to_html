@@ -1,28 +1,6 @@
 import antibugs 
 #\numberwithin{equation}{theorem}
 
-"""
-class CurlyBrackets(Element):
-    def __init__(self,modifiable_content,parent):
-        super().__init__(modifiable_content,parent)
-    
-    @staticmethod
-    def position(input):
-        return position_of(input," {")
-    
-    @staticmethod
-    def split_and_create(input,parent):
-        pre,content,post = begin_end_split(input," {","} ")
-        out = CurlyBrackets(content,parent)
-        return pre,out,post
-
-    def to_string(self):
-        out = ""
-        for child in self.children:
-            out += child.to_string()
-        out += ""
-        return out"""
-
 def get_all_allchars_no_abc():
     """
     super small subset of - this really makes this programm slow otherwise :D
@@ -32,7 +10,7 @@ def get_all_allchars_no_abc():
     allchars_no_abc = allchars_no_abc.replace("abcdefghijklmnopqrstuvwxyz","")
     return allchars_no_abc
     """
-    return '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~\n '
+    return '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~\n ' # is removed
 
 
 def save_command_split(input,split_on):
@@ -48,7 +26,9 @@ def save_command_split(input,split_on):
 def remove_empty_at_begin(input):
     out = 0
     for k,elem in enumerate(input):
-        if elem == " " or elem == "\n":
+        if elem == " " or elem == "\n" or elem =="*":
+            if elem =="*":
+                print("unexpected * your numbering is probably wrong :'D")
             out = k + 1
         else:
             break
@@ -67,15 +47,18 @@ def find_nearest_classes(input,all_classes):
         else:
             if dist == min_distance:
                 out.append(elem)
-            if dist < min_distance:
+            if dist <= min_distance:
                 min_distance = dist
                 out = [elem]
         
     if out != []:
-        try:
-            pass
-        except AttributeError:
-            pass
+        for elem in out:
+            try:
+                if hasattr(elem, 'prio_elem'):
+                    #print("priority_element")
+                    return [elem]
+            except AttributeError:
+                pass
     return out
 
 def first_char_brace(input,begin_brace = "{"):
@@ -84,20 +67,21 @@ def first_char_brace(input,begin_brace = "{"):
         return False
     return input[0] == begin_brace
 
-def split_on_first_brace(input,begin_brace = "{",end_brace = "}"):
+def split_on_first_brace(input,begin_brace = "{",end_brace = "}",error_replacement="brace_error"):
     """
     input: string with {Something1} Something2
     output: tuple (Something1,Something2)
     """
-
+    if error_replacement=="chapter_error":
+        print(input[:20])
     input = remove_empty_at_begin(input)
     if len(input) == 0:
         #raise RuntimeError("hi")
         print("first brace empty string ERROR")
-        return "ERROR",input
+        return error_replacement,input
     if input[0] != begin_brace:
         print("first brace NOT Brace ERROR")
-        return "ERROR",input
+        return error_replacement,input
 
     brace_count = 0
     out1 = ""
@@ -524,52 +508,6 @@ class Document(SectionEnumerate):
         return out
 
 
-def load_file(file_name):
-    data = None
-    with open(file_name, 'r') as file:
-        data = file.read()
-    
-    #if "IfFileExists" in data:
-    #    raise RuntimeError("Please remove IfFileExists from " +file_name + " thx.")
-    
-    return data
-
-def load_latex_file(file_name,visible_paths,loaded_files):
-    #file_name = file_name
-    if file_name[-4:] != ".tex":
-        file_name = file_name + ".tex"
-    latex_file = load_file(file_name)
-    visible_paths.append(".")
-    latex_file = latex_file.split("\input")
-    out = latex_file[0]
-    for elem in latex_file[1:]:
-        name,post = split_on_first_brace(elem)
-        name = name.split("/")[-1]
-        name = name.split("\\")[-1]
-        
-        if name in loaded_files:
-            #print("not loading",name)
-            out += post
-        else:
-            tmp = ""
-            for path in visible_paths:
-                try:
-                    tmp = load_latex_file(path + "/" + name,visible_paths,loaded_files+[name])
-                    loaded_files.append(name)
-                    print("loaded ",name)
-                    #print(tmp)
-                    break
-                    #print("Succesfully Loaded File: ",name)
-                except:
-                    pass
-            if tmp == "":
-                RuntimeError("\\input error File " + name + " could not be found")
-            out += tmp + post
-        
-        if not name in loaded_files:
-            print("\\input error File " + name + " could not be found")
-            
-    return out
         
 
 def create_final_file(file_name,article_header,discription,article,bibliography):
@@ -832,6 +770,8 @@ def convert_latex(input,all_classes_prio):
         document.expand(expand_on)
     document.expand([JunkSearch("{",save_split=False),JunkSearch("}",save_split=False)])
     document.expand([JunkSearch("\\ ",save_split=False)])
+    
+    
     #pre_content are just commands
     print("processing finished! now the final file will be created.")
     document._finish_up()

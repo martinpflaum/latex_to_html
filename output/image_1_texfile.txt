@@ -1,3 +1,17 @@
+
+\documentclass[a4paper, 10pt]{article}
+\usepackage{url}
+\usepackage{amsmath} 
+\usepackage{dcolumn}
+\setcounter{tocdepth}{4}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{intersections}
+\usepackage{tikz-cd}
+\usetikzlibrary{cd}
+\hoffset=-1in
+\voffset=-1in
+\setbox0\hbox{
 \begin{tikzcd}
       ( \mathfrak{H}_1 {\,\widehat{\otimes}\,} \mathbb{K}) {\,\widehat{\otimes}\,} \mathfrak{H}_2 
       \ar[rrrr,"\widehat{a}_{\mathfrak{H}_1,\mathbb{K},\mathfrak{H}_3}"] 
@@ -6,3 +20,8 @@
       \ar[dll,"\mathbbm{1}_{\mathfrak{H}_1} {\,\widehat{\otimes}\,} \, \widehat{u}_{\mathfrak{H}_2}"]  \\
       & & \mathfrak{H}_1 {\,\widehat{\otimes}\,} \mathfrak{H}_2 &  & 
   \end{tikzcd}
+}
+\pdfpageheight=\dimexpr\ht0+\dp0\relax
+\pdfpagewidth=\wd0
+\shipout\box0
+\stop

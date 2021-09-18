@@ -1,5 +1,7 @@
 # latex to html
 This is an alpha version of a compiler from latex to html. It is heavily under development and things are going to be changed :D. This projected is not related with distill, we just use their code because its great. I will update this repository in September and add more Documentation and make running the programm a bit simpler.
+# installation 
+You need miktex installed inorder to run this programmed - you also can compile stuff by hand instead.
 # usage
 
 USAGE: python main.py path/to/folder
@@ -11,9 +13,20 @@ in this folder there need to be certain things:
 3. a discription called discription.txt
 4. a article_header called article_header.txt 
 
+the article_header is in a relativly simple file format just look at the given example
+in DEFAULT_PACKAGES_AND_COMMANDS.txt contains all packages that are relevant for figures. Commands are not so important in our cases since they are already applied inplace.
 
-the article_header is in a really simple file format just look at the given example
 
+If you are using avast you might run into problems with miktex. just add the pdflatex command as an expection and you should be good to go. Or try rebooting.
+
+In case miktex doesn't work you will need to compile the latex code in the output folder byhand to an pdf and
+then convert the pdf to png
+the function below converts a pdf to an png image :) 
+
+```python
+from easylatex2image_core import convert_pdf
+convert_pdf("output/something_001",dpi=1000,img_type="PNG")
+```
 # used code:
 we are using distill for styles since it looks really good https://github.com/distillpub/template
 we are using katex for visualization of equations https://github.com/KaTeX/KaTeX

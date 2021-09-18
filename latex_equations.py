@@ -136,7 +136,10 @@ class InlineLatex(Element):
 
     @staticmethod
     def position(input):
-        return position_of(input,"$")
+        if position_of(input,"$",save_split=False) == position_of(input,"$$",save_split=False):
+            return -1
+        else:
+            return position_of(input,"$",save_split=False)
         
     @staticmethod
     def split_and_create(input,parent):
@@ -260,6 +263,7 @@ def get_all_latex_searchers():
 
 
 class DoubleDolarLatex(Element):
+    prio_elem =True
     def __init__(self,modifiable_content,parent):
         super().__init__(modifiable_content,parent)
 
