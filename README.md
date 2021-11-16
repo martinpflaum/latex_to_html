@@ -13,8 +13,8 @@ in this folder there need to be certain things:
 3. a discription called discription.txt
 4. a article_header called article_header.txt 
 
-the article_header is in a relativly simple file format just look at the given example
-in DEFAULT_PACKAGES_AND_COMMANDS.txt contains all packages that are relevant for figures. Commands are not so important in our cases since they are already applied inplace.
+the article_header is in a relativly simple file format just look at the given example (ShortNotesMathematics-master).
+In DEFAULT_PACKAGES_AND_COMMANDS.txt contains all packages that are relevant for figures. Commands are not so important in our cases since they are already applied inplace.
 
 
 If you are using avast you might run into problems with miktex. just add the pdflatex command as an expection and you should be good to go. Or try rebooting.
