@@ -1,5 +1,5 @@
 # latex to html
-This is an alpha version of a compiler from latex to html. It's super slow and near to 0 documentation, but it looks kind of great :). If you need any help with the project write an issue and i will try to assist you.
+This is an alpha version of a compiler from latex to html. It's super slow and the documentation is near to 0, but it looks kind of great :). If you need any help with the project write an issue and i will try to assist you.
 ![](Example.png)
 # installation 
 REQUIREMENTS:  
