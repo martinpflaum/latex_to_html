@@ -1,0 +1,1097 @@
+% Copyright 2017 Paul Mitchener, licensed under GNU FDL v1.3
+% main author: 
+%   Paul Mitchener
+
+\section{Lebesgue integration}\label{sec:lebesgue-integration}
+
+\subsec{Simple Functions}
+
+\begin{definition}
+A function $s\colon \Omega \rightarrow {\mathbb C}$ on a measurable space $\Omega$ is called {\em simple} if the range of $s$ is a finite set of points.
+\end{definition}
+
+Let $s\colon \Omega \rightarrow {\mathbb C}$ be a simple function, with image $s[X] = \{ 0 \} \cup \{ \alpha_1 , \ldots , \alpha_n \}$.  Write $A_i = s^{-1}(\alpha_i )$.  Then clearly
+$$s = \sum_{i=1}^n \alpha_i \chi_{A_i}$$
+and the function $s$ is measurable if and only if each set $A_i$ is measurable.
+
+\begin{proposition} \label{simpapp}
+Let $f\colon \Omega \rightarrow [0,\infty ]$ be a measurable function.  Then there are simple measurable functions $s_n \colon X\rightarrow [0,\infty )$ such that the sequence $(s_n (x))$ is monotonically increasing, with limit $f(x)$ for each point $x\in X$.
+\end{proposition}
+
+\begin{proof}
+Let $n\in {\mathbb N}$, and $t\in [0,\infty ]$.  Then there is a unique integer $k_n (t)$ such that
+$$k_n (T) 2^{-n} \leq t \leq (k_n (t) +1)2^{-n}$$
+
+Define
+$$\varphi_n (t) = \left\{ \begin{array}{ll}
+k_n (t)2^{-n} & 0\leq t< n \\
+n & n\leq t\leq \infty \\
+\end{array} \right.$$
+
+The function $\varphi_n \colon [0,\infty ]\rightarrow [0,\infty ]$ is a Borel function, and
+$$t-2^{-n} \leq \varphi_n (t) \leq t$$
+if $0\leq t\leq n$.  Thus we have a monotonically increasing sequence $(\varphi_n (t))$ with limit $t$.  If we write $s_n = \varphi_n \circ f$, then $(s_n)$ is a monotonically increasing sequence of simple measurable functions, with pointwise limit $f$ as required.
+\end{proof}
+
+We now come to the first of our definitions of the integral.
+
+\begin{definition}
+Let $\Omega$ be a measure space, with measure $\mu$.  Let $s\colon \Omega \rightarrow {\mathbb C}$ be a measurable simple function, with set of non-zero values $\{ \alpha_1 ,\ldots , \alpha_n \}$.  Write
+$$s = \sum_{k=1}^n \alpha_k \chi_{A_k}$$
+
+Let $E\subseteq \Omega$ be a measurable subset of $\Omega$.  Then we define the {\em integral} of $s$ over $E$ to be the complex number
+$$\int_E s\ d\mu = \sum_{k=1}^n \alpha_k \mu (A_k \cap E )$$
+\end{definition}
+
+There are several simple computations we can do immediately with integrals.  For example, with $s$ as above:
+$$\int_\Omega s\chi_E \ d\mu = \sum_{k=1}^\infty \alpha_k \mu (A_k \cap E) = \int_E s\ d\mu$$
+
+\begin{lemma} \label{stepmeasure}
+Let $\Omega$ be a measure space, with measure $\mu$.  Let $s\colon \Omega \rightarrow [0,\infty )$ be a measurable simple function.  Then we can define a new measure $\varphi$ on $\Omega$ by the formula
+$$\varphi (E) = \int_E s\ d\mu$$
+\end{lemma}
+
+\begin{proof}
+To begin with, observe that $\varphi (E)\geq 0$ for every measurable set $E$, and that if $\mu (E)<\infty$, then $\varphi (E)<\infty$, so there is at least one measurable set with finite measure.  We need to test $\sigma$-additivity.
+
+Let $(E_n)$ be a sequence of disjoint measurable sets.  We know that
+$$\mu (\bigcup_{i=1}^\infty E_i ) = \sum_{i=1}^\infty \mu (E_i)$$
+
+Let $\{ \alpha_1 , \ldots , \alpha_k \}$ be the set of non-zero values of the simple function $s$.  Then
+$$\varphi (\bigcup_{i=1}^\infty E_i ) = \sum_{k=1}^n \sum_{i=1}^\infty \alpha_k \mu (A_k \cap E_i )$$
+
+Exchanging the summation signs is possible since all of the numbers involved in the above equation are positive.  Therefore
+$$\varphi (\bigcup_{i=1}^\infty E_i ) = \sum_{i=1}^\infty \sum_{k=1}^n \alpha_k \mu (A_k \cap E_i ) = \sum_{i=1}^\infty \varphi (E_i)$$
+and we are done.
+\end{proof}
+
+\begin{proposition} \label{simpsum}
+Let $s,t\colon \Omega \rightarrow [0,\infty ]$ be simple functions.  Then
+$$\int_\Omega s+t\ d\mu = \int_\Omega s\ d\mu + \int_\Omega t\ d\mu$$
+\end{proposition}
+
+\begin{proof}
+Write as usual
+$$s = \sum_{i=1}^m \alpha_k \chi_{A_i} \qquad t = \sum_{j=1}^n \beta_j \chi_{B_j}$$
+
+Let $E_{ij} = A_i \cap B_j$.  Then certainly
+$$int_{E_{ij}} (s+t)\ d\mu = (\alpha_i +\beta_j)\mu (E_{ij}) = \int_{E_{ij}}s\ d\mu + \int_{E_{ij}}t\ d\mu$$
+
+Now the sets $\{ 0, \alpha_1 , \ldots , \alpha_m \}$ and $\{ 0, \beta_1 , \ldots ,\beta_n \}$ are the ranges of the functions $s$ and $t$ respectively.  Let $A_0 = s^{-1}[0]$ and $B_0 = t^{-1}[0]$.  Then
+$$\Omega = \bigcup_{i=0}^m A_i = \bigcup_{j=0}^n B_j$$
+
+Hence
+$$\Omega = \bigcup_{i,j=0}^{m,n}E_{ij}$$
+
+The sets $E_{ij}$ are certainly disjoint.  Hence by the above lemma, we know that
+$$\int_\Omega s+t \ d\mu = int_\Omega s\ d\mu + \int_\Omega t\ d\mu$$
+and we are done.
+\end{proof}
+
+If $s$ is a step function, and $\alpha \in {\mathbb C}$, then clearly
+$$\int_\Omega \alpha s\ d\mu = \alpha \int_\Omega s\ d\mu$$
+
+Hence we have proven linearity for integrals of positive-valued step functions.
+
+\section{Integration of Positive-Valued Functions}
+
+\begin{definition}
+Let $\Omega$ be a measure space, with measure $\mu$.  Let $f\colon \Omega \rightarrow [0,\infty ]$ be a measurable function, and let $E\subseteq \Omega$ be a measurable set.  Let $S$ be the set of simple functions, $s\colon \Omega \rightarrow [0,\infty )$, such that $s(x) \leq f(x)$ for all $x\in \Omega$.  Then we define the {\em integral} of $f$ over $E$:
+$$\int_E f\ d\mu = \sup \{ \int_E s\ d\mu \ |\ s\in S \}$$
+\end{definition}
+
+A few properties of the integral are easy to prove.  For example:
+
+\begin{itemize}
+
+\item Let $f\colon \Omega \rightarrow [0,\infty ]$ and $E\subseteq \Omega$ be measurable.  Then
+$$\int_\Omega f\ d\mu = \int_\Omega f\chi_E\ d\mu$$
+
+
+\item Let $f,g\colon \Omega \rightarrow [0,\infty ]$ be measurable functions such that $f\leq g$, that is to say $f(x)\leq g(x)$ for all $x\in \Omega$.  Then
+$$\int_E f \leq \int_E g$$
+whenever $E\subseteq \Omega$ is a measurable subset.
+
+\end{itemize}
+
+\begin{theorem}[The Monotone Convergence Theorem]
+
+Let $f_n\colon \Omega \rightarrow [0,\infty ]$ be a sequence of measurable functions, such that for each point $x\in \Omega$ the sequence $(f_n (x))$ is monotonically increasing, with limit $f(x)$.  Then the function $f\colon \Omega \rightarrow [0,\infty ]$ is measurable, and
+$$\int_\Omega f\ d\mu = \lim_{n\rightarrow \infty} \int_\Omega f_n \ d\mu$$
+\end{theorem}
+
+\begin{proof}
+As the limit of a sequence of measurable functions, the function $f$ is measurable.  Since the seqyebce $(f_n (x))$ is monotonic increasing, with limit $f(x)$, we know that $F_n \leq f_{n+1} \leq f$ for all $n$.  Therefore the sequence of integrals $\left( \int_\Omega f_n \right)$ is monotonic increasing, and
+$$\int_\Omega f_n \ d\mu \leq \int_\Omega f \ d\mu$$
+for all $n$.
+
+Choose a simple function $s$ such that $0\leq s\leq f$.  Let $0<\alpha <1$, and write
+$$E_n = \{ x\in \Omega \ |\ f_n (x) \geq \alpha s(x) \}$$
+
+Each set $E_n$ is measurable, and $E_n \subseteq E_{n+1}$ for all $n$ since the sequence $(f_n)$ is monotonic increasing.  Since the sequence $(f_n)$ has pointwise limit $f$, we see that
+$$\Omega = \bigcup_{n=1}^\infty E_n$$
+
+Further
+$$\int_\Omega f_n\ d\mu \geq \int_{E_n} f_n \ d\mu \geq \alpha \int_{E_n}s\ d\mu \qquad (\ast )$$
+
+By lemma \ref{stepmeasure} we can define a measure on the set $\Omega$ by the formula
+$$\varphi (E) = \int_E s\ d\mu$$
+Hence
+$$\int_\Omega s\ d\mu = \varphi (\Omega ) = \lim_{n\rightarrow \infty} \varphi (E_n ) = \lim_{n\rightarrow \infty} \int_{E_n}s\ d\mu$$
+by proposition \ref{limsub}.
+
+Taking limits in inequality $(\ast )$, we see that
+$$\lim_{n\rightarrow \infty } \int_\Omega f_n \ d\mu \geq \alpha \int_\Omega s\ d\mu$$
+
+In particular, this inequality holds whenever $0<\alpha <1$ and $s\leq f$.  By the definition of the integral, it follows that
+$$\lim_{n\rightarrow \infty}\int_\Omega f_n \ d\mu \geq \int_\Omega f \ d\mu$$
+and we are done.
+\end{proof}
+
+Let $f\colon \Omega \rightarrow [0,\infty ]$ be a measurable function.  By proposition \ref{simpapp}, there is a monotonically increasing sequence of simple functions $s\colon \Omega \rightarrow [0,\infty )$ with pointwise limit $f$.
+
+The monotone convergence theorem tells us that
+$$\int_\Omega f = \lim_{n\rightarrow \infty} \int_\Omega s_n$$
+and so gives us a new way of viewing the definition of the integral.  Using this viewpoint, the following result follows immediately from proposition \ref{simpsum}
+
+\begin{corollary}
+Let $f,g\colon \Omega \rightarrow [0,\infty ]$ be measurable functions, and let $\alpha, \beta \in [0, \infty )$.  Then
+$$\int_\Omega (\alpha f+ \beta g)\ d\mu = \alpha \int_\Omega f\ d\mu + \beta \int_\Omega g\ d\mu$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+We can also immediately deduce the following result from the monotone convergence theorem.
+
+\begin{corollary}
+Consider a sequence of measurable functions $f_n \colon \Omega \rightarrow [0,\infty ]$.  Then for any measurable subset $E\subseteq \Omega$ we have the formula$$\sum_{n=1}^\infty \int_E f_n\ d\mu = \int_E \left( \sum_{n=1}^\infty f_n \right) \ d\mu$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\begin{theorem}[Fatou's lemma]
+
+Let $f_n \colon \Omega \rightarrow [0,\infty ]$ be a sequence of measurable functions.  Then
+$$\int_\Omega {\lim \inf}_{n\rightarrow \infty} f_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega f_n$$
+\end{theorem}
+
+\begin{proof}
+Let
+$$g_n (x) = \inf \{ f_n (x) , f_{n+1} (x) , f_{n+2} (x) , \ldots \}$$
+
+Then the function $g_n$ is measurable, the sequence $(g_n)$ is monotonic increasing, and the inequality $g_n \leq f_n$ holds for all $n$.
+
+We know that
+$$\lim_{n\rightarrow \infty} g_n (x) = {\lim \inf}_{n\rightarrow \infty} f_n (x)$$
+
+Hence, by the monotone convergence theorem
+$$\int_\Omega {\lim \inf}_{n\rightarrow \infty} f_n  = \lim_{n\rightarrow \infty} \int_\Omega g_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega f_n$$
+and we are done.
+\end{proof}
+
+The inequality 
+$$\int_\Omega {\lim \sup}_{n\rightarrow \infty} f_n \geq {\lim \sup}_{n\rightarrow \infty} \int_\Omega f_n$$
+is easily deduced from Fatou's lemma.
+
+\section{Integration of Complex-Valued Functions}
+
+\begin{definition}
+Let $\Omega$ be a measure space, with measure $\mu$.  We call a measurable function $f\colon \Omega \rightarrow {\mathbb C}$ {\em integrable} if
+$$\int_\Omega |f|\ d\mu < \infty$$
+
+We write $L^1 (\Omega )$ to denote the set of all integrable functions.
+\end{definition}
+
+Suppose we have a measurable function $f$ and a positive-valued integrable function $g$ such that $|f|\leq g$.  Then it follows by the above definition that the function $f$ is integrable.  This integrability criterion is often used.
+
+\begin{definition}
+Let $f\colon \Omega \rightarrow {\mathbb R}$ be any real-valued function.  Then we define functions $f^+ , f^- \colon \Omega \rightarrow [0, \infty )$ by the formulae
+$$f^+ (x) = \max (f(x), 0)) \qquad f^- (x) = \max (-f(x) , 0)$$
+respectively.
+\end{definition}
+
+Observe that $f = f^+ - f^-$.  If the function $f$ is measurable, then so are the functions $f^+$ and $f^-$.
+
+\begin{proposition}
+Let $f\colon \Omega \rightarrow {\mathbb R}$ be an integrable function.  Then the functions $f^+$ and $f^-$ are also integrable.
+\end{proposition}
+
+\begin{proof}
+The functions $f^+$ and $|f|$ are positive-valued, and $f^+ \leq |f|$.  We know that $\int_\Omega |f| < \infty$, so $\int_\Omega f^+ <\infty$.
+
+The proof that the function $f^-$ is integrable is identical to the above.
+\end{proof}
+
+\begin{definition}
+Let $f\colon \Omega \rightarrow {\mathbb R}$ be an integrable function.  Then we define we define the integral
+$$\int_\Omega f\ d\mu := \int_\Omega f^+\ d\mu - \int_\Omega f^-\ d\mu$$
+\end{definition}
+
+It is easy to see that definition agrees with the previous definition when the function $f$ is positive-valued.  Further, the equation
+$$\int_\Omega (\alpha f + \beta g)\ d\mu = \alpha \int_\Omega f \ d\mu + \beta \int_\Omega g\ d\mu$$
+holds for all real numbers $\alpha , \beta \in {\mathbb R}$ and integrable functions $f,g\colon \Omega \rightarrow {\mathbb R}$.
+
+\begin{definition}
+Let $f,g\colon \Omega \rightarrow {\mathbb C}$ be integrable functions.  Then we define the integral
+$$\int_\Omega f\ d\mu := \int_\Omega \Re (f)\ d\mu +i \int_\Omega \Im (f)\ d\mu$$
+\end{definition}
+
+An argument similar to that made above tells us that this integral is well-defined, agrees with the previous definition for real-valued functions, and is linear.
+
+\begin{proposition} \label{posineq}
+Let $f\colon \Omega \rightarrow {\mathbb C}$ be an integrable function.  Then
+$$\left| \inf_\Omega f\ d\mu \right| \leq \int_\Omega |f|\ d\mu$$
+\end{proposition}
+
+\begin{proof}
+Choose $\alpha \in {\mathbb C}$ such that $|\alpha |=1$ and
+$$\left| \inf_\Omega f\ d\mu \right| = \alpha \int_\Omega f\ d\mu = \int_\Omega \alpha f\ d\mu$$
+
+Let $g = \Re (\alpha f )$ and $h= \Im (\alpha f)$.  Then
+$$\left| \inf_\Omega f\ d\mu \right| = \int_\Omega g\ d\mu + i \int_\Omega h\ d\mu$$
+
+Certainly, $\left| \inf_\Omega f\ d\mu \right| \in {\mathbb R}$, so
+$$\int_\Omega h\ d\mu$$
+and
+$$\left| \inf_\Omega f\ d\mu \right| = \int_\Omega g\ d\mu$$
+
+However
+$$g\leq  |g| \leq |\alpha f| = |f|$$  
+It follows that
+$$\left| \inf_\Omega f\ d\mu \right| \leq \int_\Omega |f|\ d\mu$$
+and we are done.
+\end{proof}
+
+Observe that the proof of the above result uses only positivity and linearity of the integral.
+
+\begin{theorem}[The Dominated Convergence Theorem]
+Let $(f_n)$ be a sequence of measurable functions $f_n \colon \Omega \rightarrow {\mathbb C}$ such that:
+
+\begin{itemize}
+
+\item The limit
+$$f(x) = \lim_{n\rightarrow \infty} f_n (x)$$
+exists for all $x\in \Omega$.
+
+\item There is an integrable function $g\in L^1 (\Omega )$ such that $|f_n (x)|\leq g(x)$ for all $x\in \Omega$ and $n\in {\mathbb N}$.
+
+\end{itemize}
+
+Then $f\in L^1 (\Omega )$, and
+$$\lim_{n\rightarrow \infty} \int_\Omega |f_n - f|\ d\mu =0$$
+\end{theorem}
+
+\begin{proof}
+Since each fucntion $f_n$ is measurable, the limit function $f$ is also measurable.  We know that $|f_n|\leq g$ for all $n$.  Therefore $|f|\leq g$.  It follows that $f\in L^1 (\Omega )$.
+
+Now, let
+$$h_n = 2g - |f_n -f |$$
+
+Observe that $h_n \geq 0$ for all $n$.  Hence by Fatou's lemma
+$$\int_\Omega {\lim \inf}_{n\rightarrow \infty} h_n \leq {\lim \inf}_{n\rightarrow \infty} \int_\Omega h_n$$
+that is
+$$\int_\Omega 2g\ d\mu \leq \int_\Omega 2g\ d\mu - {\lim \inf}_{n\rightarrow \infty} \int_\Omega |f_n -f| \ d\mu$$
+and so
+$${\lim \inf}_{n\rightarrow \infty} \int_\Omega |f_n -f| \ d\mu \leq 0$$
+
+Since $|f_n -f | \geq 0$ for all $n$, we deduce that
+$$\lim_{n\rightarrow \infty} \int_\Omega |f_n - f|\ d\mu =0$$
+as required.
+\end{proof}
+
+Combining the dominated convergence theorem with proposition \ref{posineq} we obtain the following corollary, also referred to as the dominated convergence theorem.
+
+\begin{corollary}[The Dominated Convergence Theorem]
+Let $(f_n)$ be a sequence of measurable functions $f_n \colon \Omega \rightarrow {\mathbb C}$ such that:
+
+\begin{itemize}
+
+\item The limit
+$$f(x) = \lim_{n\rightarrow \infty} f_n (x)$$
+exists for all $x\in \Omega$.
+
+\item There is an integrable function $g\in L^1 (\Omega )$ such that $|f_n (x)|\leq g(x)$ for all $x\in \Omega$ and $n\in {\mathbb N}$.
+
+\end{itemize}
+
+Then $f\in L^1 (\Omega )$, and
+$$\lim_{n\rightarrow \infty} \int_\Omega f_n \ d\mu = \int_\Omega f\ d\mu$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\section{Null Sets}
+
+\begin{definition}
+Let $\Omega$ be a measure space, with measure $\mu$.  Then a set $E\subseteq \Omega$ is called a {\em null set} if $E$ is measurable, and $\mu (E) =0$.
+
+The measure space $\Omega$ is called {\em complete} if every subspace of a null set is measurable.
+\end{definition}
+
+The usual manipulations of the axioms tell us that every measure space is contained in a unique smallest complete measure space.  To be more precise, we have the following result.
+
+\begin{proposition}
+Let $\Omega$ be a measure space, equipped with $\sigma$-algbebra $\mathcal M$, and measure $\mu$.  Let us define 
+$${\mathcal M}^\star := \{ E\subseteq \Omega \ |\ A\subseteq E\subseteq B,\, A,B\in \Omega ,\, \mu (B\backslash A) = 0 \}$$
+
+Then the set ${\mathcal M}^\star$ is a $\sigma$-algebra.  We can define a measure $\mu^\star$ on the set ${\mathcal M}^\star$ by writing
+$$\mu^\star (E) = \mu (A) \qquad A\subseteq E\subseteq B,\ A,B\in \Omega ,\ \mu (B\backslash A) =0$$
+\textbf{proof to be filled in!}
+\end{proposition}
+
+As we might expect from the terminology, null sets are irrelevant from the point of view of integration theory.
+
+\begin{theorem}
+Let $f\colon \Omega \rightarrow [0,\infty ]$ be a measurable function.  Then the integral of $f$ is zero if and only if the function $f$ is equal to zero except on a null set.
+\end{theorem}
+
+\begin{proof}
+Suppose that the set
+$$N = \{ x\in \Omega \ |\ f(x)\neq 0 \}$$
+is a null set.  Let $s\colon \Omega \rightarrow [0,\infty ]$ be a simple function such that $s\leq f$.  Then $s(x)=0$ when $x\not\in N$.  The definition of the integral of a simple function tells us that
+$$\int_\Omega s \ d\mu =0$$
+
+The definition of the integral of a non-negative function now implies that
+$$\int_\Omega f\ d\mu =0$$
+
+Conversely, suppose that the integral of the function $f$ is zero.  Let
+$$A_n = \{ x\in \Omega \ |\ f(x)> 1/n \}$$
+
+Then clearly
+$$\frac{1}{n} \mu (A_n ) \leq \int_{A_n} f\ d\mu \leq \int_\Omega f d\mu =0$$
+so $\mu (A_n ) =0$.  But
+$$\{ x\in \Omega \ |\ f(x) >0 \} = \bigcup_{n=1}^\infty A_n$$
+
+Thus $\sigma$-additivity implies that the set of all points $x\in \Omega$ such that $f(x)\neq 0$ has measure zero.
+\end{proof}
+
+Given two functions $f,g\colon \Omega \rightarrow {\mathbb C}$, let us say that $f$ and $g$ are equal {\em almost everywhere} if they are equal outside of some set of measure zero.
+
+\begin{corollary}
+Let $f,g\colon \Omega \rightarrow {\mathbb C}$ be integrable functions that are equal almost everywhere.  Then
+$$\int_\Omega f = \int_\Omega g$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\begin{corollary}
+Let $f\colon \Omega \rightarrow {\mathbb C}$ be an integrable function.  Suppose that
+$$\int_E f =0$$
+whenever the subset $E\subseteq \Omega$ is measurable.  Then the function $f$ is equal to zero almost everywhere.
+\end{corollary}
+
+\begin{proof}
+Let us write
+$$f(x) = u(x) + iv(x) = (u^+(x)- u^- (x)) + i(v^+(x) - v^-(x))$$
+where the functions $u$ and $v$ are real and integrable, and the functions $u^\pm$ and $v^\pm$ are integrable and non-negative.
+
+Let
+$$E = \{ x\in \Omega \ |\ u(x)\geq 0 \}$$
+Then
+$$\Re \left( \int_E f \right) = \int_E u^+ =0$$
+
+By the above theorem, it follows that $u^+ =0$ except on a null set.  Similarly, it follows that $u^- =0$ except on a null set.  Since the union of two null sets is also a null set, we have shown that $u=0$ almost everywhere.
+
+A similar argument tells us that $v=0$ almost everywhere.  We conclude that $f=0$ almost everywhere.
+\end{proof}
+
+\section{The Riesz Representation Theorem}
+
+Before we are ready to state the Riesz representation theorem, we need some terminology from point-set topology.
+
+\begin{definition}
+Let $X$ be a topological space.  Then we define the {\em support} of a continuous function $f\colon X\rightarrow {\mathbb C}$ to be the closure
+$$\supp (f):= \overline{ \{ x\in X \ |\ f(x)\neq 0 \} }$$
+\end{definition}
+
+We write $C_c (X)$ to denote the set of all continuous compactly supported functions $f\colon X\rightarrow {\mathbb C}$.  The set $C_c (X)$ is a vector space under the operations of pointwise addition and scalar multiplication.
+
+\begin{definition}
+A linear map $\Lambda \colon C_c (X) \rightarrow {\mathbb C}$ is said to be a {\em positive functional} if $\Lambda (f) \geq 0$ whenever $f\geq 0$.
+\end{definition}
+
+Let $X$ be a topological space equipped with a Borel measure $\mu$ such that $\mu (K) <\infty$ whenever $K\subseteq X$ is a compact subspace.  Then the integration map
+$$f\mapsto \int_X f$$
+defines a positive linear functional.
+
+The Riesz representation theorem is essentially a converse of the above observation.
+
+\begin{theorem}
+Let $X$ be a locally compact Hausdorff space, and let $\Lambda \colon C_c (X) \rightarrow {\mathbb C}$ be a positive linear functional.
+
+Then the set $X$ has a $\sigma$-algebra $\Omega$ containing all Borel sets, and a unique measure $\mu$ on $\Omega$ such that
+$$\Lambda (f) = \int_X f\ d\mu$$
+whenever $f\in C_c (X)$.
+\end{theorem}
+
+The proof of this theorem is in a series of lemmas; the proof is quite long.  Before we begin the proof, let us note a theorem from general topology which we shall need.
+
+\begin{theorem} \label{partition}
+Let $X$ be a locally compact Hausdorff space, and let ${\mathcal U} = \{ U_\alpha \ |\ \alpha \in A \}$ be an open cover of the space $X$.  Then there is a {\em partition of unity} subordinate to the cover $\mathcal U$, that is to say a set of continuous functions $u_\alpha \colon X\rightarrow [0,1]$ such that $\supp u_\alpha \subseteq U_\alpha$ and
+$$\sum_{\alpha \in A} u_\alpha (x) =1$$
+whenever $x\in X$.
+\textbf{proof to be filled in!}
+\end{theorem}
+
+The following corollary is known as {\em Urysohn's lemma}.
+
+\begin{corollary}
+Let $X$ be a locally compact Hausdorff space, and let $K\subseteq X$ be a compact set, and let $U$ be an open set containing $K$.  Then there is a continuous function $f\colon X\rightarrow [0,1]$
+such that
+$$\chi_K(x) \leq f(x) \leq \chi_U (x)$$
+\end{corollary}
+
+\begin{proof}
+The collection $\{ U, X\backslash K \}$ is an open cover of the space $X$.  There is therefore a partition of unity $\{ f,g\}$ subordinate to this open cover.
+
+The definition of a partition of unity gives us the required inequality for the function $f$.
+\end{proof}
+
+We now begin our proof of the Riesz representation theorem with the definition of the measure we are looking for.
+
+\begin{definition}
+Let $\Lambda \colon C_c (X) \rightarrow {\mathbb C}$ be a positive linear functional.  Let $U\subseteq X$ be open.  Then we define
+$$\mu (U):= \sup \{ \Lambda f \ |\ f\leq \chi_U \}$$
+
+In general, for a subset, $E\subset X$, we define
+$$\mu (E) = \inf \{ \{ \mu (U) \ |\ U \textrm{ open }, E\subseteq U \}$$
+\end{definition}
+
+\begin{proposition}
+Let $f,g\in C_c (X)$, and let $f\leq g$.  Then $\Lambda f \leq \Lambda g$.
+\end{proposition}
+
+\begin{proof}
+Observe $g-f \geq 0$.  The result follows from positivity and linearity of the function $\Lambda$.
+\end{proof}
+
+\begin{corollary}
+Let $A$ and $B$ be subsets of the space $X$ where $A\subseteq B$.  Then $\mu (A)\leq \mu (B)$.
+\textbf{proof to be filled in!}
+\end{corollary}
+
+Although we have defined a function $\mu$ for every subset of $E$, the definition is only sensible for a certain $\sigma$-algebra.
+
+\begin{definition}
+We define $\Omega_F$ to be the sollection of all subsets $E\subseteq X$ such that $\mu (E)<\infty$ and
+$$\mu (E) = \sup \{ \mu (K) \ |\ K\subseteq E, K \textrm{ compact} \}$$
+
+We define $\Omega$ to be the collection of all subsets $E\subseteq X$ such that $E\cap K \in \Omega_F$ whenever $K$ is compact.
+\end{definition}
+
+We need to prove that the set $\Omega$ is a $\sigma$-algebra which contains all Borel sets; this statement is not obvious.
+
+\begin{proposition} \label{lem3}
+Let $V\subseteq X$ be an open subset such that $\mu (V)<\infty$.  Then $V\in \Omega_F$.
+\end{proposition}
+
+\begin{proof}
+Choose a number $a< \mu (V)$.  By the definition of $\mu$, there is a function $f\in C_c (X)$ such that $f\leq \chi_V$ and $a< \Lambda f$.  Write $K=\supp (f)$, and let $W$ be an open set that contains $K$.  Then $\Lambda f \leq \mu (W)$, so $\Lambda f \leq \mu (K)$, using the above proposition and corollary, and the definition of the function $\mu$.
+
+Thus $K\subseteq V$ and $\mu (K) >a$.  It follows that
+$$\mu (V) = \sup \{ \mu (K) \ |\ K\subseteq E, K \textrm{ compact} \}$$
+and we are done.
+\end{proof}
+
+
+\begin{proposition}
+Let $U_1 , \ldots , U_N\subseteq X$ be open sets.  Then 
+$\mu (U_1\cup \cdots \cup U_N) \leq \mu (U_1)+ \cdots +\mu (U_N)$.
+\end{proposition}
+
+\begin{proof}
+Let $N=2$.  Choose a function $g\in C_c (X)$ such that $g\leq \chi_{U_1\cup U_2}$.  By theorem \ref{partition} there are functions $u_1 , u_2\in C_c (X)$ such that $u_1\leq \chi_{U_1}$, $u_2\leq \chi_{u_2}$, and $u_1(x) + u_2 (x) =1$ whenever $x\in U_1\cup U_2$.  It follows that
+$$u_1 g\leq \chi_{U_1},\ u_2g \leq \chi_{U_2} \qquad g=u_1 g + u_2 g$$
+and therefore
+$$\Lambda g = \Lambda (u_1 g) +\Lambda (u_2 g) \leq \mu (U_1) + \mu (U_2)$$
+
+Since the above inequality holds for every function $g\in C_c (X)$ such that $g\leq \chi_{U_1\cup U_2}$, the result follows from the definition of $\mu$ when $N=2$.  The general result follows by induction.
+\end{proof}
+
+\begin{lemma} \label{lem1}
+Let $E_1,E_2,E_3,\ldots$ be subsets of the space $X$.    Write
+$$E = \bigcup_{n=1}^\infty E_n$$
+
+Then
+$$\mu (E) \leq \sum_{n=1}^\infty \mu (E_n)$$
+\end{lemma}
+
+\begin{proof}
+If $\mu (E_n )=\infty$ for some $n$, then the result is obviously true.  Thus, let us suppose that $\mu (E_n)<\infty$ for all $n$.  Choose $\varepsilon >0$.  By definition of the function $\mu$, there are open sets $U_n \supseteq V_n$ such that
+$$\mu (V_n) < \mu (E_n) +2^{-n} \varepsilon$$
+for all $n$.
+
+Let $U = \bigcup_{n=1}^\infty U$, and choose $f\in C_c (X)$ such that $f\leq \chi_U$.  The support of the function $f$ is covered by the collection of sets $\{ U_n \ |\ n=1,2,3,\ldots \}$.  Since the function $f$ has compact support, it follows that it has a finite subcovering, and so 
+$$f\leq \chi_{U_1 \cup \cdots \cup U_N }$$
+for some $N$.  By the above proposition, we see that
+$$\Lambda f \leq \mu (U_1 \cup \cdots \cup U_N) \leq \mu(V_1 ) + \cdots + \mu (V_N) \leq \sum_{n=1}^\infty \mu (E_n) + \varepsilon$$
+
+Since the above inueqality holds for every funtion $f\subseteq \chi_U$, and $E\subseteq U$, we see that 
+$$\mu (E) \leq \sum_{n=1}^\infty \mu (E_n) +\varepsilon$$
+
+But this inequality holds whenever $\varepsilon >0$, so the result follows.
+\end{proof}
+
+\begin{proposition}
+Let $K\subseteq X$ be compact.  Then $\mu (K)\leq \Lambda f$ whenever $f\geq \chi_K$, and $K\in \Omega_F$.
+\end{proposition}
+
+\begin{proof}
+Let $0<a<1$, and choose $f\in C_c (X)$ such that $f\geq \chi_K$.  Write
+$$V_a = \{ x\in X \ |\ f(x)>a \}$$
+
+Then $K\subseteq V_a$, and $ag\leq f$ whenever $f\leq \chi_{V_a}$.  Therefore
+$$\mu (K) \leq \mu (V_a ) = \sup \{ \Lambda g \ |\  g\leq \chi_{V_a} \} \leq a^{-1}\Lambda f$$
+
+Since this inequaltity holds whenever $0<a<1$, it follows that $\mu (K)\leq \Lambda f$.  It follows that $\mu (K)< \infty$, and so $K\in \Omega_F$.
+\end{proof}
+
+\begin{lemma} \label{lem2}
+Let $K\subseteq X$ be compact.  Then
+$$\mu (K) =\inf \{ \Lambda f \ |\ \chi_K \leq f \}$$
+\end{lemma}
+
+\begin{proof}
+Let $\varepsilon >0$.  Then there is an open set $U\supseteq K$ such that $\mu (U) < \mu (K) +\varepsilon$.  By Urysohn's lemma there is a continuous function $f\colon [0,1]\rightarrow X$ such that $\chi_K \leq f \leq \chi_U$.  It follows that
+$$\Lambda f\leq \mu(U) < \mu (K) +\varepsilon$$
+
+The result follows from the above inequality combined with the previous proposition.
+\end{proof}
+
+\begin{proposition} 
+Let $K_1,\ldots K_N$ be disjoint compact sets.  Then
+$$\mu (K_1 \cup \cdots \cup K_N) \leq \mu (K_1 ) + \cdots + \mu (K_N)$$
+\end{proposition}
+
+\begin{proof}
+Let $N=2$.  We can find an open set $U$ such that $U\supseteq K_1$ and $U\cap K_2 = \emptyset$.  It follows by Urysohn's lemma that we can find a compactly supported function $u\colon X\rightarrow [0,1]$ such that $u(x)=1$ whenever $x\in K_1$, and $u(x) =0$ whenever $x\in K_2$.
+
+Let $\varepsilon >0$.  By lemma \ref{lem2} there is a function $g\in C_c (X)$ such that
+$$\chi_{K_1 \cup K_2}\leq g \qquad \Lambda g \leq \mu (K_1 + K_2) +\varepsilon$$
+
+Observe that
+$$\chi_{K_1} \leq fg \qquad \chi_{K_2} \leq (1-f)g$$
+
+Hence
+$$\mu (K_1 ) + \mu (K_2) \leq \Lambda (fg) + \Lambda (g-fg) \leq \mu (K_1 \cup K_2 ) + \varepsilon$$
+
+Since the above inequality holds whenever $\varepsilon >0$, the desired result follows when $N=2$.  The general result follows by induction.
+\end{proof}
+
+\begin{lemma} \label{lem4}
+Let $E_1,E_2,E_3,\ldots$ be pairwise disjoint members of the collection $\Omega_F$.  Write
+$$E = \bigcup_{n=1}^\infty E_n$$
+
+Then
+$$\mu (E) = \sum_{n=1}^\infty \mu (E_n)$$
+
+Further, if $\mu (E) <\infty$, then $E\in \Omega_F$.
+\end{lemma}
+
+\begin{proof}
+Observe that the result follows from lemma \ref{lem1} when $\mu (E)=\infty$.  Let us therefore assume that $\mu (E)<\infty$.  Choose $\varepsilon >0$.  Since $E_n\in \Omega_F$, we can find a compact set $K_n \subseteq E_n$ such that
+$$\mu (K_n )> \mu (E_n ) - 2^{-n} \varepsilon$$
+for each $n$.  Let $H_N = K_1 \cup \cdots \cup K_N$.  Then by the above propositiion:
+$$\mu E) \geq \mu (H_N) = \sum_{n=1}^N \mu (K_n) > \sum_{n=1}^N \mu (E_n) - \varepsilon$$
+
+Since the above inequality holds whenever $\varepsilon >0$, combining it with the inequality in lemma \ref{lem1}, we see that
+$$\mu (E) = \sum_{n=1}^\infty \mu (E_n)$$
+
+Now, if $\mu (E)<\infty$, and $\varepsilon >0$, then we can find $N$ such that
+$$\mu (E) \leq \sum_{n=1}^N \mu (E_n) + \varepsilon$$
+
+It follows that $\mu (E)\leq \mu (H_N) +2\varepsilon$, and so $E\in \Omega_F$.
+\end{proof}
+
+\begin{proposition} \label{lem5}
+Let $E\subseteq \Omega_F$, and let $\varepsilon >0$.  Then there is a compact set $K$ and an open set $V$ such that $K\subseteq E\subseteq V$, and $\mu (V\backslash K)<\varepsilon$.
+\end{proposition}
+
+\begin{proof}
+by definition of the collection $\Omega_F$, we can find a compact set $K\subseteq E$ and an open set $U\supseteq E$ such that
+$$\mu (V) - \frac{\varepsilon}{2} < \mu (E) < \mu(K) + \frac{\varepsilon}{2}$$
+
+By lemma \ref{lem3}, we see that $V\backslash K \in \Omega_F$.  By lemma \ref{lem4}, we see
+$$\mu (K) + \mu (U\backslash K) = \mu (U) < \mu (K) +\varepsilon$$
+and we are done.
+\end{proof}
+
+\begin{proposition}
+Let $A,B\in \Omega_F$.  Then the sets $A\backslash B$, $A\cup B$, and $A\cap B$ belong to the collection $\Omega_F$.
+\end{proposition}
+
+\begin{proof}
+By the above proposition, there are compact sets $K$ and $K'$, and open sets $U$ and $U'$ such that
+$$K\subseteq A\subseteq U \qquad K'\subseteq B\subseteq U'$$
+and
+$$\mu (U\backslash K)< \varepsilon \qquad \mu (U'\backslash K') <\varepsilon$$
+
+Observe
+$$A\backslash B \subseteq U\backslash K' \subseteq U\backslash K \cup K\backslash U'\cup U'\backslash K'$$
+
+Hence by lemme \ref{lem1}:
+$$\mu (A\backslash B) \subseteq \mu (K\backslash V') +2\varepsilon$$
+
+Further, the set $K\backslash V'$ is compact, so the above inequality tells us that $A\backslash B \in \Omega_F$.
+
+But $A\cup B = (A\backslash B)\cup B$, so $A\cup B \in \Omega_F$ by lemma \ref{lem4}.  Finally, $A\cap B = A\backslash (A\backslash B)$, so $A\cap B\in \Omega_F$ by the above calculation.
+\end{proof}
+
+We are now nearly done, and can prove a slightly less technical result.
+
+\begin{theorem}
+The set $\Omega$ is a $\sigma$-algebra containing all Borel sets.
+\end{theorem}
+
+\begin{proof}
+Let $K\subseteq X$ be compact.  If $A\in \Omega$, then $X\backslash A \cap K = K \backslash (A\cap K)$, so $X\backslash A \cap K\in \Omega_F$  by the above proposition, and $X\backslash A\in \Omega$.
+
+Suppose that
+$$A = \bigcup_{n=1}^\infty A_n \qquad A_n \in \Omega$$
+
+Let $B_1 = A_1 \cap K$, and
+$$B_n = (A_n \cap K) \backslash (B_1 \cup \cdots \cup B_n) \qquad n\geq 2$$
+
+Then the collection $\{ B_n \ |\ n=1,2,\ldots \}$ is a pairwise disjoint, and $B_n \in \Omega_F$ for all $n$ by the above lemma.  But $A\cap K =\bigcup_{n=1}^\infty B_n$, so $A\cap K \in \Omega_F$ by lemma \ref{lem4}.  It follows that $A\in \Omega$.
+
+We have proved that the collection $\Omega$ is a $\sigma$-algebra.  If $C\subseteq X$ is a closed subset, then the intersection $K\cap C$ is compact.  Thus $C\cap K \in \Omega_F$, and so $C\in \Omega$.  Thus every closed set belongs to the collection $\Omega$.  It follows that the $\sigma$-algebra $\Omega$ contains all Borel sets.
+\end{proof}
+
+\begin{lemma} \label{lem8}
+$$\Omega_F = \{ E\in \Omega \ |\ \mu (E)<\infty \}$$
+\end{lemma}
+
+\begin{proof}
+Let $E\in \Omega_F$.  Then by lemmas \ref{lem2} and \ref{lem4}, we see $E\cap K \in \Omega_F$ whenever $K\subseteq X$ is compact.  Then $E\in \Omega$.  By definition of the set $\Omega_F$, $\mu (E)<\infty$.
+
+Conversely, suppose that $E\in \Omega$ and $\mu (E)<\infty$.  Let $\varepsilon >0$.  We can certainly find an open set $U\supseteq E$ such that $\mu (E)<\infty$.  By propositions \ref{lem3} and \ref{lem5}, there is a compact set $K\subseteq U$ such that $\mu (U\backslash K)<\varepsilon$.
+
+We know that $E\cap K\in \Omega_F$.  There is therefore a compact set $H\subseteq E\cap K$ such that
+$$\mu (E\cap K) < \mu (H) +\varepsilon$$
+
+But $E\subseteq (E\cap K) \cup (U\backslash K)$.  Therefore
+$$\mu (E)\subseteq \mu (E\cap K) + \mu (V\backslash K) < \mu (H)+\varepsilon$$
+and we see that $E\in \Omega_F$.
+\end{proof}
+
+We can now prove our main result.
+
+\begin{theorem}
+The function $\mu$ is a measure on the $\sigma$-algebra $\Omega$.  It is the unique measure with the property
+$$\Lambda f = \int_X f(x)\ d\mu (x)$$
+for all $f\in C_c (X)$.
+\end{theorem}
+
+\begin{proof}
+It follows immediately that $\mu$ is a measure from lemmas \ref{lem4} and \ref{lem8}.  Our next step is to prove the inequality
+$$\Lambda f \leq \int_X f(x)\ d\mu (x)$$
+for every real-valued compactly supported function $f$.  To do this, let $K = \supp (f)$, and choose $a,b\in {\mathbb R}$ such that $f[K]\subseteq [a,b]$.  Let $\varepsilon >0$, and choose $y_0 ,\ldots ,y_N$ such that
+$$a=y_0 < \cdots < y_N \qquad y_n - y_{n-1} <\varepsilon \textrm{ for all }n$$
+
+We can form Borel sets
+$$E_n := \{ x\in X \ | \ y_{n-1} < f(x) \leq y_n \}$$
+
+The sets $E_n$ are pairwise disjoint with union $K$.  We can find open sets $U_n \supseteq E_n$ such that
+$$\mu (U_k ) < \mu (E_k ) + \frac{\varepsilon}{n} \qquad f(x) < y_n + \varepsilon$$
+whenever $x\in U_n$.
+
+By theorem \ref{partition}, we can choose a partition of unity $\{ u_1 , \ldots , u_N \}$ subordinate to the open cover $\{ U_1 ,\ldots , U_N \}$.  It follows that
+$$f = \sum_{n=1}^N u_n f$$
+and by lemma \ref{lem2}
+$$\mu (K) \leq \Lambda \left( \sum_{n=1}^N u_n \right) = \sum_{n=1}^N \Lambda (u_n)$$
+
+But by construction $u_nf \leq (y+n + \varepsilon )u_n$, and $y_n - \varepsilon< f(x)$ for all $x\in E_n$, so
+$$\Lambda f \leq \sum_{n=1}^N (y_k + \varepsilon) \Lambda (u_n) = \sum_{n=1}^N (|a|+ y_k + \varepsilon) \Lambda (u_n) - |a| \sum_{n=1}^N \Lambda (u_n)$$
+and
+$$\Lambda f \leq \sum_{n=1}^N (|a|+ y_k + \varepsilon) (\mu (E_n) + \varepsilon /n ) - |a| \mu (K)$$
+
+Multiplying out, we see that
+$$\Lambda f \leq \sum_{n=1}^N (y_n - \varepsilon )\mu (E_n) + 2\varepsilon \mu (K) \frac{\varepsilon}{n} \sum_{n=1}^N (|a| + y_n + \varepsilon )$$
+so by construction of the integral
+$$\Lambda f \leq \int_X f\ d\mu + \varepsilon (2\mu (K) + |a| +b +\varepsilon )$$
+
+Since the above inequality must hold for every choice of $\varepsilon >0$, we see that
+$$\Lambda f \leq \int_X f(x)\ d\mu (x)$$
+as required.
+
+Now, if we replace the function $f$ by the function $-f$, we see that
+$$-\Lambda f \leq -\int_X f(x)\ d\mu (x)$$
+
+Combining the above two inequalities, we have the equation
+$$\Lambda f = \int_X f(x)\ d\mu (x)$$
+for every real-valued compactly supported function $f$.  The proof of the above equation for complex-valued functions follows by splitting such a function into real and imaginary parts, and using linearity.
+
+All that remains is to show uniqueness.  Let $\mu'$ be a measure such that the eqation
+$$\Lambda f = \int_X f(x)\ d\mu' (x)$$
+holds for every compactly supported function $f$.  Let $K$ be a compact set.  By theorem \ref{partition}, given an open set $U\supseteq K$, there is a compactly supported function $g$ such that $\chi_K \leq g\leq \chi_U$.  Hence
+$$\mu' (K) \leq \int_X f d\mu' \leq \mu' (U)$$
+and
+$$\mu'(U) = \sup \{ \Lambda f \ |\ f\leq \chi_U \} = \mu (U)$$
+
+It follows that $\mu (B)= \mu' (B)$ whenever $B$ is a Borel set, and we are done.
+\end{proof}
+
+
+
+\section{Integration of Continuous Functions}
+
+We would like to use the Riesz representation theorem to define a measure on the real line $\mathbb R$ that gives the usual integral expected from elementary calculus.  To apply the Reisz representation theorem, we need a sensible definition of the integral of a continuous compactly supported function.
+
+Let us consider a continuous function $f\colon [a,b]\rightarrow {\mathbb R}$.  Let $n$ be a positive integer.  Then the interval $[a,b]$ can be divided into $S^n$ equal-sized pieces:
+$$a< a+ 2^{-n}(b-a) < a+ 2(2^{-n})(b-a) < \cdots < a+ (2^n -1)(2^{-n})(b-a) < b$$
+
+Let us define
+$$\mu_{n,r}  = \inf \{ f(x) \ |\ a+r2^{-n}(b-a) \leq f(x) < a+ (r+1)2^{-n}(b-a)$$
+and
+$$I_n (f) = \sum_{r=0}^{2^n -1} 2^{-n}(b-a) \mu_{n,r}$$
+
+The following observations are clear.
+
+\begin{itemize}
+
+\item The sequence $(I_n (f))$ is monotonically increasing
+
+\item Since the interval $[a,b]$ is compact, and the function $f$ is continuous, there is a constant $C$ such that $f(x)\leq C$ for all $x\in [a,b]$.  Hence $I_n (f) \leq C(b-a)$ for all $n$.
+
+\end{itemize}
+
+It follows that we have a well-defined limit
+$$\Lambda (f) := \lim_{n\rightarrow \infty} I_n (f)$$
+
+We would like to extend the definition of the function $\Lambda$.  There are two stages to this extension.
+
+\begin{itemize}
+
+\item Let $f\colon [a,b]\rightarrow {\mathbb C}$ be a continuous function.  Write $f(x) = u(x) + iv(x)$, where $u,v\colon [a,b]\rightarrow {\mathbb R}$, and define
+$$\Lambda (f) = \Lambda (u) + i \Lambda (v)$$
+
+\item Let $f\in C_c ({\mathbb R})$.  Let $[a,b]\supseteq \supp (f)$.  Then we define 
+$$\Lambda (f) = \Lambda (f|_{[a,b]})$$
+
+\end{itemize}
+
+The following result is straightforward to check.
+
+\begin{proposition}
+The map $\Lambda$ is a positive linear functional on the space $C_c ({\mathbb R})$.
+\textbf{proof to be filled in!}
+\end{proposition}
+
+\begin{definition}
+Let $f\in C_c ({\mathbb R})$.  Then the number $\Lambda (f)$ is called the {\em Riemann integral} of $f$.
+\end{definition}
+
+\section{The Lebesgue Measure on $\mathbb R$}
+
+\begin{definition}
+Let $\Lambda \colon C_c ({\mathbb R})\rightarrow {\mathbb C}$ be the Riemann integral.  Then the {\em Lebesgue measure} on $\mathbb R$ is the unique measure such that
+$$\int_{\mathbb R} f\ d\mu = \Lambda (f)$$
+whenever $f\in C_c ({\mathbb R})$.
+\end{definition}
+
+By the Riesz representation, the Lebesgue measure exists and is unique on the collection of all Borel sets.  The integral of a Borel measurable function with respect to the Lebesgue measure is termed the {\em Lebesgue integral}.  We will normally write
+$$\int_a^b f\ d\mu := \int_{\mathbb R} f\chi_{(a,b)}\ d\mu$$
+
+\begin{proposition}
+Let $a<b$ be real numbers.  Then $\mu (a,b) = b-a$.
+\end{proposition}
+
+\begin{proof}
+Let $[c,d]\subseteq (a,b)$ be a compact interval.  By Urysohn's lemma, there is a function $f\in C_c ({\mathbb R})$ such that $\chi_{[c,d]} \leq f \leq \chi_{(a,b)}$.
+
+By definition of the Riemann integral:
+$$d-c \leq \int_{\mathbb R} f \leq b-a$$
+
+Let $c\rightarrow a$ and $d\rightarrow b$.  Then $f\rightarrow \chi_{(a,b)}$ and by the dominated convergence theroem, 
+$$\int_{\mathbb R} f \rightarrow \mu (a,b)$$
+
+It follows that $\mu (a,b) = b-a$, and we are done.
+\end{proof}
+
+A similar computation tells us that
+$$\mu [a,b] = \mu [a,b) = \mu (a,b] = b-a$$
+whenever $a<b$.
+
+The next fundamental property of the Lebesgue measure follows from a topological property of the real line, which we will state without proof.
+
+\begin{proposition}
+Every open subset of the real line $\mathbb R$ is a countable disjoint union of open intervals.
+\textbf{proof to be filled in!}
+\end{proposition}
+
+\begin{corollary} \label{translation}
+Let $E\subseteq {\mathbb R}$ be a Borel set.  Then $\mu (X+E) = \mu (E)$ whenever $x\in {\mathbb R}$.
+\textbf{proof to be filled in!}
+\end{corollary}
+
+We conclude with a general characterisation of sets of measure zero, or {\em null sets}.
+
+\begin{theorem}
+Let $E\subseteq {\mathbb R}$ be a set such that every subset of $A$ is measurable.  Then $\mu (A) =0$.
+\end{theorem}
+
+\begin{proof}
+The set $\mathbb R$ is an Abelian group under the operation of addition, and the set $\mathbb Q$ is a subgroup.  Let $E$ be a set of real numbers containing precisely one element of each coset $x+ {\mathbb Q} \in {\mathbb R}/{\mathbb Q}$.
+
+We claim:
+
+\begin{itemize}
+
+\item $(r+E)\cap (s+E) = \emptyset$ whenever $r,s\in {\mathbb Q}$, $r\neq s$.
+
+\item Let $x\in {\mathbb R}$.  Then we can find an element $r\in {\mathbb Q}$ such that $x\in r+E$.
+
+\end{itemize}
+
+To see the first claim, suppose that $x\in (r+E)\cap (s+E)$, where $r,s\in {\mathbb Q}$.  Then there are elements $y,z\in E$ such that $r+y = s+z$, and so $y-z\in {\mathbb Q}$.  But the definition of the set $E$ means that $r=s$.
+
+As for the second claim, let $x\in {\mathbb R}$.  Construction of the set $E$ means that we can find a point $y\in E$ such that $x-y \in {\mathbb Q}$.  But $x = y + (x-y)$ so the claim is established.
+
+We now use the above to claims to prove the theorem.  Let $t\in {\mathbb Q}$, and define $A_t := A\cap (t+E)$.  The set $A_t$ is measurable since it is a subset of the set $A$.  Consider a compact subset $K\subseteq A_t$, and let
+$$H = \bigcup_{r\in {\mathbb Q}\cap [0,1]} (r+K)$$
+
+Then the set $H$ is bounded and measurable, so $\mu (H)<\infty$.  The first of the above claims tells us that the sets $r+K$ are pair-wise disjoint, so
+$$\mu (H) = \sum_{r\in {\mathbb Q}\cap [0,1]} \mu (r+K) = \sum_{r\in {\mathbb Q}\cap [0,1]} \mu (K)$$
+by corollary \ref{translation}.  It follows that $\mu (K)=0$ whenever $K\subseteq A_t$ is compact.
+
+So $\mu (A_t) =0$.  But
+$$A = \bigcup_{t\in {\mathbb Q}} A_t$$
+and it follows that $\mu (A)=0$.
+\end{proof}
+
+\begin{corollary}
+Any countable subset of the space ${\mathbb R}$ has measure zero.
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\begin{corollary}
+There are non-measurable subsets of the space $\mathbb R$.
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\section{The Fundamental Theorem of Calculus}
+
+By convention, when $a<b$ are real numbers, and $\mu$ is the Lebesgue measure on the space $\mathbb R$, we simplfy our notation slightly and write just
+$$\int_a^b f(x)\ dx := \int_a^b f\ d\mu$$
+
+If $b<a$, we write
+$$\int_a^b f(x)\ dx := - \int_b^a f(x)\ dx$$
+
+Linearity of the integral gives us the equation
+$$\int_a^b f(x)\ dx = \int_a^c f(x)\ dx + \int_c^b f(x)\ dx$$
+whenever $a,b,c\in {\mathbb R}$.
+
+This new notation is convenient when integating a concrete function given by some definite formula.
+
+In this section we will focus on one major result, which is of absolutely vital importance when trying to calculate integrals.  This result is termed the {em fundamental theorem of calculus}.
+
+\begin{theorem}
+Let $f\colon [a,b] \rightarrow {\mathbb C}$ be a continuous function.  Define a function $F\colon [a,b]\rightarrow {\mathbb C}$ by the formula
+$$F(x) = \int_a^x f(y)\ dy$$
+
+Then the function $F$ is differentiable on the open interval $(a,b)$, and has a one-sided derivative at the end-points $a$ and $b$.  In all cases, the derivative is given by the formula
+$$F'(x) = f(x)$$
+\end{theorem}
+
+\begin{proof}
+Let $\varepsilon >0$, and let $x\in [a,b]$.  Since the function $f$ is continuous, we can choose $\delta >0$ such that $|f(x+h) -f(x)| <\varepsilon$ whenever $|h|<\delta$ and $x+h\in [a,b]$.  
+
+Let $x\in [a,b]$, and $x+h\in [a,b]$.  Observe:
+$$F(x+h)- F(x)= \int_x^{h+h} f(y)\ dy$$
+and
+$$hf(x) = f(x)\mu (x,x+h) = \int_x^{x+h} f(x)\ dy$$
+
+Suppose that $|h|<\delta$.  Then $|f(y)-f(x)| < \varepsilon$ whenever $y\in [x,x+h]$, and so:
+$$\left| \int_x^{x+h} f(y)-f(x)\ dy \right| \leq \int_x^{x+h} |f(y) -f(x)|\ dy \leq \varepsilon |h|$$
+
+Thus:
+$$|F(x+h) -F(x) - hf(x)| \leq \varepsilon |h|$$
+whenver $|h|<\delta$.  It follows that the function $F$ is differentiable, and $F'(x) =f(x)$ as claimed.
+\end{proof}
+
+In actual fact, the more useful form of the fundmantal theorem of calculus is a variation of the above formula.
+
+\begin{corollary}
+Let $F\colon [a,b]\rightarrow {\mathbb C}$ be a function with a continuous derivative $f$.  Then
+$$\int_a^b f(x)\ dx = F(b)-F(a)$$
+\end{corollary}
+
+\begin{proof}
+Define
+$$F_0 (x) = \int_a^x f(y)\ dy$$
+
+Then by the above version of the fundamental theorem of calculus, $F_0'(x) = f(x)$ whenever $x\in [a,b]$.  Hence $F_0'(x) = F'(x)$ whenever $x\in [a,b]$, so there is a constant $C$ such that $F_0(x) = F(x) +C$ for all $x\in [a,b]$.
+
+We know that $F_0 (a)=0$.  Therefore $C=-F(a)$.  We see that
+$$int_a^b f(x)\ dx = F_0 (b) = F(b) - F(a)$$ 
+as claimed.
+\end{proof}
+
+The various integration formulae, such as integration by parts and the change of variable formula, come from the fundamental theorem of calculus along with the corresponding formulae for differentives, such as the derivative of a product and the derivative of a composition.
+
+\section{Product Measures}
+
+Let $\Omega_1$ and $\Omega_2$ be measure spaces, with measures $\mu_1$ and $\mu_2$ on $\sigma$-algebras ${\mathcal M}_1$ and ${\mathcal M}_2$ respectively.
+
+\begin{definition}
+We call a subset of the form $A\times B\subseteq X\times Y$, where $A\in {\mathcal M}_1$ and $B\in {\mathcal M}_2$ a {\em measurable rectangle}.  A finite union of measurable rectangles is called an {\em elementary set}.
+
+We write ${\mathcal M}_{12}$ to denote the smallest $\sigma$-algebra in the set $\Omega_1\times \Omega_2$ that contains every measurable rectangle.
+\end{definition}
+
+We want to define a measure on the $\sigma$-algebra ${\mathcal M}_{12}$.  Before we can do this, we need some technical constructions.
+
+\begin{definition}
+Let $\mathcal C$ be a collection of subsets of some set.  Suppose that the following two conditions hold:
+
+\begin{itemize}
+
+\item Let $(A_n)$ be a sequence of sets in the collection $\mathcal C$ such that $A_n\subseteq A_{n+1}$ for all $n$.  Then $\bigcup_{n=1}^\infty A_n \in {\mathcal C}$.
+
+\item Let $(B_n)$ be a sequence of sets in the collection $\mathcal C$ such that $B_n\supseteq B_{n+1}$ for all $n$.  Then $\bigcup_{n=1}^\infty B_n \in {\mathcal C}$.
+
+\end{itemize}
+
+Then we call the collection $\mathcal C$ a {\em monotone class}.
+\end{definition}
+
+The proof of the following lemma is elementary, but rather abstract.  We omit it.
+
+\begin{lemma} \label{tech-product}
+The $\sigma$-algebra ${\mathcal M}_{12}$ is the smallest monotone class in the product $\Omega_1 \times \Omega_2$ which contains all elementary sets.
+\textbf{proof to be filled in!}
+\end{lemma}
+
+Given a subset $E\subseteq \Omega_1 \times \Omega_2$, and points $x\in Omega_1$ and $y\in \Omega_2$, let us write
+$$E_x = \{ y\in \Omega_2 \ |\ (x,y)\in E \} \qquad E^y = \{ x\in \Omega_1 \ |\ (x,y)\in E \}$$
+
+\begin{proposition}
+Let $E\in {\mathcal M}_{12}$.  Then $E_x\ in {\mathcal M}_1$ and $E^y\in {\mathcal M}_2$ whenever $x\in \Omega_1$ and $y\in \Omega_2$.
+\end{proposition}
+
+\begin{proof}
+Let $x\in \Omega_1$.  Let $\mathcal M$ be the collection of all elements $E\in \Omega_1 \times \Omega_2$ such that $E_x\in \Omega_2$.  It is straightforward to check that $\mathcal M$ is a $\sigma$-algebra that contains every measurable rectangle.  Therefore ${\mathcal M}_{12}\subseteq {\mathcal M}$, and we see that $E_x\in {\mathcal M}_2$ for every measurable set $E\subseteq \Omega_1\times \Omega_2$ and point $x\in \Omega_2$.
+
+The corresponding statement concerning sets of the form $E^y$ is proved in the same way.
+\end{proof}
+
+\begin{corollary} \label{mpf}
+Let $X$ be a topological space, and let $f\colon \Omega_1 \times \Omega_2 \rightarrow X$ be a measurable function.  Choose points $x\in \Omega_1$ and $y\in \Omega_2$.  Then the functions
+$$f(x,-) \colon \Omega_2 \rightarrow X \qquad f(-,y) \colon \Omega_1 \rightarrow X$$
+are measurable.
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\begin{definition}
+A measure space $\Omega$ is called {\em $\sigma$-finite} if it is a countable union of spaces of finite measure.
+\end{definition}
+
+\begin{example}
+The space $\mathbb R$, equipped with the standard Lebesgue measure, is $\sigma$-finite.
+\end{example}
+
+The following result lets us define measures on products of $\sigma$-finite measure spaces.
+
+\begin{theorem} \label{pre-fub}
+Let $\Omega_1$ and $\Omega_2$ be $\sigma$-finite measure spaces.  Let $E\subseteq \Omega_1\times \Omega_2$ be a measurable subset.  Then we can define measurable functions $f\colon \Omega_1\rightarrow [0,\infty]$ and $g\colon \Omega_1\rightarrow [0,\infty]$ by the formulae
+$$f_E(x) = \mu_2 (E_x) \qquad g_E(y) = \mu_1 (E^y)$$
+respectively.  Further,
+$$\int_{\Omega_1} f_E = \int_{\Omega_2} g_E$$
+\end{theorem}
+
+\begin{proof}
+Measurability of the functions $f_E$ and $g_E$ associated as above to a measurable set $E\subseteq X\times Y$ follows from the above proposition and corollary; all that remains it to prove the main equation.
+
+Let ${\mathcal M}$ be the set of all measurable subsets $E\subseteq \Omega_1 \times \Omega_2$ such that the equation
+$$\int_{\Omega_1} f_E = \int_{\Omega_2} g_E$$
+holds.
+
+Let $E=A\times B$ be a measurable rectangle.  Then $f_E = \mu_2 (B)\chi_A$ and $g_E = \mu_1 (A)\chi_B$.  It follows that
+$$\int_{\Omega_1} f_E = \int_A \mu_2 (B) = \mu_1 (A) \mu_2 (B) \qquad \int_{\Omega_1} g_E = \int_B \mu_1 (A) = \mu_1 (A) \mu_2 (B)$$
+so $E\in {\mathcal M}$.
+
+Let $(E_n)$ be a sequence of sets in the collection $\mathcal M$ such that $E_n\subseteq E_{n+1}$ for all $n$.  Write
+$$E= \bigcup_{n=1}^\infty E_n$$
+
+Then the sequences of functions $(f_{E_n})$ and $(g_{E_n})$ are monotonic increasing, with limits $f_E$ and $g_E$ respectively.  We know that $E_n \in {\mathcal M}$ for all $n$, so that the equation
+$$\int_{\Omega_1} f_{E_n} = \int_{\Omega_2} g_{E_n}$$
+holds for all $n$.  The monotone convergence theorem gives us the equation
+$$\int_{\Omega_1} f_E = \int_{\Omega_2} g_E$$
+and so tells us that $E\in {\mathcal M}$.
+
+As a consequence of the above calculation, we can easily show that the union of a discrete sequence of measurable sets in the set $\mathcal M$ also belongs to the set $\mathcal M$.  Let $(E_n)$ be a sequence of sets in the collection $\mathcal M$ such that $E_1\subseteq A\times B$, where $\mu_1 (A)<\infty$, $\mu_2 (B)<\infty$, and $E_n\supseteq E_{n+1}$ for all $n$.  Write
+$$E= \bigcup_{n=1}^\infty E_n$$
+
+Then an argument similar to the above one, only using the dominated convergence theorem rather than the monotone convergence theorem, tells us that the set $E$ belongs to the collection $\mathcal M$.
+
+Now, let $\Omega_1 = \cup_{n=1}^\infty \Omega_1^{(n)}$ and $\Omega_2 = \cup_{n=1}^\infty \Omega_2^{(n)}$, where $\mu_1 (\Omega_1^{(m)}) <\infty$ and $\mu_2 (\Omega_2^{(n)}) <\infty$ for all $m,n\in {\mathbb N}$.  Given a set $E\subseteq \Omega_1\times \Omega_2$, let us write
+$$E_{mn} = E \cap (\Omega_1^{(m)} \times \Omega_2^{(n)}$$
+
+Let ${\mathcal C}$ be the collection of all measurable sets $E\subseteq \Omega_1 \times \Omega_2$ such that $E_{mn}\in {\mathcal M}$ for all natural numbers $m$ and $n$.  Then the above calculations tell us that the collection $\mathcal C$ is a monotone class that contains every elementary rectangle.  It follows from lemma \ref{tech-product} ${\mathcal M}_{12}\subseteq {\mathcal C}$, and we are done.
+\end{proof}
+
+To paraphrase the above theorem, the equation
+$$\int_{\Omega_1} \left( \int_{\Omega_2}  \chi_E (x,y) \ d\mu_2 (y) \right) \ d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} \chi_E (x,y) \ d\mu_1 (x) \right) \ d\mu_2 (y)$$ 
+holds for every measurable set $E\subseteq \Omega_1 \times \Omega_2$.
+
+\begin{definition}
+Let $\Omega_1$ and $\Omega_2$ be $\sigma$-finite measure sets.  Then we define a measure $\mu$ on the product $\Omega_1 \times \Omega_2$ by writing
+$$\mu (E) := \int_{\Omega_1} \left( \int_{\Omega_2}  \chi_E (x,y) \ d\mu_2 (y) \right) \ d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} \chi_E (x,y) \ d\mu_1 (x) \right) \ d\mu_2 (y)$$ 
+whenever the set $E\subseteq \Omega_1 \times \Omega_2$ is measurable.
+\end{definition}
+
+It is easy to check that the above definition satisfies the axioms required of a measure.  As a special case of the above definition, we can now define a Lebesgue measure on the space ${\mathbb R}^n$ by viewing it as a product of copies of the space $\mathbb R$.  This measure is defined on every Borel set, and the measure of the $n$-dimensional cuboid
+$$[a_1 , b_1] \times \cdots \times [a_n , b_n]$$
+is the product
+$$(b_1 - a_1)(b_2-a_2) \cdots (b_n-a_n)$$
+ 
+\section{Fubini's Theorem}
+
+In the previous section, we saw how to define measures on products of $\sigma$-finite measure spaces.  We can therefore integrate on such spaces.  The purpose of this section is two state two results on the integrability of such functions, and how they are integrated.   These results are usually put together, and referred to in one piece as {\em Fubini's theorem}.
+
+\begin{theorem}
+Let $\Omega_1$ and $\Omega_2$ be $\sigma$-finite measure spaces, and let $f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}$ be an integrable function.  Then the functions $f(x,-)$ and $f(-,y)$ are integrable almost everywhere, and the functions
+$$x\mapsto \int_{\Omega_2} f(x,y) d\mu_2 (y) \qquad y\mapsto \int_{\Omega_2} f(x,y) d\mu_2 (y)$$
+are integrable.  Moreover,
+$$\int_{\Omega_1 \times \Omega_2} f(x,y) d\mu (x,y)
+=\int_{\Omega_1} \left( \int_{\Omega_2}  f (x,y) \ d\mu_2 (y) \right) \ d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} f (x,y) \ d\mu_1 (x) \right) \ d\mu_2 (y)$$ 
+\end{theorem}
+
+\begin{proof}
+Let $s\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}$ be a simple function.  Then the functions $s(x,-)$ and $s(-,y)$ are integrable almost everywhere, the functions
+$$x\mapsto \int_{\Omega_2} s(x,y) d\mu_2 (y) \qquad y\mapsto \int_{\Omega_2} s(x,y) d\mu_2 (y)$$
+are integrable, and the equation
+$$\int_{\Omega_1 \times \Omega_2} s(x,y) d\mu (x,y)
+=\int_{\Omega_1} \left( \int_{\Omega_2}  s (x,y) \ d\mu_2 (y) \right) \ d\mu_1 (x)= \int_{\Omega_2} \left( \int_{\Omega_1} s (x,y) \ d\mu_1 (x) \right) \ d\mu_2 (y)$$ 
+holds by theorem \ref{pre-fub} and the definition of the product measure.
+
+Now, suppose that $f(x,y)\geq 0$ for all points $(x,y)\in \Omega_1 \times \Omega_2$.  Since the function $f$ is measurable, by proposition \ref{simpapp} there is a monotonically increasing sequence, $(s_n)$, of simple functions, with point-wise limit $f$.  The result therefore follows in this case by the monotone convergence theorem.
+
+By splitting a real-valued function into positive and negative parts, we see that the result holds for all real-valued functions.  We can deduce the result for complex-valued functions by splitting such a function into real and imaginary parts.
+\end{proof}
+
+For the above theorem to be useful, we would like a criterion for a function $f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}$ to be integrable.  Fortunately, such a condition forms the second half of Fubini's theorem, which is also sometimes referred to as Tonelli's theorem.
+
+\begin{theorem}
+Let $\Omega_1$ and $\Omega_2$ be $\sigma$-finite measure spaces, and let $f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}$ be an integrable function.  Suppose that
+$$\int_{\Omega_1} \left( \int_{\Omega_2}  |f (x,y)| \ d\mu_2 (y) \right) \ d\mu_1 (x) <\infty$$
+or
+$$\int_{\Omega_2} \left( \int_{\Omega_1} |f (x,y)| \ d\mu_1 (x) \right) \ d\mu_2 (y)< \infty$$ 
+Then the function $f\colon \Omega_1\times \Omega_2 \rightarrow {\mathbb C}$ is integrable.
+\end{theorem}
+
+\begin{proof}
+The result is obvious if the function $f$ is simple.  A similar argument to the proof of Fubini's theorem gives us the result in general.
+\end{proof}
+
+Combining the two theorems in this section (ie: the two halves of Fubini's theorem), we have the following handy result on swapping the order of integration.
+
+\begin{corollary}
+Let $\Omega_1$ and $\Omega_2$ be $\sigma$-finite measure spaces, and let $f\colon \Omega_1 \times \Omega_2 \rightarrow {\mathbb C}$ be an integrable function.  Suppose that
+$$\int_{\Omega_1} \left( \int_{\Omega_2}  |f (x,y)| \ d\mu_2 (y) \right) \ d\mu_1 (x) <\infty$$
+
+Then
+$$\int_{\Omega_2} \left( \int_{\Omega_1} f (x,y) \ d\mu_1 (x) \right) \ d\mu_2 (y)< \infty = \int_{\Omega_1} \left( \int_{\Omega_2}  f (x,y) \ d\mu_2 (y) \right) \ d\mu_1 (x) <\infty$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+
+
+
+

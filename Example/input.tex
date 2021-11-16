@@ -1,0 +1,137 @@
+\IfFileExists{preamble-book}{%
+\input{preamble-book}
+}{%
+\input{lib/preamble-book}
+}
+\input{helpers}
+\usepackage{local}
+
+\makeatletter
+ \def\input@path{{lib/}{sections/}{licenses/}}
+\makeatother
+
+\newcommand*{\chancery}{\fontfamily{pzc}\selectfont}
+\newcommand{\fancy}{\mbox{\chancery F A N C y}}
+\begin{document}
+
+\frontmatter
+\title{ \fancy \\[2mm]
+{\chancery\Large  an online documentation project on} \\[3mm]
+{\chancery \underline{F}unctional \underline{A}nalysis and \underline{N}on-\underline{C}ommutative Geometr\underline{y}}}
+\addcontentsline{toc}{chapter}{Preliminaries}
+\addcontentsline{toc}{section}{Titlepage}
+\author{Founded by {\scshape Markus J.~Pflaum}}
+\maketitle
+
+\phantomsection 
+\label{section-phantom}
+
+\input{preliminaries}
+
+\mainmatter
+\part{Fundamentals}
+
+\setcounter{chapter}{0}
+\chapter{Tools from Analysis}\label{chpt:tools-analysis}
+\input{useful-inequalities}
+
+
+\chapter{General Topology}\label{chpt:general-topology}
+\IfFileExists{../CRingProject/sections/category-topological-spaces}{%
+  \input{../CRingProject/sections/category-topological-spaces}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/fundamental-examples-topologies}{%
+  \input{../CRingProject/sections/fundamental-examples-topologies}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/separation-properties}{%
+  \input{../CRingProject/sections/separation-properties}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/filters-convergence}{%
+  \input{../CRingProject/sections/filters-convergence}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/nets}{%
+  \input{../CRingProject/sections/nets}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/compactness}{%
+  \input{../CRingProject/sections/compactness}
+}{%
+  \section{}
+}
+\IfFileExists{../CRingProject/sections/compact-open-topology-function-spaces}{%
+  \input{../CRingProject/sections/compact-open-topology-function-spaces}
+}{%
+  \section{}
+}
+
+\chapter{Measure and Integration theory}\label{chpt:measure-integration-theory}
+\input{category-measurable-spaces-functions}
+\input{measure-spaces}
+\input{lebesgue-integration}
+
+\part{Functional Analysis}
+\chapter{Topological Vector Spaces}
+\label{chpt:topological-vector-spaces}
+
+\input{topological-division-rings-fields}
+\input{category-topological-vector-spaces}
+\input{seminorms-gauge-functionals}
+\input{cauchy-filters-completeness}
+\input{function-spaces-topologies}
+\input{summability}
+\input{topological-tensor-products}
+
+\chapter{Banach Spaces and Algebras}
+\input{sobolev-spaces}
+\input{functional-calculus}
+
+
+\chapter{Hilbert Spaces}
+\label{chpt:hilbert-spaces}
+
+\input{inner-product-spaces}
+\input{orthogonal-decomposition-riesz-representation-theorem}
+\input{orthonormal-bases-hilbert-spaces}
+\input{monoidal-structure-category-hilbert-spaces} 
+\input{adjoints-bounded-operators}
+\input{projection-valued-measures-spectral-integrals}
+\input{spectral-theory-bounded-operators}
+\input{unbounded-linear-operators}
+
+\chapter{C$^*$-Algebras}
+\label{chpt:c*-algebras}
+
+\input{c*-algebras-elementary-definitions-properties}
+\input{spectral-theory-c*-algebras}
+\input{infinite-tensor-products}
+
+\newpage 
+
+\bibliography{lmlib}
+\addcontentsline{toc}{part}{Bibliography}
+\bibliographystyle{newapa}
+\ihead{Bibliography}
+\ohead{}
+
+\chapter*{Licensing}
+\label{chapt:licenses}
+\addcontentsline{toc}{part}{Licensing}\ihead{Licensing}
+\ohead{GNU FDL v1.3}
+\addcontentsline{toc}{chapter}{GNU FDL v1.3}
+\input{gnu_fdl_1.3}
+%\newpage
+%\ohead{CC BY 4.0}
+%\section*{Creative Commons Attribution 4.0 International}\addcontentsline{toc}{chapter}{CC BY 4.0}
+%\input{cc_by_4.0}
+
+
+\end{document}

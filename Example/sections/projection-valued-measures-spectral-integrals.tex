@@ -1,0 +1,57 @@
+% Copyright 2018 Markus J. Pflaum, licensed under GNU FDL v1.3
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Projection-valued measures and spectral integrals}
+\para
+  In this section $\hilbertH$ will always denote a fixed complex Hilbert space. 
+\begin{definition}
+  By a \emph{projection-valued measure} or a \emph{spectral measure} on a 
+  measurable space $(\Omega,\mathscr{A})$ one understands a map 
+  $E: \mathscr{A} \to \blinOps(\hilbertH)$ having the following properties:
+  \begin{axiomlist}[SM]
+  \setcounter{enumi}{-1}
+  \item For each $\Delta \in \mathscr{A}$ the operator $E(\Delta)$ is an orthogonal projection 
+        that is $E(\Delta)^2 = E(\Delta)$ and $E(\Delta)^* = E(\Delta)$.
+  \item $E(\Omega) = \id_\hilbertH$.
+  \item For every sequence $(\Delta_n)_{n\in \N}$ of pairwise disjoint elements of $\mathscr{A}$ 
+        one has 
+        \[ E\left(\bigcup_{n\in\N} \Delta_n \right) =   \strong\sum_{n=0}^\infty E(\Delta_n) \ , \] 
+        where convergence is with respect to the strong operator toplogy.
+  \end{axiomlist}
+\end{definition}
+
+\begin{remark}
+  Recall that \emph{convergence}  of a sequence of operators 
+  $(A_n)_{n\in \N} \subset \blinOps(\hilbertH)$ in the \emph{strong operator topology} to some $A $ means 
+  that for every $v\in \hilbertH$ the sequence $(A_nv)_{n\in\N}$ converges in $\hilbertH$ to $Av$. 
+  One denotes this by $A =\strong\lim\limits_{n\to\infty} A_n$. 
+  Likewise, $B = \strong\sum\limits_{n=0}^\infty A_n$ means that the sequence of partial sums 
+  $\left( \sum\limits_{k=0}^n A_n \right)_{n\in \N}$ converges  in the strong operator topology 
+  to some $B  \in \blinOps (\hilbertH)$.
+\end{remark}
+
+\begin{proposition}
+  A spectral measure $E : \mathscr{A} \to \blinOps (\hilbertH)$   has the following properties
+  in addition to the defining axioms:
+  \begin{axiomlist}[SM]\setcounter{enumi}{1}
+  \item[\textup{{\sffamily (SM1')}}\hspace{-1mm}]\itemlabel{ite:spectral-measure-empty-set}
+     $E(\emptyset) = 0$.
+  \item[\textup{{\sffamily (SM2')}}\hspace{-1mm}]\itemlabel{ite:spectral-measure-finite-additivity}
+     \textup{(Finite additivity)}  One has for all disjoint $\Delta_1,\Delta_2 \in \mathscr{A}$
+      \[ E( \Delta_1  \cup \Delta_2) = E(\Delta_1) + E(\Delta_2) \ . \]
+  \setcounter{enumi}{2}
+  \item\label{ite:spectral-measure-finite-multiplicativity}
+     One has for all $\Delta_1,\Delta_2 \in \mathscr{A}$ 
+     \[ E( \Delta_1  \cap \Delta_2) = E(\Delta_1)\cdot E(\Delta_2) \ . \]
+  \end{axiomlist}
+\end{proposition}
+
+\begin{proof}
+  {\itshape ad} \hyperref[ite:spectral-measure-empty-set]{\textup{\sffamily (SM1')}}.
+
+  {\itshape ad} \hyperref[ite:spectral-measure-finite-additivity]{\textup{\sffamily (SM2')}}.
+
+  {\itshape ad} \ref{ite:spectral-measure-finite-multiplicativity}.
+\end{proof}
+

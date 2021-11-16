@@ -1,0 +1,298 @@
+% Copyright 2018 Markus J. Pflaum and Daniel Spiegel, licensed under GNU FDL v1.3
+% lectures notes taken by Daniel Spiegel based on a lecture by Markus J.Pflaum
+% 
+\section{Spectral theory of bounded operators}
+\para
+We now apply the foundations of Hilbert space theory built in the previous sections to 
+spectral theory. For the moment we will sacrifice generality and work only with bounded
+linear operators. The spectral theory of unbounded linear operators will be treated later. 
+
+Let us a recall that a linear map $A: \hilbertH_1 \rightarrow \hilbertH_2$ between Hilbert spaces 
+is continuous if and only if it is bounded, i.e.\ has finite operator norm, and that 
+$\blinOps (\hilbertH_1,\hilbertH_2)$ is a Banach space with the operator norm. 
+For the rest of this section, $\hilbertH$, $\hilbertH_1$, $\hilbertH_2, \ldots$ will always 
+denote complex Hilbert spaces and $A$, $B$ bounded linear operators. 
+We will also now fix the base field to be complex, i.e.\ $\fldK = \C$.
+Last we agree on writing $I_\hilbertH$ or just $I$ for the identity operator on a Hilbert space 
+$\hilbertH$. 
+
+\subsec{Spectrum and Resolvent}
+
+\begin{definition}
+  Let $A:\hilbertH \to \hilbertH$ be a bounded linear operator.  A complex number $\lambda$
+  is then called an \emph{eigenvalue} of $A$ if there exists a nonzero $v \in H$ such that
+  $Av = \lambda v$. For every $\lambda \in \C$ one defines the $\lambda$-\emph{eigenspace} of
+  $A$ as
+  \[
+   \operatorname{Eig}_\lambda  (A) = \big\{ v \in H \bigmid Av = \lambda v \big\} \subset \hilbertH,
+  \]
+ which is clearly a linear subspace of $\hilbertH$. 
+\end{definition}
+
+\para
+  By definition it is immediately clear that 
+ \[
+   \operatorname{Eig}_\lambda (A) = \ker(A - \lambda),
+ \]
+ where the $\lambda$ on the right stands for the operator $\lambda I$. 
+ In other words this means that
+ $\lambda\in \C$ is an eigenvalue of $A$ if and only if $A - \lambda$ is not injective.
+
+\begin{definition}
+Let $A \in \blinOps(\hilbertH)$. We make the following definitions.
+\begin{romanlist}
+  \item A \emph{regular value} of $A$ is a complex number $\lambda$ such that $A-\lambda$ is invertible.
+  \item The set of all regular values is the \emph{resolvent} of $A$, denoted $\rset(A)$.
+  \item A \emph{spectral value} of $A$ is a complex number $\lambda$ such that $A - \lambda$ is not 
+        invertible.
+  \item The set of all spectral values is the \emph{spectrum} of $A$, denoted $\sigma(A)$.
+  \item The \emph{point} or \emph{eigenspectrum} of $A$ is the set
+	\[
+	\sigma_\textup{p}(A) = \big\{\lambda \in \C \bigmid \ker(A - \lambda) \neq \{0 \} \big\}.
+	\]
+  \item An \emph{approximate eigenvalue} of $A$ is a complex number $\lambda$ for which there exists 
+        a sequence of unit vectors $(v_n)_{n\in \N}\subset \hilbertH$ such that
+	\[
+   	   \lim_{n \rightarrow \infty} (A - \lambda)v_n = 0.
+	\]
+	The set $\sigma_\textup{ap}(A)$ is the set of all approximate eigenvalues.
+\end{romanlist}
+\para 
+Evidently, $\sigma(A) = \C \setminus \rset(A)$ and $\sigma_\textup{p}(A) \subset \sigma_\textup{ap}(A) \subset \sigma(A)$,
+and these may all be strict inclusions. Note that $A - \lambda$ is bounded for any $\lambda \in \C$, 
+so the open mapping theorem \ref{} implies that $(A - \lambda)^{-1} \in \blinOps(\hilbertH)$ when $\lambda \in \rset(A)$.
+We call the map 
+\[
+  R_\bullet (A ):\rset(A) \rightarrow \blinOps(\hilbertH), \quad R_\lambda (A) = (A-\lambda)^{-1}
+\]
+the \emph{resolvent} of $A$, not to be confused with the resolvent set $\rset(A)$. 
+To keep the notation clean, we often briefly write $R_\lambda$ for $R_\lambda(A)$ and leave implicit that $R_\lambda$ depends on $A$.
+\end{definition}
+First, we prove some topological properties of the spectrum and resolvent. Recall the following lemma, which generalizes the geometric series.
+
+\begin{lemma}[Carl Neumann]\label{thm:neumann-series} Let $A \in \blinOps(\hilbertH)$. If $\norm{A} < 1$, then $I - A$ is invertible,
+\[
+(I - A)^{-1} = \sum_{n=0}^\infty A^n,
+\]
+and
+\[
+\norm{(I-A)^{-1}} \leq \frac{1}{1 - \norm{A}}.
+\]
+\end{lemma}
+
+\begin{proof}
+  Since $\norm{A} < 1$ and $\norm{A^n} \leq \norm{A}^n$ by submultiplicativity of the operator norm, we know
+  $\sum_{n=0}^\infty \norm{A^n} < \infty$. This implies that the  family $(A^n)_{n\in\N}$ is absolutely summable,
+  so $\sum_{n=0}^\infty A^n$ exists. Furthermore, for every $N \in \N$ we have
+  \begin{align*}
+    (I-A)\sum_{n=0}^N A^n = \left(\sum_{n=0}^N A^n \right)(I-A)= \sum_{n=0}^N A^n - \sum_{n=1}^{N+1}A^n = I - A^{N+1},
+  \end{align*}
+which implies that 
+\[
+\lim_{N \rightarrow \infty}(I-A)\sum_{n=0}^N A^n = \lim_{N \rightarrow \infty} \left(\sum_{n=0}^N A^n\right) (I-A) = I.
+\]
+By continuity of multiplication in $\blinOps(\hilbertH)$ one gets
+\[
+(I-A) \sum_{n=0}^\infty A^n = \left(\sum_{n=0}^\infty A^n\right) (I-A) = I,
+\]
+which proves that $I-A$ is invertible and $(I-A)^{-1} = \sum_{n=0}^\infty A^n$.
+
+Finally,  one concludes by the triangle inequality and submultiplicativity of the operator norm 
+\[
+  \norm{(I - A)^{-1}} \leq \sum_{n=0}^\infty \norm{A^n} \leq \sum_{n=0}^\infty \norm{A}^n = \frac{1}{1 - \norm{A}}. 
+\]
+\end{proof}
+
+\begin{proposition}\label{thm:resolvent-topological-properties}
+Let $A \in \blinOps(\hilbertH)$. 
+\begin{romanlist}
+\item For any $\lambda \in \rset(A)$, one has
+	\[
+	B_{\norm{R_{\lambda}}^{-1}}(\lambda) \subset \rset(A) \ .
+	\]
+	Hence, $\rset(A) \subset \C$ is open.
+\item The spectrum $\sigma(A)$ is compact and
+	\[
+	\sigma(A) \subset \closure{B}_{\norm{A}}(0) \ .
+	\]
+\item\label{ite:resolvent-expansion-large-argument} If the complex number $\lambda$ satisfies $\abs{\lambda} > \norm{A}$, then $\lambda \in \rset(A)$ and
+      \[
+	R_\lambda = - \frac{1}{\lambda} - \sum_{n=1}^\infty \lambda^{-n-1}A^n \ ,
+      \]
+      where convergence is with respect to the operator norm.  
+\end{romanlist}
+\end{proposition}
+
+\begin{proof}
+ \begin{adromanlist}
+ \item 
+ Fix $\lambda \in \rset(A)$ and set $r = \norm{R_{\lambda}}^{-1}$. Let $\mu \in B_r(\lambda)$. Then
+\begin{align*}
+ \norm{(\mu - \lambda)R_{\lambda}} = \abs{\mu - \lambda} \norm{R_{\lambda}} < 1.
+\end{align*}
+Thus, by Lemma \ref{thm:neumann-series}, one knows that $I - (\mu - \lambda)R_{\lambda}$ is invertible. Since $A - \lambda$ is invertible,
+the composition
+\[
+(A - \lambda) \, \big( I - (\mu - \lambda)R_{\lambda} \big) = A - \mu
+\]
+is invertible, which proves that $\mu \in \rset(A)$. Hence $\rset(A)$ is open.
+
+
+\item Since $\rset(A)$ is open, the complement $\sigma(A) = \C \setminus \rset(A)$ is closed. Furthermore, if $\abs{\lambda} > \norm{A}$, then $\norm{\lambda^{-1}A} < 1$, so $I - \lambda^{-1}A$ and hence $A - \lambda$ are invertible by Lemma \ref{thm:neumann-series}. This implies that $\lambda \in \rset(A)$, so $\sigma(A) \subset \closure{B}_{\norm{A}}(0)$. Since $\sigma(A)$ is closed and bounded, it is compact.
+\item If $\abs{\lambda} > \norm{A}$, then $I - \lambda^{-1}A$ is invertible by Lemma \ref{thm:neumann-series} and
+\[
+(I - \lambda^{-1}A)^{-1} = \sum_{n=0}^\infty \lambda^{-n}A^n.
+\]
+Since $-\lambda(A - \lambda)^{-1} = (I - \lambda^{-1}A)^{-1}$, one obtains
+\[
+R_\lambda = -\frac{1}{\lambda}\sum_{n=0}^\infty \lambda^{-n}A^n = -\frac{1}{\lambda} - \sum_{n=1}^\infty \lambda^{-n-1}A^n,
+\]
+as desired.   
+\end{adromanlist}
+\end{proof}
+
+Next, we prove some algebraic properties of the resolvent. Hereby, $[A,B] = AB - BA$ denotes the commutator of two operators,
+as usual.
+
+\begin{proposition}\label{thm:resolvent-algebraic-properties}
+Let $A,B \in \blinOps(\hilbertH)$. Then the following holds true.
+\begin{romanlist}
+\item\label{ite:commutativity-resolvent-operator} The resolvent commutes with the operator which means that
+  \[ [A, R_\lambda(A) ] = 0 \quad\text{for all } \lambda \in \rset(A) \ . \]
+\item\label{ite:commutativity-resolvent-itself}
+   The values of the resolvent commute with each other that is
+ \[ [R_\lambda (A), R_\mu (A)] = 0 \quad\text{for all } \lambda,\mu \in \rset(A) \ . \]
+\item\label{ite:first-resolvent-identity}\textup{({\sffamily First resolvent identity})} For all $\lambda, \mu \in \rset(A)$
+  \[ R_\lambda(A) - R_\mu (A)= (\lambda - \mu)R_\lambda(A) R_\mu(A) \ . \]
+\item\textup{({\sffamily Second resolvent identity})} For all $\lambda \in \rset(A)\cap \rset(B)$
+  \[ R_\lambda (A)- R_\lambda (B) = R_\lambda(A)\, (B-A) \, R_\lambda (B) \ . \] 
+\end{romanlist}
+\end{proposition}
+
+\begin{proof}
+\begin{adromanlist}
+\item Obviously  $[A, A - \lambda] = 0$, so
+  \[
+    0 = R_\lambda [A, A - \lambda]R_\lambda = R_\lambda A - AR_\lambda,
+  \]
+as desired.
+\setcounter{enumi}{2}
+\item We compute
+\begin{align*}
+(R_\lambda - R_\mu)(A - \mu)(A - \lambda) &= (R_\lambda A - \mu R_\lambda)(A - \lambda) - (A - \lambda)\\
+&= (A - \mu)R_\lambda (A - \lambda) - (A - \lambda)\\
+&= \lambda - \mu ,
+\end{align*}
+where we used part \ref{ite:commutativity-resolvent-operator} to commute $R_\lambda$ past $A$ in the second step.
+Now multiplying both sides with $R_\lambda R_\mu $ from the right yields the desired equality. 
+\setcounter{enumi}{1}
+\item 
+  For $\lambda = \mu$, one obviously has $[A_\lambda, A_\mu] = 0$. For $\lambda \neq \mu$, one concludes from
+  \ref{ite:commutativity-resolvent-itself}
+  \[
+     R_\mu R_\lambda = \frac{R_\mu - R_\lambda}{\mu - \lambda} = \frac{R_\lambda - R_\mu}{\lambda - \mu} = R_\lambda R_\mu,
+  \]
+  so $[R_\lambda, R_\mu] = 0$ for $\lambda \neq \mu $ as well.
+\setcounter{enumi}{3}
+\item  The  last equality follows by
+  \[ R_\lambda(A)\, (B-A) \, R_\lambda (B) =  R_\lambda(A)\, \big((B-\lambda)-(A-\lambda) \big) \, R_\lambda (B) =
+     R_\lambda(A) - R_\lambda (B) \ . \]
+\end{adromanlist}
+\end{proof}
+
+The resolvent $R_\bullet (A)$ also has some nice analytic properties which we are going to prove next. 
+\begin{proposition}\label{thm:resolvent-analytic-properties}
+  The resolvent $R_\bullet (A) :\rset(A) \rightarrow \blinOps(\hilbertH)$, $\lambda \mapsto R_\lambda$ is continuous and complex
+  differentiable with derivative given by 
+  \[
+    R_\bullet(A)' :\: \rset(A) \rightarrow \blinOps(\hilbertH),  \: \lambda \mapsto \lim_{\mu \rightarrow \lambda} \frac{R_\mu - R_\lambda}{\mu - \lambda} =  R_\lambda^2
+  \]
+\end{proposition}
+
+\begin{proof}
+Fix $\lambda \in \rset(A)$ and $\varepsilon > 0$. Let $0 < \abs{\mu - \lambda} < \delta$, where 
+\[
+  \delta = \min\left( \frac{\varepsilon}{2\norm{R_\lambda}^2},\, \frac{1}{2\norm{R_\lambda}} \right) \ .
+\]
+Note that $\mu \in \rset(A)$ by Proposition \ref{thm:resolvent-topological-properties}. Moreover, $\norm{(\mu - \lambda)R_\lambda} <1$, so $I - (\mu - \lambda)R_\lambda$ is invertible with norm less than $(1 - \norm{(\mu - \lambda) R_\lambda})^{-1}$ by Lemma \ref{thm:neumann-series}.
+Now observe that the first resolvent identity can be rearranged to
+\[
+R_\mu =  R_\lambda[I - (\mu - \lambda)R_\lambda]^{-1} \ .
+\]
+Hence
+\begin{align*}
+\norm{R_\mu - R_\lambda} &\leq \abs{\mu - \lambda}\norm{R_\mu}\norm{R_\lambda} \\
+&\leq \abs{\mu - \lambda} \norm{R_\lambda}^2 \norm{(I - (\mu - \lambda)R_\lambda)^{-1}}\\
+&\leq \frac{\abs{\mu - \lambda} \norm{R_\lambda}^2}{1 - \norm{(\mu - \lambda)R_\lambda}}\\
+&< \frac{\varepsilon/2}{1-1/2} = \varepsilon \ .
+\end{align*}
+This proves that $\lambda \mapsto R_\lambda$ is continuous. 
+
+As for complex differentiability, we simply use the first resolvent identity and continuity to conclude
+\[
+\lim_{\mu \rightarrow \lambda} \frac{R_\mu - R_\lambda}{\mu - \lambda} = \lim_{\mu \rightarrow \lambda} R_\mu R_\lambda = R_\lambda^2. 
+\]
+\end{proof}
+
+\begin{proposition}\label{thm:resolvent-limes-infinity}
+Let $A \in \blinOps(\hilbertH)$. Then $\lambda R_\lambda \rightarrow -I$ as $\abs{\lambda} \rightarrow \infty$. In particular, $R_\lambda \rightarrow 0$ as $\abs{\lambda} \rightarrow \infty$.
+\end{proposition}
+
+\begin{proof}
+Fix $\varepsilon > 0$.  For $\abs{\lambda} > \norm{A}$, we have by \Cref{thm:resolvent-topological-properties} \ref{ite:resolvent-expansion-large-argument}
+\[
+\lambda R_\lambda = -I - \sum_{n=1}^\infty \lambda^{-n}A^n.
+\]
+Since 
+\[
+\norm{\sum_{n=1}^\infty \lambda^{-n}A^n} \leq  \frac{\norm{A}}{\abs{\lambda}-\norm{A}},
+\]
+one sees that $\lambda R_\lambda \rightarrow - I$ as $\abs{\lambda} \rightarrow \infty$. Similarly, for $\abs{\lambda} > \norm{A}$ one has
+\[
+\norm{R_\lambda} \leq \frac{1}{\abs{\lambda}} + \frac{1}{\abs{\lambda}}\sum_{n=1}^\infty \norm{\lambda^{-n}A^n} \leq \frac{1}{\abs{\lambda}} + \frac{1}{\abs{\lambda}} \frac{\norm{A}}{\abs{\lambda} - \norm{A}},
+\]
+which shows that $R_\lambda \rightarrow 0$ as $\abs{\lambda} \rightarrow \infty$.
+\end{proof}
+
+\begin{proposition}
+For all $v, w \in \hilbertH$, the map 
+\[
+ \inprod{ R_\bullet (A) v,  w} : \: \rset(A) \rightarrow \C , \: \lambda \mapsto \inprod{ R_\lambda v, w}
+\]
+is holomorphic with derivative
+\[
+ \inprod{ R_\bullet (A) v, w}' : \: \rset(A) \rightarrow \C , \: \lambda \mapsto \inprod{R_\lambda^2 v,  w}.
+\]
+\end{proposition}
+
+\begin{proof}
+Given $\lambda \in \rset(A)$, we compute
+\begin{align*}
+  \lim_{\mu \rightarrow \lambda} \frac{\inprod{R_\mu v, w} - \inprod{R_\lambda v,  w}}{\mu - \lambda} =
+  \lim_{\mu \rightarrow \lambda} \frac{\inprod{(\mu - \lambda)R_\mu R_\lambda v,  w}}{\mu - \lambda} =
+  \lim_{\mu \rightarrow \lambda} \inprod{ R_\mu R_\lambda v, w} = \inprod{R_\lambda^2v , w},
+\end{align*}
+where we have used the first resolvent identity in the first step and continuity of the inner product in the last.
+\end{proof}
+
+\begin{proposition}
+The spectrum of an operator $A \in \blinOps(\hilbertH)$ is nonempty.
+\end{proposition}
+
+\begin{proof}
+Suppose $\sigma(A) = \emptyset$, hence $\rset(A) = \C$. The map
+\[
+\C \to \C , \: \lambda \mapsto \inprod{R_\lambda v, w}
+\]
+then is entire for every $v, w \in \hilbertH$. Furthermore, one has  for $\norm{v}, \norm{w} \leq 1$
+\[
+  \abs{\inprod{R_\lambda v,  w}} \leq  \norm{R_\lambda} \norm{v} \norm{w} \leq \norm{R_\lambda} \ .
+\]
+Since $\lambda \mapsto \norm{R_\lambda}$ is continuous and $\norm{R_\lambda} \rightarrow 0$ as $\abs{\lambda} \rightarrow \infty$, one sees
+that $\norm{R_\lambda}$ is bounded. Hence $\inprod{R_\bullet v,  w}$ is a bounded entire function, which  by Liouville's theorem implies
+that it is zero for every pair $v, w \in \hilbertH$ with $\norm{v} = \norm{w} = 1$.
+This entails that $R_\lambda = 0$ for every $\lambda \in \C$, which 
+is a contradiction to $R_\lambda$ being invertible. Hence $\sigma(A) \neq \emptyset$.
+\end{proof}
+
+

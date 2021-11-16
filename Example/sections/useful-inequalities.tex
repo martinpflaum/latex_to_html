@@ -1,0 +1,148 @@
+% Copyright 2016 The FANCy Project, licensed under GNU FDL v1.3
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Some useful inequalities}
+\label{sec:useful-inequalities}
+%
+%
+In this section we collect several inequalities from real analysis which will 
+be of use later in this monograph. 
+\begin{theorem}[Young's inequality]
+\label{thm:Youngs-inequality}
+Let $a,b \geq 0$, and assume that $p,q >1$ satisfy the relation $\frac 1p + \frac 1q =1$. Then 
+\[
+   ab \leq \frac 1p a^p + \frac 1q b^q \: .
+\]
+  Equality holds if and only if $a^p = b^q$. 
+\end{theorem}
+\begin{proof}
+Since the second derivative $\exp''$ of the exponential function attains
+only positive values, the function $\exp$ is strictly convex that means satisfies
+\[
+   \exp \big( \lambda x + (1-\lambda) y \big) \leq 
+   \lambda \exp ( x ) +   (1-\lambda)  \exp ( y ) 
+\]
+for all $x,y\in \R$ and $\lambda \in [0,1]$ with equality holding true if and only if $x = y$ or $\lambda \in \{ 1,0 \}$.
+Putting $x = p \ln a$, $y = q \ln b$, and $\lambda = \frac 1p$ one obtains
+\[
+   ab = \exp\big( \lambda x + (1-\lambda) y \big)   \leq 
+   \lambda \exp ( x ) +   (1-\lambda)  \exp ( y ) = \frac 1p a^p + \frac 1q b^q \: .
+\]
+Equality holds if and only if $x = y$ which is equivalent to  $a^p = b^q$.
+\end{proof}
+\begin{theorem}[Cauchy--Schwarz inequality for sums]
+\label{thm:Cauchy-Schwartz-inequality-for-sums}
+Let $v,w \in \C^n$. Then 
+\[
+  \Big| \sum_{i=1}^n v_i \overline{w_i} \: \Big|^2 \leq \Big( \sum_{i1}^n |v_i|^2 \Big)  \Big( \sum_{i=1}^n |w_i|^2 \Big).
+\]  
+Equality holds true if and only if  $v$ and $w$ are linearly dependant. 
+\end{theorem}
+\begin{proof}
+Let us use the \emph{inner product} notation 
+\[
+   \langle v,w\rangle := \sum_{i=1}^n v_i \overline{w_i} \quad \text{for } v,w\in \C^n.
+\]
+Then the $\ell^2$-\emph{norm}
+\[
+  \| v \| :=  \left( \sum_{i=1}^n |v_i|^2\right)^{1/2} = \langle v , v \rangle^{1/2}
+\]
+is well-defined and non-negative for any $v\in \C^n$. If $\|v \| =0$ or $\| w \|= 0$, then $v=0$ or $w=0$, and 
+the claim is trivial. So we assume $\|v \|, \| w \| > 0$ and compute 
+\begin{equation}
+\label{eq:inequality-chain}
+\begin{split}
+  0 \leq \, & \big\langle \|w\| v - \|v\| w , \|w\| v - \|v\| w \big\rangle  = 
+  \sum_{i=1}^n \big( \|w\| v_i - \|v\| w_i \big)\big( \|w\| \overline{v_i} - \|v\| \overline{w_i} \big)  = \\ 
+  = \, &   \sum_{i=1}^n \|w\|^2 v_i\overline{v_i} - \|w\| \|v\| v_i \overline{w_i}  -  \|w\| \|v\| w_i \overline{v_i} 
+    +  \|v\|^2 w_i\overline{w_i}  = \\
+  = \, &  2 \|v\|\|w\| \Big(  \|v\|\|w\| - \Re \langle v,w \rangle \Big) .
+\end{split}
+\end{equation}
+Now choose $c \in \C$ with $|c|=1$ such that $ c \langle  v,w \rangle = |\langle  v,w \rangle|$. Replacing $v$ by $cv$ 
+in inequality \eqref{eq:inequality-chain} and observing that $\|cv \|$ and $ \| w \| $ are positive then entails
+\[
+  0 \leq \|c v\|\|w\| - \Re \langle c v,w \rangle  =  \|v\|\|w\| - \Re (c \langle v,w \rangle) =
+  \|v\|\|w\| -  |\langle  v,w \rangle|,
+\] 
+which is the claimed Cauchy--Schwartz inequality for sums in abbreviated form. 
+
+Equality holds true if and only if $\|w\| c v - \|v\| w =0$. So if $\|v\|\|w\| =  |\langle  v,w \rangle| $,
+then $v$ and $w$ are linearly dependant. To show the converse, assume that $av =bw$ for some $a,b\in \C$ 
+with $(a,b) \neq (0,0)$. Because we consider  the nontrivial case where both $v$ and $w$ are nonzero, we can 
+assume without loss of generality that $b=1$. But then 
+\[ |\langle v,w \rangle |= |\langle v, av \rangle | = |a| \|v\|^2 = \|v\| \, \|w\| \ , \]
+hence equality holds in this case. The proof is finished.
+\end{proof}
+
+\para
+Besides the $\ell^2$-norm on $\C^n$ one has the so-called $\ell^p$-norms 
+$\| \cdot \| : \C^n \to \R_{\geq 0}$ for $p \geq 1$. 
+They are defined by 
+\[
+  \| v \|_p = \left( \sum_{k=1}^n |v_k|^p \right)^{1/p} \quad \text{for } v \in \C^n  \ . 
+\] 
+The \emph{maximum norm} or $\ell^\infty$-norm $\| \cdot \|_\infty$ is given by 
+\[
+  \| v \|_\infty = \sup \big\{ |v_k| \bigmid k = 1,\ldots , n \big\}  \ .
+\]
+The $\ell^p$-norms are all norms indeed as we will later see. 
+\begin{theorem}[H\"older's inequality for sums]
+Let $p,q \in [1, \infty )$ such that $\frac 1p + \frac 1q =1$. Then 
+\[
+   \sum_{k=1}^n | v_k w_k | \leq  \| v \|_p \cdot \| w\|_q \quad \text{for all } v,w\in \C^n \ .
+\]
+\end{theorem}
+\begin{proof}
+If $p=1$ or $q=1$ the claim is immediate, because then $q=\infty$  or $p=\infty$, respectively,
+and  the two estimates
+\[
+  \sum_{k=1}^n | v_k w_k | \leq  \left( \sum_{k=1}^n | v_k | \right) \cdot 
+  \sup\big\{ |w_k| \bigmid k = 1,\ldots , n \big\} 
+\]
+and
+\[
+  \sum_{k=1}^n | v_k w_k | \leq  \left( \sum_{k=1}^n | w_k | \right) \cdot 
+  \sup \big\{ |v_k| \bigmid k = 1,\ldots , n \big\} 
+\]
+obviously hold. So we can assume $1 < p,q < \infty$. Moreover we can assume that both $v$ and $w$ 
+are nonzero because otherwise the claim is trivial. Now observe that by Young's inequality
+\[
+  \frac{|v_k|}{\| v \|_p} \cdot \frac{|w_k|}{\| w \|_q} =
+  \left(\frac{|v_k|^p}{\| v \|_p^p} \right)^{1/p} \cdot \left(\frac{|w_k|^q}{\| w \|_q^q} \right)^{1/q}
+  \leq \frac 1p \frac{|v_k|^p}{\| v \|_p^p} + \frac 1q \frac{|w_k|^q}{\| w \|_q^q} \quad 
+  \text{for } k=1,\ldots , n\ .
+\]
+Summing over all $k$ gives
+\[
+   \sum_{k=1}^n \frac{|v_k|}{\| v \|_p} \cdot \frac{|w_k|}{\| w \|_q} \leq 
+   \frac 1p  \frac{\|v\|_p^p}{\| v \|_p^p} + \frac 1q \frac{\|w\|_q^q}{\| w \|_q^q} = 
+   \frac 1p + \frac 1q = 1 \ .
+\]
+Multiplication of both sides by $ \| v \|_p \cdot \| w\|_q$ entails H\"older's inequality.
+\end{proof}
+
+\begin{theorem}[Minkowski's inequality for sums]
+Let $p  \in [1, \infty )$. Then
+\[
+   \| v + w \|_p \leq \| v\|_q + \| w \|_p \quad \text{for all } v,w\in \C^n \ .
+\] 
+\end{theorem}
+
+\begin{proof}
+For $p=1$ the claim is trivial, likewise for $p=\infty$. So assume $1  < p <  \infty$
+and put $q := \frac{p}{p-1}$. Then $\frac 1p + \frac 1q =1$, and we can apply   
+H\"older's inequality to compute
+\begin{equation*}
+  \begin{split}
+   \| v + w \|_p^p\, &  =  \sum_{k=1}^n | v_k + w_k|^p \leq  
+   \sum_{k=1}^n |v_k| \, | v_k + w_k|^{p-1} +  |v_k| \, | v_k + w_k|^{p-1} 
+   \leq \\
+   &\leq  \| v \|_p \cdot \left(  | v_k + w_k|^{(p-1)q} \right)^{1/q} +
+   \| w \|_p \cdot \left(  | v_k + w_k|^{(p-1)q} \right)^{1/q}  = \\
+   & = \left( \| v \|_p +  \| w \|_p \right) \,  \| v + w \|_p^{p/q} \ . 
+\end{split}
+\end{equation*}
+Minkowski's inequality follows. 
+\end{proof}

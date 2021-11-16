@@ -1,0 +1,381 @@
+% Copyright 2017 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Orthogonal decomposition and the Riesz representation theorem}
+  
+\para 
+One of the issues with infinite-dimensional analysis is that a closed subspace of an infinite dimensional Banach space might not have a 
+closed complement. Fortunately, the situation in Hilbert space theory is not so grim because 
+every closed subspace of a Hilbert space admits an orthogonal complement. This is one of the four 
+crucial properties  which distinguish Hilbert spaces from Banach spaces and which are stated in the following. 
+
+In this section $\hilbertH$ will always denote a Hilbert space over the field $\fldK=\R$ or $\fldK=\C$. 
+The symbol $\langle \cdot , \cdot\rangle$ will stand for the inner product of $\hilbertH$. 
+
+\begin{theorem}[Best approximation theorem] 
+   Every closed convex nonempty subset $C$ of a Hilbert space 
+   $\hilbertH$ has a unique element of minimal norm.
+\end{theorem}
+\begin{proof}
+Let $d = \inf\{ \|v\| \mid v \in C \}$ which is a non-negative real number. We claim there exists a unique 
+$v_0 \in C$ with $\|v_0\| =d$. 
+For uniqueness, consider two vectors $v_0, v_1$ satisfying the desired property, and let $v = \frac{1}{2}(v_0 + v_1)$ 
+be their midpoint. Then
+\begin{equation*}
+  \|v\| = \frac{1}{2}\|v_0 + v_1\| \leq \frac{1}{2}(\|v_0\| + \|v_1\|) = d
+\end{equation*}
+By minimality of $d$ this entails $\|v\| =d$. By the parallelogram identity
+\begin{equation*}
+    \left\|\frac{1}{2} (v_0 + v_1)\right\|^2 + \left\|\frac{1}{2}(v_0 - v_1) \right\|^2  = 
+    2\left\|\frac{v_0}{2}\right\|^2 + 2\left\|\frac{v_1}{2}\right\|^2 = d^2 \ ,
+\end{equation*}
+hence
+\[
+\left\| \frac{1}{2} (v_0 - v_1) \right\|^2 \leq d^2 - \|v\|^2 = 0 \ ,
+\]
+proving $v_0 = v_1$. 
+
+For the proof of existence observe that by definition of $d$ there exists a sequence $(v_n)_{n \in \mathbb{N}} \subset C$ such 
+that $\lim_{n \to \infty}\|v_n \| = d$. By convexity
+\[
+   \frac{1}{2}(v_n + v_m) \in C
+\]
+for all $n,m \in \mathbb{N}$, hence $\frac{1}{4}\|v_n + v_m \|^2 \geq d^2$. The parallelogram equality entails
+\[
+0 \leq \| v_n - v_m \|^2 = 2\|v_n \|^2 + 2\|v_m \|^2 - \| v_n + v_m \|^2 \leq 2\|v_n \|^2 + 2\|v_m \|^2 - 4d^2 \ .
+\]
+Since $\lim_{n \to \infty}\|v_n \| = d$ there exists for given $\varepsilon >0$ an $N\in \N$ such that 
+$ \|v_n \|^2 -d^2 \leq \frac 14 \varepsilon^2 $ for all $n \geq N$. Hence, for $n,m \geq N$
+\[
+  0 \leq \| v_n - v_m \| \leq \varepsilon \ ,
+\] 
+and $(v_n)_{n \in \N}$ is a Cauchy-sequence, so convergent by completeness of $\hilbertH$. Put $v_0:= \lim_{n \to \infty}v_n$. 
+Then $v_0 \in C$ since $C$ is closed and $\|v_0 \|=\lim_{n \to \infty}\|v_n \| = d$. The existence claim follows 
+and the proof is finished.
+\end{proof}
+
+\begin{thmanddef}[Orthogonal decomposition theorem] 
+\label{thm:orthogonal-decomposition-theorem}
+Let $\vectorspV \subset \hilbertH$ be a closed subspace of the Hilbert space $\hilbertH$. Then the 
+\emph{orthogonal complement}
+\[
+  \vectorspV^\bot = \big\{ w \in \hilbertH \bigmid \langle v,w \rangle = 0 \text{ for each } v \in \vectorspV \big\}
+\]
+is a closed subspace of $\hilbertH$ and $\hilbertH = \vectorspV \oplus \vectorspV^\bot$. 
+The map $\proj_\vectorspV : \hilbertH \to \vectorspV$ which maps $w \in \hilbertH$ to the unique $w_1\in \vectorspV$ 
+such that $w - w_1 \in   \vectorspV^\bot$ is called the \emph{orthogonal projection} onto $\vectorspV$.
+It satisfies $\left\| w-  \proj_\vectorspV (w)\right\| = d(w,\vectorspV) := \inf \big\{ \| v-w \| \bigmid v\in \vectorspV \big\}$ that is $\proj_\vectorspV (w)$ is the unique element of $\vectorspV$ having shortest distance from $w$.  
+\end{thmanddef}
+\begin{proof}
+For $v \in \hilbertH$ define $v^\flat :\hilbertH \to \R$ by $v^\flat (w) = \langle w,v \rangle$. Recall that this map is 
+continuous and linear. Hence the kernel $(v^\flat)^{-1}(0)$ is a closed linear subspace of $\hilbertH$ and 
+\[
+  \vectorspV^{\bot} = \bigcap_{v \in \vectorspV} (v^\flat)^{-1}(0)
+\]
+is a closed linear subspace. To show $\vectorspV \cap \vectorspV^\bot = \{0\}$, consider 
+$v \in \vectorspV \cap \vectorspV^\bot$. Then $\|v \|^2 = \langle v,v \rangle = 0$. 
+Now, given some $w \in \hilbertH$, it can be written as $w = w_1 + w_2$ with 
+$w_1 \in \vectorspV$ and $w_2 \in \vectorspV^\bot$. To see this put $C = w - \vectorspV$. Then $C$ is closed and convex. 
+By the best approximation theorem there exists a unique element $w_2 \in C$ of minimal norm. Let  $w_1$
+be the unique element of $\vectorspV$ such that $w_2 = w -w_1$. It remains to show $w_2 \in \vectorspV^\bot$. 
+Since $w_2$ has minimal norm among the elements of $w-\vectorspV$ the following inequality holds for all 
+vectors $v \in \vectorspV$:
+\[
+\|w_2 \|^2 \leq \| w_2 + v \|^2 = \|w_2 \|^2 + 2\, \Re\langle w_2,v\rangle + \| v \|^2 \ . 
+\]
+Hence
+\[
+0 \leq 2\, \Re\langle w_2,v\rangle + \| v \|^2 \quad \text{for all  } v \in \vectorspV  \ .
+\]
+Now assume that $\|v\|=1$ and choose $\varphi \in \R$ such that $e^{i\varphi}\langle w_2, v \rangle \in \R$.
+Setting $v' = e^{-i\varphi}v$, one obtains for all $\lambda \in \R$ by the last inequality
+\[
+  0 \leq 2 \langle w_2,\lambda v'\rangle + \| \lambda v' \|^2 = 
+  2\lambda\langle w_2, x'\rangle + \lambda^2\ .
+\]
+For $\lambda = -\langle w_2, v' \rangle$ this entails  the estimate
+\[ 
+   \| \langle w_2, v' \rangle \|^2 = 
+   - \left( - 2\|\langle w_2,v \rangle \|^2 + \| \langle w_2, v' \rangle \|^2 \right) = - \left(  2\lambda\langle w_2, x'\rangle + \lambda^2 \right) \leq 0 \ .
+\]
+Hence $\langle w_2, v \rangle = 0$ for all unit vectors $v \in \vectorspV$, therefore $w_2 \in \vectorspV^\bot$.
+
+The remainder of the claim is now a consequence of the construction of $w_1$ from the given $w$ and the 
+observation that $\proj_\vectorspV (w) = w_1$. 
+\end{proof}
+
+\begin{corollary}
+  For every closed subspace $\vectorspV \subset \hilbertH$ of a Hilbert space $\hilbertH$ the relation
+  \[
+     V = (V^\perp)^\perp 
+  \]
+  holds true. 
+\end{corollary}
+
+\begin{proof}
+  One has $V \subset  (V^\perp)^\perp $ by definition of the orthogonal complement. 
+  Since \[ \hilbertH = V \oplus  V^\perp =  (V^\perp)^\perp \oplus V^\perp \] 
+  by the preceding theorem, the claim follows.
+\end{proof}
+
+\begin{theorem}[Riesz representation theorem for Hilbert spaces]
+  Let $\hilbertH$ be a Hilbert space and $\hilbertH'$ its topological dual. Then the \emph{musical map} 
+  \[ {}^\flat: \hilbertH \to \hilbertH',\quad 
+     v \mapsto v^\flat = \left( \hilbertH \ni w \mapsto \langle w,v\rangle \in \fldK\right) \]
+  is an isometric isomorphism which is linear in the real case and conjugate-linear in the complex case. 
+\end{theorem}
+
+\begin{proof}
+  Obviously, ${}^\flat$ is linear if the ground field $\fldK$ equals $\R$ and conjugate-linear if $\fldK=\C$.
+  Now observe that for all $v \in \hilbertH$ by the Cauchy--Schwarz inequality 
+  \[
+    \| v^\flat \| = \sup\big\{ |\langle w,v \rangle | \bigmid w \in \hilbertH \: \& \: \|w\| =1 \big\} = 
+    \| v \| \ ,
+  \]
+  hence ${}^\flat$ is an isometry, so in particular injective. 
+  It remains to show surjectivity. So assume that $\alpha : \hilbertH \to \fldK$ is a nontrivial 
+  continuous linear form. 
+  Let $\vectorspV$ be its kernel. Then  $\vectorspV$ is a closed linear subspace of $\hilbertH$.
+  Since $\alpha$ is nontrivial, the orthogonal complement $\vectorspV^\bot$ is nontrivial, too. Hence 
+  $\vectorspV^\bot \cong \hilbertH/\vectorspV$ is isomorphic to $\image \alpha = \fldK$ 
+  and there exists a  vector $v \in \vectorspV^\bot \setminus \{ 0 \} $ such that 
+  $\alpha (v) = 1$. Since $v$ spans $ \vectorspV^\bot$ there exists   for every $w\in \hilbertH$ a
+  unique $\lambda_w  \in \fldK$ such that $w = \proj_V (w) + \lambda_w v$. Then compute 
+  \[
+    \alpha (w) = \alpha (\lambda_w v ) = \lambda_w  \quad \text{and} \quad 
+    \left( \frac{v}{\|v\|^2}\right)^\flat (w) = 
+    \frac{1}{\|v\|^2} \langle w, v \rangle =  \frac{ \lambda_w}{\|v\|^2} \langle v , v \rangle 
+    = \lambda_w \ .
+  \]
+  This entails $\alpha = \left( \frac{v}{\|v\|^2}\right)^\flat$, and ${}^\flat$ is surjective.
+\end{proof}
+
+\begin{remark}
+  Sometimes, and we will follow that convention, the inverse of the musical isomorphism 
+  ${}^\flat: \hilbertH \to \hilbertH'$ is denoted ${}^\sharp: \hilbertH' \to \hilbertH$. 
+\end{remark}
+
+\begin{corollary}
+  Every Hilbert space $\hilbertH$ is \emph{reflexive} that is the canonical map
+  \[ H \to H'' , \: v \mapsto \left( H' \ni \lambda \mapsto \lambda(v) \in \fldK \right) \]
+  is an isometric isomorphism. 
+\end{corollary}
+
+\begin{proof}
+  By the Riesz Representation Theorem, the dual $\hilbertH'$ is a Hilbert space 
+  with inner product  
+  \[
+    \langle\!\langle \cdot, \cdot  \rangle\!\rangle : \hilbertH' \times \hilbertH' \to \fldK, \:  
+    (\lambda,\mu)   \mapsto \langle\!\langle \lambda, \mu \rangle\!\rangle = \inprod{\mu^\sharp,\lambda^\sharp} \ .
+  \] 
+  Hence, by applying the Riesz Representation Theorem twice, 
+  the map ${}^\flat \circ {}^\flat : \hilbertH \to  \hilbertH''$ is an isometric linear isomorphism. 
+  Now compute for $v\in \hilbertH$ and $\lambda \in \hilbertH'$
+  \[
+     (v^\flat)^\flat (\mu) = \langle\!\langle \lambda, v^\flat \rangle\!\rangle =
+     \inprod{v, \lambda^\sharp} = \lambda (v) \ . 
+  \]
+  Hence ${}^\flat \circ {}^\flat$ coincides with the canonical map above and the claim
+  follows. 
+\end{proof}
+
+\begin{corollary}
+\label{thm:correspondence-bounded-sesquilinear-forms-bounded-operators}
+  Let $b:\hilbertH \times \hilbertH\to \fldK$ be a bounded sesquilinear form on a Hilbert space $\hilbertH$. Then there exists
+  unique bounded linear map $A : \hilbertH \to \hilbertH$ such that
+  \[
+      b(v,w)  = \inprod{Av,w} \quad \text{for all } v,w\in \hilbertH \ .
+  \]
+  Moreover, the operator norm $\| A \|$ coincides with $\| b\|$. 
+\end{corollary}
+\begin{proof}
+  First let us show uniqueness. So let $A,B  : \hilbertH \to \hilbertH$ be bounded and linear so that
+  \[
+          b(v,w)  = \inprod{Av,w} = \inprod{Bv,w}  \quad \text{for all } v,w\in \hilbertH \ .
+  \]
+  Then $ \|(A-B)v \|^2 = \inprod{Av-Bv,(A-B)v} = b(v,(A-B)v) - b(v,(A-B)v)=  0$ for all $v\in \hilbertH$ 
+  which entails equality of $A$ and $B$. 
+
+  To prove existence observe that for every $v\in \hilbertH$ the map $\hilbertH \to \fldK$, $w \mapsto \overline{b(v,w)}$
+  is bounded an linear, so by the Riesz representation theorem there exists for every $v$ an element $Av \in \hilbertH$ 
+  such that $\inprod{w,Av} =  \overline{b(v,w)}$ for all $w\in \hilbertH$. 
+  Let us show that the map $A$ is linear. 
+  For $v_1,v_2\in \hilbertH$ check that
+  \begin{equation*}
+    \begin{split}
+      \inprod{w,A(v_1+v_2)} & =  \overline{b(v_1+v_2,w)} = \overline{b(v_1,w)}+ \overline{b(v_2,w)} = \\
+      & = \inprod{w,Av_1}  +\inprod{w,Av_2} =  \inprod{w,Av_1+Av_2} \quad \text{for all } w\in \hilbertH \ . 
+    \end{split}
+  \end{equation*}
+  But that implies $A(v_1+v_2) = Av_1+Av_2$. Given $r\in \fldK$ and $v\in\hilbertH$ one verifies
+  \[
+    \inprod{w,A(rv)} =  \overline{b(rv,w)} = \overline{rb(v,w)} = \overline{r} \, \overline{b(v,w)}
+    =  \overline{r}  \inprod{w,Av} =  \inprod{w,rAv} \quad \text{for all } w\in \hilbertH \ . 
+  \]
+  Hence $A(rv) = r Av$ and linearity of $A$ is proved. 
+  
+  For the operator norm compute
+  \begin{equation*}
+    \begin{split}
+    \| A \| & = \sup \big\{ \left|\inprod{Av,w} \right| \bigmid v,w \in \hilbertH \: \& \: \|v\| = \|w\| =1 \big\} = \\
+    & = \sup \big\{ \left| b(v,w) \right| \bigmid v,w \in \hilbertH \: \& \: \|v\| = \|w\| =1 \big\} = \| b\| \ .
+   \end{split}
+  \end{equation*}
+\end{proof}
+
+\para
+Last in this section we will examine the \emph{Hilbert direct sum} or just \emph{Hilbert sum} of a family
+$(\hilbertH_i)_{i\in I}$ of Hilbert spaces. It is defined by
+\begin{equation*}
+  \begin{split}
+   \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i & = \left\{ (v_i)_{i\in I} \in \prod_{i\in I}\hilbertH_i
+   \Bigmid \left( \|v_i\|^2 \right)_{i\in I} \text{ is summable} \right\} = \\
+   & = \left\{ (v_i)_{i\in I} \in \prod_{i\in I}\hilbertH_i
+   \Bigmid \exists C \geq 0 \, \forall J \in \mathscr{F} (I): \: \sum_{i\in J} \|v_i\|^2 \leq C \right\} \ ,
+  \end{split}
+\end{equation*}
+where, as usual, $\mathscr{F} (I)\subset \powerset{I}$ denotes the set of all finite subsets of $I$.
+
+\begin{proposition}
+  Let $(\hilbertH_i)_{i\in I}$ be a family of Hilbert spaces. Then the Hilbert direct sum
+  $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ is a Hilbert space with inner product  given by
+  \[
+    \inprod{-,-} : \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i \times
+    \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i \to \fldK, \quad
+    \left( (v_i)_{i\in I} ,  (w_i)_{i\in I} \right) \mapsto \sum_{i\in I} \inprod{v_i,w_i} \ .
+  \]
+\end{proposition}
+
+\begin{proof}
+  We show first that $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ is a subvector space of
+  the direct product $\prod_{i\in I} \hilbertH_i$.  
+  Let $z\in \fldK$ and $(v_i)_{i\in I}, (w_i)_{i\in I}\in \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$.
+  Choose $C,D \geq 0$ such that
+  \[
+    \sum_{i\in J} \|v_i\|^2 \leq C \quad\text{and}\quad
+    \sum_{i\in J} \|w_i\|^2 \leq D \quad\text{for all} J \in \mathscr{I} \ .
+  \]
+  Then
+  \begin{equation}
+    \label{eq:estimate-finite-sum-square-norms-multiple}
+    \sum_{i\in J} \|z v_i\|^2 = |z| \, \sum_{i\in J} \| v_i\|^2\leq |z| \, C \quad
+    \text{for all } J\in \mathscr{I} \ ,
+  \end{equation}
+  so $(zv_i)_{i\in I} \in \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$. 
+  Moreover, by Minkowski's inequality for finite sums,
+  \begin{equation}
+    \label{eq:estimate-finite-sum-square-norms-sum}
+    \sum_{i\in J} \|v_i + w_i\|^2 \leq
+    \left( \sqrt{\sum_{i\in J} \|v_i\|^2} +  \sqrt{\sum_{i\in J} \| w_i\|^2} \right)^2
+    \leq \left( \sqrt{C} + \sqrt{D} \right)^2 \quad\text{for all } J\in \mathscr{I} \ .
+  \end{equation}
+  Hence the family $\left( \| v_i + w_i\|^2 \right)_{i\in I}$ is summable and
+  $\left( v_i + w_i \right)_{i\in I} \in \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$. 
+  
+  Next observe that the map
+  \[
+    \big\| - \big\| : \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i \to \fldK,
+    \: (v_i)_{i\in I} \mapsto \big\| (v_i)_{i\in I}  \big\| = \sqrt{\sum_{i\in I} \| v_i\|^2} 
+  \]
+  is well-defined by definition of the Hilbert direct sum. It is even a norm
+  by \eqref{eq:estimate-finite-sum-square-norms-multiple} and
+  \eqref{eq:estimate-finite-sum-square-norms-sum}. 
+    
+  Now we need to show that the inner product on $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$
+  is well-defined which means that the family $\left( \inprod{v_i,w_i} \right)_{i\in I}$ is summable
+  for all $(v_i)_{i\in I} ,  (w_i)_{i\in I} \in \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$.
+  To this end let $J\subset I$ be a finite subset. Then, by the triangle inequality, 
+  the Cauchy--Schwarz inequality on the Hilbert spaces $\hilbertH_i$ and the
+  Cauchy--Schwarz inequality for finite sums,
+  \[
+    \left| \sum_{i\in J} \inprod{v_i,w_i} \right| \leq
+    \sum_{i\in J} \left| \inprod{v_i,w_i} \right| \leq
+    \sum_{i\in J} \| v_i\| \, \| w_i\| \leq
+    \sqrt{\sum_{i\in J} \| v_i\|^2} \cdot \sqrt{\sum_{i\in J} \| w_i\|^2}
+    \leq \big\| (v_i)_{i\in I}  \big\| \, \big\| (w_i)_{i\in I}  \big\| \ .
+  \]
+  Hence the family $\left( \inprod{v_i,w_i} \right)_{i\in I}$ is absolutely summable, so in particular
+  summable, and the inner product is well-defined.
+
+  By definition and since all the inner products on the Hilbert spaces $\hilbertH_i$ are conjugate
+  symmetric and positive definite, the map $\inprod{-,-} $ on
+  $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ has to be conjugate symmetric and positive definite
+  as well. It remains to show linearity in the first argument.
+  Denote for  $(v_i)_{i\in I}, (w_i)_{i\in I} \in \prod_{i\in I} \hilbertH_i$
+  and $J\in \mathscr{F} (I)$ by $\inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}_J$ the finite sum
+  $\sum_{i\in J} \inprod{v_i,w_i}$. Observe that the net
+  $\big( \inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}_J \big)_{J\in \mathscr{F}(I)}$ converges to
+  $\inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}$ in case both $(v_i)_{i\in I}$ and $(w_i)_{i\in I}$
+  are in $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$. Now let $z\in \fldK$ and 
+  $(v_i)_{i\in I}, (v_i^\prime)_{i\in I},  (w_i)_{i\in I} \in \widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$.
+  Then 
+  \begin{equation*}
+    \begin{split}
+      \inprod{(v_i)_{i\in I} + (v_i^\prime)_{i\in I},(w_i)_{i\in I}}_J & =
+      \inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}_J + \inprod{(v_i^\prime)_{i\in I},(w_i)_{i\in I}}_J
+      \quad\text{and}\\
+      \inprod{z (v_i)_{i\in I},(w_i)_{i\in I}}_J & = z \inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}_J \ .
+    \end{split}
+  \end{equation*}
+  By convergence of all the nets $\big( \inprod{(v_i)_{i\in I} ,(w_i)_{i\in I}}_J \big)_{J\in \mathscr{F}(I)}$,
+  linearity in the first argument follows.
+
+  By construction, the norm associated to the inner product $\inprod{-,-} $ on
+  $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ coincides with the above defined norm $\big\|-\big\|$.
+  It remains to show that $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ equipped with the norm
+  $\big\|-\big\|$ is complete. To this end observe that for every finite $J\subset I$ the map
+  \[
+    \big\| - \big\|_J : \prod_{i\in I} \hilbertH_i \to \R_{\geq 0}, \:
+    (v_i)_{i\in I} \mapsto \sqrt{\inprod{(v_i)_{i\in I},(v_i)_{i\in I}}_J}
+    = \sqrt{\sum_{i\in J} \| v_i \|^2}
+  \]
+  is a seminorm and that $(v_i)_{i\in I} \in \prod_{i\in I} \hilbertH_i$ lies in
+  the Hilbert direct sum $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$ if and only if the
+  family $\left(\big\| (v_i)_{i\in I}  \big\|_J\right)_{J\in \mathscr{F}(I)}$ is bounded. 
+  Now let $\left((v_i^n)_{i\in I} \right)_{n\in \N}$ be a Cauchy sequence.
+  Let $\varepsilon >0$ and choose $N_\varepsilon \in \N$ such that 
+  \begin{equation}
+    \label{eq:cauchy-criterion-sequence-hilbert-direct-sum}
+    \big\| (v_i^m)_{i\in I} - (v_i^n)_{i\in I} \big\| < \varepsilon \quad
+    \text{for all } n,m\geq N_\varepsilon \ .
+  \end{equation}
+  Hence
+  \begin{equation}
+    \label{eq:cauchy-criterion-sequence-finite-cutoff}
+    \big\| (v_i^m)_{i\in I} - (v_i^n)_{i\in I} \big\|_J <    \varepsilon \quad
+    \text{for all } J\in \mathscr{F}(I) \text{ and }  n,m\geq N_\varepsilon \ . 
+  \end{equation}
+  Taking $J =\{ j\}$ for $j\in I$ this implies that the sequence
+  $ (v_j^n)_{n\in \N}$ is a Cauchy sequence in the Hilbert space $\hilbertH_j$. 
+  Let $v_j \in \hilbertH_j$ be its limit. The family $(v_i)_{i\in I}$ then is
+  an element of $\widehat{\bigoplus\limits_{i\in I}} \hilbertH_i$. To verify this
+  put $N=N_1$ and observe that by \eqref{eq:cauchy-criterion-sequence-finite-cutoff}
+  for all finite $J\subset I$
+  \begin{equation*}
+    \begin{split}
+    \big\| (v_i)_{i\in I} \big\|_J & \leq
+    \big\| (v_i^N)_{i\in I} \big\|_J + \big\| (v_i)_{i\in I} - (v_i^N)_{i\in I} \big\|_J = \\
+    & = \big\| (v_i^N)_{i\in I} \big\|_J + \lim_{m\to \infty} \big\| (v_i^m)_{i\in I} - (v_i^N)_{i\in I} \big\|_J
+    \leq \big\| (v_i^N)_{i\in I} \big\| + 1.
+    \end{split}
+  \end{equation*}
+    
+  Hence the family $\left(\big\| (v_i)_{i\in I} \big\|_J\right)_{J\in \mathscr{F}(I)}$
+  is bounded and $(v_i)_{i\in I}$ lies in the Hilbert direct sum of the spaces $\hilbertH_i$, $i\in I$. 
+  Moreover, \eqref{eq:cauchy-criterion-sequence-finite-cutoff} entails that
+  \[
+    \big\| (v_i)_{i\in I} - (v_i^n)_{i\in I} \big\|_J =
+    \lim_{m\to \infty} \big\| (v_i^m)_{i\in I} - (v_i^n)_{i\in I} \big\|_J \leq \varepsilon \quad
+    \text{for all } J\in \mathscr{F}(I) \text{ and }  n\geq N_\varepsilon \ . 
+  \] 
+  Since $\big\| (v_i)_{i\in I} - (v_i^n)_{i\in I} \big\|$ is the limit of the
+  net $\left(\big\| (v_i)_{i\in I} - (v_i^n)_{i\in I} \big\|_J\right)_{J\in\mathscr{F}(I)}$,
+  the estimate 
+  \[
+    \big\| (v_i)_{i\in I} - (v_i^n)_{i\in I} \big\| \leq \varepsilon \quad
+    \text{for all }  n\geq N_\varepsilon 
+  \]
+  follows and the sequence $\left((v_i^n)_{i\in I} \right)_{n\in \N}$ convergence to
+  $(v_i)_{i\in I}$. This finishes the proof.    
+\end{proof}

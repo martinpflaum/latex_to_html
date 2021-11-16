@@ -1,0 +1,44 @@
+% Copyright 2018 Markus J. Pflaum, licensed under GNU FDL v1.3
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Topological tensor products}
+\label{sec:topological-tensor-products}
+\begin{definition}[cf.~{\cite[Chap.~I, \S\,3, n$^\text{o}$\,3]{GroPTTEN}}]
+  Let $\tvsV$ and $\tvsW$ be two locally convex topological vector spaces over the ground field $\fldK$. 
+  A locally convex vector topology $\tau$ on the (algebraic) tensor product $\tvsV \otimes \tvsW$ 
+  is called \emph{compatible with the tensor product structure}, an \emph{admissible tensor product topology}
+  or just \emph{admissible}  if the following conditions hold true:
+  \begin{axiomlist}[ATPT]
+  \item
+     The canonical map $\tvsV \times \tvsW  \to \tvsV \otimes_\tau \tvsW$ is seperately continuous
+     that is  for each $v \in \tvsV$ and each $w\in\tvsW$ the linear maps 
+     \[ \tvsW \to  \tvsV \otimes_\tau \tvsW, y \mapsto v \otimes y \quad\text{and} \quad
+        \tvsV \to  \tvsV \otimes_\tau \tvsW, x \mapsto x \otimes w \]
+     are continuous where $\tvsV \otimes_\tau \tvsW $ denotes the vector space 
+     $\tvsV \otimes \tvsW$ equipped with $\tau$. 
+  \item For all linear maps $\alpha \in \tvsV'$ and $\beta \in \tvsW'$ the canonical linear map 
+     map $\alpha \otimes \beta :  \tvsV \otimes_\tau \tvsW \to  \fldK$
+     is continuous. 
+  \item For every equicontinuous subset $A \subset \tvsV'$ and equicontinuous subset $B\subset \tvsW'$
+     the set $\left\{ \alpha \otimes \beta \mid \alpha \in A \:\&\: \beta \in B \right\}$ is an
+     equicontinuous subset of the topological dual of $\tvsV \otimes_\tau \tvsW$. 
+  \end{axiomlist}
+  The locally convex vector topology $\tau$   
+  is called \emph{strongly compatible with the tensor product structure}, 
+  a \emph{strongly admissible tensor product topology} or briefly \emph{strongly admissible} 
+  if it satisfies:
+  \begin{axiomlist}[ATPT]
+  \item[\textup{\sffamily (sATPT)}]
+     The canonical map $\tvsV \times \tvsW  \to \tvsV \otimes_\tau \tvsW$ is continuous where
+      $\tvsV \times \tvsW$ carries the product topology. 
+  \end{axiomlist}
+\end{definition}
+
+\para
+The admissible  respectively strongly admissible vector topologies on $ \tvsV \otimes \tvsW$ are obviously partially ordered 
+by set-theoretic inclusion. Therefore, the following definition makes sense.
+
+\begin{definition}
+  
+\end{definition}

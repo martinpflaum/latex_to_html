@@ -1,0 +1,91 @@
+% Copyright 2017 Paul Mitchener, licensed under GNU FDL v1.3
+% main author: 
+%   Paul Mitchener
+%
+\section{Measure Spaces}\label{sec:measure-spaces}
+
+\begin{definition}
+Let $\Omega$ be a measurable space, equipped with a $\sigma$-algebra $\mathscr A$.  
+A \emph{measure} on $\Omega$ is a function $\mu \colon {\mathscr A}\rightarrow [0,\infty ]$ such that:
+\begin{axiomlist}[M]
+\item The function $\mu$ is \emph{$\sigma$-additive}, i.e.
+\[  \mu \left( \bigcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \mu (A_n ) \ , \] 
+whenever $(A_n)_{n\in \N}$ is a sequence of disjoint mesaurable sets.  
+\item There is a measurable set $A$ such that $\mu (A)<\infty$.
+\end{axiomlist}
+The number $\mu (A)$ is called the \emph{measure} of a set $A$.  A measurable space equipped with some measure is called a 
+\emph{measure space}.
+\end{definition}
+
+For the above definition to make sense, we need to make a convention concerning our `number' $\infty$, namely that $a + \infty = \infty$ whenever $a\in [0,\infty ]$.  
+
+\begin{example}
+Let $\Omega$ be a measurable space.  For any measurable set $E\subseteq \Omega$, let us define
+$\mu (E) = |E|$, where $|E|$ denotes the number of elements of $E$.  Then $\mu$ is a measure on $\Omega$, called the {\em counting measure}.
+\end{example}
+
+\begin{example}
+Let $\Omega$ be a measurable space, and let $x_0 \in \Omega$.  For any measurable set $E\subseteq \Omega$, let us define
+$$\mu (E) = \left\{ \begin{array}{ll}
+1 & x_0 \in E \\
+0 & x_0 \not\in E \\
+\end{array} \right.$$
+
+Then $\mu$ is a measure on $\Omega$, called the {\em Dirac measure}.
+\end{example}
+
+\begin{proposition}
+Let $\Omega$ be a measure space, with measure $\mu$.  Then $\mu (\emptyset ) =0$.
+\end{proposition}
+
+\begin{proof}
+Choose a measurable set $A$ such that $\mu (A)<\infty$.  Then
+$$\mu (A) =  \mu (A) + \mu (\emptyset ) + \mu (\emptyset ) +\cdots$$
+Hence $\mu (\emptyset ) =0$.
+\end{proof}
+
+\begin{corollary}
+Let $A_1 , \ldots , A_n$ be disjoint measurable sets.  Then
+$$\mu (A_1 \cup \cdots \cup A_n ) = \mu (A_1 ) + \cdots + \mu (A_n)$$
+\textbf{proof to be filled in!}
+\end{corollary}
+
+\begin{corollary}
+Let $A$ and $B$ be measurable set where $A\subseteq B$.  Then $\mu (A) \leq \mu (B)$.
+\end{corollary}
+
+\begin{proof}
+The set $B\backslash A = B\cap (\Omega \backslash A )$ is measurable, the sets $A$ and $B\backslash A$ are disjoint, and $B = A\cup B\backslash A$.  By the above corollary
+$$\mu (B) = \mu (A) + \mu (B\backslash A)$$
+
+The inequality $\mu (A)\leq \mu (B)$ follows since $\mu (B\backslash A)\geq 0$.
+\end{proof}
+
+\begin{proposition} \label{limsub}
+Let $(A_n )$ be a sequence of measurable sets such that $A_n \subseteq A_{n+1}$ for all $n$.  Let $A = \bigcup_{n=1}^\infty A_n$.  Then $\lim_{n\rightarrow \infty} \mu (A_n ) = \mu (A)$.
+\end{proposition}
+
+\begin{proof}
+Let $B_1 =A_1$, and $B_n = A_n \backslash A_{n-1}$ when $n\geq 2$.  Then the sets $B_n$ are measurable and disjoint.  Further
+$$A_n = B_1 \cup \cdots \cup A_n \qquad A= \bigcup_{n=1}^\infty B_n$$
+
+Hence
+$$\mu (A) = \sum_{n=1}^\infty \mu (B_n) = \lim_{N\rightarrow} \sum_{n=1}^N \mu (B_n) = \lim_{N\rightarrow \infty}\mu (A_N)$$
+\end{proof}
+
+\begin{corollary}
+Let $(A_n)$ be a sequence of measurable sets such that $\mu (A_1)<\infty$ and $A_{n+1}\subseteq A_n$ for all $n$.    Let $A = \bigcap_{n=1}^\infty A_n$.  Then $\lim_{n\rightarrow \infty} \mu (A_n ) = \mu (A)$.
+\end{corollary}
+
+\begin{proof}
+Let $C_n =A_1\backslash A_n$.  Then the set $C_n$ is measurable, $C_n\subseteq C_{n+1}$ for all $n$, and $\bigcup_{n=1}^\infty C_n = A_1 \backslash A$.  Hence, by the above proposition
+$$\lim_{n\rightarrow \infty}\mu (C_n) = \mu (A_1 \backslash A)$$
+
+We know that the measure $\mu (A_1)$ is finite, and that we have disjoint unions$$A_1 = A_n \cup C_n \qquad A_1 = A_1\backslash A \cup A$$
+Hence
+$$\mu (A_1 )- \lim_{n\rightarrow \infty} \mu (A_n) = \mu (A_1 ) - \mu (A)$$
+and
+$$\lim_{n\rightarrow \infty} \mu (A_n ) = \mu (A)$$
+\end{proof}
+
+The above corollary is false if we omit the assumption that $\mu (A_1)<\infty$.

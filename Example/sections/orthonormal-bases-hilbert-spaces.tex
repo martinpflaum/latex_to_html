@@ -1,0 +1,203 @@
+% Copyright 2018 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Orthonormal bases in Hilbert spaces}
+\label{sec:orthonormal-baes-hilbert-spaces}
+
+\begin{definition}
+  A (possibly empty) subset $S$ of a Hilbert space $\hilbertH$ is called
+  an \emph{orthogonal system} or just \emph{orthogonal} if for any  two different elements $v,w \in S$ the relation 
+  $\inprod{v,w} = 0$ holds true. If in addition $\norm{v}=1$ for all elements $v \in S$,
+  then the set is called \emph{orthonormal} or an \emph{orthonormal system}.  
+  A family $(v_i)_{i\in I}$ of vectors in $\hilbertH$ is called \emph{orthogonal} if 
+  $\inprod{v_i,v_j} = 0$ for all  $i,j\in I$ with $i\neq j$ and  \emph{orthonormal} 
+  if in addition $\|v_i\| =1$ for all $i\in I$. 
+\end{definition}
+
+\para
+  Obviously, the set of orthonormal subsets of a Hilbert space is ordered by set-theoretic inclusion. 
+  Therefore, the following definition makes sense. 
+
+\begin{definition}
+  A maximal orthonormal set in a Hilbert space $\hilbertH$ is called an \emph{orthonormal basis}
+  or a \emph{Hilbert basis} of $\hilbertH$.      
+\end{definition}
+
+\begin{proposition}
+  Every  Hilbert space $\hilbertH$ has an orthonormal basis. 
+\end{proposition}
+
+\begin{proof}
+  Wothout loss of generality we can assume that $\hilbertH \neq \{ 0\}$, because 
+  $\emptyset$ is a Hilbert basis for $\{ 0 \}$. 
+  Let $\mathscr{O}$ denote the set of orthonormal subsets of $\hilbertH$. As mentioned before, $\mathscr{O}$ 
+  is ordered by set-theoretic inclusion. Let $\mathscr{C} \subset \mathscr{O}$ be a non-empty chain. 
+  Put $U  = \bigcup_{S\in \mathscr{C}} S$. Then  $U$ is an upper bound of $\mathscr{C}$.
+  So by Zorn's lemma $\mathscr{O}$ has a maximal element.   
+\end{proof}
+
+\begin{remark}
+  \begin{environmentlist} 
+  \item
+    By slight abuse of language we sometimes call an orthonormal family $(b_i)_{i\in I}$ in a Hilbert space $\hilbertH$
+    an \emph{orthonormal basis} or a \emph{Hilbert basis} of $\hilbertH$  
+    if the set $\{ b_i \mid i\in I \}$ is an orthornormal basis. 
+  \item 
+    If on an orthonormal basis $B \subset \hilbertH$ a total order relation is given, 
+    one calls $B$ an \emph{ordered Hilbert basis} of $\hilbertH$. Likewise,  
+    an orthonormal basis of the form $(b_i)_{i\in I}$ is called \emph{orderd} if the index set $I$ carries a total order.
+  \end{environmentlist}
+\end{remark}
+
+\begin{proposition}[Pythagorean theorem for orthogonal families]\label{thm:pythagorean-theorem-infinite-families}\hspace{1mm}
+  An orthogonal family $(v_i)_{i\in I}$ in a Hilbert space $\hilbertH$ is summable if and only if 
+  the family of norms $\left(\|v_i\| \right)_{i\in I}$ is square summable. In this case one has 
+  \[
+     \left\|\sum_{i\in I} v_i\right\|^2 =  \sum_{i\in I} \|v_i\|^2 \ .
+  \]
+\end{proposition}
+
+\begin{proof}
+  Assume that $\left(\|v_i\| \right)_{i\in I}$ is square summable or in other words that the net of partial sums
+  $\left( \sum_{i\in J} \|v_i\|^2 \right)_{J\in\mathscr{F} (I)}$  converges to some $s \in \R$. 
+  For $\varepsilon >0$ choose a finite $J_\varepsilon \subset I$ such that for all finite $J$ with 
+  $J_\varepsilon \subset J\subset I$ the relation
+  \[
+           \left| s - \sum_{i\in J} \|v_i\|^2   \right| < \frac{\varepsilon^2}{2}
+  \]
+  holds true. For finite $K\subset I$ with $K\cap J_\varepsilon  =\emptyset$ one then obtains by the pythagorean theorem for 
+  finite orthogonal families, Eq.~(\ref{eq:pythagorean-theorem}),
+  \[
+      \left\| \sum_{i\in K} v_i\right\|^2 =  \sum_{i\in K}  \left\| v_i\right\|^2 \leq 
+       \left| s - \sum_{i\in K \cup J_\varepsilon} \|v_i\|^2   \right|  + \left| s - \sum_{i\in  J_\varepsilon} \|v_i\|^2   \right|
+       < \varepsilon^2 \ .
+  \]
+  Hence  $\left( \sum_{i\in J} v_i \right)_{J\in\mathscr{F} (I)}$ is a Cauchy net in $\hilbertH$, so convergent. 
+ 
+  Now let  $(v_i)_{i\in I}$ be  summable to $v\in \hilbertH$. 
+  Then there exists a $J_1 \in \mathscr{F} (I)$ such that for all finite $J \subset I$ 
+  containing  $J_1$
+  \[
+    \left\| v -  \sum_{i\in J} v_i \right\| \leq 1 \ .
+  \] 
+  This implies by the pythagorean theorem for finite orthogonal families 
+   \[
+    \sum_{i\in J} \left\| v_i \right\|^2 =  \left\|  \sum_{i\in J} v_i \right\|^2  \leq 
+    \left(  \left\| v -  \sum_{i\in J} v_i \right\| +  \left\| v \right\| \right)^2 \leq  ( 1 + \| v\| )^2 \ .
+  \] 
+  Hence the net of partial sums $\left( \sum_{i\in J} \|v_i\|^2 \right)_{J\in\mathscr{F} (I)}$ is bounded, so convergent
+  since each term $\|v_i\|^2$ is $\geq 0$.  
+
+  By continuity of the inner product and pairwise orthogonality of the $v_i$ we finally obtain in the convergent case
+  \[
+   \left\| \sum_{i\in I} v_i \right\|^2 = \inprod{ \sum_{i\in I} v_i, \sum_{j\in I} v_j} =
+   \sum_{i\in I} \inprod{ v_i, \sum_{j\in I} v_j} =  \sum_{i\in I} \sum_{j\in I} \inprod{ v_i, v_j} =  \sum_{i\in I} \left\| v_i \right\|^2 \ .
+  \]
+\end{proof}
+
+\begin{proposition}
+  Let $(v_i)_{i\in I}$ be an orthonormal family in a Hilbert space $\hilbertH$. Then for every $v \in \hilbertH$ 
+  the family $\left( \inprod{v,v_i} \right)_{i\in I}$  is square summable and 
+  \emph{Bessel's inequality} holds true that is 
+  \[
+    \sum_{i\in I} \left| \inprod{v,v_i} \right|^2 \leq \| v \|^2 \ .
+  \]
+\end{proposition}
+
+\begin{proof}
+  
+\end{proof}
+
+\begin{theorem}
+Let $B$ be an orthonormal system in a Hilbert space $\hilbertH$. Then the following are equivalent:
+\begin{numberlist}
+  \item\label{ite:orthonormal-system-maximal} The orthonormal system $B$ is maximal, i.e.\ a Hilbert basis.
+  \item\label{ite:orthonormal-system-total} The orthonormal system $B$ is  \emph{total} that is for all $v \in H$    
+      such that $\inprod{v, b} = 0$ for all $b \in B$ the equality $v = 0$ holds true.
+  \item\label{ite:orthonormal-system-isomorphism}
+     For every $b\in B$ let $\hilbertH_b = \{ r b \in \hilbertH \mid r \in \fldK\}$. Then the canonical map 
+     \[
+       \iota: \widehat{\bigoplus_{b \in B}} \hilbertH_b \to \hilbertH , \: 
+       (v_b)_{b \in B} \mapsto \sum_{b \in B} v_b
+     \] 
+     is an isometric isomorphism.  
+  \item\label{ite:orthonormal-system-closed-span}
+     The closed linear span $\clSpan{B}$ coincides with $\hilbertH$.
+  \item\label{ite:orthonormal-system-fourier-expansion} For all $v \in \hilbertH$, one has the
+    \emph{Fourier expansion}
+    \[ v = \sum_{b \in B} \inprod{v, b} b  \ . \]
+  \item\label{ite:orthonormal-system-inner-product-expansion} For all $v, w \in \hilbertH$, one has 
+    \[ \inprod{v, w} = \sum_{b \in B}\inprod{v, b} \inprod{b, w} \ . \]
+  \item\label{ite:orthonormal-system-parsevals-identity} For all $v \in \hilbertH$, \emph{Parseval's identity} holds true that is
+    \[ \norm{v}^2 = \sum_{b \in B} \abs{\inprod{v, b}}^2  \ . \] 
+\end{numberlist}
+\end{theorem}
+
+\begin{proof}
+ \ref{ite:orthonormal-system-maximal} $\Rightarrow$ \ref{ite:orthonormal-system-total}:
+   If $v \neq 0$, then $\frac{v}{\norm{v}}$ is a unit vector orthogonal to each $v_i$. Hence $\{v\} \cup B$ 
+   is an orthonormal system which is strictly larger than $B$, contradicting \ref{ite:orthonormal-system-maximal}.
+
+ \ref{ite:orthonormal-system-total} $\Rightarrow$ \ref{ite:orthonormal-system-isomorphism}. 
+   First note that by the pythagorean theorem for infinite families, \Cref{thm:pythagorean-theorem-infinite-families},
+   the canonical map $\iota: \widehat{\bigoplus}_{b \in B} H_b \rightarrow H$ is well-defined and an isometry. 
+   Hence $\iota$ is injective. It remains to show that $\iota$ is surjective. 
+   To this end observe that $\im \iota$ is closed in $\hilbertH$ since $\iota$ is an isometry (the image is complete). 
+   If $\iota$ is not surjective, then $\im \iota^\perp$ is not the zero vector space. 
+   Choose $v \in \im \iota^\perp \setminus \{ 0\}$. 
+   Then $v$ is orthogonal to each element of $B$, but $v \neq 0$. This contradicts 
+   \ref{ite:orthonormal-system-total}, so $\im \iota = \hilbertH$.
+
+  \ref{ite:orthonormal-system-isomorphism} $\Rightarrow$ \ref{ite:orthonormal-system-fourier-expansion}: 
+    We can represent any $v \in \hilbertH$ in the form $v = \iota \left( (v_b)_{b \in B} \right) = 
+    \sum_{b\in B} v_b$ with $\left( v_b \right)_{b\in B} \in \widehat{\bigoplus}_{b \in B}  H_b$. 
+    Write $v_b = r_b \, b$ for every $b\in B$, where $r_b \in \fldK$ is uniquely determined by $v_b$. 
+    Then compute using continuity of the inner product
+    \[
+      \inprod{v, b} = \inprod{\sum_{c \in B} v_c, b} = \sum_{c \in B} r_c \inprod{c, b} = r_b \ .
+    \]
+    Therefore,
+    \[
+       v = \sum_{b \in B} r_b \, b = \sum_{b \in B} \inprod{v, b} b \ .
+    \]
+
+  \ref{ite:orthonormal-system-fourier-expansion} $\Rightarrow$ \ref{ite:orthonormal-system-inner-product-expansion}:
+  Fourier expansion of $v, w \in H$ gives $v = \sum\limits_{b \in B} \inprod{v, b} b$ and 
+  $w = \sum\limits_{b \in B} \inprod{w, b} b$.   Then, by continuity of the inner product,
+  \[
+    \inprod{v, w} = \sum\limits_{b \in B} \inprod{v, b}\inprod{b, w} \ .
+  \]
+
+  \ref{ite:orthonormal-system-fourier-expansion} $\Rightarrow$ \ref{ite:orthonormal-system-closed-span}:
+  Let $v\in \hilbertH$. Then $\sum\limits_{b\in J}\inprod{v, b} b \in \Span (B)$ for all finite  $J \subset B$.
+  But by Fourier expansion $v$ is the limit of the net 
+  $\left( \sum\limits_{b\in J}\inprod{v, b} b \right)_{J\in \mathscr{F} (B)} $, so $v$ lies in the closure 
+  $\clSpan (B)$.
+
+  \ref{ite:orthonormal-system-closed-span}  $\Rightarrow$ \ref{ite:orthonormal-system-total}:
+  Assume that $\inprod{v, b} = 0$ for all $b \in B$. By \ref{ite:orthonormal-system-closed-span}, $v$ can be written as a limit 
+  $v = \lim\limits_{n\to\infty} v_n$, where $v_n \in \Span (B)$ for all $n\in \N$. 
+  Then  $\inprod{v, v_n} = 0$ for all $n\in \N$ by assumption. 
+  By continuity of the inner product this implies
+  \[
+     \norm{v}^2 = \lim\limits_{n\to\infty} \inprod{v, v_n} = 0 \ ,
+  \]
+  so $v=0$. 
+
+  \ref{ite:orthonormal-system-inner-product-expansion} $\Rightarrow$ \ref{ite:orthonormal-system-parsevals-identity}: 
+  Put $v = w$. Then, by assumption,
+  \[
+   \norm{v}^2 = \inprod{v, v} = \sum\limits_{b\in B} \inprod{v, b} \inprod{b, v} = \sum\limits_{b \in B} \abs{\inprod{v, b}}^2 \ .
+  \]
+
+  \ref{ite:orthonormal-system-parsevals-identity} $\Rightarrow$ \ref{ite:orthonormal-system-maximal}:
+  Assume \ref{ite:orthonormal-system-parsevals-identity} and that \ref{ite:orthonormal-system-maximal} is not true. 
+  Then there exists $v \in H$ with $\norm{v} = 1$ and $\inprod{v, b} = 0$ for all $b \in B$. But then
+  \[
+    \norm{v}^2 = \sum_{b \in B} \abs{\inprod{v, b}}^2 = 0,
+  \]
+  which is a contradiction.
+
+ 
+\end{proof}

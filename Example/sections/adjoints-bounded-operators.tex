@@ -1,0 +1,182 @@
+\section{Adjoints of bounded operators}
+\label{sec:adjoints-bounded-operators}
+
+\para 
+Throughout this section, $\hilbertH$ stands for a Hilbert space over the 
+field $\fldK$ of real or complex numbers. 
+Let $A \in \blinOps (\hilbertH)$ that is let 
+$A:\hilbertH \rightarrow \hilbertH$ be linear and bounded. Then the map
+\[
+ b_A : \hilbertH \times \hilbertH \to \fldK, \: (v,w) \mapsto \inprod{v, Aw} 
+\]
+is sesquilinear and bounded with norm
+\[
+\norm{b_A} = \sup \big\{ \left| b_A(v,w)\right| \bigmid
+   v,w\in \hilbertH \:\&\: \norm{w}=\norm{v}=1 \big\} = 
+                \norm{A} \ .
+\]
+By \Cref{thm:correspondence-bounded-sesquilinear-forms-bounded-operators} 
+to the Riesz representation theorem there exists a unique element 
+$A^* \in \blinOps(\hilbertH)$ such that
+\[
+ b_A (v,w) = \inprod{A^* v, w} \quad 
+ \text{for all } v,w \in \hilbertH \ .
+\]
+This operator satisfies $\norm{A^*}= \norm{b_A} = \norm{A}$. 
+\begin{definition}
+The unique operator $A^*\in \blinOps (\hilbertH)$ associated to some 
+$A\in \blinOps(\hilbertH)$ such that 
+\[
+ \inprod{v,Aw} = \inprod{A^* v, w} \quad 
+ \text{for all } v,w \in \hilbertH 
+\]
+is called the \emph{adjoint} of $A$.
+\end{definition}
+
+\begin{proposition}
+If $A \in \blinOps (\hilbertH)$, then so is its adjoint $A^* \in \blinOps (\hilbertH)$.
+\end{proposition}
+
+\begin{proof}
+First we show that $A^*$ is linear. Given $v, w, w' \in H$, we compute
+\begin{align*}
+\inprod{v, A^*(w + w')} &= \mu_{A, w+w'}(v) = \inprod{Av, w + w'} = \inprod{Av, w} + \inprod{Av, w'}\\
+&= \mu_{A, w}(v) + \mu_{A, w'}(v) = \inprod{v, A^*w} + \inprod{v, A^*w'} = \inprod{v, A^*w + A^*w'}
+\end{align*}
+Since this is true for all $v \in H$, this implies that $A^*(w+w') = A^*w'$.  Furthermore, given $\lambda \in \fldK$, we have
+\begin{align*}
+\inprod{v, A^*(\lambda w)} &= \mu_{A, \lambda w}(v) = \inprod{Av, \lambda w} = \widebar \lambda \inprod{Av, w}\\
+&= \widebar \lambda \mu_{A, w}(v) = \widebar \lambda \inprod{v, A^* w} = \inprod{v, \lambda A^*w}.
+\end{align*}
+Again, since this is true for all $v \in H$, we know $A^*(\lambda w) = \lambda A^*w$. This proves that $A^*$ is linear.
+
+It remains to show that $A^*$ is bounded. We know
+\[
+\norm{A^*} = \sup_{\norm{v} = \norm{w} = 1} \abs{\inprod{v, A^* w}} = \sup_{\norm{v} = \norm{w} = 1} \abs{\inprod{w, Av}} = \norm{A} < \infty,
+\]
+which is what we wanted to show. Note that $\norm{A^*} = \norm{A}$.
+\end{proof}
+
+We leave it as an exercise to show that
+\[
+\norm{A} = \sup_{\norm{v} = \norm{w} = 1} \abs{\inprod{v, Aw}}
+\]
+for all $A \in \linOps (\hilbertH)$, as was used in the above proof.
+
+
+\begin{definition}
+An operator $A \in \linOps (\hilbertH)$ is called \emph{self-adjoint} if $A = A^*$, \emph{unitary} if $A^* = A^{-1}$, and \emph{normal} if $[A, A^*] = AA^* - A^*A = 0$.
+\end{definition}
+
+
+We note that self-adjoint and unitary operators are always normal, but normal operators do not have to be self-adjoint or unitary. In the remainder of these notes, we gather several results on self-adjoint and normal operators.
+
+\begin{lemma}
+An operator $A \in \linOps (\hilbertH)$ is self-adjoint if and only if $\inprod{Av, v} \in \R$ for all $v \in H$.
+\end{lemma}
+
+\begin{proof}
+$\Rightarrow$) If $A$ is self-adjoint, then
+\[
+\inprod{Av, v} = \mu_{A,v}(v) = \inprod{v, A^*v} = \inprod{v, Av} = \overline{\inprod{Av,v}},
+\]
+which implies that $\inprod{Av,v} \in \R$.
+
+$\Leftarrow$) Suppose that $\inprod{Av, v} \in \R$ for all $v \in H$. We know
+\begin{align*}
+\inprod{A(v+w), v+w} = \inprod{Av, v} + \inprod{Av, w} + \inprod{Aw, v} + \inprod{Aw, w}. \tag{$*$}
+\end{align*}
+By assumption, $\inprod{A(v+w), v+w}$, $\inprod{Av, v}$, and $\inprod{Aw, w}$ are all real. This implies that $\inprod{Av, w} + \inprod{Aw, v}$ is real as well, so
+\[
+\Im \inprod{Av, w} = -\Im \inprod{Aw, v}= \Im \inprod{v, Aw}.
+\]
+Since this holds for all $w \in H$, it holds for $iw$ as well. Thus,
+\[
+\Re \inprod{Av, w} = \Im \inprod{Av, -iw} = \Im \inprod{v, A(-iw)} = \Im i\inprod{v, Aw} = \Re \inprod{v, Aw}.
+\]
+Combining the above two lines yields $\inprod{Av, w} = \inprod{v, Aw}$ for all $v, w \in H$. Since the adjoint satisfies $\inprod{Av, w} = \inprod{v, A^*w}$, this implies that $A = A^*$.
+\end{proof}
+
+\begin{proposition}
+If $A \in \linOps (\hilbertH)$ and $\inprod{Av, v} = 0$ for all $v \in H$, then $A = 0$.
+\end{proposition}
+
+\begin{proof}
+Since $\inprod{Av, v} = 0$ for all $v \in H$, equation ($*$) from Lemma 4 reduces to
+\[
+\inprod{Av, w} = -\inprod{Aw, v} = -\inprod{w, Av} = -\overline{\inprod{Av, w}} \quad \text{for all } v, w \in H \ ,
+\]
+i.e.\ $\inprod{Av,w}$ has no real part for all $v, w \in H$. But then fixing $v$ and setting $w = Av$ implies $\norm{Av}^2 = 0$ for all $v \in H$, so $A = 0$.
+\end{proof}
+
+\begin{proposition}
+If $A \in \linOps (\hilbertH)$ is self-adjoint, then 
+\[
+\norm{A} = \sup_{\norm{v} = 1} \abs{\inprod{Av, v}}.
+\]
+\end{proposition}
+
+\begin{proof}
+We know
+\[
+\norm{A} = \sup_{\norm{v} = \norm{w} = 1} \abs{\inprod{Av, w}},
+\]
+so we clearly have
+\[
+\sup_{\norm{v} = 1} \abs{\inprod{Av, v}} \leq \norm{A}.
+\]
+%I'M NOT SURE HOW TO PROVE THE OTHER DIRECTION.
+\end{proof}
+
+\begin{proposition}
+If $A \in \linOps (\hilbertH)$, then $A^*A$ is self-adjoint and $\norm{A^*A} = \norm{A}^2$.
+\end{proposition}
+
+\begin{proof}
+For arbitrary $v \in H$, we have
+\[
+\inprod{A^*Av, v} = \inprod{Av, Av} = \norm{Av}^2 \in \R,
+\]
+so $A^*A$ is self-adjoint by Lemma 4. By Proposition 6,
+\[
+\norm{A^*A} = \sup_{\norm{v} = 1} \abs{\inprod{A^*Av, v}}  = \sup_{\norm{v} = 1} \norm{Av}^2 = \norm{A}^2. 
+\]
+\end{proof}
+
+\begin{proposition}
+If $A \in \linOps (\hilbertH)$, then there exist $B,C \in \linOps (\hilbertH)$ self-adjoint such that $A = B+iC$. Furthermore, $A$ is normal if and only if $[B,C] = 0$.
+\end{proposition}
+
+\begin{proof}
+We define
+\[
+B = \frac{1}{2}(A + A^*) \quad \text{ and } \quad C = \frac{i}{2}(A^* - A).
+\]
+Clearly $A = B + iC$. Note also that $A^* = B - iC$. Furthermore, for all $v \in H$
+\begin{align*}
+\inprod{Bv, v} = \frac{1}{2} \inprod{Av, v} + \frac{1}{2}\inprod{A^*v, v} = \frac{1}{2}\inprod{Av, v} + \frac{1}{2}\overline{\inprod{Av, v}} \in \R
+\end{align*}
+and
+\begin{align*}
+\inprod{Cv, v} = \frac{i}{2}\inprod{A^*v, v} - \frac{i}{2}\inprod{Av, v} = \frac{i}{2}\overline{\inprod{Av, v}} - \frac{i}{2}\inprod{Av, v} \in \R
+\end{align*}
+This implies that $B$ and $C$ are self-adjoint by Lemma 4.
+
+Finally, we compute
+\begin{align*}
+[A, A^*] = [B + iC, B-iC] = -i[B, C] + i[C,B] = -2i[B,C],
+\end{align*}
+Clearly $A$ is normal if and only if $[B,C] = 0$. 
+\end{proof}
+
+\begin{proposition}
+If $A$ is normal, then $\norm{Av} = \norm{A^*v}$ for all $v \in H$.
+\end{proposition}
+
+\begin{proof}
+Using the fact that $A^*A = AA^*$, we compute
+\begin{align*}
+\norm{Av}^2 = \inprod{Av, Av} = \inprod{v, A^*Av} = \inprod{v, AA^*v} = \inprod{A^*v, A^*v} = \norm{A^*v}^2.
+\end{align*}
+Taking a square root yields the desired result.
+\end{proof}

@@ -1,0 +1,122 @@
+\def\cprime{$'$}
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Alexandroff \& Hopf}{Alexandroff \&
+  Hopf}{1965}]{AleHopT}
+Alexandroff, P. \& Hopf, H. (1965).
+\newblock {\em Topologie}.
+\newblock Erster Band. Grundbegriffe der mengentheoretischen Topologie,
+  Topologie der Komplexe, topologische Invarianzs\"atze und anschliessende
+  Begriffsbildungen, Verschlingungen im n-dimensionalen euklidischen Raum,
+  stetige Abbildungen von Polyedern. Chelsea Publishing Co., New York.
+
+\bibitem[\protect\citeauthoryear{Baez}{Baez}{1997}]{BaeHDAII2HS}
+Baez, J. (1997).
+\newblock Higher-{D}imensional {A}lgebra {II}. 2-{H}ilbert {S}paces.
+\newblock {\em Adv. Math.}, {\em 127}, 125--189.
+
+\bibitem[\protect\citeauthoryear{Blackadar}{Blackadar}{1977}]{BlaITPC*A}
+Blackadar, B.~E. (1977).
+\newblock Infinite tensor products of {$C\sp*$}-algebras.
+\newblock {\em Pacific J. Math.}, {\em 72\/}(2), 313--334.
+
+\bibitem[\protect\citeauthoryear{Bourbaki}{Bourbaki}{1998}]{BouGTC1-4}
+Bourbaki, N. (1998).
+\newblock {\em General topology. {C}hapters 1--4}.
+\newblock Elements of Mathematics (Berlin). Springer-Verlag, Berlin.
+\newblock Translated from the French, Reprint of the 1989 English translation.
+
+\bibitem[\protect\citeauthoryear{Bratteli \& Robinson}{Bratteli \&
+  Robinson}{1997}]{BraRobOAQSM2}
+Bratteli, O. \& Robinson, D.~W. (1997).
+\newblock {\em Operator algebras and quantum statistical mechanics. 2\/}
+  (Second ed.).
+\newblock Texts and Monographs in Physics. Springer-Verlag, Berlin.
+\newblock Equilibrium states. Models in quantum statistical mechanics.
+
+\bibitem[\protect\citeauthoryear{Chevalley}{Chevalley}{1956}]{CheFCA}
+Chevalley, C. (1956).
+\newblock {\em Fundamental concepts of algebra}.
+\newblock Academic Press Inc., New York.
+
+\bibitem[\protect\citeauthoryear{Emch}{Emch}{2009}]{EmcAMSMQFT}
+Emch, G.~G. (2009).
+\newblock {\em Algebraic Methods in Statistical Mechanics and Quantum Field
+  Theory}.
+\newblock Dover Publications, Inc., New York.
+
+\bibitem[\protect\citeauthoryear{Frobenius}{Frobenius}{1878}]{FroLSBF}
+Frobenius, F.~G. (1878).
+\newblock {\"U}ber lineare {S}ubstitutionen und bilineare {F}ormen.
+\newblock {\em {J}ournal f{\"u}r die reine und angewandte {M}athematik}, {\em
+  84}, 1--63.
+
+\bibitem[\protect\citeauthoryear{Gouv\^{e}a}{Gouv\^{e}a}{1997}]{GouAN}
+Gouv\^{e}a, F.~Q. (1997).
+\newblock {\em {$p$}-adic numbers\/} (Second ed.).
+\newblock Universitext. Springer-Verlag, Berlin.
+\newblock An introduction.
+
+\bibitem[\protect\citeauthoryear{Grothendieck}{Grothendieck}{1955}]{GroPTTEN}
+Grothendieck, A. (1955).
+\newblock Produits tensoriels topologiques et espaces nucl\'eaires.
+\newblock {\em Mem. Amer. Math. Soc.}, {\em No. 16}, 140.
+
+\bibitem[\protect\citeauthoryear{Guichardet}{Guichardet}{1966}]{GuiPTIRRA}
+Guichardet, A. (1966).
+\newblock Produits tensoriels infinis et repr\'{e}sentations des relations
+  d'anticommutation.
+\newblock {\em Ann. Sci. \'{E}cole Norm. Sup. (3)}, {\em 83}, 1--52.
+
+\bibitem[\protect\citeauthoryear{Lang}{Lang}{2002}]{LanA3rd}
+Lang, S. (2002).
+\newblock {\em Algebra\/} (third ed.)., volume 211 of {\em Graduate Texts in
+  Mathematics}.
+\newblock Springer-Verlag, New York.
+
+\bibitem[\protect\citeauthoryear{Nakagami}{Nakagami}{1970a}]{NakITPvNAI}
+Nakagami, Y. (1970a).
+\newblock Infinite tensor products of von {N}eumann algebras. {I}.
+\newblock {\em K{\={o}}dai Math. Sem. Rep.}, {\em 22}, 341--354.
+
+\bibitem[\protect\citeauthoryear{Nakagami}{Nakagami}{1970b}]{NakITPvNAII}
+Nakagami, Y. (1970b).
+\newblock Infinite tensor products of von {N}eumann algebras. {II}.
+\newblock {\em Publ. Res. Inst. Math. Sci.}, {\em 6}, 257--292.
+
+\bibitem[\protect\citeauthoryear{Ng}{Ng}{2013}]{NgGIATP}
+Ng, C.-K. (2013).
+\newblock On genuine infinite algebraic tensor products.
+\newblock {\em Rev. Mat. Iberoam.}, {\em 29\/}(1), 329--356.
+
+\bibitem[\protect\citeauthoryear{Ostrowski}{Ostrowski}{1916}]{OstLF}
+Ostrowski, A. (1916).
+\newblock {\"U}ber einige {L}{\"o}sungen der {F}unktionalgleichung
+  {$\psi(x)\cdot\psi(x)=\psi(xy)$}.
+\newblock {\em Acta Math.}, {\em 41\/}(1), 271--284.
+
+\bibitem[\protect\citeauthoryear{Pietsch}{Pietsch}{1972}]{PieNLCS}
+Pietsch, A. (1972).
+\newblock {\em Nuclear locally convex spaces}.
+\newblock Springer-Verlag, New York-Heidelberg.
+\newblock Translated from the second German edition by William H. Ruckle,
+  Ergebnisse der Mathematik und ihrer Grenzgebiete, Band 66.
+
+\bibitem[\protect\citeauthoryear{Steen \& Seebach}{Steen \&
+  Seebach}{1995}]{SteSeeCT}
+Steen, L.~A. \& Seebach, Jr., J.~A. (1995).
+\newblock {\em Counterexamples in topology}.
+\newblock Dover Publications, Inc., Mineola, NY.
+\newblock Reprint of the second (1978) edition.
+
+\bibitem[\protect\citeauthoryear{St{\o}rmer}{St{\o}rmer}{1971}]{StoITPvNA}
+St{\o}rmer, E. (1971).
+\newblock On infinite tensor products of von {N}eumann algebras.
+\newblock {\em Amer. J. Math.}, {\em 93}, 810--818.
+
+\bibitem[\protect\citeauthoryear{von Neumann}{von Neumann}{1939}]{vNeuIDP}
+von Neumann, J. (1939).
+\newblock On infinite direct products.
+\newblock {\em Compositio Math.}, {\em 6}, 1--77.
+
+\end{thebibliography}

@@ -1,0 +1,24 @@
+chapters: 
+  - name: Preliminaries
+    nr: 0 
+    ident: chap:preliminaries
+    sections:
+      - name: Authors 
+        nr: 0
+      - name: Copyright
+        nr: 0 
+      - name: Content
+        nr: 0
+      - name: Introduction
+        nr: 0
+      - name: Attribution
+        nr: 0    
+  - name: Fundamentals 
+
+  - name: Topological Vector Spaces
+  
+  - name: Banach Spaces
+
+  - name: Hilbert Spaces
+
+  - name: Hilbert Spaces

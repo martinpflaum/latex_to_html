@@ -1,0 +1,588 @@
+% Copyright 2017 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Inner product spaces}
+\label{sec:inner-product-spaces}
+%
+%
+\para 
+Let us first remind the reader that as before $\fldK$ stands for the field 
+of real or of complex numbers. We will keep this notational agreement 
+throughout the whole chapter.
+\begin{definition}
+By a \emph{sesquilinear form} on a $\fldK$-vector space $\vectorspV$ one understands a map
+$\langle \cdot , \cdot \rangle : \vectorspV \times \vectorspV \to \fldK$
+with the following two properties:
+\begin{enumerate}[label={\textup{({\sffamily SF\arabic*})}},leftmargin=*]
+\item
+\label{axiom:form-linearity-in-first-coordinate} 
+  The map $\langle \cdot , \cdot \rangle$ is \emph{linear} in its first coordinate which means that
+  \[
+    \langle v_1 + v_2, w \rangle = \langle v_1, w \rangle + \langle v_2, w \rangle
+    \quad \text{and} \quad \langle r v, w \rangle = r \langle v, w \rangle
+  \]
+  for all  $v, w , v_1,v_2 \in \vectorspV$ and $r\in \fldK$.
+\item
+ \label{axiom:form-conjugate-linearity-in-second-coordinate} 
+  The map $\langle \cdot , \cdot \rangle$ is \emph{conjugate-linear} in its second coordinate which means that
+  \[
+    \langle v_1 + v_2, w \rangle = \langle v_1, w \rangle + \langle v_2, w \rangle
+    \quad \text{and} \quad \langle  v, r w \rangle = \overline{r} \langle v, w \rangle
+  \]
+  for all  $v, w , v_1,v_2 \in \vectorspV$ and $r\in \fldK$.
+\end{enumerate}
+A \emph{hermitian form} is a sesquilinear form $\langle \cdot , \cdot \rangle$ on $\vectorspV$ with the following
+additional property:
+\begin{enumerate}[label={\textup{({\sffamily SF\arabic*})}},leftmargin=*,resume]
+\item
+\label{axiom:form-conjugate-symmetry} 
+  The map $\langle \cdot , \cdot \rangle$ is \emph{conjugate symmetric} which means that 
+  \[
+    \langle v, w \rangle = \overline{\langle w, v \rangle} \quad \text{for all  } v, w \in \vectorspV \ .
+  \]
+\end{enumerate}
+A sesquilinear form  $\langle \cdot , \cdot \rangle$ is  called
+\emph{weakly-nondegenerate} if it satisfies axiom
+\begin{enumerate}[label={\textup{({\sffamily SF\arabic*w)}}},leftmargin=*,resume]
+\item
+\label{axiom:form-weakly-nondegenerate} 
+  For every $v\in \vectorspV$, the map $\vectorspV \to \fldK$, $w \to \langle w,v \rangle$ is the zero 
+  map if and only if $v=0$.
+\end{enumerate}
+Finally, one calls a hermitian form  $\langle \cdot , \cdot \rangle$ on $\vectorspV$   
+\emph{positive semidefinite} if
+\begin{enumerate}[label={\textup{({\sffamily SF\arabic*s})}},leftmargin=*,resume]
+\item
+\label{axiom:form-positive-semidefinite} 
+  $\langle v,v \rangle \geq 0$ for all $v\in \vectorspV$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+Recall that a map  $\langle \cdot , \cdot \rangle : \vectorspV \times \vectorspV \to \fldK$ is called \emph{bilinear},
+if it satisfies \ref{axiom:form-linearity-in-first-coordinate} and 
+\begin{axiomlist}[BF]
+\item
+ \label{axiom:form-linearity-in-second-coordinate} 
+  The map $\langle \cdot , \cdot \rangle$ is \emph{linear} in its second coordinate which means that
+  \[
+    \langle v_1 + v_2, w \rangle =  \langle  v_1, w \rangle + \langle v_2, w \rangle
+    \quad \text{and} \quad \langle  v, r w \rangle = r \langle v, w \rangle
+  \]
+  for all  $v, v_1,v_2, w \in \vectorspV$ and $r\in \fldK$.
+\end{axiomlist}
+If the underlying ground field $\fldK$ coincides with the field of real numbers, 
+a sesquilinear form is by definition the same as a bilinear form,
+and a hermitian form the same as a symmetric bilinear form. 
+\end{remark}
+
+\para \label{para:properties-seminorm-associated-positive-semidefinite-hermitian-form}
+Given a positive semidefinite hermitian form $\langle \cdot , \cdot \rangle$ on a 
+$\fldK$-vector space $\vectorspV$, one calls two vectors $v,w \in \vectorspV$ \emph{orthogonal} 
+if $\langle v , w \rangle = 0$. Since the hermitian form 
+$\langle \cdot , \cdot \rangle$ is assumed to be positive semidefinite, the map 
+\[
+ \| \cdot \| : \vectorspV \to \R_{\geq 0} , \: v \mapsto \|v \| = \sqrt{\langle v , v \rangle} 
+\]
+is well-defined. We will later see that $\| \cdot \|$  is a seminorm on $\vectorspV$
+and therefore call the map $\| \cdot \|$ the \emph{seminorm associated to}
+$\langle \cdot , \cdot \rangle$. The following formulas are immediate consequences of the 
+properties defining a positive semidefinite hermitian form and the definition
+of the associated seminorm: 
+\begin{align} 
+  \label{eq:norm-squared-sum}
+  & \| v+w \|^2  = \| v\|^2 + 2\, \Re \, \langle  v ,  w \rangle + \| w\|^2 \quad \text{for all } 
+  v,w \in \vectorspV \ , \\
+  \label{eq:pythagorean-theorem}
+  & \| v+w \|^2  = \| v\|^2 + \| w\|^2 \quad \text{for all orthogonal } v,w \in \vectorspV \ ,  \\
+  \label{eq:parallelogram-identity} 
+  & \| v+w \|^2  + \|v-w\|^2  = 2 \big( \| v\|^2 + \| w\|^2 \big) \quad \text{for all } v,w \in \vectorspV\ ,\\
+  \label{eq:absolute-homogeneity} 
+  & \| rv \| = \sqrt{ |r|^2 \langle  v ,  v \rangle }  = |r| \| v \| 
+  \quad \text{for all } v,w \in \vectorspV \text{ and } r\in \fldK \ .
+\end{align} 
+Formula \eqref{eq:pythagorean-theorem} is an abstract version of the \emph{pythagorean theorem},
+\Cref{eq:parallelogram-identity} is called the \emph{parallelogram identity}. 
+The triangle inequality for the map $\| \cdot \|$  will turn out to be a consequence of the 
+following result. 
+
+\begin{proposition}[Cauchy--Schwarz inequality]
+\label{thm:cauchy-schwartz-inequality-inner-product-spaces}
+%
+Given a positive semidefinite hermitian form $\langle \cdot , \cdot \rangle$ on a $\fldK$-vector space 
+$\vectorspV$ the following inequality holds true:
+\begin{equation}
+\label{eq:cauchy-schwarz-inequality}
+  |\langle v, w \rangle| \leq \|v\|\|w\| \quad \text{for all $v,w \in \vectorspV$}.
+\end{equation}
+Equality holds if and only if $v$ and $w$ are linearly dependant.
+\end{proposition}
+\begin{proof}
+If $v$ or $w$ is $0$, the proof is trivial, hence we can assume both to be nonzero. Put
+\[
+  c = - \frac{\langle v, w \rangle}{\|v\|^2}
+\]
+and compute
+\begin{equation}
+\label{eq:expanding-norm-of-sum-in-inner-product-space}
+\begin{split}
+   0 & \leq \|c v + w\|^2 = \langle c v + w, c v + w \rangle = 
+   |c|^2 \langle v, v \rangle + c \langle v, w \rangle + 
+   \overline{c}\langle w, v \rangle + \langle w, w \rangle = \\
+   & =  |c|^2\|v\|^2 + 2 \, \Re \big( c\langle v, w \rangle \big) + \|w\|^2 = 
+   \frac{|\langle v, w \rangle|^2}{\|v\|^2} - 2\frac{|\langle v, w \rangle|^2}{\|v\|^2} + \|w\|^2 = \\
+   & = \|w\|^2 - \frac{|\langle v, w \rangle|^2}{\|v\|^2} \ .
+ \end{split}
+\end{equation}
+Hence
+\[
+   |\langle v, w \rangle|^2 \leq \|v\|^2\|w\|^2 
+\]
+which entails the Cauchy--Schwarz inequality. 
+
+If $v,w$ are linearly dependant nonzero elements of $\vectorspV$, then there exists a nonzero scalar 
+$a\in \fldK$ such that $v = a w$. Hence 
+\[
+  |\langle v , w \rangle| = |a| \, \| w \|^2 
+  = \| v \|  \| w \| \, .
+\]
+Vice versa, if equality holds, then \Cref{eq:expanding-norm-of-sum-in-inner-product-space} 
+entails that $c v +w  = 0$, which means that $v$ and $w$ are linearly dependant. 
+\end{proof}
+
+\begin{lemma}
+\label{thm:positive-definitess-equivalent-nondegeneracy}
+  A positive semidefinite hermitian form $\langle \cdot , \cdot \rangle$ on a $\fldK$-vector space 
+  $\vectorspV$ is weakly-nondegenerate if and only if it is \emph{positive definite} that is if and only if
+  \begin{enumerate}[label=\textup{({\sffamily SF\arabic*p)}},leftmargin=*]
+  \setcounter{enumi}{4}
+  \item
+  \label{axiom:form-positive-definite} 
+  $\langle v,v \rangle > 0$ for all $v\in \vectorspV \setminus \{ 0 \}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  A positive definite real bilinear or complex  hermitian form $\langle \cdot , \cdot \rangle$ is 
+  non-degenerate since for every $v \in \vectorspV \setminus \{ 0 \}$ the  linear form
+  $\langle - ,v \rangle : \vectorspV \to \fldK$ then is  nonzero  because  $\langle v,v \rangle > 0$.
+
+  Conversely, if $\langle - ,v \rangle : \vectorspV \to \fldK$ is nonzero for all 
+  $v \in \vectorspV \setminus \{ 0 \}$, then  there exists an element $w \in \vectorspV$ such that 
+  $\langle w,v \rangle \neq 0$. The Cauchy--Schwarz inequality entails
+  \[
+    0 < |\langle w,v \rangle |^2 \leq \langle w,w \rangle \, \langle v,v \rangle \ ,
+  \]
+  which implies $\langle v,v \rangle > 0$. Hence $\langle \cdot , \cdot \rangle$ is positive definite.
+\end{proof}
+
+
+\begin{proposition}
+ The map 
+ \[
+  \| \cdot \| :V \to \R_{\geq 0} , \: v \mapsto \|v \| = \sqrt{\langle v , v \rangle} 
+ \]
+ associated to a positive semidefinite hermitian form 
+ $\langle \cdot , \cdot \rangle$ on a $\fldK$-vector space $\vectorspV$ is a seminorm. 
+ If the hermitian form is positive definite, then $\| \cdot \|$ is even  a norm. 
+\end{proposition}
+\begin{proof}
+ Absolute homogeneity \ref{axiom:norm-absolute-homogeneity} is given by Eq.~\eqref{eq:absolute-homogeneity}.
+ The triangle inequality is a consequence of the Cauchy--Schwarz inequality:
+ \[
+   \| v + w \|^2 =   \| v\|^2 + 2 \, \Re \, \langle  v ,  w \rangle + \| w\|^2 \leq
+    \| v\|^2 + 2 \, \|  v \| \, \| w \| + \| w\|^2 = \big(\| v\|+\| w\| \big)^2 \ .
+ \] 
+ Finally, if $\langle \cdot , \cdot \rangle$ is positive definite, then 
+ $\| v \| = \sqrt{\langle v , v \rangle} > 0 $ for all $v \in \vectorspV \setminus \{ 0 \}$,
+ so $\| \cdot \|$ is  a norm.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%
+%% Hilbert space definition
+%%%%%%%%%%%%%%%%%%%
+\begin{definition} 
+\label{def:hilbert-space}
+By an \emph{inner product} or a \emph{scalar product} on a $\fldK$-vector space $\hilbertH$ one 
+understands a positive definite hermitian form on $\hilbertH$. A $\fldK$-vector space $\hilbertH$ 
+together with an inner product $\langle \cdot , \cdot \rangle : \hilbertH \times \hilbertH \to \fldK$ is 
+called an \emph{inner product space} or a \emph{pre-Hilbert space}. 
+
+A hermitian form on a  $\fldK$-vector space $\hilbertH$ which is only positive semidefinite is called a \emph{semi-inner product} or a \emph{semi-scalar product}.
+
+A \emph{Hilbert space} is an inner product space  $(\hilbertH , \langle \cdot , \cdot \rangle)$  which is 
+complete as a normed vector space. In other words, a Hilbert space is Banach space where the 
+norm on the space is induced by an inner product.
+\end{definition}
+
+\begin{examples}
+\label{ex:inner-product-spaces}
+\begin{environmentlist}
+\item The vector space $\R^n$ with the \emph{euclidean inner product} 
+      \[ 
+        \langle \cdot , \cdot \rangle : \R^n \times \R^n \to \R, \:
+        \big( (v_1,\ldots , v_n),(w_1,\ldots , w_n) \big) \mapsto 
+        \sum_{i=1}^n v_i w_i  
+      \]
+      is a real Hilbert space. Obviously, $\langle \cdot , \cdot \rangle$ is linear in the first argument,
+      symmetric, and positive definite, hence a real inner product. The associated norm is 
+      the \emph{euclidean norm}. We have seen before that $\R^n$ with the euclidean norm is complete.      
+\item The vector space $\C^n$ together with the hermitian form 
+      \[
+        \langle \cdot , \cdot \rangle : \C^n \times \C^n \to \C, \:
+        \big( (v_1,\ldots , v_n),(w_1,\ldots , w_n) \big) \mapsto 
+        \sum_{i=1}^n v_i\overline{w}_i
+      \]
+      is a complex Hilbert space. One immediately verifies that $\langle \cdot , \cdot \rangle$ is linear in the first argument,
+      conjugate symmetric, and positive definite. Hence $\langle \cdot , \cdot \rangle$ is a complex inner product which we 
+      sometimes call the \emph{standard hermitian inner product} on $\C^n$.  Its associated norm is again the euclidean 
+      norm, so by completeness of $\C^n\cong \R^{2n}$ endowed with the euclidean norm one obtains the claim.      
+\item The set 
+      \[
+        \ell^2 = 
+        \left\{(z_k)_{k\in \N} \in \C^\N \suchthat \sum_{k=0}^\infty |z_k|^2 < \infty \right\}
+      \]
+      of square summable sequences of complex numbers  is a complex Hilbert space 
+      with inner product
+      \[
+        \langle \cdot , \cdot \rangle :
+        \ell^2 \times \ell^2 \to \C, \: \big((z_k)_{k\in \N},(w_k)_{k\in \N} \big)
+        \mapsto \sum_{k=0}^\infty z_k \overline{w}_k \ .
+      \]
+      To prove this one needs to first verify that $\ell^2$ is a subvector space of $\C^\N$. 
+      For $z = (z_k)_{k\in \N} \in \C^\N$ denote by $\| z\|$ the \emph{extended norm} 
+      $\sqrt{\sum_{k=0}^\infty |z_k|^2} = \sup\limits_{K\in \N} \sqrt{\sum_{k=0}^K |z_k|^2} \in \closedint{0,\infty}$.
+      Then $z\in \ell^2$ if and only if $\|z\| < \infty$. Now let $a \in \C$ and $z\in \ell^2$ and compute
+      \[
+         \| a z \| = \sqrt{\sum_{k=0}^\infty |a  z_k|^2} = |a| \, \sqrt{\sum_{k=0}^\infty |z_k|^2} = |a| \cdot \| z \| < \infty \ .
+      \] 
+      Hence $az \in \ell^2$. If $z,w \in \ell^2$, denote for each $K\in \N$ by $z_{(K)}$ and $w_{(K)}$ the ``cut-off'' 
+      vectors $(z_0, \ldots , z_K) \in \C^{K+1}$ and  $(w_0, \ldots , w_K) \in \C^{K+1}$, respectively. 
+      By the triangle inequality for the norm on the Hilbert space $\C^{K+1}$  one concludes 
+      \[
+         \sqrt{\sum_{k=0}^K  | z_k + w_k |^2} =  \| z_{(K)} + w_{(K)} \| \leq 
+         \| z_{(K)} \| + \| w_{(K)} \| \leq \| z \| + \| w \| < \infty \ .
+      \] 
+      Therefore, the sequence of partial sums $\sum_{k=0}^K  | z_k + w_k |^2$, $K\in \N$, is bounded,
+      so convergent by the the monotone convergence theorem. One  obtains 
+       \[
+          \| z + w \| = \lim_{K\to\infty} \sqrt{ \sum_{k=0}^K  | z_k + w_k |^2} \leq \| z \| + \| w \| < \infty \ .
+      \]
+      Hence  $z + w$ is square summable and $\ell^2$ a vector subspace of $\C^\N$ indeed. 
+      Note that our argument also shows that the restriction of the extended norm to $\ell^2$ is a norm. 
+
+      We need to show that $\langle \cdot , \cdot \rangle$ is well-defined. 
+      To this end it suffices to prove that for all $z,w \in\ell^2$ the family $\left( z_k \overline{w}_k\right)_{k\in \N}$ 
+      is absolutely summable or in other words that $\sum_{k=0}^\infty \left| z_k \overline{w}_k \right| < \infty$. 
+      One concludes by the H\"older inequality for  sums  
+      \[
+        \sum_{k=0}^K \left| z_k  \overline{w}_k \right| = \sum_{k=0}^K \left| z_k  w_k \right| 
+        % =  \left| \inprod{(|z_0|,\ldots,|z_N|),(|w_0|,\ldots,|w_N|)  } \right|
+        \leq \| z_{(K)} \| \,  \| w_{(K)} \| \leq  \| z \| \,  \| w \| \ .
+      \]
+      So the left hand side has an upper bound uniform in $K$ which by the monotone convergence theorem entails
+      convergence of the partial sums and the estimate 
+      \[
+         \sum_{k=0}^\infty \left| z_k \overline{w}_k \right| \leq  \| z \| \,  \| w \| < \infty \ . 
+      \] 
+      By definition it is clear that $ \langle \cdot , \cdot \rangle $ is linear in the first argument, 
+      conjugate symmetric and positive definite, hence a complex inner product. Note that the norm 
+      associated to  $ \langle \cdot , \cdot \rangle $ coincides with the above defined map $\| \cdot \|$. 
+
+      It remains to be shown that $\ell^2$ is complete. Let $(z^n)_{n\in \N}$ with $z^n = {(z^n_k)}_{k\in \N}\in \ell^2$
+      for all $n\in \N$ be a Cauchy sequence in $\ell^2$.    
+      For $\varepsilon >0$ choose $N_\varepsilon \in \N$ so that
+      \[
+        \| z^n - z^m   \|< \varepsilon \quad \text{for all } n,m \geq N_\varepsilon \ . 
+      \]
+      For each fixed $k\in \N$ one therefore has 
+      \begin{equation}
+        \label{eq:estimate-component-sequence-Cauchy-sequence-square-summable-sequences}
+        | z^n_k - z^m_k | \leq \| z^n - z^m   \|< \varepsilon \quad \text{for all } n,m \geq N_\varepsilon \ . 
+      \end{equation}
+      By completeness of $\C$ there exist $z_k \in \C$ such that $\lim_{n\to\infty} z^n_k = z_k$ for all $k\in \N$. 
+      We claim that $z = (z_k)_{k\in \N}$ is an element of $\ell^2$ and that $(z^n)_{n\in \N}$ converges to $z$.
+      To verify this observe that for all $\varepsilon >0$, $K\in \N$ and $n\geq N_\varepsilon$
+      \[
+        \sum_{k=0}^K  | z_k - z^n_k |^2 = \lim_{m\to\infty}  \sum_{k=0}^K  | z^m_k - z^n_k |^2 
+        \leq \sup_{m \geq N_\varepsilon} \sum_{k=0}^K  | z^m_k - z^n_k |^2 
+        \leq \sup_{m \geq N_\varepsilon} \| z^m - z^n \|^2 \leq \varepsilon^2 \ . 
+      \]
+      This implies by the triangle inequality and the fact that the Cauchy sequence $(z^n)_{n\in \N}$ is bounded in norm by some 
+      $C>0$ that for all $K\in \N$ and $N = N_1$
+      \[
+        \sqrt{\sum_{k=0}^K  | z_k|^2 } = \| z_{(K)} \| \leq  \| z_{(K)} - z^N_{(K)} \| + \| z^N_{(K)} \| 
+        \leq  \| z_{(K)} - z^N_{(K)} \| + \| z^N \| 
+        \leq 1 + C \ . 
+      \]
+      Hence $ \| z \|= \sqrt{\sum_{k=0}^\infty | z_k|^2 } \leq 1 + C $  and $z \in \ell^2$. In addition one obtains
+      \[
+       \| z - z^n \| = \lim_{K\to\infty} \sqrt{\sum_{k=0}^K  | z_k - z^n_k |^2} \leq \varepsilon \quad \text{for all } n \geq N_\varepsilon \ . 
+      \]
+      This means that $z$ is the limit of the sequence $(z^n)_{n\in \N}$ and $\ell^2$ is complete. 
+\item Let 
+      \[ 
+        \mathscr{L}^2(\R^n) = \left\{ f : \R^n \to \C \suchthat f
+        \text{ is Lebesgue measurable and }
+        \int_{\R^n}|f|^2 d\lambda < \infty \right\}
+      \] 
+      denote the space of Lebesgue square integrable functions on $\R^n$. 
+      Then the map    
+      \[
+          \langle \cdot , \cdot \rangle : \mathscr{L}^2(\R^n) \times  \mathscr{L}^2(\R^n) \to \C, \: 
+         (f,g) \mapsto \int_{\R^n}f\overline{g}\, d\lambda
+      \]
+      is a positive semidefinite hermitian form on $\mathscr{L}^2(\R^n)$. 
+      Modding out $\mathscr{L}^2(\R^n)$ by the kernel 
+      \[ 
+        \mathscr{N} := \Ker (\| \cdot \|) = 
+        \left\{ f \in \mathscr{L}^2(\R^n) \suchthat \int_{\R^n}|f|^2 d\lambda = 0 \right\}
+      \]
+      gives the Lebesgue space
+      \[
+          L^2 (\R^n) := \mathscr{L}^2(\R^n) / \mathscr{N} \ .
+      \]
+      
+      The hermitian form $\langle \cdot , \cdot  \rangle $ vanishes on $\mathscr{N} \times  \mathscr{L}^2(\R^n)$ and 
+      $\mathscr{L}^2(\R^n) \times \mathscr{N}$ by the Cauchy--Schwarz inequality, hence descends to a hermitian form
+      \[
+        \langle \cdot , \cdot \rangle : L^2(\R^n) \times  L^2(\R^n) \to \C, \:
+        (f + \mathscr{N} ,g+ \mathscr{N}) \mapsto \int_{\R^n}f\overline{g}\, d\lambda \ .
+      \]
+      That hermitian form is positive definite, since 
+      $\langle f + \mathscr{N}, f + \mathscr{N} \rangle = 0$ means 
+      $ \int_{\R^n}|f|^2 d\lambda =0$, hence $f\in \mathscr{N}$.
+      So $L^2(\R^n)$ together with $\langle \cdot , \cdot \rangle $ is a 
+      Hilbert space which we call the 
+      \emph{Hilbert space of square-integrable functions} on $\R^n$. 
+      \add{provide details on well-definedness of hermitian form and show completeness}     
+\end{environmentlist}
+\end{examples}
+
+%%%%%%%%%%%%%%%%%%%
+%% Theorem giving condition to relate inner product with norm
+%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem} 
+\label{thm:parallegram-identity-guarantees-that-norm-comes-from-some-inner-product}
+Let $\vectorspV$ be a normed $\fldK$-vector space. Then the norm $\|\cdot\| : \vectorspV \to \R_{\geq 0}$
+is associated to an inner product $\langle \cdot , \cdot \rangle :  \vectorspV \times \vectorspV \to \fldK$ 
+if and only if the \emph{parallelogram identity} 
+\[
+  \| v + w \|^2 + \| v -  w\|^2 = 2\|v\|^2 + 2\|w\|^2 
+\]
+holds true for all $v,w \in \vectorspV$. In this case, the inner product of two elements $v,w\in \vectorspV$
+can be expressed by the \emph{polarization identity for} $\fldK = \R$
+\begin{equation}
+  \label{eq:real-polarization-identity}
+  \langle v , w \rangle = \frac 14 \left( \| v + w \|^2  - \| v - w \|^2 \right)
+  = \frac 12 \left( \| v + w \|^2  - \| v \|^2 - \| w \|^2 \right)
+\end{equation}
+respectively by the  \emph{polarization identity for} $\fldK = \C$
+\begin{equation}
+  \label{eq:complex-polarization-identity}
+  \langle v , w \rangle = \frac 14 \sum_{k=1}^4 \cplxi^k \, \| v + \cplxi^k \, w \|^2  \ .
+\end{equation}
+\end{theorem}
+\begin{proof}
+The forward direction is a consequence of
+\ref{para:properties-seminorm-associated-positive-semidefinite-hermitian-form}, Eq.~\ref{eq:parallelogram-identity}. 
+To show the backward direction we consider two cases $\fldK = \R$ and 
+$\fldK = \C$ separately.
+
+\textit{1.~Case.} Given the norm $\|\cdot\|$ define $\langle \cdot , \cdot \rangle : \vectorspV \times \vectorspV \to \R$ by real polarization
+\[
+   \langle v , w \rangle = \frac 14 \left( \| v + w \|^2  - \| v - w \|^2 \right), \quad \text{where } v,w\in \vectorspV  \ .
+\]
+Note that the parallelogram identity entails
+\[
+  \frac 14 \left( \| v + w \|^2  - \| v - w \|^2 \right) =  
+  \frac 12 \left( \| v + w \|^2  - \| v \|^2 - \| w \|^2 \right) \ . 
+\]
+Observe that by definition $\langle v , w \rangle = \langle w , v \rangle$ and $\| v \| = \sqrt{ \langle v , v \rangle}$.
+Let us show additivity in the first variable. Let $v_1,v_2,w \in \vectorspV$ and compute using the parallelogram identity 
+\begin{equation*}
+  \begin{split}
+     \| v_1 + v_2 + w \|^2 & = 2 \| v_1 + w \|^2 + 2 \| v_2\|^2 -  \| v_1 + w - v_2\|^2 \ , \\ 
+     \| v_1 + v_2 + w \|^2 & = 2 \| v_2 + w \|^2 + 2 \| v_1\|^2 -  \| v_2 + w - v_1\|^2 \ .
+  \end{split}
+\end{equation*}
+Hence 
+\begin{equation*}
+  \begin{split}
+     \| v_1 + v_2 \pm w \|^2 & =  
+     \| v_1 \pm w \|^2 +  \| v_2 \pm w \|^2 +  \| v_1\|^2 + \| v_2\|^2 -  \| v_1 \pm w - v_2\|^2  -  \| v_2 \pm w - v_1\|^2 \ .
+  \end{split}
+\end{equation*}
+Subtracting the $-$ version from the $+$ version of this equation entails
+\begin{equation*}
+  \begin{split}
+    \langle v_1 + v_2 , w \rangle \, & = \frac 14 \left( \| v_1 + v_2 + w \|^2  - \| v_1 + v_2 - w \|^2 \right)= \\
+    & = \frac 14 \left( \| v_1 + w \|^2 +  \| v_2 + w \|^2 -  \| v_1 - w \|^2 -  \| v_2 - w \|^2 \right) =
+    \langle v_1  , w \rangle +  \langle v_2 , w \rangle \ ,
+  \end{split}
+\end{equation*}
+so additivity in the first variable is proved. By induction  one derives from this that 
+for all natural $n$
+\begin{equation}
+\label{eq:natural-number-homogeneity}
+  \langle nv , w \rangle = n \langle v , w \rangle \quad \text{for all } v,w \in \vectorspV  \ . 
+\end{equation}
+Since then $\langle - nv , w \rangle - n \langle v , w \rangle = \langle -nv + nv , w \rangle = 0$ for all $n\in \N$,
+Eq.~\eqref{eq:natural-number-homogeneity} also holds for $n\in \Z$. 
+Now let $p\in \Z$ and $q \in \gzN$. Then $ q\, \langle \frac pq v , w \rangle = \langle p v , w \rangle = p \, \langle  v , w \rangle$, 
+hence one has for rational $r$
+\begin{equation}
+\label{eq:rational-number-homogeneity}
+ \langle rv , w \rangle = r \langle v , w \rangle \quad \text{for all } v,w \in \vectorspV  \ . 
+\end{equation}
+Since addition, multiplication by scalars and the norm are continuous, the function 
+\[
+   \R \to \R, \:r \mapsto  \langle rv , w \rangle - r \langle v , w \rangle = \frac 14 \left( \| r v + w \|^2 + r \|  v - w \|^2   - \| rv - w \|^2 -  r \|  v + w \|^2 \right) 
+\]
+is continuous. Since  it vanishes over $\Q$, it has to coincide with the zero map. Therefore, 
+Eq.~\eqref{eq:rational-number-homogeneity} holds for all $r\in \R$. So $\langle \cdot , \cdot \rangle$ is linear in 
+the first coordinate. By symmetry, it is so too in the second coordinate. Hence $\langle \cdot , \cdot \rangle$ is a 
+symmetric bilinear form inducing $\| \cdot \|$. 
+
+\textit{2.~Case.} In the case $\fldK = \C$ use complex polarization and put
+\[
+   \langle v , w \rangle = \frac 14 \sum_{k=1}^4 \cplxi^k \, \| v + \cplxi^k \, w \|^2  
+   \quad \text{for all } v,w\in \vectorspV  \ .
+\]
+Then  $\langle \cdot , \cdot \rangle$ is conjugate symmetric, since 
+\[
+   \overline{\langle v , w \rangle} = \frac 14 \sum_{k=1}^4 (- \cplxi)^k \, \| v + \cplxi^k \, w \|^2  
+   =   \frac 14 \sum_{k=1}^4 (-\cplxi)^k \, \| (-\cplxi)^k \, v +  w \|^2 =
+   \langle w , v \rangle \ .
+\]
+Next compute
+\[
+  \Re \langle v , w \rangle =  \frac 14 \left( \| v + w \|^2  - \| v - w \|^2 \right)
+\]
+and 
+\[
+  \Im \langle v , w \rangle =  \frac 14 \left( \| v + \cplxi w \|^2  - \| v - \cplxi w \|^2 \right) \ .
+\]
+By the first case one concludes that  $\Re \langle \cdot , \cdot \rangle$ and $\Im \langle \cdot , \cdot \rangle$
+are both $\R$-linear in the first  and the second coordinate. Moreover,
+\[
+  \Re \langle \cplxi  v , w \rangle =  \frac 14 \left( \| \cplxi v + w \|^2  - \| \cplxi v - w \|^2 \right)
+  = \frac 14 \left( \| v - \cplxi w \|^2  - \| v + \cplxi w \|^2 \right) = 
+  - \Im \langle v ,  w \rangle
+\]
+and 
+\[
+  \Im \langle \cplxi \, v , w \rangle =  
+  \frac 14 \left( \| \cplxi v + \cplxi w \|^2  - \| \cplxi v - \cplxi w \|^2 \right) = 
+  \Re \langle  v , w \rangle \ ,
+\]
+hence $\langle \cdot , \cdot \rangle$ is complex linear in the first coordinate. 
+Finally,
+\[
+  \Re \langle v , v \rangle =  \| v  \|^2 \quad \text{and} \quad 
+  \Im \langle v , v \rangle =  \frac 14 \left( \| v + \cplxi v \|^2  - \| v - \cplxi v \|^2 \right) = 0 \ .
+\]
+This finishes the proof that $ \langle \cdot , \cdot \rangle$ is a complex inner product inducing the 
+norm $\| \cdot \|$.
+\end{proof}
+
+\para
+Next we will turn Hilbert spaces into a category. To this end one needs to know what morphisms in this
+category should be. There are two options each giving rise to a category of Hilbert spaces. These categories
+just differ by their morphism classes. The first one is to
+have as morphisms  linear maps $A:\hilbertH_1\to\hilbertH_2$ preserving the inner products which means that
+they fulfill
+\[
+  \inprod{Av_1,Av_2} = \inprod{v_1,v_2}  \quad \text{for all } v_1,v_2 \in \hilbertH_1 \ .
+\] 
+By \Cref{thm:parallegram-identity-guarantees-that-norm-comes-from-some-inner-product} this property is
+equivalent to
+\[
+  \| Av \| = \| v \| \quad \text{for all } v \in \hilbertH_1 \ ,
+\] 
+that is to $A$ being \emph{norm preserving} or \emph{isometric}. Obviously, the identity map between two
+Hilbert spaces is isometric and the composition of two composable isometric linear maps between Hilbert
+spaces is again isometric and linear. Hence Hilbert spaces together with norm preserving linear maps between
+them form a  category which we denote by $\category{Hilb_\textup{np}}$. The isomorphisms in this category
+are the surjective and inner product preserving linear maps between Hilbert spaces. Such maps
+are called \emph{unitary}. The condition of a linear map being norm preserving is pretty restrictive, so
+the category $\category{Hilb_\textup{np}}$ contains only few morphisms. This can be healed by allowing all
+\emph{bounded} linear maps between Hilbert spaces to be morphisms that is of all
+linear $A:\hilbertH_1\to\hilbertH_2$ for which there exists a $C\geq 0$ such that
+\[
+  \| Av \| \leq C \| v \| \quad \text{for all } v \in \hilbertH_1 \ .
+\]
+The smallest such $C$ is called the \emph{operator norm} of $A$ and is denoted $\| A\|$.
+Equivalently, the operator norm is given by
+\[
+  \| A\| = \sup \big\{ \| Av \| \bigmid v\in \hilbertH_1, \, \| v \| \leq 1 \big\}
+  = \sup \big\{ \| Av \| \bigmid v\in \hilbertH_1, \, \| v \| = 1 \big\} \ .
+\] 
+Every norm preserving linear map is bounded with operator norm $1$.
+In particular the identity map on a Hilbert space is bounded. Moreover, if
+$A: \hilbertH_1\to\hilbertH_2$  and $B: \hilbertH_2\to\hilbertH_3$ are bounded linear operators
+between Hilbert spaces, then the composition $BA :  \hilbertH_1\to\hilbertH_3$ is bounded
+with operator norm $\leq \| B\|\, \| A\|$ since for all $v \in \hilbertH_1 $ with $\| v\|\leq 1$
+\[
+  \| BAv \| \leq \| B \| \, \|Av\| \leq \| B\|\, \| A\| \ . 
+\]
+Hence Hilbert spaces as objects together with bounded linear maps as morphisms form a category which we
+denote by $\category{Hilb}$ and call the \emph{category of Hilbert spaces}. Note that the morphisms
+in this category appear to ``forget'' the inner product and just preserve the linear and the topological
+structure. John Baez \cite[p.~133]{BaeHDAII2HS} has explained how to heal this apparent defect by showing that
+$\category{Hilb}$ carries a so-called $*$-structure given by the adjoint map on bounded linear operators.
+We will come back to this point later when we introduce adjoint operators. 
+
+\para
+Last in this section we will introduce bounded bilinear and sesquilinear maps. We define them for normed
+vector spaces. Their main application lies in the operator theory on Hilbert spaces, so we introduce
+them here.  
+
+\begin{definition}
+  Let $\vectorspV$ be a vector space over $\fldK$ with norm $\| \cdot \| : \vectorspV \to \R_{\geq 0}$. 
+  A bilinear or sesquilinear form $b : \vectorspV \times \vectorspV \to \fldK$ is called \emph{bounded} if 
+  there exists a $C >0$ such that 
+  \[
+    | b(v,w)| \leq C \, \| v\| \, \| w \| \quad \text{for all } v,w \in \vectorspV \ .
+  \]
+  In this case,
+  \[
+    \| b \| := \sup \big\{ | b(v,w) | \bigmid v,w \in \vectorspV \: \& \: \| v\| = \| w \| = 1 \big\} 
+  \] 
+  exists and is called the \emph{norm} of the form $b$. 
+\end{definition}
+\begin{example}
+  The inner product on a (pre-) Hilbert space is bounded by the Cauchy--Schwarz inequality and has norm $1$.
+\end{example}
+
+\begin{proposition}
+A bounded bilinear or sesquilinear form $b : \vectorspV \times \vectorspV \to \fldK$ on a normed vector space $\vectorspV$ over 
+$\fldK$ is continuous. Vice versa, if $\vectorspV$ is complete, then continuity of $b : \vectorspV \times \vectorspV \to \fldK$
+implies boundedness.
+ \end{proposition}
+\begin{proof}
+If $b$ is bounded, then
+\begin{equation*}
+  \begin{split} 
+  \big\vert b(v,w) - b(v',w') \big\vert \, & 
+  \leq   \big\vert b(v,w) - b(v',w) \big\vert + \big\vert b(v',w) - b(v',w') \big\vert \leq \\
+  & \leq \| b \| \, \left( \|  w \| \, \| v-v'\| +  \|  v' \| \, \| w-w'\| \right)   
+  \end{split}
+\end{equation*}
+for all $v,v',w,w' \in \vectorspV$. Hence $b$ is locally Lipschitz continuous, so in particular continuous. 
+
+Now assume that $\vectorspV$ is a Banach space and that $b$ is continuous. Then one can find $\delta >0$ such that 
+for all $v,w \in  V$ of norm less than $\delta$ the relation $ |b(v,w)| < 1$ holds true. But that entails for all 
+non-zero $v,w$
+\[
+   |b(v,w)| = \frac{4 \, \|v\| \, \|w\|}{\delta^2} \cdot b\left( \delta \frac{v}{2 \|v\|}, \delta \frac{w}{2 \|w\|}\right)
+   \leq  \frac{4}{ \delta^2} \|v\| \, \|w\| \ .
+\] 
+Hence $b$ is bounded.
+\end{proof}
+
+
+

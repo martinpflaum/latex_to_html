@@ -1,0 +1,345 @@
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\tn}[1]{\textnormal{#1}}
+
+\section{Elementary Definitions and Properties}
+\label{sec:c*-algebras-elementary-definitions-properties}
+
+A $C^*$-algebra is a Banach algebra with additional structure. We recall the definition of a Banach algebra below.
+
+\begin{definition}
+A \emph{Banach algebra} is a Banach space $A$ with an associative, bilinear multiplication operation $A \times A \rightarrow A$, $(a,b) \mapsto ab$ which is \emph{submultiplicative} with respect to the norm:
+\begin{equation}\label{eq:submultiplicativity}
+\norm{ab} \leq \norm{a} \norm{b}, \qquad \forall \, a, b \in A.
+\end{equation}
+We say $A$ is \emph{unital} if there exists a \emph{unit} $1 \in A$ satisfying $\norm{1} = 1$ and
+\begin{equation}\label{eq:algebra_unit}
+1a = a1 = a, \qquad \forall \, a \in A.
+\end{equation}
+In a unital Banach algebra we can speak of inverses of elements, but not every element of a Banach algebra is invertible. By an inverse we mean a two-sided inverse unless otherwise specified. We write $A^\times$ for the set of invertible elements in $A$. 
+\end{definition}
+
+
+
+
+
+We state without proof some obvious facts about Banach algebras.
+
+\begin{proposition}
+Let $A$ be a Banach algebra. 
+\begin{enumerate}
+	\item For all $a \in A$, we have $0a = a0 = 0$. 
+\end{enumerate}
+If $A$ is unital, then the following hold.
+\begin{enumerate}\setcounter{enumi}{1}
+	\item The unit is unique.
+	\item Inverses are unique.
+	\item The additive identity is not invertible.
+	\item The multiplicative identity is its own inverse.
+	\item If $a, b \in A^\times$, then $ab \in A^\times$ and $(ab)^{-1} = b^{-1}a^{-1}$.
+	\item If $a \in A$ has a left inverse and a right inverse, then these inverses are equal, so $a \in A^\times$.
+\end{enumerate}
+\end{proposition}
+
+
+
+
+
+\begin{proposition}
+The multiplication operation on a Banach algebra is continuous.
+\end{proposition}
+
+\begin{proof}
+Take sequences $(a_n)$ and $(b_n)$ in $A$ such that $a_n \rightarrow a$ and $b_n \rightarrow b$. Using the triangle inequality and \eqref{eq:submultiplicativity},
+\begin{equation}
+\begin{aligned}
+\norm{ab - a_n b_n} &\leq \norm{ab - ab_n} + \norm{ab_n - a_nb_n}\\
+&\leq \norm{a} \norm{b - b_n} + \norm{a - a_n} \norm{b_n}
+\end{aligned}
+\end{equation}
+This manifestly approaches zero, so we conclude that $a_nb_n \rightarrow ab$.
+\end{proof}
+
+
+
+\begin{proposition}
+If $A$ is a Banach algebra and $a \in A^\times$, then
+\begin{equation}
+\norm{a}^{-1} \leq \norm{a^{-1}}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:submultiplicativity}, we have
+\begin{equation}
+1 = \norm{1} =\norm{a^{-1}a} \leq \norm{a^{-1}}\norm{a}.
+\end{equation}
+The result follows by dividing by $\norm{a}$.
+\end{proof}
+
+
+
+\begin{proposition}
+Inversion $A^\times \rightarrow A^\times$, $a \mapsto a^{-1}$ is continuous.
+\end{proposition}
+
+\begin{proof}
+Take a sequence $(a_n)$ in $A^\times$ such that $a_n \rightarrow a \in A^\times$. We compute
+\begin{equation}
+\begin{aligned}
+\norm{a^{-1} - a_n^{-1}} &= \norm{a^{-1} (a_n - a)a^{-1}_n}\\
+&\leq \norm{a^{-1}} \norm{a_n - a}\norm{a_n^{-1}}\\
+&\leq \norm{a^{-1}}\norm{a_n - a}\norm{a^{-1}} + \norm{a^{-1}}\norm{a_n - a}\norm{a^{-1} - a_n^{-1}}.
+\end{aligned}
+\end{equation}
+Moving the rightmost term to the other side yields
+\begin{equation}
+\qty(1 - \norm{a^{-1}}\norm{a_n - a})\norm{a^{-1} - a_n^{-1}} \leq  \norm{a_n - a} \norm{a^{-1}}^2
+\end{equation}
+For large enough $n$, the term in parentheses is nonzero, and we may divide by it, yielding
+\begin{equation}
+\norm{a^{-1} - a_n^{-1}} \leq \frac{\norm{a_n - a}\norm{a^{-1}}^2}{1 - \norm{a^{-1}}\norm{a_n - a}}.
+\end{equation}
+The left hand side manifestly approaches zero, so we conclude $a_n^{-1} \rightarrow a^{-1}$.
+\end{proof}
+
+
+
+
+
+\begin{definition}
+A \emph{$\boldsymbol{C^*}$-algebra} is a Banach algebra $A$ with an antilinear \emph{star operation} $A \rightarrow A$, $a \mapsto a^*$ satisfying
+\begin{enumerate}
+	\item[(i)] \emph{involutivity:} $a^{**} = a$ for all $a \in A$,
+	\item[(ii)] \emph{contravariance:} $(ab)^* = b^*a^*$ for all $a, b \in A$,
+	\item[(iii)] the \emph{$\boldsymbol{C^*}$-property:} $\norm{a^*a} = \norm{a}^2$ for all $a \in A$.
+\end{enumerate} 
+An element $a \in A$ is \emph{self-adjoint} if $a^* = a$.
+
+A subset $B \subset A$ is a \emph{$\boldsymbol{C^*}$-subalgebra} of $A$ if $B$ is a $C^*$-algebra under the restrictions to $B$ of all operations defined on $A$. Equivalently, $B$ must be a topologically closed subset which is closed under all the operations on $A$. Topological closedness is equivalent to completeness. We say $B$ is a \emph{unital} $C^*$-subalgebra of $A$ if $B$ is a unital $C^*$-algebra and the unit in $B$ is the same as the unit in $A$.\footnote{The unitization of a unital $C^*$-algebra (discussed in a later section) provides an instance where we have a unital $C^*$-algebra and a $C^*$-subalgebra which has a different unit.}
+
+If $S$ is a subset of a $C^*$-algebra $A$, then the intersection of all $C^*$-subalgebras of $A$ containing $S$ is a $C^*$-subalgebra, called the \emph{$\boldsymbol{C^*}$-subalgebra generated by $\boldsymbol{S}$}.
+
+If $A$ and $B$ are $C^*$-algebras, a \emph{$\boldsymbol{*}$-homomorphism} from $A$ to $B$ is a map $\pi:A \rightarrow B$ respecting the algebraic operations on $A$ and $B$. More precisely, $\pi$ is a linear map satisfying
+\begin{equation}
+\begin{aligned}
+\pi(ab) &= \pi(a)\pi(b)\\
+\pi(a^*) &= \pi(a)^*
+\end{aligned}
+\end{equation}
+for all $a, b \in A$. Notice that we do not require $\pi$ to be continuous; we will show later that this is automatically so. If $A$ and $B$ are unital, we say $\pi$ is a \emph{unital $\boldsymbol{*}$-homomorphism} if $\pi$ is a $*$-homomorphism and $\pi(1) = 1$. The terms $*$-isomorphism and $*$-automorphism will be used in the natural sense. 
+\end{definition}
+
+\begin{proposition}
+If $A$ and $B$ are $C^*$-algebras and $\pi:A \rightarrow B$ is a $*$-isomorphism, then $\pi^{-1}:B \rightarrow A$ is a $*$-isomorphism. If $\pi$ is unital, then so is $\pi^{-1}$.
+\end{proposition}
+
+\begin{proof}
+We know from linear algebra that $\pi^{-1}$ is a linear map. Given $a, b \in B$, let $a', b' \in A$ such that $\pi(a') = a$ and $\pi(b') = b$. Then
+\begin{equation}
+\begin{aligned}
+\pi^{-1}(ab) &= \pi^{-1}(\pi(a')\pi(b')) = \pi^{-1}(\pi(a'b')) = a'b' = \pi^{-1}(a)\pi^{-1}(b)\\
+\pi^{-1}(a^*) &= \pi^{-1}(\pi(a')^*) = \pi^{-1}(\pi(a'^*)) = a'^* = \pi^{-1}(a)^*.
+\end{aligned}
+\end{equation}
+If $\pi$ is unital, then $\pi(1) = 1$, so $\pi^{-1}(1) = 1$ as well.
+\end{proof}
+
+
+We will study $*$-homomorphisms more in a later section, for now focusing on properties of elements of $C^*$-algebras.
+
+\begin{definition}
+If $A$ is a $C^*$-algebra, a subset $B \subset A$ is a \emph{Banach subalgebra} of $A$ if it is a Banach algebra under the restrictions of all operations defined on $A$. Equivalently, $B$ must be a topologically closed subset which is closed under all the operations on $A$. Topological closedness is equivalent to completeness. We say $B$ is a \emph{unital} Banach subalgebra of $A$ if $B$ is a unital $C^*$-algebra and the unit in $B$ is the same as the unit in $A$.  I pray I never have to consider a case where $B$ is a Banach subalgebra of $A$ and has a different unit from $A$.
+
+If $S$ is a subset of a Banach algebra or $C^*$-algebra $A$, then the intersection of all subalgebras of $A$ containing $S$ is a (Banach or $C^*$) subalgebra, called the \emph{subalgebra generated by $\boldsymbol{S}$}.
+
+A (unital) $C^*$-subalgebra is a (unital) Banach subalgebra $B\subset A$ which is closed under the star operation. 
+\end{definition}
+
+\begin{definition}
+Let $A$ and $B$ be $C^*$-algebras. A \emph{$\boldsymbol{*}$-homomorphism} is a linear map $\pi:A \rightarrow B$ such that
+\begin{equation}
+\begin{aligned}
+\pi(ab) &= \pi(a)\pi(b)\\
+\pi(a^*) &= \pi(a)^*
+\end{aligned}
+\end{equation}
+for all $a, b \in A$. In other words, $\pi$ respects all algebraic operations on $A$ and $B$. Note that we do not require $\pi$ to be continuous. We will use the terms $*$-isomorphism and $*$-automorphism in the natural way.
+\end{definition}
+
+We will study $*$-homomorphisms more in a later section. For now, let us establish a few more basic properties of $C^*$-algebras.
+
+
+\begin{proposition}
+If $A$ is a $C^*$-algebra, then $0$ is self-adjoint. If $A$ is unital, then $1$ is self-adjoint as well.
+\end{proposition}
+
+\begin{proof}
+For all $a \in A$, we have
+\begin{equation}
+0^* + a = 0^* + a^{**} = (0 + a^*)^* = a^{**} = a.
+\end{equation}
+Hence, $0^* = 0$ by uniqueness of the additive identity. Furthermore,
+\begin{equation}
+1^*a = 1^*a^{**} = (a^*1)^* = a^{**} = a,
+\end{equation}
+from which it follows that $1$ is self-adjoint by uniqueness of the multiplicative identity.
+\end{proof}
+
+\begin{proposition}
+Every $a \in A$ has a unique expression in the form $a = a_1 + ia_2$, where $a_1$ and $a_2$ are self-adjoint.
+\end{proposition}
+
+\begin{proof}
+This is evident upon setting $a_1 = (a + a^*)/2$ and $a_2 = (a - a^*)/2i$. If $a = a_1' + ia_2'$ for some self-adjoint $a_1', a_2'$, then $a_1 - a_1' = i(a_2' - a_2)$, which can be self-adjoint only if it is zero.
+\end{proof}
+
+\begin{proposition}
+Let $A$ be a nontrivial $C^*$-algebra. If there exists $1 \in A$ satisfying
+\begin{equation}
+1a = a1 = a, \qquad \forall \, a \in A, 
+\end{equation}
+then $\norm{1} = 1$, i.e.\ $A$ is unital.
+\end{proposition}
+
+\begin{proof}
+Setting $a = 1$ in the $C^*$-property yields
+\begin{equation}
+\norm{1} = \norm{1^*1} = \norm{1}^2.
+\end{equation}
+Hence, $\norm{1} = 0$ or $\norm{1} = 1$. If $\norm{1} = 0$, then $1 = 0$, so that $A = \qty{0}$. Since $A$ is nontrivial by hypothesis, this cannot be the case, so $\norm{1} = 1$.
+\end{proof}
+
+\begin{proposition}\label{prop:inverse_star_commute}
+Let $A$ be a unital $C^*$-algebra and let $a \in A^\times$. Then $a^* \in A^\times$ and 
+\begin{equation}
+(a^*)^{-1} = (a^{-1})^*.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We compute
+\begin{equation}
+a^*(a^{-1})^* = (a^{-1} a)^* = 1 = (aa^{-1})^* = (a^{-1})^* a^*,
+\end{equation}
+which proves the result.
+\end{proof}
+
+\begin{proposition}\label{prop:star_is_isometry}
+If $A$ is a $C^*$-algebra and $a \in A$, then
+\begin{equation}
+\norm{a^*} = \norm{a}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The conclusion is trivial if $a = 0$, so suppose $a \neq 0$. The $C^*$-property and submultiplicativity yield
+\begin{equation}
+\norm{a}^2 = \norm{a^*a} \leq \norm{a} \norm{a^*}.
+\end{equation}
+Dividing by $\norm{a}$ yields $\norm{a} \leq \norm{a^*}$. Applying this result to $a^*$ yields $\norm{a^*} \leq \norm{a^{**}} = \norm{a}$.
+\end{proof}
+
+
+
+\begin{corollary}
+The star operation $A \rightarrow A$, $a \mapsto a^*$ is continuous.
+\end{corollary}
+
+\begin{proof}
+This is immediate from Proposition \ref{prop:star_is_isometry}.
+\end{proof}
+
+
+We conclude this section with several examples.
+
+\begin{example}
+The complex numbers $\C$ give a fairly trivial unital $C^*$-algebra.
+\end{example}
+
+\begin{example}
+The bounded linear operators $\blinOps(\hilbertH)$ on a Hilbert space $\hilbertH$ are the prototypical example of a $C^*$-algebra. The star operation is given by the adjoint. Note that this is, of course, a unital $C^*$-algebra.
+\end{example}
+
+\begin{example}
+In a similar vein to the previous example, the set $M_{n}(\C)$ of $n \times n$ matrices with complex entries is a $C^*$-algebra, where the star operation is given by Hermitian conjugation.
+\end{example}
+
+\begin{example}
+Let $X$ be a compact Hausdorff space and let $C(X)$ be the space of continuous functions $X \rightarrow \C$. This is a unital $C^*$-algebra with the norm given by the supremum norm and the star operation given by complex conjugation. We note that
+\begin{equation}
+\norm{fg} = \sup_{x \in X} \abs{fg} \leq \sup_{x \in X} \abs{f} \cdot \sup_{x \in X} \abs{g} = \norm{f} \norm{g}
+\end{equation}
+and 
+\begin{equation}
+\norm{f^*f} = \sup_{x \in X} \abs{f}^2  = \qty(\sup_{x \in X} \abs{f})^2 = \norm{f}^2,
+\end{equation}
+so that this satisfies the nontrivial properties of a $C^*$-algebra.
+\end{example}
+
+
+\begin{example}
+Let $X$ be a locally compact Hausdorff space and let $C_0(X)$ be the space of continuous functions $f: X \rightarrow \C$ which \emph{vanish at infinity}, meaning for every $\varepsilon > 0$ there exists a compact $K \subset X$ such that $\abs{f(x)} < \varepsilon$ for $x \notin K$. This space is a $C^*$-algebra with the supremum norm and the star operation given by complex conjugation. If $X$ is not compact, then this is a non-unital $C^*$-algebra.
+\end{example}
+
+
+\subsection*{Finite Direct Sums}
+
+Let $A_1,\ldots, A_n$ be a finite collection of Banach algebras. We define the \emph{direct sum}
+\begin{equation}
+\bigoplus_{i=1}^n A_i \defeq \qty{(a_1,\ldots, a_n): a_i \in A_i}
+\end{equation}
+with addition and multiplication defined componentwise. If $A_1,\ldots, A_n$ are $C^*$-algebras, define the star operation on $A$ componentwise as well. Finally, set
+\begin{equation}
+\norm{(a_1,\ldots, a_n)} = \max\qty(\norm{a_1},\ldots, \norm{a_n}).
+\end{equation}
+
+
+We want to show that the direct sum so defined is a Banach algebra. It is easy to check that the norm above is indeed a norm using the properties of the max and the definition of the norms on $A_i$. Submultiplicativity also follows easily from submultiplicativity of the norms on the $A_i$. If $(a_{1,k},\ldots, a_{n,k})_{k \in \N}$ is a Cauchy sequence in the direct sum, then each sequence $(a_{i,k})_{k \in \N}$ is Cauchy, hence convergent, in $A_i$ for $i = 1, \ldots, n$. If $a_{i,k} \rightarrow a_i$ for each $i$, then $(a_{1,k},\ldots, a_{n,k}) \rightarrow (a_1,\ldots, a_n)$ by definition of the norm on the direct sum. Thus, $\bigoplus_{i=1}^n A_i$ is complete, and is therefore a Banach algebra. If each $A_i$ is a $C^*$-algebra, it is again easy to check that $\bigoplus_{i=1}^n A_i$ is a $C^*$-algebra using the properties of the $C^*$-algebras $A_i$.
+
+
+We may also define the direct sum of a sequence of Banach algebras or $C^*$-algebras $\qty{A_n}_{n \in \N}$. We define
+\begin{equation}
+\bigoplus_{n=1}^\infty A_n \defeq \qty{(a_n)_{n \in \N}: a_n \in A_n \text{ and } \lim_{n \rightarrow \infty} \norm{a_n} = 0}
+\end{equation}
+Again, the algebraic operations are defined componentwise and the norm is defined by 
+\begin{equation}
+\norm{(a_n)_{n \in \N}} = \max_{n \in \N} \norm{a_n}.
+\end{equation}
+The definition of $\bigoplus_{n = 1}^\infty A_n$ ensures that the max exists. 
+
+One easily checks that this satisfies all algebraic properties of a Banach or $C^*$-algebra, but completeness is more subtle. If $\mathbf{a}_k = (a_{n,k})_{n \in \N} \in \bigoplus_{n=1}^\infty A_n$ and $(\mathbf{a}_k)_{k \in \N}$ is a Cauchy sequence in the direct sum, then it follows in the same way as before that the sequence $(a_{n,k})_{k \in \N}$ is Cauchy in $A_n$, hence convergent with limit $a_{n,k} \rightarrow a_n \in A_n$. We must show that $\lim_{n \rightarrow \infty} \norm{a_n} = 0$. For any $n, k, K \in \N$, we have
+\begin{equation}
+\norm{a_n} \leq \norm{a_n - a_{n,k}} + \norm{a_{n,k} - a_{n,K}} + \norm{a_{n,K}} \leq \norm{a_n - a_{n,k}} + \norm{\mathbf{a}_k - \mathbf{a}_K} + \norm{a_{n,K}}
+\end{equation}
+Fix $\varepsilon > 0$. Since $(\mathbf{a}_k)_{k \in \N}$ is Cauchy, we may choose $K \in \N$ such that $k, \ell \geq K$ implies $\norm{\mathbf{a}_k - \mathbf{a}_\ell} < \varepsilon/3$. We may choose $N \in \N$ such that $n \geq N$ implies $\norm{a_{n,K}} < \varepsilon/3$. Finally, for any $n \geq N$, we may choose $k \geq K$ such that $\norm{a_n - a_{n,k}} < \varepsilon/3$. Thus, for $n \geq N$, we have $\norm{a_n} < \varepsilon$, so $\lim_{n \rightarrow \infty} \norm{a_n} = 0$.
+
+Finally, we show that $\mathbf{a}_k \rightarrow \mathbf{a} \defeq (a_n)_{n \in \N}$. Fix $\varepsilon > 0$. Choose $N \in \N$ such that $\norm{a_n} < \varepsilon/2$ if $n \geq N$. Choose $K \in \N$ such that $k,\ell \geq K$ and $n < N$ implies
+\begin{equation}
+\norm{\mathbf{a}_k - \mathbf{a}_\ell} < \frac{\varepsilon}{2} \quad\text{and}\quad \norm{a_n - a_{n,k}} < \varepsilon.
+\end{equation}
+Then for $k \geq K$, we have
+\begin{equation}
+\norm{\mathbf{a} - \mathbf{a}_k} < \max\qty(\varepsilon, \max_{n \geq N} \norm{a_n - a_{n,k}}).
+\end{equation}
+But for $n \geq N$ we may choose $\ell$ large enough such that
+\begin{equation}
+\norm{a_n - a_{n,k}} \leq \norm{a_n - a_{n,\ell}} + \norm{\mathbf{a}_\ell - \mathbf{a}_k} < \varepsilon.
+\end{equation}
+Thus, $\norm{\mathbf{a} - \mathbf{a}_k} < \varepsilon$, so $\mathbf{a}_k \rightarrow \mathbf{a}$. This proves that the direct sum is complete.
+
+
+%I believe one can form arbitrary direct sums by completing the vector space direct sum with respect to the max norm.
+
+Both of these constructions come equipped with natural algebra homomorphisms $\iota_i: A_i \rightarrow \bigoplus A_n$ satisfying the following universal property. If $B$ is another Banach or $C^*$-algebra with algebra homomorphisms $f_i:A_i \rightarrow B$, then there exists a unique algebra homomorphism $f:\bigoplus A_n \rightarrow  B$ such that the diagram
+\begin{equation}
+\begin{tikzcd}
+ \bigoplus A_i \arrow[r, "f"] & B\\
+ A_i \arrow[ur, "f_i"'] \arrow[u, "\iota_i"] &
+\end{tikzcd}
+\end{equation}
+commutes. We define
+\begin{equation}
+f(a) = \sum f_i(\pi_i(a))
+\end{equation}
+
+

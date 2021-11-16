@@ -1,0 +1,55 @@
+% Copyright 2018 Markus J. Pflaum, licensed under GNU FDL v1.3
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Unbounded linear operators}
+\label{sec:unbounded-linear-operators}
+%
+\para 
+In this section let $\banachV,\banachW$ always denote Banach spaces over the field 
+$\fldK =\R$ or $\fldK=\C$. The symbols $\hilbertH$, $\hilbertH_1$, ... will always stand for Hilbert spaces over $\fldK$. 
+
+\begin{definition} 
+  By an \emph{unbounded $\fldK$-linear operator} or shortly by an 
+  \emph{unbounded operator} from $\banachV$ to $\banachW$ we understand a linear map 
+  $A: \Dom (A) \to \banachW$ defined on a $\fldK$-linear subspace $\Dom (A)\subset \banachV$.
+  As usual, $\Dom (A)$ is called the \emph{domain} of the operator $A$.
+  The space of unbounded $\fldK$-linear operators from $V$ to $W$ will be 
+  denoted $\linOps_\fldK (V,W)$ or just  $\linOps (V,W)$.
+\end{definition}
+
+\begin{remark}
+  In this work, the term ``unbounded'' is meant in the sense of
+  ``not necessarily bounded''. Sometimes we just say 
+  \emph{linear operator} or even only \emph{operator} instead of
+  ``unbounded linear operator''.
+\end{remark}
+
+\para Observe that besides the domain $\Dom (A)$ of an unbounded operator 
+  $A \in \linOps (\banachV,\banachW)$ the 
+  \emph{kernel} 
+  \[\Ker(A)=\big\{ v \in \banachV \bigmid Av = 0 \big\}\subset\banachV \ , \]
+  the \emph{image} 
+  \[\Img(A)=\big\{ w \in \banachW \bigmid \exists v\in \Dom (A): w = Av \big\}
+  \subset \banachW \ , \] 
+  and the \emph{graph}
+  \[\Graph(A)=\big\{ (v,w) \in \Dom (A) \times \banachW \bigmid 
+    w = Av \big\} \subset \banachV \times \banachW \]
+  of $A$  are all linear subspaces. We will frequently make use of this.
+  
+\begin{definition}
+  An unbounded operator $A\in \linOps (\banachV,\banachW)$ is called 
+  \emph{densely defined} if $\Dom (A)$ is dense in $\banachV$,
+  and \emph{closed} if the graph $\Gr (A)$ 
+  is closed in $\banachV \times \banachW$.
+  The operator $A \in \linOps (V,W)$ is called \emph{closable} if the closure
+  $\closure{\Gr(A)}$ is the graph of an unbounded operator 
+  from $\banachV$ to $\banachW$. 
+
+  An operator $A \in \linOps (V,W)$ is called an \emph{extension} of 
+  $B \in \linOps (V,W)$ if $\Gr (B) \subset \Gr (A)$. One writes in this
+  situation $B \subset A$. 
+\end{definition}
+
+  
+   

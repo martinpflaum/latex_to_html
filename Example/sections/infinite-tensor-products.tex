@@ -1,0 +1,669 @@
+% Copyright 2020 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum 
+%
+\section{Infinite tensor products}
+\label{sec:infinite-tensor-products}
+
+\para
+Infinite tensor products of Hilbert spaces were introduced by  \cite{vNeuIDP}. They were motivated by mathematical physics
+where one needs to describe quantum systems with infinitely many degrees of freedom, see e.g.~\cite{EmcAMSMQFT,BraRobOAQSM2}.
+The original construction of infinite tensor products was generalized to von Neumann  and $C^*$-algebras
+by \cite{GuiPTIRRA}, \cite{BlaITPC*A}, and others. Meanwhile, the topic has been studied in quite some
+detail in the operator algebra literature, see e.g.~\cite{NakITPvNAI,NakITPvNAII,StoITPvNA}. 
+A purely algebraic or better categorical approach allowing the construction of infinite tensor products of modules over
+a given commutative ring has been given in \cite[Sec.~III.10]{CheFCA}. The work \cite{NgGIATP} is also in that spirit.
+We will essentially follow \cite{CheFCA} and construct the infinite tensor product as a module
+universal with respect to multilinear maps. First we present the main algebraic construction, then we explain some of
+the subtleties which distinguish infinite from finite tensor products, and finally we construct infinite Hilbert
+tensor products and infinite tensor products of $C^*$-algebras. 
+
+\para\label{para:canonical-projections-embeddings-multilinear-maps}
+Let $R$ be a commutative ring and $(M_i)_{i\in I}$ a possibly infinite family of $R$-modules.
+Consider $\prod_{i\in I} M_i$, the product of the family $(M_i)_{i\in I}$  within the category
+of $R$-modules. For each $j\in I$ let $\pi_j : \prod_{i\in I} M_i \to M_j $ denote the natural
+projection onto the $j$-th factor and $\iota_j :M _j \hookrightarrow  \prod_{i\in I}M_i$ the
+uniquely determined natural embedding such that 
+\[
+   \pi_j\circ \iota_i =  
+   \begin{cases}
+       \id_{M_i} & \text{for}\enspace i=j \enspace\text{and} \\
+       0 & \text{else} .  
+   \end{cases}
+\]
+Given an $R$-module $N$  one then understands by a \emph{multilinear map} from $ \prod_{i\in I}M_i$
+to $N$ a map $f:  \prod_{i\in I}M_i \to N$
+such that for each $j\in I$ and $x\in \prod_{i\in I} M_i$ with $\pi_j (x)=0$ the map $M_j\to N$, $m\mapsto f(\iota_j(m)+x)$ is linear.
+The set of multilinear maps from $\prod_{i\in I} M_i$ to $N$ will be denoted by
+$\mlinOps \big(\prod_{i\in I} M_i,N\big)$. It carries a natural structure of an $R$-module
+given by pointwise addition of multilinear maps and pointwise action of a scalar on a
+multilinear map that is by  
+\[
+  f+ g =  \left( \prod_{i\in I} M_i \ni x \mapsto f(x) + g(x) \in N \right) \quad\text{and}\quad
+  r f =  \left( \prod_{i\in I} M_i \ni x \mapsto rf(x)\in N \right) 
+\]
+for all $f,g \in \mlinOps \big(\prod_{i\in I} M_i,N\big)$ and $r\in R$.
+Since for $j\in I$ and $x\in \prod_{i\in I} M_i$ with $\pi_j(x)= 0$ the maps
+$M_j\to N$, $m \mapsto (f+g) (\iota_j(m) + x) = f (\iota_j(m) + x) + g (\iota_j(m) + x)$
+and $M_j\to N$, $m \mapsto rf (\iota_j(m) + x) $ are linear by assumption on $f$ and $g$,
+the maps $f+g$ and $rf$ are multilinear again, so $ \mlinOps\big(\prod_{i\in I} M_i,N\big)$ is an
+$R$-module indeed with zero element the constant function mapping to $0\in N$. 
+
+\begin{remarks}
+  Before proceeding further let us make several explanations concerning the notation used.
+  \begin{environmentlist}
+  \item
+    The space of multilinear maps $ \mlinOps \big(\prod_{i\in I} M_i,N\big)$ actually depends
+    on the family $(M_i)_{i\in I}$ and the $R$-module $N$, so in principle one should  write
+    $ \mlinOps \big((M_i)_{i\in I},N\big)$ instead of $ \mlinOps \big(\prod_{i\in I} M_i,N\big)$.
+    Nevertheless we stick to the latter notation since it is closer to standard notation for
+    linear maps and since it will not lead  to any confusion.
+  \item
+    In case the index set $I$ has just two elements $i_1,i_2$, one calls a multilinear map
+    $\prod_{i\in I}M_i = M_{i_1}\times M_{i_2} \to N$ a \emph{bilinear map}. If the cardinality of
+    $I$ is $3$, one sometimes calls a multilinear map $\prod_{i\in I}M_i \to N$ a
+    \emph{trilinear map}. 
+    
+  \item
+     In the following, when saying that $(I_a)_{a\in A}$ is a partition of the set $I$ we mean that
+  each $I_a$ is a non-empty subset of $I$, that $I_a   \cap I_b =\emptyset $
+  for $a \neq b$ and that $\bigcup_{a \in A} I_a = I$. The empty family is regarded as
+  a partition of the empty set.
+    
+  \item We will frequently use in this section the same symbol for 
+  maps with the same ``universal'' properties  despite those maps might be  strictly speaking different. 
+  For example, $\pi_k$ will stand for the canonical projections
+  $\prod_{i\in I} M_i \to M_k$ and $\prod_{j\in J} M_j \to M_k$ whenever $k\in J \subset I$. 
+  Likewise we use the same notation for the two canonical embeddings 
+  $M_k \hookrightarrow \prod_{i\in I} M_i $ and $M_k \hookrightarrow \prod_{j\in J} M_j $
+  defined in \ref{para:canonical-projections-embeddings-multilinear-maps} and denote them both by $\iota_k$.
+
+  \end{environmentlist}
+\end{remarks}
+
+\begin{lemma}[cf.~{\cite[Sec.~III.10, Lemma 1 \& 2]{CheFCA}}]\label{thm:construction-multilinear-maps-composition}
+  Assume that $(M_i)_{i\in I}$ is a family of $R$-modules, $N$ an $R$-module, and
+  $f : \prod_{i\in I}M_i \to N$ a mutilinear map.
+  \begin{romanlist}
+  \item
+    If $g :N \to N^\prime$ is an $R$-module map, then
+    $g\circ f :  \prod_{i\in I}M_i \to N^\prime$ is multilinear.
+  \item
+    Let $J\subset I$ be non-empty, $y= (y_i)_{i\in I\setminus J}$ an element of the product
+    $\prod_{i\in I\setminus J} M_i$, and $ \iota_{J,y} :  \prod_{j\in J} M_j \to \prod_{i\in I} M_i$ the unique map
+    such that for all $x = (x_j)_{j\in J} \in  (M_j)_{j\in J}$ and $k\in I$
+    \[
+      \pi_k \circ \iota_{J,y}\, (x) = 
+      \begin{cases}
+        x_k & \text{for } k\in J , \\
+        y_k & \text{for } k \in I\setminus J .
+      \end{cases}
+    \]
+    Then the composition $f\circ \iota_{J,x} : \prod_{j\in J} M_j \to N$ is multilinear.
+ \item\label{ite:multilinearity-composition-multilinear-map-product-multilinear-map}
+   Let $(I_a)_{a \in A}$ be a partition of the index set $I$ which is assumed to be non-empty.
+   Let $(N_a)_{a \in A}$ be a family of $R$-modules, $(g_a)_{a \in A}$
+   a family of multilinear maps $g_a : \prod_{i \in I_a} M_i \to N_a$, and
+   $h :  \prod_{a \in A}N_a \to N$ multilinear. Define
+   $g: \prod_{i\in I} M_i \to  \prod_{a \in A} N_a $ as the unique map
+   such that 
+   \[
+      \pi_b \circ g = g_b \circ \pi_{I_b} \quad 
+      \text{for } b \in A  ,
+    \]
+    where $\pi_J$ for $J\subset I$ as on the right side stands for the
+    projection $\pi_J : \prod_{i\in I} M_i \to  \prod_{j \in J} M_j$
+    uniquely determined by $\pi_j \circ \pi_J =\pi_j$ for all $j\in J$. 
+   Then the  composition $h \circ g : \prod_{i\in I} M_i \to N$ is multilinear.
+  \end{romanlist}
+\end{lemma}
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    Let $j\in I$ and $x\in \prod_{i\in I} M_i$ with $\pi_j (x)=0$.
+    By multilinearity of $f$ and linearity of $g$, the map $M_j\to N^\prime$,
+    $m\mapsto g f (\iota_j(m)+x)$ then has to be linear, hence $g\circ f$ is multilinear.
+  \item
+    Let $j \in J$ and $x\in \prod_{i\in J} M_i$ with $\pi_j (x)= 0$.
+    % Define $\widetilde{x}$ as the unique element of $\prod_{i\in I}M_i$ such that
+    % \[
+    %    \pi_k (\widetilde{x}) =
+    %    \begin{cases}
+    %      \pi_k(x)  &\text{for } k \in J,\\ 
+    %      y_k &\text{for } k \in I\setminus J . 
+    %    \end{cases}
+    % \]
+    Then $\pi_j(\iota_{J,y}(x))=0$ and $f \iota_{J,y} (\iota_j(m)+x) =
+    f(\iota_j(m) + \iota_{J,y}(x)$ for all $m\in M_j$ by  construction of $\iota_{J,y}$.
+    Hence the map $M_j\to N$, $m\mapsto f \iota_{J,y} (\iota_j(m)+x)$ is linear by
+    multilinearity of $f$. This proves that $f\circ \iota_{J,y}$ is multilinear.
+  \item
+    Given $j\in I$ let $b$ be the unique element of $A$  such that $j\in I_b$.
+    Assume  that $x\in \prod_{i\in I} M_i$ with $\pi_j (x)=0$.
+    By construction one has $\pi_j(\pi_{I_b} (x))=0$.
+    Now let $y \in \prod_{a \in A}N_a$ such that
+    \[
+       \pi_a (y) =
+       \begin{cases}
+         0 & \text{for } a = b , \\
+         g_a \pi_{I_a} (x) & \text{for } a  \neq b.
+       \end{cases}
+    \]
+    One then obtains for $m\in M_j$
+    \[
+    \pi_a g ( \iota_j(m) + x)= 
+    \begin{cases}
+      g_b \pi_{I_b} (\iota_j(m)+x) = g_b (\iota_j (m) + \pi_{I_b} (x)) &\text{for }a = b, \\
+      g_a \pi_{I_a} (x) =  \pi_a (y)  & \text{for } a  \neq b .
+    \end{cases}
+    \]
+    Hence 
+    \[
+      h g (\iota_j(m)+ x) =
+      h \big( \iota_b \big( g_b ( \iota_j(m) + \pi_{I_b} (x) \big) + y \big) \ ,
+    \]
+    and the map $M_j\to N$, $m\mapsto h g (\iota_j(m)+ x)$ is linear as the composition of two linear maps. 
+  \end{adromanlist}
+\end{proof}
+
+\begin{lemma}\label{thm:associator-cartesian-product}
+  Assume to be given a non-empty family of $R$-modules $(M_i)_{i\in I}$ and a partition 
+  $(I_a)_{a \in A}$ of the index set $I$. Then there exists a natural ismorphism
+  \[
+    \kappa_{I,A}:  \prod_{i \in I} M_i \to \prod_{a \in A}  \prod_{i \in I_a} M_i
+  \]
+  uniquely determined by the condition that $\pi_a \circ \kappa_{I,A} = \pi_{I_a}$ for all
+  $a\in A$.
+  % where $\pi_a$ on the right hand side stands for the unique projection
+  % $\pi_a : \prod_{i \in I} M_i \to \prod_{i \in I_a} M_i$ which satisfies
+  % $\pi_k \circ \pi_a = \pi_k$ for all $k\in I_a$.
+\end{lemma}
+\begin{proof}
+  By the universal property of the product the $R$-module map 
+  $ \kappa = \kappa_{I,A}:  \prod_{i \in I} M_i \to \prod_{a \in A}  \prod_{i \in I_a} M_i$
+  exists and is uniquely determined by the requirement  that $\pi_a \circ \kappa_{I,A} = \pi_{I_a}$
+  for all $a\in A$. Naturality also follows from the universal property of the product.
+  It remains to show that $\kappa$ is an isomorphism. By construction,
+  $\pi_i(x) = \pi_i \pi_a \kappa (x) =0$ for all $i\in I$ and $a(i)\in A$ such that $i\in I_{a(i)}$,
+  hence $x=0$.
+  So $\kappa$ is injective. It is also surjective. To see this pick $x_a \in \prod_{i \in I_a} M_i$
+  for each $a\in A$. With $a(i)$ for $i\in I$ defined as before put
+  $x = \big( \pi_i (x_{a(i)} )\big)_{i\in I}$. Then, by construction,
+  $\pi_i \pi_{a} \kappa (x) = \pi_i \pi_{a} (x) = \pi_i (x) = \pi_i (x_{a})$ for all $a\in A$ and
+  $i\in I_a$,
+  hence $\big(\pi_a \kappa (x) \big)_{a \in A} = (x_a)_{a \in A}$
+  and $\kappa$ is surjective. 
+\end{proof}
+
+\begin{proposition}[Exponential law for multilinear maps]
+\label{thm:exponential-law-multilinear-maps}
+  Let $(M_i)_{i\in I}$ be a family of $R$-modules over a commutative ring $R$,
+  $N$ an $R$-module, 
+  and assume that $J \subset I$ is a non-empty subset such that the complement
+  $K = I\setminus J$ is also non-empty. Then the map
+  \begin{equation*}
+  \begin{split}
+    \eta_{I,J}: \:&
+    \mlinOps \left( \prod_{j\in J} M_j , \mlinOps \left(\prod_{k\in K} M_k ,N \right)\right)
+    \rightarrow \mlinOps \left( \prod_{i\in I} M_i, N \right), \\
+    & \hspace{1em} f \mapsto \left( \prod_{i\in I} M_i\ni (x_i)_{i\in I} \mapsto
+    f\big( (x_j)_{j\in J} \big)\left( (x_k)_{k\in K} \right)  \in N \right) 
+  \end{split}
+  \end{equation*}
+  is an isomorphism which is natural in $(M_i)_{i\in I}$ and $N$.
+\end{proposition}
+
+\begin{proof}
+  
+  We first show that $\eta= \eta_{I,J} $ is linear. To this end let\\
+  $f,g \in \mlinOps \left( \prod_{j\in J} M_j , \mlinOps \left(\prod_{k\in K} M_k ,N \right)\right)$ and $r\in R$.
+  Then, for all $x = (x_i)_{i\in I} \in \prod_{i\in I} M_i$,
+  \begin{equation*}
+  \begin{split}
+    \big( \eta (f & +g)\big) (x)  = \big(f+g\big) \big( (x_j)_{j\in J} \big)\left( (x_k)_{k\in K} \right)
+    = \big( f((x_j)_{j\in J}) + g ((x_j)_{j\in J})\big) \left( (x_k)_{k\in K} \right) = \\
+    & = f((x_j)_{j\in J})  \left( (x_k)_{k\in K} \right) +  g ((x_j)_{j\in J}) \left( (x_k)_{k\in K} \right) =
+     \big( \eta f \big) (x) + \big( \eta g \big) (x) =  \big( \eta f + \eta g \big) (x) 
+  \end{split}
+  \end{equation*}
+  and
+  \begin{equation*}
+  \begin{split}
+    \big( \eta (rf)\big) (x) & = (rf) ((x_j)_{j\in J})  \left( (x_k)_{k\in K} \right) =
+    \big( r f((x_j)_{j\in J})\big) \left( (x_k)_{k\in K} \right) =
+    r \big( f((x_j)_{j\in J})\left( (x_k)_{k\in K} \right)\big) = \\
+    & = r \big( \eta f (x)\big) =  \big( r (\eta f ) \big) (x) \ .
+  \end{split}
+  \end{equation*}
+  Hence $\eta$ is an $R$-module map.
+
+  Next we show that $\eta$ is an isomorphism by constructing an inverse.
+  Given $f \in \mlinOps \big( \prod_{i\in I} M_i, N \big)$ we define
+  $f^\sharp : \mlinOps \big( \prod_{j\in J} M_j \big) \to \mlinOps \big(\prod_{k\in K} M_k ,N \big)$ by the requirement that 
+  \[
+      f^\sharp (y) (z) = f (x_{y,z}) \quad \text{for all}\enspace y = (y_j)_{j\in J}\enspace \text{and} \enspace z = (z_k)_{k \in K} \ ,
+  \]
+  where $x_{y,z}$ is the  element of $\prod_{i\in I}M_i$ uniquely determined by
+  \[
+    \pi_i (x_{y,z}) =
+    \begin{cases}
+      y_i & \text{for}\enspace i \in J , \\
+      z_i & \text{for}\enspace i \in K .   
+    \end{cases}
+  \] 
+  One thus obtains an $R$-module map 
+  \[
+    (-)^\sharp_{I,J} :
+    \mlinOps \left( \prod_{i\in I} M_i, N \right) \to
+    \mlinOps \left( \prod_{j\in J} M_j , \mlinOps \left(\prod_{k\in K} M_k ,N \right)\right),\quad f \mapsto f^\sharp
+  \]
+  which by construction is inverse to $\eta_{I,J}$. 
+
+  Naturality of $\eta_{I,J}$ in $(M_j)_{j\in J}$ and $N$ is clear by definition. 
+\end{proof}
+
+\begin{definition}
+  Let $(M_i)_{i\in I}$ be a family of $R$-modules over a commutative ring $R$. By a
+  \emph{tensor product} of  $(M_i)_{i\in I}$ one understands an $R$-module $\bigotimes_{i\in I}M_i$
+  together with a multilinear map
+  $\tau : \prod_{i\in I}M_i \to \bigotimes_{i\in I}M_i$ such that the following universal property is fulfilled:
+  \begin{axiomlist}[\hspace{2.5em}]
+  \item[\textup{\sffamily (ITensor)}]
+   \label{axiom:hilbert-tensor-product}
+   For every $R$-module $N$ and every multilinear map 
+   $f : \prod_{i\in I}M_i \to N$ there exists a unique $R$-module map
+   $\overline{f}: \bigotimes_{i\in I}M_i \to N$ 
+   such that the diagram 
+   \begin{displaymath}
+   \begin{tikzcd}
+       \prod\limits_{i\in I}M_i  \ar[d,"\tau",swap] \ar[r,"f"]  & N \\
+       \bigotimes\limits_{i\in I}M_i \ar[ru,"\overline{f}",swap]
+   \end{tikzcd}
+   \end{displaymath}
+   commutes.
+ \end{axiomlist} 
+
+ The linear map $\overline{f}$ making the diagram comute will sometimes be called the \emph{linearization}
+ of the multilinear map $f$.
+   
+ Given a tensor product
+ $\big( \bigotimes_{i\in I}M_i,\tau\big)$, we will usually denote the image of an element 
+ $(x_i)_{i\in I} \in \prod_{i\in I}M_i$
+ under the map $\tau$ by $\otimes_{i\in I} x_i$. 
+\end{definition}
+
+\begin{remarks}
+  \begin{environmentlist}
+  \item
+    Strictly speaking, a tensor product of a family $(M_i)_{i\in I}$ of $R$-modules is a pair
+    $\big( \bigotimes_{i\in I}M_i,\tau\big)$ having the above properties. By slight abuse of language, one
+    usually denotes a tensor product just by its first component, the $R$-module $\bigotimes_{i\in I}M_i$.
+    When helpful for clarity, the associated map $\tau: \prod_{i\in I}M_i \to \bigotimes_{i\in I}M_i$
+    will be denoted by $\tau_{(M_i)_{i\in I}}$ or by $\tau_I$. 
+  \item   
+    In the case where the index set $I$  of the family $(M_i)_{i\in I}$ is infinite, one
+    sometimes calls $\bigotimes_{i\in I}M_i$ an \emph{infinite tensor product}. 
+  \end{environmentlist}
+\end{remarks}
+
+
+
+\begin{theorem}\label{thm:construction-fundamental-properties-infinite-tensor-product}
+  Let $(M_i)_{i\in I}$ be a family of $R$-modules over a commutative ring $R$. Then the following
+  holds true.
+  \begin{romanlist}
+  \item
+    A tensor product $\bigotimes_{i\in I}M_i$ of the family $(M_i)_{i\in I}$ exists and is
+    unique up to isomorphism. 
+    If $I$ is the empty set, then $\bigotimes_{i\in I}M_i = R$, if $I$ contains a single element $i_\circ$,
+    then  $\bigotimes_{i\in I}M_i =M_{i_\circ}$.   
+  \item
+    If $(N_i)_{i\in I}$ is a second family of $R$-modules and $(f_i)_{i\in I}$ a family
+    $R$-module maps $f_i :M_i \to N_i$, then there exists a unique linear map 
+    $\bigotimes_{i\in I}f_i: \bigotimes_{i\in I}M_i \to \bigotimes_{i\in I}N_i$ making
+    the  diagram
+    \begin{displaymath}
+    \begin{tikzcd}
+       \prod\limits_{i\in I}M_i  \ar[d,"\tau",swap] \ar[r,"f"] & \bigotimes\limits_{i\in I}N_i   \\
+       \bigotimes\limits_{i\in I}M_i \ar[ru,"\bigotimes\limits_{i\in I}f_i",swap]
+   \end{tikzcd}
+   \end{displaymath}
+   commute, where $f:\prod_{i\in I}M_i\to \bigotimes_{i\in I}N_i$ is the multilinear map
+   $(x_i)_{i\in I}\mapsto \otimes_{i\in I} f_i(x_i)$.
+ \item
+   Let $J\subset I$ be a finite non-empty subset set such that  $M_j$ is isomorphic  to $R$ for all $j\in J$.
+   Denote for each $j\in J$ by $1_j$ the image of the unit $1\in R$ under the isomorphism $R\cong M_j$
+   and by $1_J$ the family $(1_j)_{j\in J}$. Moreover, for every family $y =(y_j)_{j\in J}$
+   let $\iota_{J,y} : \prod_{i\in I\setminus J} M_i \to \prod_{i\in I}M_i$ be the map which associates
+   to $x\in\prod_{i\in I\setminus J} M_i$ the family $ (x_i)_{i\in I}$ such that $x_i =\pi_i (x)$ for
+   $i \in I\setminus J$ and  $x_i = y_i$ for $i \in J$. Then the linearization
+   $\overline{\iota}_{J,1_J}: \bigotimes_{i\in I\setminus J}M_i \to  \bigotimes_{i\in I}M_i $ of the multilinear map
+   $\tau_I \circ \iota_{J,1_J}: \prod_{i\in I\setminus J}M_i \to  \bigotimes_{i\in I}M_i$ is an isomorphism. 
+  \end{romanlist}
+\end{theorem} 
+
+\begin{proof}
+\begin{adromanlist}
+\item
+  By its universal property, the tensor product of the family $(M_i)_{i\in I}$ is uniquely determined
+  up to isomorphism. Hence it remains to show the existence of the tensor product.
+  To this end consider the free $R$-module  % $R^{(\prod_{i\in I}M_i)}$
+  over the set $\prod_{i\in I}M_i$ and denote it by $F$. Let  $\delta: \prod_{i\in I}M_i \hookrightarrow F$ be
+  the canonical injection  
+  %Identify an element $(x_i)_{i\in I}\in\prod_{i\in I}M_i$
+  %with its image in $F$ under the canonical injection $\iota : \prod_{i\in I}M_i \hookrightarrow F$
+  and $U$ be the submodule of $F$ spanned by the elements
+  \[
+    \delta \big( \iota_j (r y_j + z_j) + (x_i)_{i\in I} \big) - r \delta \big( \iota_j (y_j) + (x_i)_{i\in I}\big)
+    - \delta \big( \iota_j (z_j) + (x_i)_{i\in I}\big) \ ,
+  \]
+  where $j\in I$, $y_j , z_j \in M_j$, $r \in R$,  and $(x_i)_{i\in I} \in \pi_j^{-1} (0)$. Then put
+  $\bigotimes_{i\in I}M_i = F/U$ and define $\tau$ as the composition of the canonical projection
+  $\pi : F \to \bigotimes_{i\in I}M_i$  with $\delta : \prod_{i\in I}M_i \to F$. By construction, $\tau$ is multilinear.
+  Assume that $N$ is an $R$-module and $f : \prod_{i\in I}M_i \to N$ is a multilinear map. By the universal property of
+  free $R$-modules, $f$ lifts to a unique $R$-linear map $f^\prime : F \to N$ such that $f = f^\prime \circ \delta$.
+  By multilinearity of $f$, the map $f^\prime$ vanishes on the submodule $U$, hence descends to an $R$-linear
+  $\overline{f}: \bigotimes_{i\in I}M_i \to N$ such that $f^\prime = \overline{f} \circ \pi$.
+  Hence  $f = f^\prime \circ \delta = \overline{f} \circ \pi  \circ \delta  = \overline{f} \circ \tau$.
+  By surjectivity of $\delta$ and uniqueness of $f^\prime$, $\overline{f}$ is the unique $R$-linear map satisfying
+  $f = \overline{f} \circ \tau$. Hence $\big( \bigotimes_{i\in I}M_i,\tau\big)$ is a tensor product of the family
+  $(M_i)_{i\in I}$.
+  
+  In case $I=\emptyset$, the cartesian product $\prod_{i\in I}M_i$ is final in the category of sets, hence 
+  consists of only one element $\star$ only. This means in particular that 
+  for an $R$-module $N$  any map $f: \prod_{i\in I}M_i = \{ \star\} \to N$ is multilinear. Put 
+  $\bigotimes_{i\in I}M_i = R$ and let $\tau : \{ \star\} \to R$ be the map $\star \mapsto 1$. 
+  Now let $\overline{f}: R \to N$ be the unique linear map such that $\overline{f}(1)= f(\star)$.
+  Then $f = \overline{f}\circ \tau$ 
+  and the pair $(R,\tau)$ fulfills the universal property of the tensor product. 
+  
+  If $I$ is a singleton with unique element $i_0$, then $\prod_{i\in I} M_i = M_{i_0}$ 
+  and a map $f: \prod_{i\in I} M_i \to N$ is multilinear if and only if $f$ as a map from $M_{i_\circ}$ to $N$ 
+  is linear. This implies that the pair $(M_{i_0},\id_{M_{i_\circ}})$ then is a tensor product 
+  for the family $(M_i)_{i\in I}$. 
+\item This is an immediate consequence of the universal property of the tensor product.
+\item
+  We construct an inverse to
+  $\overline{\iota}_{J,1_J}: \bigotimes_{i\in I\setminus J}M_i \to  \bigotimes_{i\in I}M_i $.
+  Let $x = (x_i)_{i\in I}$ be an element of $\prod_{i\in I}M_i$ and put
+  \[
+    \lambda (x) =  \left( \prod_{j\in J} x_j \right)\cdot \otimes_{i\in I\setminus J} x_i
+    \left( \prod_{j\in J} x_j \right) \cdot \tau_{I\setminus J} ((x_i)_{i\in I\setminus J}) \ .
+  \]
+  Then $\lambda : \prod_{i\in I}M_i \to \bigotimes_{i\in \setminus J} M_i$
+  is multilinear by construction, hence factors through a linear map
+  $\overline{\lambda} : \bigotimes_{i\in I}M_i \to \bigotimes_{i\in I \setminus J} M_i$.
+  By definition, $\overline{\lambda}$ is a left inverse of $\overline{\iota}_{J,1_J}$. It is also a
+  right inverse since for all $(x_i)_{i\in I} \in \prod_{i\in I}M_i$  by multilinearity of $\tau_I$  
+  \begin{equation*}
+  \begin{split}
+     \overline{\iota}_{J,1_J} \circ  \overline{\lambda}\circ  \tau_I  \left( (x_i)_{i\in I} \right) &  =
+    \overline{\iota}_{J,1_J}
+    \left( \left( \prod_{j\in J} x_j \right) \cdot  \otimes_{i\in I\setminus J} x_i \right)
+    =\left( \prod_{j\in J} x_j\right)\cdot\left( \overline{\iota}_{J,1_J} \circ \tau_{I\setminus J}
+    \left((x_i)_{i\in I\setminus J}\right)\right) = \\ & \hspace{-5em}
+    =\left( \prod_{j\in J} x_j\right)\cdot\left( \tau_I \circ 
+    \iota_{J,1_J}\left( (x_i)_{i\in I\setminus J}\right)\right) =
+    \tau_I \circ \iota_{J,(x_j)_{j\in J}}\left( (x_i)_{i\in I\setminus J}\right) =
+    \tau_I \left( (x_i)_{i\in I}\right) % = \otimes_{i\in I} x_i 
+  \end{split}
+  \end{equation*}
+  and since by construction of the tensor product the image of $\tau_I$ is a generating system for
+  the $R$-module $\bigotimes_{i\in I}M_i$.
+\end{adromanlist}
+\end{proof}
+
+\begin{lemma}\label{thm:image-generating-system-canoncial-map-finite-tensor-product-generating-system} 
+  Assume that $(M_i)_{i\in I}$ is a finite family of $R$-modules such that for every $i\in I$ a
+  generating set $S_i$ of the $R$-module $M_i$ has been given. Then the set
+  $S = \tau \left( \prod_{i\in I}S_i \right)$ is a generating set of the tensor product
+  $\bigotimes_{i\in I} M_i$. 
+\end{lemma}
+
+\begin{proof}
+  By construction of the tensor product in the proof of
+  \Cref{thm:construction-fundamental-properties-infinite-tensor-product} it is clear that
+  a generating set of $\bigotimes_{i\in I} M_i$ is given by the set
+  of elements of the form $\otimes_{i\in I}x_i$ where $(x_i)_{i\in I}\in \prod_{i\in I}M_i$.
+  Each of the $x_i$ can now be represented in the form
+  \[
+    x_i = \sum_{k=1}^{n_i} r_{i,k} s_{i,k} \quad\text{with}\enspace r_{i,1},\ldots ,r_{i,n_i}\in R,\enspace
+    s_{i,1},\ldots ,s_{i,n_i}\in S_i \ .
+  \]
+  Hence, by multilinearity of $\tau$ and with $I=\{ i_1,\ldots ,i_d\}$,
+  \[
+    \otimes_{i\in I}x_i = \tau \left( (x_i)_{i\in I} \right) =
+    \sum_{k_{i_1} =1}^{n_{i_1}}\cdots  \sum_{k_{i_d} =1}^{n_{i_d}} r_{i_1,k_{i_1}} \cdot \ldots \cdot r_{i_d,k_{i_d}}
+    \cdot \tau \left( (s_{i,k_i})_{i\in I} \right)  \ ,
+  \] 
+  so $\otimes_{i\in I}x_i$ is a linear combination of elements of $S$ and the claim is proved. 
+\end{proof}
+
+\begin{lemma}\label{thm:componentwise-multilinear-maps-factorization}
+  Let $(M_i)_{i\in I}$ be a family of $R$-modules, $(I_a)_{a\in A}$ a finite partition
+  of the index set $I$, and $N$ an $R$-module. For $a\in A$ put
+  $N_a = \bigotimes_{i\in I_a} M_i$ and let $\tau_a:  \prod_{i\in I_a} M_i \to  N_a$
+  denote the canonical map. Assume that
+  $f : \prod_{a\in A}\prod_{i\in I_a} M_i \to N$ is a map which is
+  \emph{componentwise multilinear} in the following sense. 
+  \begin{itemize}
+  \item[$(\mathsf{ CM})$\hspace{-1mm}]
+    Let $b\in A$ and $y=(y_a)_{a\in A}   \in \prod_{a\in A}\prod_{i\in I_a} M_i $
+    a family with $y_b =0$. If for all $j\in I_b$ and families
+    $x=(x_i)_{i\in I_b}\in \prod_{i\in I_b} M_i$ with $x_j  =0$ the  map
+    \[
+       M_j \to N , \enspace m \mapsto f( \iota_b (\iota_j (m) + x) + y)
+    \]
+    is linear, then $f$ factors through
+    $(\tau_a)_{a\in A}: \prod_{a\in A}\prod_{i\in I_a} M_i \to
+    \prod_{a\in A}N_a $. More precisely, there exists
+    a unique multilinear map $\overline{f} : \prod_{a\in A}N_a \to N$ such that
+    \[
+       f = \overline{f} \circ (\tau_a)_{a\in A} \ .
+    \]
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  We prove the claim by induction on the cardinality of $A$. 
+  If $A$ is a singleton, then $\prod_{a \in A} \prod_{i\in I_a} M_i$ canonically
+  coincides with $\prod_{i\in I} M_i$ and $f: \prod_{i\in I_a} M_i \to N$
+  is multilinear, hence by the universal property of the tensor product there
+  exists a unique linear map $\overline{f}: N_a \to N$ such that
+  $f = \overline{f} \circ \tau_a$. 
+
+  Now assume that the claim holds whenever the cardinality of the index set $A$ is
+  $\leq n$ for some $n \in \N^*$.
+  Assume to be given initial data $(M_i)_{i\in I}$ and $§N$, a partition
+  $(I_a)_{a\in A}$ of $A$ with $|A| = n+1$ and  componentwise multilinear map
+  $f: \prod_{a\in A}\prod_{i\in I_a} M_i \to N$. Fix $a \in A$ and put
+  $B =A \setminus \{ a\}$. Let
+  $x = (x_i)_{i\in I_a} \in \prod_{i\in I_a}M_i$
+  and $\widetilde{x}$ be the element of $ \prod_{d\in A}\prod_{i\in I_d} M_i $ such that
+  \[
+    \pi_d (\widetilde{x}) =
+    \begin{cases}
+      x &\text{for} \enspace d = a \ , \\
+      0 &\text{else} \ .
+    \end{cases}
+  \]
+  The map
+  \[
+    f_x: \prod_{b\in B}\prod_{i\in I_b} M_i \to N , \enspace
+         y  \mapsto f (\iota_B (y) + \widetilde{x}) 
+  \]
+  then is componentwise multilinear. Hence by inductive assumption there  exists
+  a unique multilinear map $\overline{f_x} : \prod_{b\in B}N_b \to N$ such that
+  $f_x = \overline{f_x}\circ (\tau_b)_{b\in B}$. By assumption on $f$
+  the map
+  $\prod_{i\in I_a} M_i \to \Map \left( \prod_{b\in B} \prod_{i\in I_b} M_i,N\right) $,
+  $x \mapsto f_x$ is multilinear which implies multilinearity of
+  \[
+    \overline{f_\bullet} :
+    \prod_{i\in I_a} M_i \to \mlinOps \left( \prod_{b\in B} N_b ,N \right),
+    \enspace x \mapsto \overline{f_x} \ .
+  \]
+  Let $F: N_a \to \mlinOps \left( \prod_{b\in B} N_b,N \right)$ be its
+  linearization. Application of the exponential law for multilinear maps,
+  \Cref{thm:exponential-law-multilinear-maps}, now gives a
+  multilinear map $\eta (F) : \prod_{d \in A} N_d \to N$ which we denote 
+  by $\overline{f}$. Given a family $(x_d)_{d\in A}$ of families
+  $x_d =(x_i)_{i\in I_d}$ one checks
+  \[
+    \overline{f} \left( \big(\tau_d (x_d)\big)_{d\in A} \right)
+    = F \big( \tau_a(x_a) \big) \left( \big(\tau_b (x_b)\big)_{b\in B} \right)
+    = \overline{f}_{x_a} \left( \big(\tau_b (x_b)\big)_{b\in B} \right)
+    = f_{x_a} \left( (x_b)_{b\in B} \right) = f  \left( (x_d)_{d\in A} \right) \ .
+  \]
+  Hence $\overline{f} \circ (\tau_d)_{d\in A} =f$.
+  To finish the induction step it remains to prove uniqueness.
+  So let $\overline{g} :  \prod_{d \in A} N_d \to N$ be another multilinear map
+  such that $\overline{g} \circ (\tau_d)_{d\in A} =f$  and consider
+  the induced linear map
+  $\overline{g}^\sharp =\eta^{-1} (\overline{g}) : N_a \mapsto \mlinOps (\prod_{b\in B}N_b, N)$.
+  Then for every $x\in \prod_{i\in I_a}M_i$ the relation 
+  \[
+    \overline{g}^\sharp (\tau_a(x)) \circ (\tau_b)_{b\in B} = f_x =
+    \overline{f}_x \circ (\tau_b)_{b\in B} 
+  \]
+  is satisfied. 
+  Hence $\overline{g}^\sharp (\tau(x)) = \overline{f}_x$ for all $x\in \prod_{i\in I_a}M_i$ which entails
+  that $\overline{g}^\sharp$ coincides with $F$. By
+  \Cref{thm:exponential-law-multilinear-maps} one obtains
+  $\overline{g} = \overline{f}$. This finishes the induction step and the lemma
+  is proved. 
+\end{proof}
+
+\begin{proposition}
+  Let $(M_i)_{i\in I}$ be a family of $R$-modules and $(I_a)_{a\in A}$ a finite partition of the index set $I$.
+  Then there exists a natural isomorphism
+  \[
+    \alpha_{I,A}: \bigotimes_{i \in I} M_i \to \bigotimes_{a \in A}  \bigotimes_{i \in I_a} M_i .
+  \]  
+\end{proposition}
+
+\begin{proof}
+  Put $N_a = \bigotimes_{i \in I_a} M_i$  for  $a \in A$ and let
+  $\tau_a :  \prod_{i \in I_a} M_i \to  N_a$ be the canonical map to the tensor product.
+  Let $\tau_A :\prod_{a \in A}N_a \to \bigotimes_{a \in A} N_a$ be the canonical map to
+  the tensor product of the modules $N_a$.
+  Define $\tau_{I,A}: \prod_{i \in I} M_i\to \prod_{a \in A} N_a$ as the unique map so that
+  $\pi_a  \circ \tau_{I,A} = \tau_a \circ \pi_{I_a}$  for all $a\in A$.
+  % As before, the map $\pi_a$ on the right hand side is hereby the unique map
+  % $\pi_{I_a} : \prod_{i\in I} M_i\to\prod_{i\in I_a} M_i $
+  % such that $\pi_k \circ \pi_{I_a} =\pi_k$ for all $k\in I_a$.
+  By construction $\tau_{I,A} = (\tau_a)_{a\in A} \circ \kappa_{I,A}$,
+  where $\kappa_{I,A} :  \prod_{i\in I} M_i \to \prod_{a \in A} \prod_{i \in I_a} M_i$ is the natural isomorphism from
+  \Cref{thm:associator-cartesian-product}.  
+  The composition $\tau_A \circ \tau_{I,A}$ then is multilinear by \Cref{thm:construction-multilinear-maps-composition}
+  \ref{ite:multilinearity-composition-multilinear-map-product-multilinear-map}, hence factors through a linear map
+  $\alpha_{I,A} : \bigotimes_{i\in I} M_i \to \bigotimes_{a \in A} N_a$ 
+  that is
+  \begin{equation}\label{eq:defining-equation-associator-map-tensor-product}
+    \tau_A \circ (\tau_a)_{a\in A} \circ \kappa_{I,A} =
+    \alpha_{I,A} \circ \tau_I \ .
+  \end{equation}  
+     
+  Naturality of $\alpha_{I,A}$ in  $(M_i)_{i\in I}$ is clear by definition so it remains to
+  construct an inverse to $\alpha_{I,A}$.  Consider the composition
+  $\tau_I \circ \kappa^{-1}: \prod_{a \in A} \prod_{i \in I_a} M_i
+   \to \bigotimes_{i\in I} M_i$. Assume that $a \in A$ and
+  $(y_b)_{b\in A\setminus\{a\}} \in \prod_{b \in A\setminus\{a\}} \prod_{i \in I_b} M_i$
+  have been chosen. Let $y_a\in \prod_{i \in I_a} M_i$ be $0$, put
+  $\widetilde{y} =(y_d)_{d\in A} \in \prod_{d \in A}  \prod_{i \in I_d} M_i$, and let
+  $y\in  \prod_{i \in I} M_i$ be the family such that $\pi_i(y) = \pi_i (y_{a(i)})$ for
+  all $i\in I$, where $a(i)$ denotes the unique element of $A$  such that
+  $i\in I_{a(i)}$. In other words let $y =\kappa^{-1} (\widetilde{y})$.
+  For every $j\in I_a$ and $x= (x_i)_{i\in I_a}\in \prod_{i\in I_a}M_i$
+  with $\pi_j (x)=0$ the map
+  \[
+    M_j \to \bigotimes_{i\in I} M_i,\enspace m \mapsto \tau_I \circ \kappa^{-1} \left( \iota_a (\iota_j(m)+x)+\widetilde{y}\right)
+    = \tau_I \left( \iota_j (m) + \iota_{I_a}(x) + y \right)
+  \]
+  then is multilinear since $\tau_I$ is multilinear and $\pi_j(\iota_{I_a}(x) + y)=\pi_j(x) +\pi_j(y_a) = 0$.
+  Hence $\tau_I \circ \kappa^{-1}$ is componentwise multilinear and therefore,
+  by \Cref{thm:componentwise-multilinear-maps-factorization}, factors
+  through the map
+  $(\tau_a)_{a\in A} : \prod_{a\in A} \prod_{i\in I_a} M_i\to \prod_{a\in A} N_a$
+  which means that
+  \begin{equation}\label{eq:defining-equation-inverse-associator-map-tensor-product}
+    \tau_I \circ \kappa^{-1} = \lambda_{I,A}\circ (\tau_a)_{a\in A}
+  \end{equation}
+  for some uniquely defined multilinear map
+  $\lambda_{I,A} : \prod_{a\in A} N_a\to\bigotimes_{i\in I} M_i$.
+  Let
+  \[ \overline{\lambda}_{I,A} : \bigotimes_{a\in A} N_a\to\bigotimes_{i\in I} M_i\]
+  be the linearization of $\lambda_{I,A}$.
+  We claim that $\overline{\lambda_{I,A}}$ is inverse to $\alpha_{I,A}$.
+  By definition of $\overline{\lambda_{I,A}}$ and 
+  Eqs.~\eqref{eq:defining-equation-associator-map-tensor-product} and
+  \eqref{eq:defining-equation-inverse-associator-map-tensor-product} one concludes
+  %
+  \[
+    \overline{\lambda_{I,A}} \circ \alpha_{I,A} \circ \tau_I =
+    \overline{\lambda_{I,A}} \circ \tau_A \circ (\tau_a)_{a\in A} \circ \kappa_{I,A} =
+    \lambda_{I,A} \circ (\tau_a)_{a\in A} \circ \kappa_{I,A} = \tau_I \ . 
+  \]
+  Since the image of $\tau_I$ generates $\bigotimes_{i\in I} M_i$ as an $R$-module,
+  $\overline{\lambda_{I,A}}$ has to be left inverse to $\alpha_{I,A}$.
+  Using Eqs.~\eqref{eq:defining-equation-associator-map-tensor-product} and
+  \eqref{eq:defining-equation-inverse-associator-map-tensor-product} again compute
+  \[
+    \alpha_{I,A} \circ\overline{\lambda_{I,A}} \circ \tau_A \circ (\tau_a)_{a\in A} =
+    \alpha_{I,A} \circ \lambda_{I,A} \circ (\tau_a)_{a\in A} = \alpha_{I,A}\circ\tau_A\circ \kappa_{I,A}^{-1}
+    =  \tau_A \circ (\tau_a)_{a\in A} \ .    
+  \]
+  Since by \Cref{thm:image-generating-system-canoncial-map-finite-tensor-product-generating-system}
+  the image of
+  $\tau_A \circ (\tau_a)_{a\in A}$ generates $\bigotimes_{a \in A}  \bigotimes_{i \in I_a} M_i$,  the equality
+  \[ \alpha_{I,A} \circ\overline{\lambda_{I,A}}=\id_{\bigotimes_{a \in A}  \bigotimes_{i \in I_a} M_i} \]
+  follows and the proposition is proved.
+\end{proof}
+
+\begin{propanddef}
+  Let $(A_i)_{i\in I}$ be a family of $R$-algebras. Then the tensor product
+  $A = \bigotimes_{i\in I} A_i$ carries in a natural way the structure of an
+  $R$-algebra where the product map is defined by
+  \[
+    \cdot :  A \times A \to A , \enspace
+    (\otimes_{i\in I} a_i , \otimes_{i\in I} b_i)\mapsto
+    \otimes_{i\in I} (a_i\cdot b_i) \ .
+  \]
+  In case each of the algebras $A_i$ is commutative, then $A$ is commutative
+  as well.
+  Likewise, if each $A_i$ is unital and $1_i$ denotes the unit element of
+  $A_i$, then $A$ is unital with unit given by $1 = \otimes_{i\in I} 1_i$.
+  One calls $A$ the \emph{tensor product algebra} of the family of algebras
+  $(A_i)_{i\in I}$.
+\end{propanddef}
+
+\begin{proof}
+  The map
+  \[
+    \prod_{(i,k)\in I \times \{ 1,2\}} A_i \to A,\enspace
+    (a_{i,k})_{(i,k) \in I\times \{1,2\}} \mapsto\otimes_{i\in I}(a_{i,1}\cdot a_{i,2})
+  \]
+  is multilinear by bilinearity of the product maps on the $A_i$ and multilinearity of $\tau_I$,
+  so factors through a linear map
+  $\mu: A \otimes A \cong \bigotimes_{(i,k)\in I\times \{1,2\}} A_i \to A$. Composition of
+  $\mu$ with the canonical bilinear map $A \times A \to A\otimes A$ gives the product map
+  $\cdot : A \times A\to A$
+  and shows that the product on $A$ is well-defined. By construction, the product map $\cdot$
+  is bilinear. Given $\otimes_{i\in I} a_i, \otimes_{i\in I} b_i, \otimes_{i\in I} c_i \in A$ one
+  computes
+  \[
+    \big( \otimes_{i\in I} a_i \cdot \otimes_{i\in I} b_i \big) \cdot \otimes_{i\in I} c_i
+    = \otimes_{i\in I} ((a_i\cdot b_i)\cdot c_i) =
+    \otimes_{i\in I} (a_i\cdot( b_i\cdot c_i)) =
+    \otimes_{i\in I} a_i \cdot \big( \otimes_{i\in I} b_i  \cdot \otimes_{i\in I} c_i\big) \ .
+  \]
+  This entails that the product on $A$ is associative. In the same way one shows
+  that $A$ is commutive respectively unital if each of the $A_i$ is. 
+\end{proof}
+
+\para
+As we have seen, the infinite tensor product construction works well for objects of
+algebraic categories like $R$-modules, vector spaces or $R$-algebras. As soon as
+a topologies compatible with the algebraic structure come in it becomes difficult and
+sometimes even impossible to construct or even define 

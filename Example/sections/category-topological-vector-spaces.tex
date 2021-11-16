@@ -1,0 +1,870 @@
+% Copyright 2018 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{The category of topological vector spaces}
+\label{sec:vector-space-topologies-local-convexity}
+
+\subsec{Vector space topologies}
+%\para
+% Unless mentioned differently, $R$ will denote in this section a division
+% ring with a non-trivial absolute value $|\cdot|:R\to\R$.
+% By a vector space over $R$ we always mean a left $R$-module. 
+\begin{definition}
+  \label{def:topological-vector-space}
+   Let $R$ be a topological division ring. 
+   A topology $\topology$ on  a vector space  $\tvsE$  over $R$ 
+   is called a \emph{vector space topology} if the following axioms hold true:
+   \begin{axiomlist}[TVS]
+   \item\label{axiom:tvs-continuity-addition}
+     Addition $+ : \tvsE \times \tvsE \to \tvsE$ is continuous.
+   \item\label{axiom:tvs-continuity-multiplication-scalars} 
+     Multiplication by scalars  $\cdot : R \times \tvsE \to \tvsE$ is 
+     continuous.
+   \end{axiomlist}
+   The topology $\topology$ on $\tvsE$ is called \emph{translation invariant}
+   if for every $w\in \tvsE$ the linear map 
+   $\ell_{w} : \vectorspE \to \vectorspE$, $v\mapsto v +w$ is a homeomorphism.
+
+   A vector space  $\tvsE$ endowed with a vector space topology on it
+   is called a \emph{topological vector space} (\emph{over} $R$), for short a \tvs
+\end{definition}
+
+\begin{remark}
+  Let us recall at this point some notation from linear algebra. Assume that $\vectorspV$ is
+  a left vector space over the divison ring $R$.
+  If $A,B\subset \vectorspV$ are two non-empty subsets, then $A+B$ is
+  the set of all $v\in \vectorspV$ for which there exist $x\in A$ and $y\in B$ such that
+  $v = x+y$. If $A$ or $B$ is empty, then $A+B$ is defined as the empty set.
+  In case $A$ is a singleton that is if $A =\{x\}$, then we often write $x + B$ instead of
+  $\{x\} +B$. If $\mathscr{B} \subset \power{\vectorspV}$ is a non-empty set of subsets of $\vectorspV$,
+  then we denote by $A + \mathscr{B}$ and $x + \mathscr{B}$ the sets
+  $\{ A + B \in \power{\vectorspV} \mid  B \in  \mathscr{B}\} $ and
+  $\{ x + B \in \power{\vectorspV} \mid  B \in  \mathscr{B}\} $, respectively.
+  If $\mathscr{A} \subset \power{\vectorspV}$  is a  second non-empty set of subsets of $\vectorspV$,
+  then $\mathscr{A} + \mathscr{B}$ stands for the set of all sets of the form $A+B$, where
+  $A\in \mathscr{A}$ and $B\in \mathscr{B}$. 
+  
+  In case $C$ is a subset of the ground ring $R$, then $C \cdot A$ is defined as the set of all
+  $v\in \vectorspV$ for which there exist
+  $r\in C$ and $x\in A$ such that $v =r \cdot x$. If $r\in R$ we write $r\cdot A$
+  for $\{r\} \cdot A$. Likewise, if $x \in \vectorspV$, $C\cdot x$ stands for $C\cdot\{x\}$.
+  Analogously as for addition the sets $\mathscr{C}\cdot A$, $C\cdot \mathscr{A}$
+  and $\mathscr{C}\cdot \mathscr{A}$ are defined when  
+  $\mathscr{C} \subset \powerset{R}$ and $\mathscr{A} \subset \power{\vectorspV}$
+  are non-empty. 
+\end{remark}
+
+\begin{proposition}\label{thm:basic-properties-sets-maps-topological-vector-spaces}
+  Let $\vectorspE$ be a \tvs~over a topological division ring $R$.
+  Then the following holds true:
+  \begin{romanlist}
+  \item\label{ite:translated-homotheties-homeomorphisms}
+    For every $r\in R^\times$ and $w\in \vectorspE$ the homothety
+    $\ell_{r,w} : \vectorspE \to \vectorspE$, $v\mapsto rv +w$ is a homeomorphism
+    with inverse $\ell_{r^{-1},-r^{-1}w}$. 
+   \item\label{ite:translated-base}
+     Let $w$ be an element of $\vectorspE$ and $r\in R^\times$. 
+     A filter base $\base$ on $\vectorspE$ then is a filter base for the zero
+     neighborhoods if and only if  $w + r \base$ is a filter base for the
+     neighborhoods of $w$.
+   \item\label{ite:closure-terms-base}
+     If $\base$ is a filter base of the filter of zero neighborhoods, then 
+     the closure of any non-empty $A\subset \vectorspE$  is given by
+     \[
+       \closure{A} =\bigcap\limits_{U \in \base} A + U \ .
+     \]
+   \item\label{ite:sum-open}
+     Let $A\subset \vectorspE$ be open and $B\subset \vectorspE$. Then the set
+     $A+B$ is open.
+   \item\label{ite:sum-closed}
+     Let $A, B \subset \vectorspE$ be closed and assume that $A$ is quasi-compact
+     that is that any filter on $A$ has a cluster point.
+     Then the set $A+B$ is closed.
+   \item
+     The space  $\vectorspE$ is \ref{axiom:t3} or, equivalently, each point of $\vectorspE$ possesses a
+     neighborhood base consisting of closed subsets.
+  \end{romanlist}   
+  \end{proposition}
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    The homothety $\ell_{r,w}$ is continuous since addition and multiplication by a scalar
+    are continuous maps on a \tvs\ Since for all $v\in V$ 
+    \begin{align}
+      \nonumber
+      & \ell_{r^{-1},-r^{-1}w}\circ \ell_{r,w} (v) = r^{-1} (rv +w) - r^{-1}w = v, \text{ and}\\
+      \nonumber
+      & \ell_{r,w} \circ \ell_{r^{-1},-r^{-1}w} (v) = r (r^{-1}v  - r^{-1}w) + w = v
+    \end{align}
+    the homothety $\ell_{r,w}$  is invertible, and its inverse is $\ell_{r^{-1},-r^{-1}w}$.
+  \item
+    This follows since $\ell_{r,w}$ is a homeomorphism.   
+  \item
+     Let $B = \bigcap\limits_{U \in \base} A + U$. Let $v$ be an element of the closure of $A$.
+     Then, for $U \in \base$, there exists an element $a \in A \cap v - U$ by \ref{ite:translated-base}
+     and since $-U$ is a zero neighborhood. Hence $v \in a + U$, and $\closure{A} \subset B$ follows.
+     Now let $v \in B$ and $V$ be a neighborhood of $v$. Then there exists $U\in \base$ such that 
+     $v -U \subset V$. By definition of $B$ there exists an element $a\in A$ such that $v \in a + U$.
+     Hence $a \in v - U \subset V$ which implies that $v \in \closure{A}$.
+     So $B \subset \closure{A}$. 
+  \item
+    The set $A+B$ is either empty or coincides with the union $\bigcup_{v\in B} v + A$.
+    In the latter case, each of the sets  $v+ A$ is non-empty and
+    open by continuity of addition. So $A+B$ is open under the assumptions made.
+  \item
+    We can assume that $A$ and $B$ are non-empty because the claim is trivial otherwise.
+    Assume that $A+B$ is not closed. Then there exists an element $v \in \vectorspE \setminus (A+B) $
+    such that each neighborhood of $v$ meets $A+B$. This means in particular that
+    the restriction of the neighborhood filter $\nbhdfilter$ of $v$ to $A+B$ is a filter base.
+    Consequently, $(- B + \nbhdfilter)\cap A$ is a filter base on $A$, hence possesses an
+    accummulation point $x \in A$. For each neighborhood $V \in \nbhdfilter$ the point $x$ is then
+    contained in the closure of $-B +V$. Hence, by \ref{ite:closure-terms-base},
+    $x$ is contained in $v -B + U + U$ for every zero neighborhood $U$.
+    Since by continuity of addition $U + U$ runs through a base of zero neighborhoods when
+    $U$ runs through the zero neighborhoods,
+    $x \in v - \closure{B} = v -B$ follows. Since $x \in A$ this contradicts the assumption
+    $v \in A+B$ and $A+B$ has to be closed.
+  \item
+    Let $v \in \vectorspE$, $A\subset \vectorspE$ closed, and assume $v \notin A$.
+    Choose an open neighborhood $V$ of $v$ such that $V \cap A = \emptyset$. Then there
+    exists an open zero neighborhood $U$ such that $v + U + U \subset V$. By possibly passing to
+    $U \cap (-U)$ we can assume that $U = -U$. Now $v+U$ is an open neighborhood of $v$
+    and $A+U$ one of $A$. These neighborhoods are disjoint because if the intersection
+    $v+U \cap A+U$ is non-empty, then there exists an element $w \in v+U + U\cap A$ since
+    $-U =U$. This contradicts  $V \cap A = \emptyset$, so   $v+U$ and $A+U$ are disjoint neighborhoods
+    of $v$ and $A$, respectively. Hence $\vectorspE$ satisfies \ref{axiom:t3}.
+  \end{adromanlist}
+\end{proof}
+
+\begin{corollary}
+  Every vector space topology on a vector space over a topological division ring
+  is translation invariant.
+\end{corollary}
+
+\begin{proof}
+  This follows immediately by
+  \Cref{thm:basic-properties-sets-maps-topological-vector-spaces}
+  \ref{ite:translated-homotheties-homeomorphisms}.
+\end{proof}
+
+\begin{definition}
+  A subset $C$ of a  vector space  $\vectorspE$  over a valued division ring $(R,|\cdot|)$ is called
+  \begin{romanlist}
+  \item
+    \emph{symmetric} if $-v \in C$ for all $v\in C$,
+  \item
+    \emph{circled} or \emph{balanced} if $rv \in C$ for all $v\in C$ and $r\in R$ with $|r| \leq 1$.
+  \end{romanlist}
+\end{definition}
+
+\begin{remark}
+  Symmetry of a subset of a vector space of a division ring is even defined when the underlying division
+  ring does not carry an absolute value. 
+\end{remark}
+
+\begin{lemma}
+\label{thm:closure-interior-circled-set-circled}
+  Let $C$ be a subset of a topological vector space $\vectorspE$ over a
+  valued division ring $(R,|\cdot|)$ and $r\in R$.
+  \begin{romanlist}
+  \item\label{ite:interior-closure-symmetric-sets-symmetric}  
+    If $C$ is symmetric, then the closure $\closure{C}$ and the interior $\interior{C}$ are symmetric.  
+  \item\label{ite:interior-closure-circled-sets-circled}    
+    If $C$ is circled, then the closure $\closure{C}$ and  the union $\interior{C} \cup\{0\}$ are circled.
+  \item\label{ite:stretching-preserving-symmetric-circled-sets}  
+    The set $rC$ is symmetric (respectively circled) if $C$ has that property.  
+  \end{romanlist}
+\end{lemma}
+
+\begin{proof}
+  Without loss of generality we can assume $C \neq \emptyset$.
+  Claim \ref{ite:interior-closure-symmetric-sets-symmetric} then follows immediately since multiplication
+  by $-1$ is a homeomorphism. 
+  To prove  claim \ref{ite:interior-closure-circled-sets-circled} assume that $C$ is circled. 
+  Let $s\in R$ with $|s|\leq 1$. Assume $v \in \closure{C}$ and consider $sv$. We have to show
+  that $sv \in \closure{C}$. If $s=0$ then $sv =0\in C \subset \closure{C}$ since $C$ is circled.
+  So we can assume $s\neq 0$ and need to show that for every neighborhood $V$ of $sv$ the intersection
+  $C\cap V$ is non-empty. Since $|s|>0$, the homothety $\ell_s:\vectorspE\to \vectorspE$, $w\mapsto sw$ is a
+  homeomorphism with inverse
+  $\ell_{s^{-1}}$. Hence $s^{-1}V$ is a neighborhood of $v$. Since $v$ lies in the closure of $C$ 
+  there exists an element $w\in C\cap s^{-1}V$. Hence $sw \in C \cap V$ by assumption on $C$
+  and $\closure{C}$ is circled.
+
+  If $v \in \interior{C}\cup\{0\}$ then $0 = 0 \cdot v \in \interior{C}\cup\{0\}$. It remains to show that
+  $sv \in \interior{C}\cup\{0\}$ for $s\in R$ with $0 < |s|\leq 1$ and $v \in \interior{C} \setminus \{ 0\}$.
+  Under this assumption the homothety $\ell_s$ is a homeomorphism, so $s \interior{C}$ is an open subset
+  of $C$ since $C$ is circled. Hence $s v \in s \interior{C} \subset \interior{C}$, and  $\interior{C}\cup\{0\}$
+  is circled as well.
+
+  Claim \ref{ite:stretching-preserving-symmetric-circled-sets} follows immediately from the observation that
+  for  $v\in C$ and $s\in R$ the relation $srv \in rC$ holds true if $sv \in C$. 
+\end{proof}
+
+\begin{propanddef}\label{thm:symmetric-circled-hulls}
+  The intersection of a non-empty family $(C_i)_{i\in I}$ of symmetric (respectively circled) subsets $C_i \subset \vectorspE$, $i\in I$
+  of a topological vector space $\vectorspE$ over a valued division ring $(R,|\cdot|)$
+  is symmetric (respectively circled).
+  In particular, if $A \subset \vectorspE$ is a subset, then the sets
+  \[
+    \symHull A = \bigcap\limits_{A \subset B \subset \vectorspE \atop {B \text{ is symmetric}} }  B \quad \text{and} \quad
+    \circHull A = \bigcap\limits_{A \subset B \subset \vectorspE \atop {B \text{ is circled}} }  B 
+  \]
+  are symmetric and circled, respectively.   They have the property that
+  $\symHull A$ is the smallest symmetric and $\circHull A$ the smallest circled subsets of $\vectorspE$ containing $A$.
+  They are called the \emph{symmetric} and the \emph{circled hull} of $A$, respectively.
+  Analogously,
+  \[
+    \clsymHull A = \bigcap\limits_{A \subset B =\closure{B} \subset \vectorspE \atop {B \text{ is symmetric}} }  B \quad \text{and} \quad
+    \clcircHull A = \bigcap\limits_{A \subset B  =\closure{B}  \subset \vectorspE \atop {B \text{ is circled}} }  B 
+  \]
+  are called the \emph{closed symmetric} and the \emph{closed circled hull} of $A$, respectively.
+  They have the property that $\clsymHull A$ is the smallest closed symmetric and $\clcircHull A$ the smallest closed
+  circled subset of $\vectorspE$ containing $A$.
+\end{propanddef}
+\begin{proof}
+  Note first that all the hulls in the proposition are well-defined since $\vectorspE$ is
+  closed and circled. 
+  Let $C$ denote the intersection of the family $(C_i)_{i\in I}$. Assume that for some $r\in R$ with $|r|\leq 1$
+  the inclusion $rC_i \subset C$ holds true for all  $i\in I$. Then $rC \subset C$, hence if all
+  $C_i$ are symmetric (respectively circled), so is $C$.
+  This observation now entails that $\symHull A$ is symmetric, $\circHull$ is circled, $\clsymHull A$ is closed
+  and symmetric, and finally that $\clcircHull A$ is closed and circled. Moreover, all those sets contain $A$.
+  The minimality properties of these sets are clear by construction.  
+\end{proof}
+
+\begin{remark}
+  Observe that by the proposition $A$ is symmetric if and only if $\symHull A = A$ and
+  circled if and only if $\circHull A = A$. Analogously,
+  $\clsymHull A = A$ if and only if $A$ is closed symmetric and
+  $\clcircHull A = A$ if and only if $A$ is closed and circled. 
+\end{remark}
+
+
+\begin{lemma}
+  Let $\vectorspE$ be a topological vector space over the valued division ring $(R,|\cdot|)$
+  and $A \subset \vectorspE$ non-empty. Then
+  \[
+    \symHull A = A \cup -A  \quad \text{and} \quad \circHull A = \bigcup_{r\in R, \: |r|\leq 1} r A \ .
+  \]
+  For the closed hulls one has  
+  \[
+    \clsymHull A = \overline{\symHull A} \quad \text{and} \quad \clcircHull A = \overline{\circHull A} \ .
+  \]
+\end{lemma}
+
+\begin{proof}
+  Since $A \cup -A$ is symmetric by definition, contains $A$, and is contained in
+  $\symHull A$, the equality $\symHull A = A \cup -A$ holds true.
+  Similarly, $\bigcup_{r\in R, \: |r|\leq 1} r A$ is circled by definition, contains $A$, and is contained
+  in $\circHull A$ by definition of the circled hull. Hence $ \circHull A = \bigcup_{r\in R, \: |r|\leq 1} r A $.
+  The remainder of the claim follows from \Cref{thm:closure-interior-circled-set-circled}.
+\end{proof}
+
+\begin{definition}
+  Assume that $B,C$ are subsets of a vector space $\vectorspE$ over the valued division ring
+  $(R,|\cdot|)$. Then one says that 
+  \begin{romanlist}
+  \item
+   $C$  \emph{absorbes} $B$ if  there exists a real number $t \in \R_{\geq 0}$ 
+   such that $B \subset rC$ for all $r\in R$ with $|r| \geq t$,
+  \item
+   $C$ is  \emph{absorbing} or \emph{absorbent} 
+   if $C$ absorbes every one-point set of $\tvsE$ that is if for every 
+   $v\in \vectorspE$ there exists $t \in \R_{\geq 0}$ such that 
+   $v \in rC$ for all $r\in R$ with $|r| \geq t$.
+ \end{romanlist}
+ 
+  If the vector space $\vectorspE$ carries in addition a vector space topology, then one says that
+  \begin{romanlist}
+  \setcounter{enumi}{2}  
+  \item
+    the subset $B \subset \vectorspE$ is \emph{bounded} if it is absorbed by
+    every zero neighborhood. 
+  \end{romanlist}
+\end{definition}
+
+\begin{lemma}\label{thm:intersection-scalar-multiples-absorbing-sets-absorbing}
+  Let $\vectorspE$ be a vector space over the valued division
+  ring $(R,|\cdot|)$. Then the following holds true.
+  \begin{romanlist}
+  \item\label{ite:intersection-absorbing-sets-absorbing}
+    If $C_1,\ldots,C_n$ are absorbing subset of $\vectorspE$, then the intersection
+    $C_1\cap\ldots \cap C_n$ is absorbing.
+  \item\label{ite:scalar-multiple-absorbing-set-absorbing}
+    If $C$ is an absorbing subset of $\vectorspE$, then $rC$ is absorbing for every
+    $r\in R^\times$.
+  \end{romanlist} 
+\end{lemma}
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    Let $v\in\vectorspE$ and choose $t_1,\ldots,t_n\in \R_{\geq 0}$ such that
+    $v \in rC_i$ for $|r|\geq t_i$. Put $t = \max \{ t_1,\ldots , t_n\}$.
+    Then $v \in r (C_1\cap\ldots \cap C_n)$ for $|r|\geq t$, hence $C_1\cap\ldots \cap C_n$ is absorbing.
+  \item  
+    Choose $t\in \R_{\geq 0}$ such that  $v \in sC$ for all $s\in R$ with $|s|\geq t$.
+    Then one has $|sr| \geq t$ for all $s\in R$ with $|s|\geq \frac{t}{|r|}$, hence $v \in s (rC)$
+    for all such $s$. Therefore $rC$ is absorbing. 
+  \end{adromanlist}
+\end{proof}
+
+\begin{proposition}\label{thm:topological-vector-space-zero-neighborhood-filter-base-circled-absorbing}
+  The filter of zero neighborhoods of a topological vector space $\tvsE$ over
+  $(R,|\cdot|)$ has a filter base $\base$ with the following properties:
+  \begin{romanlist}
+  \item\label{ite:tvs-base-element-containing-sum-base-elements}
+    For each $V \in \base$ there exists $U\in\base$ such that $U+U \subset V$.
+  \item\label{ite:tvs-base-elements-circled-balanced}
+    Every element $V\in \base$ is circled and absorbing.
+  \item\label{ite:tvs-base-element-containing-shrunk-base-element}
+    There exists an element $r\in R^\times$ with $0< |r| < 1$ such that $V\in \base$ implies
+    $rV \in \base$. 
+  \end{romanlist}
+  Conversely, if  $\base$ is a filter base on an $R$-vector space $\vectorspE$ such that 
+  \ref{ite:tvs-base-element-containing-sum-base-elements} to \ref{ite:tvs-base-element-containing-shrunk-base-element}
+  hold true, then there exists a unique vector space topology on $\vectorspE$  such that $\base$ is a neighborhood base
+  at the origin.  In case the ground ring $R$ is archimedean, a filter base on $\vectorspE$ which satisfies
+  \ref{ite:tvs-base-element-containing-sum-base-elements} and \ref{ite:tvs-base-elements-circled-balanced}
+  already induces a unique vector space topology having $\base$ as a neighborhood base
+  at $0$.
+  In either of these two cases, the thus constructed topology coincides with the coarsest translation invariant topology for which $\base$ is a set of zero neighborhoods.
+\end{proposition}
+
+\begin{proof}
+  Assume that $\vectorspE$ is a  \tvs\  Let $\base$ be the set of circled neighborhoods of $0$. We show first that
+  $\base$ is a base of the filter $\nbhds_0$ of zero neighborhoods. Let $W \in \nbhds_0$. 
+  By Axiom \ref{axiom:tvs-continuity-multiplication-scalars} there exists an $\varepsilon >0$ and an open
+  zero neighborhood $U$ such that $sU \subset W$ for all $s\in R$ with $|s|<\varepsilon$.
+  Then $V = \bigcup\limits_{s\in R^\times \:\&\: |s|<\varepsilon} sU $ is a zero neighborhood since
+  by \Cref{thm:zero-neighborhood-topological-division-ring-infinite} the set of $s\in R^\times$
+  with $|s|<\varepsilon$ is non-empty. By construction $V$ is contained in $W$ and circled, so $V \in \base$.
+  Hence $\base$ is a filter base of $\nbhds_0$.
+
+  Next recall that  there exists $r\in R^\times$ with $0<|r|<1$ since the absolute value $|\cdot|$ is non-trivial.
+  Let $V\in \base$. Then $sV\subset V$ for all $s\in R$ with $|s|\leq 1$ which entails $srV \subset rV$ for all
+  such $s$. Hence $rV$ is circled and an element of $\base$ as well. This proves
+  \ref{ite:tvs-base-element-containing-shrunk-base-element}.
+  Since addition on $\vectorspE$ is continuous, there exist for given $V\in \base$ open neighborhoods
+  $U_1,U_2$ of the origin such that $U_1+U_2\subset V$. Choose $U\in \base$ such that $U \subset U_1 \cap U_2$.
+  Then $U + U \subset V$ and \ref{ite:tvs-base-element-containing-sum-base-elements} is proved.
+  To show that any $V\in\base$ is absorbing let $v\in \vectorspE$. By continuity of scalar multiplication
+  there exists $\varepsilon >0$  such that $sv \in V $ for all $s\in R$ with $|s|<\varepsilon$.
+  By \Cref{thm:basic-properties-sets-maps-topological-vector-spaces} \ref{ite:translated-homotheties-homeomorphisms}
+  this entails $v \in sV $ for all $s\in R$ with $|s|>\varepsilon$ and $V$ is absorbing. 
+
+  Now assume that $\vectorspE$ is an $R$-vector space and that $\base$ is a filter base that satisfies
+  \ref{ite:tvs-base-element-containing-sum-base-elements}, \ref{ite:tvs-base-elements-circled-balanced} and,
+  if $|\cdot|$ is non-archimedean, \ref{ite:tvs-base-element-containing-shrunk-base-element}.
+  Since $\base$ consists of non-empty circled sets, $0\in V$ for all $V\in\base$. Let
+  $\topology \subset \powerset{\vectorspE}$ be the set of all $U\subset \vectorspE$ such that
+  for each $v\in U$ there exists $V\in \base$ with $v+V \subset U$. By definition and since $\base$ is a
+  filter base, $\topology$ is a topology on $\vectorspE$.
+  By construction, $\topology$ is also the coarsest translation invariant topology for which $\base$ is a set of zero neighborhoods. We show that $\base$ is a base of the filter
+  $\nbhds_0$ of zero neighborhoods. By definition of $\topology$ there exists for each $U \in \nbhds_0$
+  a $V\in \base$ such that $V\subset U$. So it remains to show that each $V\in \base$ is a zero neighborhood.
+  To this end let $U$ be the set of all $v\in V$ for which there exists
+  a $W\in \base$ with $v + W \subset V$. Since $0 +V \subset V$ one has $0\in U$. The relation 
+  $U \subset V$ holds because  $0\in W$ for all $W\in \base$.  Now let $v \in U$.
+  By \ref{ite:tvs-base-element-containing-sum-base-elements} there exists $W^\prime$ such that 
+  $v + W^\prime + W^\prime \subset V$ which entails $v + W^\prime \subset U$. Hence $U\in\topology$
+  and $V$ is a zero neighborhood. 
+  Next we verify that $\topology$ is a vector space topology. We start with continuity of addition.   
+  Let $W$ be an open neighborhood of $v+w$, where $v,w\in \vectorspE$. Then there exists $V\in \base$ such that
+  $v+w + V \subset W$. Choose $U\in \base $ such that $U+U \subset V$. Then  
+  $v+U$ and $w +U$ are neighborhoods of $v$ and $w$, respectively, and $(v+U) + (w +U) \subset v+w +V\subset W$.
+  So addition is continuous. We continue with scalar multiplication. Let $W$ be an open neighborhood of $rv$,
+  where $r\in R$ and $v\in \vectorspE$. Then there exists $V \in \base $ such that $rv + V + V \subset W$.
+  Since $V$ is absorbing by \ref{ite:tvs-base-elements-circled-balanced} there exists $\varepsilon >0$ such that
+  $ (s-r)v \in V$ for all $s\in R$ with  $|s-r| < \varepsilon$. Now if $|\cdot|$ is non-archimedean
+  choose $t\in R^\times$ according to \ref{ite:tvs-base-element-containing-shrunk-base-element}, 
+  and put $V_n = t^n V$ for all $n\in\N$.
+  In the archimedean case let $t = \frac 12$ and use \ref{ite:tvs-base-element-containing-sum-base-elements} to construct
+  recursively a sequence $(V_n)_{n\in \N }$ of elements of $\base$ such that
+  $2^nV_n = V_n + \ldots + V_n \subset V$, where the sum has $2^n$ summands. In either of these cases, choose 
+  $N\in \N$ large enough so that $|t|^N < \frac{1}{|r| + \varepsilon}$. Then $V_N \in \base$
+  and $v + V_N$ is a neighborhood of $v$. Moreover, for $w \in v + V_N$ there exists an element
+  $x\in V$ such that $w-v = t^N x$. Then the relation
+  $s (w-v) = s t^N x \in V $ holds whenever $|s-r| < \varepsilon$ since $V_N$ is circled. Hence for such $w$ and $s$
+  \[
+     sw = rv + s (w-v) + (s-r)v \in  rv + V + V \subset W \ . 
+  \]
+  This means that scalar multiplication is continuous, and the proof is finished. 
+\end{proof}
+
+\subsec{Morphisms of topological vector spaces}
+\begin{definition}
+  By a \emph{morphism} of topological vector spaces over the topological division
+  ring $R$  one understands  a continuous $R$-linear map $f:\vectorspE \to\vectorspF$
+  between two topological vector spaces $\vectorspE$ and $\vectorspF$
+  over $R$. The space of morphisms between $\vectorspE$ and $\vectorspF$ will be denoted
+  $\Hom_{R\text{-}\category{TVS}} (\vectorspE,\vectorspF)$ or just
+  $\Hom_R (\vectorspE,\vectorspF)$ or $\Hom (\vectorspE,\vectorspF)$
+  if now confusion can arrise. 
+\end{definition}
+
+\begin{theorem}
+  The topological vector spaces over a topological division ring $R$ as objects together 
+  with their morphisms form an additive category which we denote by  $R\hyphen\category{TVS}$.
+  More precisely, $R\hyphen\category{TVS}$ is a category enriched over the category of
+  $R$-vector spaces where addition and scalar multiplication on the hom-spaces
+  $\Hom (\vectorspE,\vectorspF)$  are given by
+  \begin{align}
+  \nonumber  
+    +:&\:\Hom (\vectorspE,\vectorspF) \times \Hom (\vectorspE,\vectorspF) \to \Hom (\vectorspE,\vectorspF),\:
+        (f,g) \mapsto f+g = \left(\vectorspE \ni v \mapsto f(v)+g(v)\in \vectorspF\right)\ , \\ \nonumber
+    \cdot:&\:R  \times \Hom (\vectorspE,\vectorspF) \to \Hom (\vectorspE,\vectorspF),\:
+        (r,f) \mapsto r \cdot f = \left(\vectorspE \ni v \mapsto r \cdot f(v) \in \vectorspF\right) \ .
+  \end{align}
+\end{theorem}
+
+\begin{proof}
+  Observe first that the identity map $\id_\vectorspE$ on a topological vector space $\vectorspE$
+  is linear and continuous and so is the composition $g\circ f$ of two
+  morphisms of topological vector spaces $f:\vectorspE \to\vectorspF$ and
+  $g:\vectorspF \to\vectorspG$. Hence topological vector spaces over $R$ together with linear
+  and continuous maps between them form a category.
+
+  Next check that the hom-space $\Hom (\vectorspE,\vectorspF)$ is an abelian group.
+  Associativity and commutativity of addition
+  follow from the respective properties on $\vectorspF$. The zero element is the constant map
+  $\vectorspE \to\vectorspF$, $v \mapsto 0$ and the inverse of a morphism $f:\vectorspE \to\vectorspF$
+  is given by $-f:\vectorspE \to\vectorspF$,  $v \mapsto -f(v)$.
+  Similarly one checks that multiplication by scalars on $\Hom (\vectorspE,\vectorspF)$ is associative
+  and distributes from the left and from the right over addition since scalar multiplication on
+  $\vectorspF$ has these properties. Finally, the unit of $R$ acts as identity on
+  $\Hom (\vectorspE,\vectorspF)$ since it does so  on  $\vectorspF$. Hence $\Hom (\vectorspE,\vectorspF)$
+  carries the structure of an $R$ left vector space.
+
+  Composition of morphisms
+  $\Hom (\vectorspE,\vectorspF) \times \Hom (\vectorspF,\vectorspG) \to \Hom (\vectorspE,\vectorspG)$,
+  $(f,g)\to g \circ f $ is an $R$-bilinear map as the following equalities for 
+  $f,f_1,f_2\in \Hom (\vectorspE,\vectorspF)$, $g,g_1,g_2 \in \Hom (\vectorspF,\vectorspG)$,
+  $r\in R$, and $v\in \vectorspE$ show:
+  \begin{align}
+    \nonumber
+    &(f \circ (g_1+g_2)) (v) = f( (g_1+g_2) (v) ) = f( g_1(v) +g_2(v) ) = \\ \nonumber
+    & \quad = f\circ g_1(v) + f\circ g_2(v) =  (f\circ g_1+ f\circ g_2) (v)\ , \\ \nonumber
+    &(f \circ (r g)) (v) = f( (rg) (v) ) = f(r g(v))  = r f( g(v)) =  (r(f\circ g)) (v)\ ,  \\ \nonumber
+    &((f_1+f_2) \circ g) (v) = (f_1+f_2) ( g (v)) = f_1(g(v)) + f_2 (g(v)) = \\ \nonumber
+    & \quad = f_1\circ g(v) + f_2\circ g(v) =  (f_1\circ g+ f_2\circ g) (v)\ , \\ \nonumber
+    &((rf) \circ g) (v) = (rf)( g (v)) = r (f(g(v)))  = r (f \circ g (v)) =  (r(f\circ g)) (v) \ .
+  \end{align}
+  Hence $R\hyphen\category{TVS}$ is a category enriched over the category of $R$-vector spaces.
+  In particular,  $R\hyphen\category{TVS}$ then is an additive category. 
+\end{proof}
+
+\begin{example}
+  For every \tvs~$\vectorspE$ and non-zero element $t$ of the ground ring $R$ the
+  map $\ell_t :\vectorspE \to \vectorspE$, $v \mapsto tv$ is an isomorphism of topological vector spaces
+  by \Cref{thm:basic-properties-sets-maps-topological-vector-spaces} \ref{ite:translated-homotheties-homeomorphisms}.
+\end{example}
+
+\begin{propanddef}
+  A linear map $f: \vectorspE \to \vectorspF$ between topological
+  vector spaces over a valued division ring $(R,|\cdot|)$
+  maps symmetric sets to symmetric sets and  circled sets to circled sets.
+  If in addition $f$ is continuous, then $f$ is \emph{bounded} that means
+  it  maps bounded subsets of $\vectorspE$ to bounded subsets of
+  $\vectorspF$.   
+\end{propanddef}
+
+\begin{proof}
+  Since by linearity $f(tv) = t f(v)$ for all $v\in \vectorspE$ and $t\in R$,
+  $f (C)$ is symmetric (respectively circled) if the subset $C\subset \vectorspE$ is.
+
+  To verify the second claim let $B\subset \vectorspE$ be bounded and
+  $V\subset \vectorspF$ a zero neighborhood. Then $f^{-1} (V)$ is a zero neighborhood
+  in $\vectorspE$ by continuity of $f$. Hence there exists an $r\in \R_{\geq 0}$
+  such that $B \subset tf^{-1} (V)  $ for all $t\in R$ with $|t|\geq r$. By linearity
+  of $f$ one obtains $f(B) \subset tV$ for all such $t$, so $f$ is bounded. 
+\end{proof}
+
+\begin{remark}
+  By the proposition continuity of a linear map between topological vector spaces
+  implies the map to be bounded. As we will see later in this monograph,
+  the converse does in general not hold true unless the underlying
+  topological vector spaces are for example normable. 
+\end{remark}
+
+\subsec{Normed real division algebras and local convexity}
+
+\para
+The major class of topological divison rings over which topological vector spaces are defined
+is formed by valued division rings $(R,|\cdot|)$ which carry the structure of an
+$\R$-algebra such that for all $r\in \R$ and $x\in R$ the equality
+\[
+         | rx | = |r|_\infty\cdot |x| 
+\]
+holds true. We will therefore given them a particular name and call them
+\emph{normed real division algebras}. Note that the field of real numbers can be  embedded into
+a normed real division algebra $R$ by the natural map $ \R \mapsto R$, $r \mapsto r\cdot 1$.  
+Since $\R$ with its standard absolute value is archimedean, so is every normed real division algebra.
+By the Frobenius theorem, \cite{FroLSBF}, there exist only three finite dimensional real division algebras,
+namely the field of real numbers $\R$, the field of complex numbers $\C$, and the quaternions $\H$. 
+
+\begin{definition}
+  Under the assumption that $R$ is a normed real division algebra one calls a subset $C\subset \vectorspE$ of an $R$-vector space
+  \begin{romanlist}
+  \item
+    \emph{convex} if $tv + (1-t)w \in C$ for all $v,w \in C$ and $t \in \R$ with $0\leq t \leq 1$,
+  \item
+    \emph{absolutely convex} if $rv + sw \in C$ for all $v,w \in C$ and $r,s \in R$ such that
+     $|r|+|s|\leq 1$, 
+  \item 
+     a \emph{cone} if $tv \in C$ for all $v\in C$ and $t \in \R$ with $0\leq t \leq 1$. 
+  \end{romanlist}
+\end{definition}
+
+\begin{lemma}
+  Let $R$ be a normed real division algebra. A subset $C$ of an
+  $R$-vector space $\vectorspE$ then is  absolutely convex if and only
+  if it is circled and convex.  
+\end{lemma}
+
+\begin{proof}
+   The claim is trivial when $C=\emptyset$, so we  assume that $C$ is nonempty. 
+
+   Let $C$ be absolutely convex. Since $C$ contains at least one element $v$ 
+   one has $0 = 0 \cdot v + 0 \cdot v \in C$. Hence 
+   $ rv =  (1-|r|) \cdot 0  + r v \in C$ for all $v\in C$ and $r\in R$ with $|r|\leq 1$.
+   So $C$ is circled. By definition of absolute convexity $C$ is convex.
+
+   If $C$ is circled and convex, then it contains with elements $v,w$ also $r v + s w$ 
+   if $|r| + |s|\leq 1$. To see this observe first that $\varrho v \in C$ and $\sigma w \in C$  
+   where the elements $\varrho,\sigma \in R $ have been chosen so that 
+   $|\varrho|=|\sigma|=1$, $r = |r|  \cdot\varrho$ and $s = |s|  \cdot\sigma$. Now if $|r| + |s| =0$, then
+   $r v + s w = 0 \in C$ since $C$ is circled. If $|r| + |s| > 0$, then
+   \[
+    r v + s w = 
+    (|r| + |s|) \left( \frac{|r|}{|r|+|s|} \varrho v  +  \frac{|s|}{|r|+|s|} \sigma w\right) \in C
+   \]
+   since $C$ is convex and circled. Hence $C$ is absolutely convex.
+\end{proof}
+
+\begin{lemma}
+  A linear map $f:\vectorspE \to \vectorspF$ between vector spaces over a normed
+  real divison algebra $R$ maps convex sets to convex sets,
+  absolutely convex sets to absolutely convex sets, and cones to cones.
+\end{lemma}
+
+\begin{proof}
+  This an immediate consequence of the linearity of $f$.
+\end{proof}
+
+\begin{lemma}
+\label{thm:closure-interior-convex-set-convex}
+  Let $\vectorspE$ be a \tvs~over a normed real division algebra $R$, let $C,D \subset \vectorspE$ be convex 
+  and $r \in R$. Then the following holds true.
+  \begin{romanlist}
+  \item\label{ite:closure-interior-convex-set-convex}
+    The closure $\closure{C}$ and the interior $\interior{C}$ are convex.
+  \item\label{ite:sum-multiple-convex-set-convex}
+    The sets $C + D$ and $rC$ are convex.
+  \item
+    If $C$ is absolutely convex, then so are $\closure{C}$  and $\interior{C}$.
+  \item
+    If $C$ is absolutely convex, then so is $rC$ for each $r \in R^\times$. 
+  \end{romanlist} 
+\end{lemma}
+
+\begin{proof}
+  We consider only the cases $C,D\neq \emptyset$ because otherwise the claim is trivial.
+  \begin{adromanlist}
+  \item
+    Let $t\in \openint{0,1}$. Then $t \closure{C} + (1-t)\closure{C} \subset \closure{C} $
+    by continuity of the map $\vectorspE \times \vectorspE \to \vectorspE$, $(v,w) \mapsto tv +(1-t)w$. 
+    Hence $\closure{C}$ is convex. Now let $v,w$ be points of the interior of $C$ and $ z =tv + (1-t)w$.
+    Then $z\in C$, and there exists a zero neighborhood $U$ such that $v+U \subset C$ and $w+U\subset C$. 
+    Let $u\in U$ and compute
+    \[
+       z + u = tv + (1-t)w + tu + (1-t)u = t(v+u) +  (1-t)(w+u) \ .
+    \]
+    Since both $v+u$ and $w+u$ are elements of $C$ so is $z+u$ by convexity of $C$.
+    Hence $z +U \subset C$ and $z$ lies in the interior of $C$.  
+  \item
+    If $v,w \in C$, $x,y\in D$ and $t\in \openint{0,1}$, then by convexity of $C$ and $D$
+    \[
+       t(v+x) + (1-t) (w+y) = \big( tv +(1-t) w \big) +  \big( tx +(1-t) y  \big) \in C + D \ . 
+    \]
+    Hence  $C+D$ is convex. Similarly,
+    \[
+       t (rv) + (1-t) (rw) = r \big(  t v + (1-t) w \big) \in r C \ ,
+    \]
+    so $rC$ is convex as well.
+  \item
+    Let $C$ be absolutely convex. If $\interior{C}\neq \emptyset$, then
+    $0\in \frac 12 \interior{C} - \frac 12 \interior{C} \subset C$, hence $0 \in \interior{C}$.
+    By \Cref{thm:closure-interior-circled-set-circled} and
+    \ref{ite:closure-interior-convex-set-convex}
+    the claim now follows.
+  \item
+    By \ref{ite:sum-multiple-convex-set-convex}, $rC$ is convex, so it remains to show
+    that $rC$ is circled. Assume that $v\in rC$. Then $v = rw$ for a unique $w\in C$.
+    Since $C$ is circled, $tw\in C$ for every $t\in R$ with $|t|\leq 1$.
+    Hence $tv = r (tw) \in rC$ for such $t$ and $rC$ is circled.
+  \end{adromanlist} 
+\end{proof}
+
+\begin{propanddef}\label{thm:absolutely-convex-hulls}
+  The intersection of a non-empty family $(C_i)_{i\in I}$ of convex (respectively absolutely convex) subsets
+  $C_i \subset \vectorspE$, $i\in I$ of a topological vector space $\vectorspE$ over a normed real division algebra $R$
+  is convex (respectively absolutely convex).
+  In particular, if $A \subset \vectorspE$ is a subset, then the sets
+  \[
+    \convHull A = \bigcap\limits_{A \subset B \subset \vectorspE \atop {B \text{ is convex}} }  B \quad \text{and} \quad
+    \absconvHull A = \bigcap\limits_{A \subset B \subset \vectorspE \atop {B \text{ is absolutely convex}} }  B
+  \]
+  are convex and absolutely convex, respectively. The set $\convHull A$ is called the \emph{convex hull} of $A$
+  and is the smallest convex set containing $A$. Similarly, $\absconvHull A$ is the smallest absolutely convex set
+  containing $A$. It is called the  \emph{absolutely convex hull} of $A$.
+  The \emph{closed convex hull} $\clconvHull A$ and the \emph{closed absolutely convex hull} $\clabsconvHull A$
+  of $A$ are defined by  
+  \[
+    \clconvHull A = \bigcap\limits_{A \subset B = \closure{B} \subset \vectorspE \atop {B \text{ is convex}} }  B
+    \quad \text{and} \quad
+    \clabsconvHull A = \bigcap\limits_{A \subset B = \closure{B} \subset \vectorspE \atop {B \text{ is absolutely convex}} }  B \ .
+  \]
+  These sets have the property that $\clconvHull A$ is the smallest closed convex subset
+  and $\clabsconvHull A$ the smallest closed absolutely convex subset of $\vectorspE$ containing $A$.
+\end{propanddef}
+
+\begin{proof}
+  Let $C$ be the intersection $\bigcap\limits_{i\in I} C_i$ and assume that each $C_i$ is absolutely convex.
+  Let $v,w\in C$ and $r,s \in R$ with $|r|+|s|\leq 1$. Then $v,w\in C_i$, hence  $rv + sw \in C_i$ for all $i\in I$. Therefore
+  $rv +sw \in C$ and $C$ is absolutely convex. This argument also shows that $C$ is convex if all $C_i$ are convex.
+  The rest of the claim follows as in the proof  of \Cref{thm:symmetric-circled-hulls}.
+\end{proof}
+
+\begin{remark}
+  The proposition in particular entails that $A$ is convex if and only if $\convHull A = A$ and
+  absolutely convex if and only if $\absconvHull A = A$. Analogously,
+  $\clconvHull A = A$ if and only if $A$ is closed and convex,
+  and $\clabsconvHull A = A$ if and only if $A$ is closed and absolutely convex. 
+\end{remark}
+
+\begin{lemma}\label{thm:representation-convex-absolutely-convex-hulls-closures}
+  Let $A \subset \vectorspE$ be a non-empty subset of a \tvs~$\vectorspE$
+  over a normed real division algebra $R$. Then
+  \begin{align}
+    \label{eq:convex-hull-expression}
+    & \convHull A  = \left\{ \sum_{i=1}^k t_i v_i\in
+    \vectorspE \bigmid k \in \gzN,\: v_1,\ldots v_k\in A,\: t_1\ldots ,t_k \in \R_{\geq 0}, \: \sum_{i=1}^k t_i = 1 \right\} 
+      \ , \\
+    \label{eq:absolutely-convex-hull-expression}
+    & \absconvHull A  = \left\{ \sum_{i=1}^k r_i v_i\in
+    \vectorspE \bigmid k \in \gzN,\: v_1,\ldots v_k\in A,\: r_1\ldots ,r_k \in R, \: \sum_{i=1}^k |r_i| \leq 1 \right\}
+    \ .   
+  \end{align}
+  For the closed hulls one has  
+  \[
+    \clconvHull A = \overline{\convHull A} \quad \text{and} \quad \clabsconvHull A = \overline{\absconvHull A} \ .
+  \]
+  Finally, if $A$ is circled, then
+  \[
+     \absconvHull A = \convHull A  \ .
+  \]
+\end{lemma}
+
+\begin{proof}
+  By definition, the right hand side of Eq.~\eqref{eq:convex-hull-expression} is convex and contains $A$,
+  hence it contains $\convHull A$. Conversely, one shows by induction on $k\in \gzN$ and convexity of $\convHull A$
+  that each element of the form $\sum_{i=1}^k t_i v_i$ with $v_1,\ldots , v_k\in A$ and
+  $t_1,\ldots ,t_k \in \R_{\geq 0}$  such that $\sum_{i=1}^k t_i = 1$ is in  $\convHull A$. This proves
+  Eq.~\eqref{eq:convex-hull-expression}.
+  The proof of Eq.~\eqref{eq:absolutely-convex-hull-expression} is similar. Observe that the right hand side of
+  Eq.~\eqref{eq:absolutely-convex-hull-expression} is absolutely convex and contains $A$.
+  Hence it contains $\absconvHull A$. An argument using induction on $k\in \gzN$ and absolute convexity of
+  $\absconvHull A$ shows that each element of the form $\sum_{i=1}^k r_i v_i$ with $v_1,\ldots v_k\in A$ and
+  $r_1\ldots ,r_k \in R$  such that $\sum_{i=1}^k |r_i| \leq 1$ is in  $\convHull A$.
+  So Eq.~\eqref{eq:absolutely-convex-hull-expression} holds true as well. 
+  The claim about the closed hulls is a consequence of \Cref{thm:closure-interior-convex-set-convex}.
+  For the proof of the last claim it suffices to show that $\convHull A$ is circled if $A$ is.
+  To this end let $v \in \convHull A$  and $r\in R$ with $|r|\leq 1$. Then
+  one can write $v$ in the form $v = \sum_{i=1}^k t_i v_i$ with
+  $v_1,\ldots, v_k\in A$ and $t_1, \ldots ,t_k \in \R_{\geq 0}$, where $\sum_{i=1}^k t_i = 1$.
+  Hence $rv =  \sum_{i=1}^k t_i (rv_i)$, which is in $\convHull A$, since $rv_i\in A$ for all $i$ because
+  $A$ is circled. 
+\end{proof}
+
+\begin{lemma}\label{thm:weighted-sum-convex-absolutely-convex-sets}
+  Let $A \subset \vectorspE$ be a non-empty subset of a \tvs~$\vectorspE$
+  over a normed real division algebra $R$. 
+  \begin{romanlist}
+  \item\label{ite:weighted-sum-convex-sets}
+    If $A$ is convex and $t_1,\ldots, t_k\in \R_{\geq 0}$ with $k\in \gzN$, then
+    \[
+       \sum_{i=1}^k t_iA = \left( \sum_{i=1}^k t_i \right) A \ .
+    \]
+  \item
+    If $A$ is absolutely convex and $r_1,\ldots, r_k\in R$ with $k\in \gzN$, then
+    \[
+       \sum_{i=1}^k r_iA = \left( \sum_{i=1}^k |r_i| \right) A \ .
+    \]   
+  \end{romanlist}
+\end{lemma}
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    Obviously $\sum_{i=1}^k t_iA \supset \left( \sum_{i=1}^k t_i \right) A$.
+    Let us show the converse  inclusion. Without loss of generality we can
+    assume that $t_i > 0$ for all $i$. Then $t = \sum_{i=1}^k t_i >0$,
+    so, after division by $t$, we can reduce the claim to showing that
+    $\sum_{i=1}^k t_iA \subset A$ for $t_1,\ldots , t_k\in \R_{>0}$ such that
+    $\sum_{i=1}^k t_i =1$.
+    But $\sum_{i=1}^k t_iA \subset \convHull A = A$ by
+    \Cref{thm:representation-convex-absolutely-convex-hulls-closures} and
+    convexity of $A$. 
+  \item
+    Since by absolute convexity $r_i A = |r_i|A$ for $i=1,\ldots,k$, the claim
+    follows from \ref{ite:weighted-sum-convex-sets}.
+  \end{adromanlist}
+\end{proof}
+
+\begin{lemma}\label{thm:real-absorbance-implies-arbsorbance-finite-dimensional-divison-algebra}
+  Let $\fldK$ be one of the division rings $\C$ or $\H$ with their standard absolute values
+  and let $\vectorspE$ be a vector space over $\fldK$. Then a convex subset $C\subset \vectorspE$ is
+  absorbent in $\vectorspE$ if and only if it is absorbent in the realification $\vectorspE^\R$.
+\end{lemma}
+
+\begin{proof}
+  It suffices to show the non-trivial direction. So assume that $C$ is convex and absorbent in the
+  realification $\vectorspE^\R$. Denote by $u_1,\ldots , u_n$  the standard basis of $\fldK$
+  over $\R$ with $n=2$ or $n=4$ depending on $\fldK$. In particular this means $u_1 =1$.
+  For given $v\in\vectorspE$ there now exists $t\in\R_{\geq 0}$ such that
+  \[
+    \pm \frac{1}{u_1} v , \ldots  , \pm \frac{1}{u_n} v \in rC \quad \text{for all } r\geq t \ .
+  \]   
+  Without loss of generality we can assume $t\geq 1$. Let $z\in \fldK$ with $|z| \geq n t$. 
+  Then the vectors
+  $c_1 = \sgn z_1\frac{n}{|z| \, u_1} v, \ldots , c_n = \sgn z_n\frac{n}{|z| \, u_n} v$
+  are elements of $C$. By convexity of $C$ and since $0\in C$ one has
+  $ \frac{|z_1|}{|z|} c_1 , \ldots , \frac{|z_n|}{|z|} c_n  \in C$. Again by convexity one concludes
+  \[
+    \frac{1}{z} v = \sum_{i=1}^n \frac{z_i}{|z|^2 \, u_i} v =
+    \sum_{i=1}^n  \frac{|z_i|}{n |z|} c_i \in C \ . 
+  \]
+  Hence $C$ is absorbing and the claim is proved.   
+\end{proof}
+
+\begin{definition}
+  A topological vector space $\tvsE$ over a normed real division algebra $R$ for which
+  Axiom \hyperref[axiom:tvs-local-convexity]{LCVS} below holds true is called a
+  \emph{locally convex topological vector space}, a \emph{locally convex vector space} or shortly a
+  \emph{locally convex \tvs}.
+  \begin{axiomlist}[\hspace{1.8em}]
+  %\setcounter{enumi}{2}
+  \item[\textup{(}{\sffamily LCVS}\textup{)}\!]
+  \label{axiom:tvs-local-convexity} 
+    The vector space topology on $\tvsE$ has a base consisting of convex sets. 
+  \end{axiomlist}
+\end{definition}
+
+\begin{remark}
+  For better readability, we often say \emph{locally convex topology} instead of \emph{locally convex vector space topology}.
+\end{remark}
+
+\begin{proposition}
+  The locally convex topological vector spaces over a normed real division algebra $R$ together with the continuous
+  linear maps between them form a full subcategory of the category $R\text{-}\category{TVS}$ of topological
+  $R$-vector spaces. It is denoted $R\text{-}\category{LCVS}$.
+\end{proposition}
+\begin{proof}
+  This is clear by definition.
+\end{proof}
+
+\begin{propanddef}\label{thm:filter-base-absorbing-absolutely-convex-sets-generating-locally-convex-topology}
+  The filter of zero neighborhoods of a locally convex topological vector space $\tvsE$ over a
+  normed real divison algebra $R$ has a filter base $\base$ with the following properties:
+  \begin{romanlist}
+  \item\label{ite:lctvs-base-element-containing-sum-base-elements}
+    For each $V \in \base$ there exists $U\in\base$ such that $U+U \subset V$.
+  \item\label{ite:lctvs-base-elements-circled-balanced}
+    Every element of $\base$ is a \emph{barrel} that means is absolutely convex, closed and absorbing.
+  \item\label{ite:lctvs-base-element-containing-shrunk-stretched-base-element}
+    Let  $r\in R^\times$. Then $V\in \base$ if and only if $rV \in \base$. 
+  \end{romanlist}
+  Conversely, if  $\base$ is a filter base on an $R$-vector space $\vectorspE$ such that
+  \ref{ite:lctvs-base-element-containing-sum-base-elements} holds true and such that each
+  element of $\base$ is absolutely convex and absorbing, then there exists a unique locally
+  convex topology on $\vectorspE$  such that $\base$ is a neighborhood base
+  of the origin. It is the coarsest among all translation invariant  topologies
+  for which  $\base$ is a set of zero neighborhoods and is called the \emph{locally convex topology generated} or
+  \emph{induced by} $\base$.
+\end{propanddef}
+
+\begin{proof}
+  Let $\tvsE$ be a locally convex \tvs. Let $\base$ be the collection of all barrels 
+  which are at the same time zero neighborhoods. Let $V$ be an element of $\nbhdfilter_0$,
+  the filter of zero neighborhoods. Since $\tvsE$ is \textsf{(T3)} by
+  \Cref{thm:basic-properties-sets-maps-topological-vector-spaces}, there exists a closed
+  zero neighborhood $V_a$ such that $V_a \subset V $.  By local convexity of $\tvsE$ there exists
+  a convex zero neighborhood $V_b$ with $V_b\subset V_a$. By
+  \Cref{thm:topological-vector-space-zero-neighborhood-filter-base-circled-absorbing} there exists a circled
+  zero neighborhood $V_c$ with $V_c\subset V_b$.  The closed convex hull $U = \clconvHull V_c$ then is 
+  a barrel contained in $V$. Since it is a zero neighborhood it is an element of $\base$, and $\base$
+  is a filter base of $\nbhdfilter_0$.
+  This proves \ref{ite:lctvs-base-elements-circled-balanced}.
+  
+  To verify \ref{ite:lctvs-base-element-containing-sum-base-elements}, let $V \in \base$ and observe that
+  by continuity of addition there exist zero neighborhoods $U_1$ and $U_2$ such that $U_1 + U_2 \subset V$.
+  Choose $U\in \base $ such that $U \subset U_1\cap U_2$. Then $U + U \subset V$.
+
+  Claim \ref{ite:lctvs-base-element-containing-shrunk-stretched-base-element} holds true since multiplication
+  by an element $r\in R^\times$ is a homeomorphism which preserves circled and convex sets.
+
+  The remaining claim follows immediately from
+  \Cref{thm:topological-vector-space-zero-neighborhood-filter-base-circled-absorbing}
+  and the observation that a real division algebra is archimedean.
+\end{proof}
+
+\begin{corollary}
+  Let  $\mathscr{S}$ be a non-empty set of absolutely convex and absorbent
+  subsets of a vector space $\vectorspE$ over a normed real divison algebra $R$.
+  Then the set
+  \[
+    \base = \Big\{ r\, \bigcap\limits_{B\in\mathscr{F}} B \in\powerset{\vectorspE} \bigmid
+    \mathscr{F}\in \powersetfin{\mathscr{S}},\: \mathscr{F} \neq \emptyset \:\: \& \:\: r\in R^\times 
+    \Big\}
+  \]
+  consists of absolutely convex and absorbent subsets of $\vectorspV$ and 
+  is a base of the filter of zero neighborhoods of a locally convex topology
+  $\topology$ on $\vectorspE$ uniquely determined by that property.
+  This topology is the coarsest among all vector space  topologies
+  for which  $\mathscr{S}$ is a set of zero neighborhoods. The topology $\topology$ is called the
+  \emph{locally convex topology generated} or \emph{induced} by $\mathscr{S}$. 
+\end{corollary}
+
+\begin{proof}
+  The intersection of finitely many absolutely convex and absorbing
+  sets is non-empty and again absolutely convex and absorbing by
+  \Cref{thm:intersection-scalar-multiples-absorbing-sets-absorbing} \ref{ite:intersection-absorbing-sets-absorbing}
+  and \Cref{thm:absolutely-convex-hulls}. 
+  By \Cref{thm:intersection-scalar-multiples-absorbing-sets-absorbing}
+  \ref{ite:scalar-multiple-absorbing-set-absorbing} and
+  \Cref{thm:closure-interior-convex-set-convex}, the scalar multiple of an absolutely convex and absorbing set
+  again has these properties whenever the scalar is invertible. 
+  Hence each element of $\base$ is absolutely convex and absorbing. Given two elements $C,D\in \base$ there 
+  exist non-empty $\mathscr{F},\mathscr{G}\in \powersetfin{\mathscr{S}}$ and $r,s\in R^\times$
+  such that $ C = r \bigcap\limits_{B \in \mathscr{F}} B $ and
+  $D = s \bigcap\limits_{B \in \mathscr{G}} B$. Without loss of generality
+  one can assume that $|r|\leq |s|$. Then
+  $A= r  \bigcap\limits_{B \in \mathscr{F}\cup  \mathscr{G}} B \in \base$
+  and $A  = C \cap rs^ {-1}D  \subset C \cap D$ since $D$ is balanced and $|rs^{-1}| \leq 1$.  
+  Hence $\base$ is a filter base consisting of absolutely convex and absorbent
+  sets. Moreover, $\frac 12 C + \frac 12 C\subset C $ for every $C \in \base$
+  by absolut convexity.
+  By Proposition \ref{thm:filter-base-absorbing-absolutely-convex-sets-generating-locally-convex-topology}
+  the filter base $\base$ therefore generates
+  a unique locally convex topology $\topology$ for which  $\base$ is a base of the filter of zero
+  neighborhoods. Moreover, $\topology$ is the coarsest translation invariant topology so that $\base$ is a
+  set of zero neighborhoods. This implies in particular that $\mathscr{S}$ is a set of zero
+  neighborhoods for $\topology$. Now let $\topology'$ be a vector topology such that each
+  element of $\mathscr{S}$ is a zero neighborhood. Then finite intersections of elements of 
+  $\mathscr{S}$ are zero neighborhoods with respect to $\topology'$ and therefore also
+  all elements of $\base$. Since $\topology'$ is translation invariant one concludes
+  that  $\topology$ is coarser than $\topology'$ and the claim is proved.  
+\end{proof}

@@ -1,0 +1,237 @@
+% Copyright 2017-2018 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Summability}
+\label{sec:summability}
+\begin{definition}
+Assume to be given a locally convex topological vector space $\tvsV$ over the field $\fldK$ of real or complex numbers.
+Let $(v_i)_{i \in I}$ be a family of elements of $\tvsV$. Let $\mathscr{F} (I)$ be the
+set of finite subsets of $I$ and note that it is filtered by set-theoretic inclusion. 
+The family  $(v_i)_{i \in I}$ then gives rise to the net 
+$\Big( \sum_{i \in J} v_i \Big)_{J \in \mathscr{F}(I)}$. One calls the family  $(v_i)_{i \in I}$
+\emph{summable} to an element $v \in \tvsV$ if the net 
+$\Big( \sum_{i \in J} v_i \Big)_{J \in \mathscr{F}(I)}$ converges to $v$. In other words this means that 
+for every convex zero neighborhood $U \subset \tvsV$ and $\varepsilon >0$ there exists an element
+$J_{U,\varepsilon} \in \mathscr{F} (I)$ such that for all finite sets $J$ with $ J_{U,\varepsilon} \subset J \subset I$
+\[
+   p_U \left( v - \sum_{i \in J} v_i \right) < \varepsilon \ .
+\]
+As before, $p_U$ denotes here the gauge of $U$. 
+If $\tvsV$ is Hausdorff, the limit $v$ of a summable family  $(v_i)_{i \in I}$ is
+uniquely determined, and one  writes in this situation
+\[
+   v = \sum_{i \in I} v_i \ .  
+\]
+We denote the space of summable families in $\tvsV$ over the given index set $I$ by 
+$\ell^1 (I ,\tvsV)$. For $E=\C$ we just write $\ell^1 (I )$ instead of $\ell^1 (I ,\C)$. If in addition the index set 
+coincides with $\N$, we briefly denote $\ell^1 (\N )$ by $\ell^1$.
+\end{definition}
+
+\begin{proposition}[Cauchy criterion for summability]
+  Let $\tvsV$ be a complete locally convex topological vector space. 
+  A family $(v_i)_{i \in I}$ of elements of $\tvsV$ then is summable 
+  to some $v\in \tvsV$ if and only if it satisfies the following Cauchy condition:
+  \begin{axiomlist}[\hspace{1pt}]
+  \item[\textup{\sffamily (C)}] 
+    For every convex zero neighborhood $U \subset \tvsV$ and $\varepsilon >0$ there exists an element
+    $J_{U,\varepsilon} \in \mathscr{F} (I)$ such that for all $K \in \mathscr{F} (I)$ with  $ K \cap J_{U,\varepsilon} = \emptyset$
+    the relation 
+    \[
+      p_U \left( \sum_{i \in K} v_i \right) < \varepsilon 
+    \]
+    holds true. 
+  \end{axiomlist}
+ 
+\end{proposition}
+\begin{proof}
+  By completeness of $\tvsV$ it suffices to verify that the net $\Big( \sum_{i \in J} v_i \Big)_{J \in \mathscr{F}(I)}$ is a Cauchy net
+  if and only if condition \textup{\sffamily (C)} is satisfied. Recall that one calls
+  $\Big( \sum_{i \in J} v_i \Big)_{J \in \mathscr{F}(I)}$ a Cauchy net if for every convex zero neighborhood $U \subset \tvsV$ 
+  all $\varepsilon >0$ there exists an element $J_{U,\varepsilon} \in \mathscr{F} (I)$ such that for all $J,J' \in \mathscr{F} (I)$ 
+  containing  $ J_{U,\varepsilon}$ as a subset the relation 
+  \[
+     p_U \left( \sum_{i \in J} v_i - \sum_{i\in J'} v_i \right) < \varepsilon 
+  \]
+  holds true. 
+  But that is clearly equivalent to condition \textup{\sffamily (C)}. 
+\end{proof}
+
+\para Several other notions of summability have been introduced in the analysis and functional analysis literature.  
+These are mainly either used to establish summability criteria or are used in the study of 
+topological tensor products and nuclearity of locally convex topological vector spaces, see \cite{GroPTTEN,PieNLCS}. 
+In the following we define these further notions of summability and study their properties.
+The symbol $\tvsV$  hereby always stands for a locally convex \tvs, $I$ always denotes a nonempty
+index set, and $\mathscr{F} (I)$ the set of its finite subsets.
+
+\begin{definition}
+  A family   $(v_i)_{i \in I}$ in $\tvsV$ is called \emph{weakly summable} to $v \in \tvsV$ if for 
+  every continuous linear form $\alpha : \tvsV \to \fldK$ the net 
+  $\Big( \sum_{i \in J} \alpha( v_i ) \Big)_{J \in \mathscr{F}(I)}$ converges in $\fldK$ to $\alpha ( v )$.
+  In other words this means that for every $\alpha \in \tvsV'$ and $\varepsilon >0$ there exists a finite set 
+  $J_{\alpha,\varepsilon} \subset I$ such that for all finite sets $J$ with $J_{\alpha,\varepsilon} \subset  J \subset I $ 
+  \[
+    \left| \alpha (v) -  \sum_{j\in J} \alpha( v_i )   \right|< \varepsilon \ . 
+  \]
+  The set of all weakly summable families in $\tvsV$ with index set $I$ is denoted $\ell^1 [I, \tvsV]$.
+\end{definition}
+
+\begin{definition}
+  A family  $(v_i)_{i \in I}$ in $\tvsV$ is called \emph{absolutely summable} if for every circled convex 
+  zero neighborhood $U \subset \tvsV$ there exists some $C\geq 0$ such that
+  \[
+    \sum_{i \in J} p_U \left( v_i\right) \leq C \quad \text{for all } J \in \mathscr{F} (I) \ .
+  \]
+  We denote the set of all absolutely summable families  in $\tvsV$ by  $\ell^1 \{ I, \tvsV \}$.
+\end{definition}
+
+\begin{proposition}
+  A family $(v_i)_{i \in I} \subset \tvsV$ is absolutely summable if and only if for every element $U$ 
+  of a basis of circled convex zero neighborhoods there exists a $C\geq 0$ such that
+  \[
+    \sum_{i \in J} p_U \left( v_i\right) \leq C \quad \text{for all } J \in \mathscr{F} (I) \ .
+  \]
+\end{proposition}
+
+\begin{proof}
+  
+\end{proof}
+
+\begin{definition}
+ A family $(v_i)_{i \in I}$ in $\tvsV$ is called \emph{totally summable} if there exists a bounded 
+ absolutely convex subset $B\subset \tvsV$  and a $C\geq 0$ such that
+ \[
+   \sum_{i \in J} p_B \left( v_i\right) \leq C  \quad \text{for all } J \in \mathscr{F} (I) \ .
+ \]
+ We write $\ell^1 \langle I, \tvsV \rangle$ for the set of all totally summable families in $\tvsV$.
+\end{definition}
+
+\subsec{Summable families of complex numbers}
+
+\begin{lemma}[cf.~{\cite[Lem.~1.1.2]{PieNLCS}}]
+  Let $(z_i)_{i\in I}$ be a family of  complex numbers for which there exists a positive real number $C > 0$ 
+  such that 
+  \[
+     \left|\sum_{i\in J} z_i \right| \leq C \quad \text{for all } J \in \mathscr{F} (I) \ .
+  \]
+  Then one has the estimate
+   \[
+     \sum_{i\in J}\left| z_i \right| \leq 4 C \quad \text{for all } J \in \mathscr{F} (I) \ .
+  \]
+\end{lemma}
+
+\begin{proof}
+  We assume first that all $z_i$ are real. Then let $I^+$ the set of all indices $i\in I$ such that $z_i \geq 0$,
+  and $I^-$ the set of all  $i\in I$ such that $z_i < 0$. Then, for all finite $J\subset I$
+  \[
+     \sum_{i\in J} \left| z_i \right| =  \sum_{i\in J\cap I^+}  \left| z_i  \right| +  \sum_{i\in J\cap I^-}  \left| z_i  \right|
+    =  \left| \sum_{i\in J\cap I^+}  z_i  \right| +  \left| \sum_{i\in J\cap I^-}  z_i  \right| \leq 2  C \ .
+  \] 
+  In the general case decompose $z_i$ into real and imaginary parts $x_i = \Re z_i$ and   $y_i = \Im z_i$.
+  By the triangle inequality one obtains for all finite $J\subset I$
+  \[
+    \sum_{i\in J} \left| z_i \right| \leq \sum_{i\in J} \left| x_i \right| + \sum_{i\in J} \left| y_i \right| \leq 4 C \ .
+  \]
+\end{proof}
+
+\begin{proposition}
+\label{thm:summability-criteria-family-complex-numbers}
+  For a  family $(z_i)_{i\in I}$ of complex numbers the following are equivalent.
+  \begin{romanlist}
+  \item The family $(z_i)_{i\in I}$ is summable. 
+  \item The family $(\left| z_i \right| )_{i\in I}$ is summable.
+  \item The family $(z_i)_{i\in I}$ is absolutely summable.
+
+  \item There exists some $C > 0$ such that 
+        $\sum_{i\in J}\left| z_i \right| \leq C$ for all $J\in \mathscr{F} (I)$.
+  \end{romanlist}
+  In case that  one hence all of the conditions are fulfilled, the estimate 
+  \[
+     \left|  \sum_{i\in I} z_i \right|  \leq \sum_{i\in I}\left| z_i \right| 
+  \]
+  holds true.
+\end{proposition}
+
+\begin{proof}
+  Assume that  $(z_i)_{i\in I}$ is absolutely summable. Since $\C$ is normed with norm given by the absolut value 
+  this just means that there exists some $C > 0$ such that 
+  $\sum_{i\in J}\left| z_i \right| \leq C$ for all $J\in \mathscr{F} (I)$. Hence the supremum 
+  $c = \sup \left\{ \sum_{i\in J}\left| z_i \right| \mid J \in \mathscr{F} (I)\right\}$ exists and is $\leq C$. 
+  For given $\varepsilon >0$ choose $J_\varepsilon \in \mathscr{F} (I)$ such that 
+  \[
+        c- \varepsilon \leq \sum_{i\in J_\varepsilon}\left| z_i \right| \leq c \ .
+  \]
+  Then one has for all $K\in \mathscr{F} (I)$ with $K\cap J_\varepsilon = \emptyset$ 
+  \[
+     \left| \sum_{i\in K} z_i \right| \leq  \sum_{i\in K} \left| z_i \right| \leq \varepsilon \ .
+  \]
+  Hence $\left( \sum_{i\in J} z_i \right)_{J \in \mathscr{F} (I)}$ is a Cauchy net, so has to
+  converges  by completeness of $\C$. This proves summability of   $(z_i)_{i\in I}$.
+  
+  Vice versa, assume now that   $(z_i)_{i\in I}$ is summable. Then
+  $\left( \sum_{i\in J} z_i \right)_{J \in \mathscr{F} (I)}$ is a Cauchy net. Hence there exists an element 
+  $J_1 \in  \mathscr{F} (I)$ such that for all $K\in  \mathscr{F} (I)$ with $K \cap J_1 = \emptyset$  
+  the inequality 
+  \[
+      \left| \sum_{i\in K} z_i \right| < 1 
+  \]
+  holds true. Let $C = \sum_{i\in J_1} \left| z_i\right|$. Then one has for all $J\in  \mathscr{F} (I)$
+  \[
+       \left| \sum_{i\in J} z_i \right| \leq  \left| \sum_{i\in J\setminus J_1} z_i \right| +  
+       \left| \sum_{i\in J\cap J_1} z_i \right| \leq 1 + C \ .
+  \]
+  By the preceding lemma the set of partial sums $ \sum_{i\in J} \left| z_i \right|$, where $J$ runs through the 
+  finite subsets of $I$, is then bounded by $4 + 4C$, hence  $(z_i)_{i\in I}$ is absolutely summable.
+\end{proof}
+
+\subsec{Summability in Banach spaces}
+
+\begin{proposition}\label{thm:summability-criteria-family--normed-vector-space}
+  Let $\banachV$ be a normed vector space. 
+  For a  family $(v_i)_{i\in I}$ of elements in $\tvsV$ the following are equivalent:
+  \begin{romanlist}
+  \item\label{ite:absolute-summable-family-normed-vector-space} The family $(v_i)_{i\in I}$ is absolutely summable. 
+  \item\label{ite:norm-summable-family-normed-vector-space} The family $(\left\| v_i \right\| )_{i\in I}$ is summable.
+  \item\label{ite:cauchy-summable-family-normed-vector-space} There exists some $C > 0$ such that 
+        $\sum_{i\in J}\left\| v_i \right\| \leq C$ for all $J\in \mathscr{F} (I)$.
+  \end{romanlist}
+  If $\banachV$ is even a Banach space, these conditions are all equivalent to 
+  \begin{romanlist}
+  \setcounter{enumi}{3}
+  \item The family $(v_i)_{i\in I}$ is summable.
+  \end{romanlist}
+\end{proposition}
+\begin{proof}
+  \ref{ite:norm-summable-family-normed-vector-space} and \ref{ite:cauchy-summable-family-normed-vector-space}
+  are equivalent by \Cref{thm:summability-criteria-family-complex-numbers}
+  Assume now that \ref{ite:absolute-summable-family-normed-vector-space} holds true. 
+\end{proof}
+
+
+\textbf{to do:} Carl Neumann series
+
+
+\subsec{Properties of and relations between the various summability types} 
+
+\begin{theorem}
+  Let $I$ be a non-empty index set. Then the spaces $\ell^1 (I, \tvsV )$ of summable families, 
+  $\ell^1 [I, \tvsV ]$ of weakly summable families, $\ell^1 \{I, \tvsV \}$ of absolutely summable families and
+  $\ell^1 \langle I, \tvsV \rangle$ of totally summable families in $E$ are all subvector spaces of 
+  the product vector space $E^I = \Pi_{i\in I} E$.   Furthermore one has the following chain of inclusions:
+  \[
+     \ell^1 \langle I, \tvsV \rangle\subset\ell^1 \{I, \tvsV \}   \quad\text{and} \quad \ell^1 (I, \tvsV) \subset \ell^1 [I, \tvsV ] \ .
+  \] 
+  If $E$ is complete, then one even has 
+   \[
+        \ell^1 \{I, \tvsV \}   \subset \ell^1 (I, \tvsV)     
+   \]
+\end{theorem}
+
+\begin{proof}
+    Now let $(v_i)$ be a summable family and $\alpha : \tvsV \to \fldK$ a continuous linear form. 
+
+ Let $U$ be an absolutely convex zero neighborhood. Then $U$ absorbes $B$, so there exists $r>0$ such that
+ $B \subset rU$. Hence
+\end{proof}
+
+

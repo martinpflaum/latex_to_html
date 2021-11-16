@@ -1,0 +1,528 @@
+% Copyright 2017 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Seminorms and gauge functionals}
+\label{sec:seminorms-gauge-functionals}
+%
+%
+\para Throughout the rest of this chapter the symbol $\fldK$ will always
+stand for the field of real numbers $\R$, the field of complex numbers $\C$ or the
+division algebra of quaternions $\H$. We assume these division algebras to be equipped
+with their standard absolute values $|\cdot |$.
+Moreover, vector spaces are assumed to be defined over the ground field $\fldK$
+unless mentioned differently and are always assumed to be left vector spaces. 
+
+\subsec{Seminorms and induced vector space topologies}
+\begin{definition}
+  By a \emph{seminorm} on a vector space $\vectorspE$ one 
+  understands a map $p:\vectorspE \to \R$ with the following properties:
+  \begin{axiomlist}[N]
+  \setcounter{enumi}{-1}  
+  \item\label{axiom:positive}
+    The  map $p$ is \emph{positive} that is $p(v)\geq 0$ for all $v\in \vectorspE$.
+  \item
+  \label{axiom:norm-absolute-homogeneity} 
+     The map $p$ is \emph{absolutely homogeneous} that means
+     \[
+       p(r v) = |r| \, p(v)  \quad \text{for all $v \in \vectorspE$ and $r\in \fldK$}.
+     \]
+  \item
+  \label{axiom:norm-subadditivity} 
+     The map $p$ is \emph{subadditive} or in other words satisfies the \emph{triangle inequality} 
+     \[ 
+       p(v+w) \leq p(v) + p(w) \quad \text{for all $v,w \in \vectorspE$}.
+     \] 
+  \end{axiomlist}
+  A seminorm is called a \emph{norm} if in addition the following axiom is satisfied:
+  \begin{axiomlist}[N]
+  \setcounter{enumi}{2}
+  \item \label{axiom:norm-nondegeneracy} 
+     For all $v\in \vectorspE$ the relation $p(v) = 0$ holds true if and only if $v = 0$.
+  \end{axiomlist}
+  A vector space $\vectorspE$ equipped with a norm 
+  $\| \cdot \| : \vectorspE \to \R_{\geq 0}$ is called a \emph{normed vector space}.
+  % If $\vectorspE$ is equipped with a seminorm $p: \vectorspE \to \R_{\geq 0}$ we sometimes say that
+  % $\vectorspE$ is a \emph{seminormed vector space}.
+\end{definition}
+
+\para
+ Let us introduce some useful further properties a map $p:\vectorspE \to \R$
+ can have.  One calls such a map $p$
+ \begin{axiomlist}[]
+ \item\label{ite:definition-positive-homogeneity}
+   \emph{positively homogeneous} if $p (tv) = t\, p(v)$ for all $t\in \R_{> 0}$ and all $v\in \tvsE$,
+ \item\label{ite:definition-sublinearity}
+   \emph{sublinear} if $p (tv + sw) \leq  t\, p(v) + s\, p(w)$ for all $t,s\in \R_{\geq 0}$
+   and all $v,w\in \tvsE$, and 
+ \item\label{ite:definition-convexity}
+   \emph{convex} if $p (tv + sw) \leq  t\, p(v) + s\, p(w)$ for all $t,s\in \R_{\geq 0}$
+   with $t+s=1$ and all $v,w\in \tvsE$.
+ \end{axiomlist}
+
+\begin{lemma}\label{thm:equivalent-characterizations-sublinearity}
+   For a real-valued map $p:\vectorspE \to \R$ on a vector space $\vectorspE$ the following are equivalent:
+   \begin{romanlist}
+   \item\label{ite:sublinearity}
+     $p$ is sublinear.
+   \item\label{ite:positive-homogeneity-convexity}
+     $p$ is positively homogeneous and convex.
+   \item\label{ite:positive-homogeneity-subadditivity}
+     $p$ is positively homogeneous and subadditive. 
+   \end{romanlist}
+ \end{lemma}
+ \begin{proof}
+   Let $p$ be sublinear. Then $p$ is subadditive by definition. Subadditivity implies
+   $p(0) \leq p(0) + p(0)$, hence $p(0)\geq 0$. 
+   By sublinearity
+   \[ p(0) = p(0\cdot 0 + 0\cdot 0) \leq 0 \cdot p(0) +  0\cdot p(0) =  0 \ , \]
+   so $p(0)=0$.  We show that $p$ is positively homogeneous.
+   Applying sublinearity again one checks for $v\in \vectorspE$ and $t\geq 0$ that
+   \[ p(tv)=p(tv+ 0\cdot 0) \leq t p(v) + 0 \cdot p(0)= tp(v) \ , \]
+   so $p$ is positively homogeneous and the implication
+   \ref{ite:sublinearity} $\implies$ \ref{ite:positive-homogeneity-subadditivity} follows.
+ If $p$ is positively homogeneous and subadditive, then for $v,w \in \vectorspE$ and
+ $t,s> 0$ with $t +s =1$
+ \[
+     p(tv +sw) \leq p(tv) + p(sw) \leq t p(v) + s p(w),
+ \]  
+ so $p$ is convex. This gives the implication
+ \ref{ite:positive-homogeneity-subadditivity} $\implies$ \ref{ite:positive-homogeneity-convexity}. 
+ If $p$ is positively homogeneous and convex, then one computes for $v,w \in \vectorspE$ and $t,s\geq 0$
+ with $t+s >0$
+ \[
+   p( tv +sw )  = % (t+s)\, p \left( \frac{1}{t+s} (tv+sw) \right) =
+   (t+s)\, p \left( \frac{t}{t+s} v+ \frac{s}{t+s} w \right) \leq
+   (t+s) \left( \frac{t}{t+s} p(v) +  \frac{s}{t+s} p(w) \right) = t p(v)+ sp(w) \ .
+ \]
+ Since $p(0)=\lim\limits_{t\searrow 0} p(t0) = \lim\limits_{t\searrow 0} t\, p(0) = 0$ by positive homogeneity,
+ $p$ then has to be sublinear and one obtains the implication
+ \ref{ite:positive-homogeneity-convexity}  $\implies$ \ref{ite:sublinearity}.
+\end{proof}
+ 
+ 
+ \begin{lemma}\label{thm:properties-subadditive-convex-real-valued-maps-vector-space}
+   Let $p:\vectorspE \to \R$ be a real-valued map defined on a vector space
+   $\vectorspE$ over $\fldK$.
+   \begin{romanlist}
+   \item\label{ite:implications-positive-homogeneity}
+     If $p:\vectorspE \to \R$ is   positively homogeneous, then $p(0)=0$.
+   \item\label{ite:implications-subadditivity}
+     If $p:\vectorspE \to \R$ is subadditive, then $p(0)\geq 0$ and for all $v,w\in \vectorspE$
+     \[
+       |p(v)-p(w)| \leq \max \{ p(v-w),p(w-v) \} \ .
+     \]
+   \item\label{ite:implications-convexity-real-valued-map}
+     If $p:\vectorspE \to \R$ is convex, then the sets
+     $\ball_{p,\varepsilon} := \{v\in \vectorspE\mid p(v) < \varepsilon\} $ and
+     $\closedball_{p,\varepsilon} := \{v\in \vectorspE\mid p(v) \leq \varepsilon\}$ are convex for all $\varepsilon >0$.
+   \item\label{ite:implications-sublinearity-real-valued-map}
+     If $p$ is sublinear, then $\ball_{p,\varepsilon}$ and
+     $\closedball_{p,\varepsilon}$ are convex and
+     absorbent for all $\varepsilon >0$.
+   \end{romanlist}
+ \end{lemma}
+ \begin{proof}
+   \begin{adromanlist}
+   \item
+     As already observed, $p(0)=\lim\limits_{t\searrow 0} p(t0) = \lim\limits_{t\searrow 0} t\, p(0) = 0$.
+   \item
+    Note that by subadditivity
+     \[
+       p(0)\leq p(0) + p(0), \quad  p(v) -p(w) \leq p(v-w), \quad \text{and} \quad
+       p(w) -p(v) \leq p(w-v) \ .
+     \]
+     This entails \ref{ite:implications-subadditivity}. 
+   \item
+     Let $v,w\in \{v\in \vectorspE\mid p(v) < \varepsilon\}$ and $0\leq t \leq 1$. Then, by convexity of $p$,
+     \[
+         p\big(tv + (1-t)w\big) \leq t p(v) + (1-t) p(w)< t\varepsilon + (1-t) \varepsilon = \varepsilon \ .
+     \]
+     Hence $tv + (1-t)w\in  \{v\in \vectorspE\mid p(v) < \varepsilon\} $.
+     The proof for $\{v\in \vectorspE\mid p(v) \leq \varepsilon\}$ is analogous.
+   \item
+     Convexity of the sets $\ball_{p,\varepsilon}$ and  $\closedball_{p,\varepsilon}$ holds by
+     \ref{ite:implications-convexity-real-valued-map}.
+     Moreover, $\ball_{p,\varepsilon} \subset \closedball_{p,\varepsilon}$ by definition.
+     Hence it suffices  by \Cref{thm:real-absorbance-implies-arbsorbance-finite-dimensional-divison-algebra}
+     to show that $\ball_{p,\varepsilon} $ is absorbent in the realification $\vectorspE^\R$. 
+     Since $p$ is positively homogenous by \Cref{thm:equivalent-characterizations-sublinearity} and
+     $0\leq p(v) + p(-v)$ for all $v\in \vectorspE$, one concludes that for all $t\in\R$ and $v\in \vectorspE$
+     \[
+        |p(tv) | \leq |t|\max\{ p(v),p(-v) \} \ . 
+     \]
+     Hence $tv\in \ball_{p,\varepsilon}$ if $0 < t < \frac{\varepsilon}{\max\{ p(v),p(-v) \} +1}$,
+     and $\ball_{p,\varepsilon}$ is absorbent in $\vectorspE^\R$.
+   \end{adromanlist}
+ \end{proof}
+
+\begin{definition}
+  If $p :\vectorspE \to \R$ is a seminorm on a vector space $\vectorspE$, we denote for every $v \in \vectorspE$
+  and $\varepsilon >0$  by $\ball_{p,\varepsilon} (v)$   the  (\emph{open}) $\varepsilon$-\emph{ball associated with} $p$ and
+  \emph{with center} $v$  that is the set
+  \[
+    \ball_{p,\varepsilon} (v) = \big\{ w \in \vectorspE \bigmid p(w-v) < \varepsilon \big\} \ .
+  \]
+  The  \emph{closed} $\varepsilon$-\emph{ball associated with} $p$ and \emph{with center} $v$
+  is defined as 
+  \[
+    \closedball_{p,\varepsilon} (v) = \big\{ w \in \vectorspE \bigmid p(w-v) \leq \varepsilon \big\} \ .
+  \]
+  The positive number $\varepsilon$ is called the \emph{radius} of the ball.
+  In case the center of the ball is the origin, we often write  $\ball_{p,\varepsilon}$ and $\closedball_{p,\varepsilon}$
+  for $\ball_{p,\varepsilon} (0)$ and $\closedball_{p,\varepsilon} (0)$, respectively.
+  If in addition the radius equals $1$, then we usually write only
+  $\ball_{p}$ and $\closedball_{p}$ and call these sets the \emph{open} respectively the
+  \emph{closed unit ball}. More generally, for the particular radius $1$ we denote  the corresponding
+  balls by $\ball_p (v)$ and  $\closedball_p (v)$ and call them the \emph{open} respectively
+  \emph{closed}  \emph{unit balls with center} $v$.
+  When by the context it is clear which seminorm $p$ a ball is associated with 
+  we often do not mention $p$ explicitely. This is in particular the case 
+  when the underlying vector space is a normed vector space. 
+  
+  If $P$ is a finite set or a finite family of seminorms on $\vectorspE$ we define the 
+  \emph{open} and \emph{closed} $\varepsilon$-\emph{multiballs with center} $v$ by 
+  \[
+    \ball_{P,\varepsilon} (v) =
+    \big\{ w \in \vectorspE\bigmid p(w-v) < \varepsilon \text{ for all } p\in P\big\} 
+  \]
+  and
+   \[
+    \closedball_{P,\varepsilon} (v) = \big\{ w \in \vectorspE \bigmid p(w-v) \leq \varepsilon 
+    \text{ for all } p\in P \big\} \ ,
+  \]
+  respectively. As before, we abbreviate
+  $\ball_{P,\varepsilon} = \ball_{P,\varepsilon} (0)$ and
+  $\closedball_{P,\varepsilon} = \closedball_{P,\varepsilon} (0)$. 
+\end{definition}
+
+\begin{remark}
+  For convenience, we will also use the symbols $\ball_{p,\varepsilon}$ and $\closedball_{p,\varepsilon}$
+  to denote the sets $\big\{ v \in \vectorspE \bigmid p(v) < \varepsilon \big\}$
+  and $\big\{ v \in \vectorspE \bigmid p(v) \leq \varepsilon \big\}$, respectively, when $p:\vectorspE \to \R$
+  is just a real-valued convex map on the vector space $\vectorspE$. Note that for such a $p$ the
+  set  $\big\{ v \in \vectorspE \bigmid p(v) < 0 \big\}$ might be non-empty. But as we have shown in
+  \Cref{thm:properties-subadditive-convex-real-valued-maps-vector-space}
+  the sets $\ball_{p,\varepsilon}$ and $\closedball_{p,\varepsilon} $ associated to a convex $p$ share with the
+  the balls associated to a seminorm several nice properties like convexity. 
+\end{remark}
+
+\begin{proposition}\label{thm:convexity-balls-seminorms}
+  Let $\vectorspE$ be a $\fldK$-vector space, and $P$ a finite set of seminorms on $\vectorspE$.
+  Then, for every $\varepsilon >0$ and $v\in \vectorspE$, the $\varepsilon$-multiballs
+  $\ball_{P,\varepsilon} (v)$ and  $\closedball_{P,\varepsilon} (v)$ are convex.
+  The $\varepsilon$-multiballs
+  $\ball_{P,\varepsilon}$ and  $\closedball_{P,\varepsilon}$ centered at the origin are absolutely convex and absorbent. 
+\end{proposition}
+\begin{proof}
+  Axiom \ref{axiom:norm-absolute-homogeneity} immediately entails that $\ball_{P,\varepsilon}$ and  
+  $\closedball_{P,\varepsilon}$ are circled. Axiom \ref{axiom:norm-subadditivity} 
+  together with  \ref{axiom:norm-absolute-homogeneity} entails that the sets 
+  $\ball_{P,\varepsilon} (v)$ and $\closedball_{P,\varepsilon} (v)$ 
+  are convex. Namely, if $w_1, w_2 \in \ball_{P,\varepsilon} (v)$ 
+  and $t \in [0,1]$, then one has  for all seminorms $p\in P$
+  \[
+   p\left( tw_1 + (1-t) w_2 - v \right) \leq 
+   t \,  p \left( w_1  - v \right) + (1-t) \, p \left(  w_2 - v \right) < 
+   t \, \varepsilon + (1-t) \, \varepsilon = \varepsilon 
+  \]
+  and likewise $p\left( tw_1 + (1-t) w_2 - v \right) \leq \varepsilon$ for all
+  $w_1, w_2 \in \closedball_{P,\varepsilon}(v)$ and  $p\in P$. 
+
+  Now let $v\in \vectorspE$ and $\varepsilon >0$ be given. 
+  Put $t_p = \frac{p(v)+1}{\varepsilon}$ for every $p\in P$ and $t_0 = \max \{t_p\mid p\in P\}$. 
+  Then one has for all $t\in \fldK$ with $|t|\geq t_0$ and for all $p\in P$
+  \[
+    p\left( \frac{1}{t} v \right) \leq \frac{\varepsilon}{p(v)+1} \, p(v) < \varepsilon \ ,
+  \] 
+  hence $v \in t \, \ball_{P,\varepsilon}$. So $\ball_{P,\varepsilon}$ is absorbing. 
+  Since $\closedball_{P,\varepsilon}$  contains the absorbing set $\ball_{P,\varepsilon}$,
+  it is absorbing as well. 
+\end{proof}
+
+\begin{propanddef}
+Assume to be given a set $Q$ of seminorms on a vector space $\tvsE$.
+Let $\powersetfin{Q}$ be the collection of all finite subsets of $Q$. 
+A base of a topology on $\tvsE$ then is given by  
+\[
+  \base = \big\{  \ball_{P,\varepsilon} (v)  \bigmid
+  P  \in \powersetfin{Q} , \: v \in \tvsE , \:  \varepsilon >0 \big\} \ . 
+\]
+The topology $\topology$ generated by $\base$  is called the
+topology \emph{generated}, \emph{induced} or \emph{defined} by $Q$. Moreover,
+$\topology$ is a locally convex vector space topology on $\tvsE$.
+It coincides with the coarsest translation invariant topology on
+$\tvsE$ such that each seminorm in $Q$ is continuous. 
+\end{propanddef}
+
+\begin{proof}
+  Consider the set $\base_0$ of all multiballs $\ball_{P,\varepsilon}$ with
+  $P  \in \powersetfin{Q}$ and $\varepsilon >0 $ centered at the origin.
+  Clearly, $\base_0$ is a filter base since for $P_1,P_2  \in \powersetfin{Q}$ and
+  $\varepsilon_1,\varepsilon_2 >0 $ the multiball
+  $\ball_{P_1\cup P_2, \min\{ \varepsilon_1,\varepsilon_2\}}$ is contained in
+  $\ball_{P_1,\varepsilon_1}\cap \ball_{P_2,\varepsilon_2}$. Moreover it consists of
+  absolutely convex and absorbing sets by \Cref{thm:convexity-balls-seminorms}.
+
+  By a similar argument one shows that $\base$ is  base of a topology. Let
+  $\ball_{P_1,\varepsilon_1} (v_1), \ball_{P_2,\varepsilon_2} (v_2) \in \base$ and
+  $v \in \ball_{P_1,\varepsilon_1}(v_1)\cap \ball_{P_2,\varepsilon_2}(v_2)$.
+  Let $\varepsilon$ be the minium of the numbers $\varepsilon_1 - p_1 (v-v_1)$
+  and  $\varepsilon_2 - p_2 (v-v_2)$, where $p_1$ runs through the elements of $P_1$ and
+  $p_2$ through the ones of $P_2$. Then $\varepsilon >0$ and
+  $\ball_{P_1\cup P_2, \varepsilon}(v)
+  \subset\ball_{P_1,\varepsilon_1}(v_1)\cap\ball_{P_2,\varepsilon_2}(v_2)$, and $\base$
+  is a base for a topology  $\topology$ indeed. By construction,  $\base_0$ then
+  is a base for the filter of zero neighborhoods and each element of  $\base_0$ is open in 
+  $\topology$. Moreover, each closed multiball
+  $\closedball_{P,\varepsilon} (v)$ is closed in $\topology$ since the complement 
+  $\vectorspE\setminus \closedball_{P,\varepsilon} (v)$  contains with $w$ also
+  the open multiball $\ball_{P,\delta} (w)$, where $\delta = \min \{ p(v-w) - \varepsilon| p\in P\}$. 
+  
+  We now prove continuity of addition with respect to  $\topology$. Let $v_1,v_2\in \tvsE$,
+  $P \in \powersetfin{Q}$, and $\varepsilon >0$.
+  Since the triangle inequality holds for every seminorm in $F$, one has
+  \[
+    \ball_{P,\frac\varepsilon 2} (v_1) +   \ball_{P,\frac\varepsilon 2} (v_2)
+    \subset \ball_{P,\varepsilon}(v_1+v_2) \ ,
+  \]
+  which entails continuity of addition at each $(v_1,v_2) \in \tvsE \times \tvsE$.
+  Next consider multiplication by scalars and let $\lambda \in \fldK$ and $v\in \tvsE$. 
+  Again let $P= \{ p_1,\ldots, p_n\} \in \powersetfin{Q}$ and $\varepsilon >0$. 
+  Let $C_1 = \sup \{ p_j (v) \mid 1\leq j \leq n\} + 1$, $C_2 = |\lambda| + 1$ 
+  and put $\delta_1 = \min \{1,\frac{\varepsilon}{2 \, C_1}  \}$
+  and $\delta_2 = \frac{\varepsilon}{2 \, C_2}$.  
+  Then one obtains by absolute homogeneity and subadditivity of each seminorm 
+  \[
+    p_j ( \mu w -\lambda v) \leq | \mu | \, p_j( w-v) + | \mu -\lambda| \, p_j(v) \quad \text{for all }
+    \mu \in \fldK  \text{ and } w \in \tvsE, 
+  \]
+  hence
+  \[
+    \ball_{\delta_1} (\lambda ) \cdot \ball_{P,\delta_2} (v) \subset
+    \ball_{P,\varepsilon} (\lambda \cdot v ) \ ,
+  \]
+  where $\ball_{\delta_1} (\lambda) = \{ \mu \in \fldK \mid |\mu -\lambda| < \delta_1\} $.
+  This shows continuity of scalar multiplication at each $(\lambda,v) \in \fldK \times \tvsE$,
+  and $\topology$ is a vector space topology. 
+
+  Since each of the base elements $\ball_{P,\varepsilon}\in \base_0$ is convex,
+  Axiom \hyperref[axiom:tvs-local-convexity]{LCVS} holds true as well
+  and the topology $\topology$ is locally convex.
+
+  Every seminorm $p\in Q$ is continuous with respect to the topology $\topology$ since for all
+  $a<b$ the preimage $p^{-1} (\openint{a,b}) = \ball_{p,b} \setminus \closedball_{p,a}$ is open in
+  $\topology$. Now let   $\topology'$ be a translation invariant topology on $\vectorspE$
+  for which every seminorm $p\in Q$ is continuous. In that topology $\base_0$ is a set of
+  zero neighborhoods. As shown before, every element $B\in \base_0$ is absolutely
+  convex, absorbing and satisfies $\frac 12 B + \frac 12 B \subset B$. Hence
+  by \Cref{thm:filter-base-absorbing-absolutely-convex-sets-generating-locally-convex-topology}
+  the topology $\topology'$ is finer than the locally convex topology generated by  $\base_0$.
+  But the latter topology coincides with $\topology$ by construction. 
+  This shows  the last part of the claim and the proof is finished.
+\end{proof}
+
+\subsec{Gauge functionals and induced seminorms}
+\para
+As we have seen, any vector space with a topology defined by a family of seminorms 
+on it is a locally convex topological vector space. The converse also holds true. The fundamental notion
+needed for the proof of this is the following.    
+
+\begin{definition}
+  Let  $\vectorspE$  be a vector space and $A \subset \vectorspE$ absorbent. Then the map
+  \[
+     p_A : \vectorspE \to \R_{\geq 0} , \: v \mapsto p_A (v)= \inf \big\{ t \in \R_{> 0} \bigmid v \in t A \big\} 
+  \]
+  is called the \emph{gauge functional}, the \emph{Minkowski functional} or the \emph{Minkowski gauge} 
+  of $A$.  
+\end{definition}
+
+\begin{remark}
+  By definition of an absorbent set, $\big\{ t \in \R_{> 0} \bigmid v \in t A \big\}$ is non-empty
+  whenever $A\subset \vectorspE$ is absorbent. Hence $p_A$ is well-defined for such $A$.  
+\end{remark}
+
+\begin{proposition}\label{thm:properties-gauge-functional-absorbent-set}
+  The Minkowski gauge $p_A :\vectorspE \to \R_{\geq 0}$ of an absorbent subset $A$
+  of a vector space $\vectorspE$  has the following properties.  
+  \begin{romanlist}
+  \item\label{ite:gauge-functional-positively-homogenous} 
+    The gauge functional is positively homogeneous that is
+    $p_A (t v) = t\,  p_A(v)$ for all $t\in \R_{> 0}$ and all $v\in \vectorspE$.
+  \item\label{ite:gauge-functional-subadditivity}
+     If $A$ is convex, then $p_A$ is subadditive and 
+  \[
+    \ball_p (v)= \bigcup_{0< t < 1} tA \subset A \subset
+    \bigcap_{1< t} tA = \closedball_p (v)  \ .
+  \]
+\item\label{ite:gauge-functional-seminorm}
+  If $A$ is absolutely convex, then $p_A$ is a seminorm on $\vectorspE$.
+  \end{romanlist}
+\end{proposition}
+
+\begin{proof}
+ If $t>0$, then $tv \in sA$ for some $s>0$ if and only if $v \in \frac st A$. 
+ Hence $\big\{ s \in \R_{> 0} \bigmid t v \in s A \big\}$ and $t \big\{ s \in \R_{> 0} \bigmid v \in s A \big\}$
+ coincide for all  $t> 0$, so \ref{ite:gauge-functional-positively-homogenous} follows. 
+ 
+ Assume that $A$ is convex. Let $v,w\in \vectorspE$ and $\varepsilon >0$. Then there exist
+ $t>p_A(v)$ and $s > p_A(w)$ such that 
+ $v \in tA$, $w\in sA$, $t < p_A(v) +\frac \varepsilon 2$ and
+ $s < p_A(w) +\frac \varepsilon 2$. By convexity of $A$ and
+ \Cref{thm:weighted-sum-convex-absolutely-convex-sets},
+ $v+w \in tA+ sA = (t+s)A$.
+ Hence $p_A(v+w) \leq (t+s) < p_A(v) + p_A (w) + \varepsilon$.
+ Since $\varepsilon >0$ was arbitrary, $p_A(v+w) \leq  p_A(v) + p_A (w)$ and $p_A$ is subadditive. 
+ If $v \in tA$ for some $t$ with $0 < t<1$, then $p_A(v) \leq t < 1$ by definition.
+ Conversely, if $p_A(v) < 1$, then there exists a $t>0$ such that $t<1$ and $v \in tA$.
+ Hence the equality $\ball_p (v) = \bigcup_{0< t < 1} tA$ follows.
+ Since $A$ is absorbing, $0$ is an element of $A$. By convexity of $A$
+ one therefore concludes $tA = (1-t) \{ 0 \}  + tA \subset A$ whenever $0< t < 1$.
+ For $t>1$ this shows $\frac 1t A \subset A$, hence $A \subset tA$.
+ So the relation $\bigcup_{0< t < 1} tA \subset A \subset \bigcap_{1< t} tA$ is proved.
+ Now assume that $v \in tA$ for all $t>1$. Then $p_A(v)\leq 1$ by definition.
+ If conversely $p_A(v)\leq 1$, then there exists for each $\varepsilon >0$ an $s\geq 0$
+ such that $p_A(v) \leq s$, $v \in sA$ and $s < 1 +\varepsilon$.
+ Hence, for $t\geq   1 +\varepsilon$ by \Cref{thm:weighted-sum-convex-absolutely-convex-sets}
+ and $0\in A$,
+ \[
+    v \in sA = s A + (t-s) \{0\} \subset s A + (t-s) A = tA \ . 
+ \]  
+ Since $\varepsilon >0$ was arbitrary, $v \in tA$ for all $t>1$ follows. So one obtains
+ the equality $\bigcap_{1< t} tA =  \closedball_p (v)$,
+ and \ref{ite:gauge-functional-subadditivity} is proved. 
+  
+ To verify \ref{ite:gauge-functional-seminorm} recall that $A$ is circled whenever
+ $A$ is absolutely convex. This entails for $r\in \fldK$, $v\in \vectorspE$
+ and absolutely convex $A$
+ \[
+   p_A (rv)= \inf \big\{ t \in \R_{> 0} \bigmid r v \in tA \big\} = 
+   \inf \big\{ t \in \R_{> 0} \bigmid |r|v \in t A \big\} = p_A (|r|v) = |r| p_A(v) \ ,
+ \]
+ where for the last equality we have used \ref{ite:gauge-functional-positively-homogenous}.
+\end{proof}
+
+\begin{lemma}
+  Let  $A$ and $B$ be absorbent subsets of a vector space $\vectorspE$. Then
+  the following holds true.
+  \begin{romanlist}
+  \item
+    $p_{tA}(v) =  p_A(t^{-1} v)$ for all $t\in \fldK^\times$ and $v\in \vectorspE$.
+  \item\label{ite:comparison-gauge-functionals-subsets}
+    If $B\subset A$, then $p_A \leq p_B$.
+  \item
+    If $A$ is convex, then $v \in tA$ for all $v\in \vectorspE$ and $t > p_A(v)$. 
+  \item
+    If $A$ and $B$ are convex, then the intersection $A\cap B$ is absorbent and convex and
+    $p_{A\cap B} = \sup \{ p_A,p_B\}$, where $\sup \{ p_A,p_B\} (v) = \sup \{ p_A (v) ,p_B (v) \}$
+    for all  $v\in \vectorspE$.  
+  \end{romanlist}
+\end{lemma}
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    If $t\in \fldK$ is invertible, then $v \in tA$ if and only if $t^{-1}v \in A$.
+  \item
+    Let $v\in \vectorspE$ and $\varepsilon >0$. Then there exists $t$ with
+    $p_B(v) \leq t < p_B(v) + \varepsilon$ such that $v \in tB$. By $B\subset A$ this implies
+    $v \in tA$, hence $p_A(v) \leq t < p_B(v) + \varepsilon$. Since $\varepsilon >0$
+    was arbitrary, the estimate $p_A \leq p_B$ follows.
+  \item
+    By definition of the Minkowski gauge there exists $s \in \R$ such that $p_A(v)< s <t$ and  $v \in sA$.
+    By convexity of $A$ one concludes $\frac st v = \frac st v + \left( 1 - \frac st \right) \cdot 0 \in sA$, hence
+    $v \in tA$.  
+  \item
+    The intersection of convex sets is convex, so $A\cap B$ is convex.
+    Let $v\in \vectorspE$ and choose $r_A\geq 0$ and $r_B\geq 0$ such that 
+    $v \in tA$ for all $t\geq r_A$ and $v \in sB $ for all $s\geq r_B$.
+    Then $v \in (tA)\cap (tB) = t(A\cap B) $ for all $t\geq \max\{r_A,r_B\}$,
+    so $A\cap B$ is absorbent.
+    One has $p_{A\cap B} \geq  \sup \{ p_A,p_B\}$ by \ref{ite:comparison-gauge-functionals-subsets}.
+    To show the converse inequality assume that  $v \in \vectorspE$ and $t > \sup \{ p_A (v) ,p_B (v)\}$.
+    Then $v \in tA \cap tB = t(A\cap B)$, which implies $p_{A\cap B} (v)\leq t$. Hence
+    $p_{A\cap B} (v) \leq  \sup \{ p_A (v) ,p_B (v)\}$ since $t > \sup \{ p_A (v) ,p_B (v)\}$
+    was arbitrary.
+  \end{adromanlist}
+\end{proof}
+
+\begin{lemma}
+  Let $p:\vectorspE \to\R$ be a sublinear map on a vector space $\vectorspE$ and
+  $A\subset \vectorspE$ convex. If
+  \[ \ball_p  \subset A \subset \closedball_p \ ,\]
+  then the gauge functional $p_A$ coincides with $\sup \{p,0\} $. If $p$ is even
+  a seminorm, then $p=p_A$. 
+\end{lemma}
+
+\begin{proof}
+  Let $p:\vectorspE\to\R$ be sublinear. Observe that then  $\ball_p$ is absorbent by
+  \Cref{thm:properties-subadditive-convex-real-valued-maps-vector-space}
+  \ref{ite:implications-sublinearity-real-valued-map}.
+  Hence $A$ must also be absorbent by assumption, so the associated Minkowski gauge $p_A$ is
+  positively homogeneous by
+  \Cref{thm:properties-gauge-functional-absorbent-set}
+  \ref{ite:gauge-functional-positively-homogenous}. 
+  
+  Assume now that there exists $v\in\vectorspE$ such that $\max\{p(v),0 \} < p_A(v)$. By positive
+  homogeneity of $p$ and $p_A$
+  one can achive by possibly multiplying $v$ by a positive real number that $\max\{p(v),0 \} < 1 < p_A(x)$.  The first
+  inequality entails $v \in  \ball_p$, the second $v\notin \closedball_p $ which is a contradiction.
+  Next assume that there exists $v\in\vectorspE$ with $p_A(v) < \max\{p(v),0 \}$. As before one can then achieve that
+  $ p_A(v) < 1 < \max\{p(v),0 \}$ for some $v\in\vectorspE$. By the first inequality one concludes $v \in  A$,
+  by the second $v \notin A$. This is a contradiction. So the equality $\max\{p(v),0 \} = p_A(v)$ holds for all $v\in \vectorspE$. 
+  
+  In case $p$ is a seminorm, then $p(v) \geq 0$ for all $v\in \vectorspE$ and the second claim follows by the first. 
+\end{proof}
+
+\begin{proposition}
+  Let $\tvsE$ be a topological vector space, and $p:\tvsE \to \R$ be sublinear. Then the following are equivalent.
+  \begin{romanlist}
+  \item\label{ite:continuity-sublinear-map-origin}
+    The map $p$ is continuous in the origin. 
+  \item\label{ite:uniform-continuity-sublinear-map}
+    The map $p$ is uniformly continuous.
+  \item\label{ite:continuity-sublinear-map}
+    The map $p$ is continuous.  
+  \item\label{ite:unit-ball-sublinear-map-zero-neighborhood}
+    The unit ball $\ball_p $ is a zero neighborhood.
+  \end{romanlist}
+\end{proposition}
+
+\begin{proof}
+  Let us first show \ref{ite:continuity-sublinear-map-origin}  $\implies$ \ref{ite:uniform-continuity-sublinear-map}.
+  To this end fix $\varepsilon >0$. By assumption there exists a zero neighborhood $V\subset \tvsE$ such that
+  $|p(v)| < \varepsilon$ for all $v\in V$. By possibly passing to $V \cap (-V)$ one can assume that
+  $V$ is symmetric. 
+  \Cref{thm:properties-subadditive-convex-real-valued-maps-vector-space} \ref{ite:implications-subadditivity}
+  now implies
+  \[
+     | p(v) - p(w)| <  \varepsilon \quad \text{for all } v,w \in V \ .
+  \]
+  Hence $p$ is uniformly continuous.   
+  The implications \ref{ite:uniform-continuity-sublinear-map} $\implies$ \ref{ite:continuity-sublinear-map}
+  and \ref{ite:continuity-sublinear-map} $\implies$ \ref{ite:unit-ball-sublinear-map-zero-neighborhood} are trivial.
+  It remains to prove
+  \ref{ite:unit-ball-sublinear-map-zero-neighborhood} $\implies$ \ref{ite:continuity-sublinear-map-origin}.
+  Assume that  $\ball_p (0,1)$ is a zero neighborhood.
+  Then there exists a symmetric zero neighborhood $V$ contained in  $\ball_p (0,1)$.  Since $p(0)=0$ one concludes by
+  \Cref{thm:properties-subadditive-convex-real-valued-maps-vector-space} \ref{ite:implications-subadditivity}
+  \[
+     | p(v) | <  \max \{ p(v), p(-v )\} < 1   \quad \text{for all } v \in V \ .
+  \]
+  But this implies $|p(v)| < \varepsilon $ for all $v \in \varepsilon V$ and $\varepsilon >0$,
+  so $p$ is continuous at the origin. 
+\end{proof}
+
+\subsec{Normability}
+
+\begin{definition}
+  A topological vector space $\tvsE$ is called \emph{seminormable} if its topology is generated by a single
+  seminorm $p:\tvsE\to \R_{\geq 0}$.
+  If the topology on  $\tvsE$ coincides with the vector space topology generated by a norm $\|\cdot\|$,
+  then one calls $\tvsE$ \emph{normable}.
+\end{definition}
+
+\begin{theorem}[Kolmogorov's normability criterion]
+  A topological vector space $\tvsE$ is normable if and only if it is a \ref{axiom:t1} space and 
+  possesses a bounded convex neighborhood of the origin.  
+\end{theorem}

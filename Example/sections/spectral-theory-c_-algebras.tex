@@ -1,0 +1,788 @@
+
+\section{Spectral Theory}
+\label{sec:spectral-theory-c*-algebras}
+
+\subsection{Spectral Theory in Banach Algebras}
+
+Throughout this section, let $A$ be a unital Banach algebra. We actually do not need to require $A$ to be a $C^*$-algebra for the foundations of spectral theory, but the existence of a unit is essential. We will adopt the shorthand of writing $\lambda$ for $\lambda 1$ for all $\lambda \in \C$.
+
+\begin{definition}
+Given $a \in A$, we define the \emph{resolvent set} of $a$ as
+\begin{equation}
+\rho(a) = \qty{\lambda \in \C: \lambda - a \in A^\times}
+\end{equation}
+An element of $\rho(a)$ is called a \emph{regular value} of $a$. If $\rho(a) \neq \varnothing$, the map $r_a:\rho(a) \rightarrow A$ defined as
+\begin{equation}
+r_a(\lambda) = (\lambda - a)^{-1}
+\end{equation}
+is called the \emph{resolvent} of $a$.
+
+Likewise, we define the \emph{spectrum} of $a$ as
+\begin{equation}
+\sigma(a) = \qty{\lambda \in \C: \lambda - a \notin A^\times} = \C \setminus \rho(a).
+\end{equation}
+An element of $\sigma(a)$ is called a \emph{spectral value} of $a$. If $\sigma(a) \neq \varnothing$, we define the \emph{spectral radius} of $a$ as
+\begin{equation}
+r(a) = \sup_{\lambda \in \sigma(a)} \abs{\lambda}.
+\end{equation}
+\end{definition}
+
+
+A priori we do not know that $\rho(a)$ or $\sigma(a)$ is nonempty. The following exposition will establish that in fact both of them are nonempty, so the resolvent $r_a(\lambda)$ and the spectral radius $r(a)$ are always defined.
+
+\begin{theorem}\label{thm:Neumann_series}
+Let $a \in A$. If $\lambda \in \C$ such that $\norm{a} < \abs{\lambda}$, then the \emph{Neumann series} $\sum_{n=0}^\infty (a/\lambda)^n$ converges, $\lambda \in \rho(a)$, and
+\begin{equation}
+r_a(\lambda) = \frac{1}{\lambda}\sum_{n=0}^\infty \qty(\frac{a}{\lambda})^n.
+\end{equation}
+Furthermore,
+\begin{equation}\label{eq:resolvent_norm_bound}
+\norm{r_a(\lambda)} \leq \frac{1}{\abs{\lambda} - \norm{a}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We begin by showing that the sequence of partial sums is a Cauchy sequence. Given $M,N \in \N$ with $M < N$, we have
+\begin{equation}
+\norm{\sum_{n=0}^N \qty(\frac{a}{\lambda})^n - \sum_{n = 0}^M \qty(\frac{a}{\lambda})^n} = \norm{\sum_{n=M+1}^N \qty(\frac{a}{\lambda})^n} \leq \sum_{n=M+1}^N \norm{\qty(\frac{a}{\lambda})^n} \leq \sum_{n=M+1}^N \qty(\frac{\norm{a}}{\abs{\lambda}})^n,
+\end{equation}
+where we have used submultiplicativity in the last step. Since $\norm{a}/\abs{\lambda} < 1$, the rightmost expression can be made arbitrarily small by taking $M$ and $N$ to be large. Thus, the sequence of partial sums is Cauchy, hence convergent, since $A$ is complete.
+
+Now, for any $N \in \N$, we have
+\begin{equation}
+(\lambda - a)\qty[\frac{1}{\lambda}\sum_{n=0}^N \qty(\frac{a}{\lambda})^n] = \qty[\frac{1}{\lambda}\sum_{n=0}^N \qty(\frac{a}{\lambda})^n](\lambda - a) = 1 - \qty(\frac{a}{\lambda})^{N+1}
+\end{equation}
+Submultiplicativity and $\norm{a/\lambda} < 1$ imply $(a/\lambda)^n \rightarrow 0$. Thus, taking the limit as $N \rightarrow \infty$ of the above line yields
+\begin{equation}
+(\lambda - a)\qty[\frac{1}{\lambda}\sum_{n=0}^\infty \qty(\frac{a}{\lambda})^n] = \qty[\frac{1}{\lambda}\sum_{n=0}^\infty \qty(\frac{a}{\lambda})^n](\lambda - a) = 1,
+\end{equation}
+as desired.
+
+Finally, we note that for $N \in \N$, using the formula for a geometric series yields
+\begin{equation}
+\norm{\frac{1}{\lambda}\sum_{n=0}^N \qty(\frac{a}{\lambda})^n}  \leq \frac{1}{\abs{\lambda}}\sum_{n=0}^N \qty(\frac{\norm{a}}{\abs{\lambda}})^n \leq  \frac{1}{\abs{\lambda}}\frac{1}{1 - \norm{a}/\abs{\lambda}} = \frac{1}{\abs{\lambda} - \norm{a}}.
+\end{equation}
+Taking the limit as $N \rightarrow \infty$ yields \eqref{eq:resolvent_norm_bound}.
+\end{proof}
+
+The following corollary rephrases some of the key points of the above theorem.
+
+\begin{corollary}
+Given $a \in A$, the resolvent set $\rho(a)$ is nonempty and
+\begin{equation}
+r(a) \leq \norm{a}.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}
+Given $a \in A$, the resolvent $r_a:\rho(a) \rightarrow A$ is continuous. 
+\end{corollary}
+
+\begin{proof}
+Since $\rho(a) \neq \varnothing$, the resolvent is defined. Continuity then follows from continuity of addition, scalar multiplication, and inversion.
+\end{proof}
+
+
+\begin{corollary}\label{cor:resolvent_is_open}
+Let $a \in A$ and $\lambda_0 \in \rho(a)$. If $\abs{\lambda - \lambda_0} < \norm{r_a(\lambda_0)}^{-1}$, then $\lambda \in \rho(a)$ and
+\begin{equation}
+r_a(\lambda) = \sum_{n=0}^\infty (\lambda_0 - \lambda)^n r_a(\lambda_0)^{n+1}.
+\end{equation}
+In particular, it follows that
+\begin{equation}
+B_{\norm{r_a(\lambda_0)}^{-1}}(\lambda_0) \subset \rho(a)
+\end{equation}
+for all $\lambda_0 \in \rho(a)$, so $\rho(a)$ is open in $\C$.
+\end{corollary}
+
+
+\begin{proof}
+Let $\abs{\lambda - \lambda_0} < \norm{r_a(\lambda_0)}^{-1}$. Then $\norm{(\lambda_0 - \lambda)r_a(\lambda_0)} < 1$, so $1 - (\lambda_0 - \lambda)r_a(\lambda_0)$ is invertible by Theorem \ref{thm:Neumann_series}. Since $\lambda_0 - a$ is invertible, the product
+\begin{equation}
+(\lambda_0 - a)\qty[1 - (\lambda_0 - \lambda)r_a(\lambda_0)] = \lambda_0 - a - (\lambda_0 - \lambda) = \lambda - a
+\end{equation}
+is also invertible, so $\lambda \in \rho(a)$. Furthermore, using the Neumann series for the inverse of $1 - (\lambda_0 - \lambda)r_a(\lambda_0)$, we obtain
+\begin{equation}
+\begin{aligned}
+r_a(\lambda) &= \qty[1 - (\lambda_0 - \lambda)r_a(\lambda_0)]^{-1} r_a(\lambda_0)\\
+&= \qty[\sum_{n=0}^\infty (\lambda_0 - \lambda)^n r_a(\lambda_0)^n]r_a(\lambda_0)\\
+&= \sum_{n=0}^\infty (\lambda_0 - \lambda)^n r_a(\lambda_0)^{n+1},
+\end{aligned}
+\end{equation}
+as desired.
+\end{proof}
+
+In a similar vein, we have the following Corollary.
+
+\begin{corollary}
+The set $A^\times$ is open in $A$.
+\end{corollary}
+
+\begin{proof}
+Let $a \in A^\times$ and let $b \in A$ such that $\norm{b - a} < \norm{a^{-1}}^{-1}$. This implies that 
+\begin{equation}
+\norm{1 - ba^{-1}} \leq \norm{a - b}\norm{a^{-1}} < 1,
+\end{equation}
+so $1 - (1 - ba^{-1}) = ba^{-1}$ is invertible, which implies $b$ is invertible. 
+\end{proof}
+
+
+Having studied a few properties of the resolvent set, we now turn to the spectrum. In particular, we want to show that the spectrum is nonempty. We will be aided by a few algebraic properties of the resolvent. We denote the commutator of two elements $a,b \in A$ by $[a,b] = ab - ba$.
+
+\begin{lemma}
+Let $a \in A$. For all $\lambda, \mu \in \rho(a)$, we have:
+	\begin{enumerate}
+		\item[\tn{(i)}] $[a, r_a(\lambda)] = 0$,
+		\item[\tn{(ii)}] $r_a(\mu) - r_a(\lambda) = (\lambda - \mu)r_a(\mu)r_a(\lambda)$
+		\item[\tn{(iii)}] $[r_a(\lambda), r_a(\mu)] = 0$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i). It is clear that $[\lambda - a, a] = 0$. So, since $r_a(\lambda) = (\lambda - a)^{-1}$, we have
+\begin{equation}
+0 = r_a(\lambda)[\lambda - a, a]r_a(\lambda) = r_a(\lambda)a -ar_a(\lambda) = [r_a(\lambda), a].
+\end{equation}
+
+(ii). We compute
+\begin{equation}
+\begin{aligned}
+\qty[r_a(\mu) - r_a(\lambda)](\lambda - a)(\mu - a) &= r_a(\mu)(\lambda - a)(\mu - a) - (\mu - a)\\
+&= (\lambda - a) - (\mu - a)\\
+&= \lambda - \mu.
+\end{aligned}
+\end{equation}
+We used the fact that $[r_a(\mu), \lambda - a] = 0$ in the second step. Multiplying by $r_a(\mu)r_a(\lambda)$ on the left now yields the desired result.
+
+(iii). If $\lambda = \mu$, the result is trivial. If $\lambda \neq \mu$, we may divide both sides of (ii) by $\lambda - \mu$ to obtain
+\begin{equation}
+r_a(\mu) r_a(\lambda) = \frac{r_a(\mu) - r_a(\lambda)}{\lambda - \mu}.
+\end{equation}
+The right hand side is invariant under exchange of $\mu$ and $\lambda$, so the result follows.
+\end{proof}
+
+\begin{lemma}\label{lem:resolvent_derivative}
+Let $a \in A$. If $f$ is in the continuous dual $A^*$, then $f \circ r_a :\rho(a) \rightarrow \C$ is holomorphic %and
+%\begin{equation}\label{eq:resolvent_derivative}
+%(f \circ r_a)^{(n)}(\lambda) = (-1)^n n! f\qty(r_a(\lambda)^{n+1}).
+%\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $\lambda \in \rho(a)$. For any $\mu \in \rho(a)$, $\mu \neq \lambda$, we have
+\begin{equation}
+\frac{f(r_a(\mu)) - f(r_a(\lambda))}{\mu - \lambda} = f\qty(\frac{r_a(\mu) - r_a(\lambda)}{\mu - \lambda}) = -f\qty(r_a(\mu)r_a(\lambda)).
+\end{equation}
+Since $f$ and $r_a$ are continuous, the limit of the above as $\mu \rightarrow \lambda$ exists and is
+\begin{equation}
+(f \circ r_a)'(\lambda)  = -f\qty(r_a(\lambda)^2).
+\end{equation}
+This proves that $f \circ r_a$ is holomorphic. % and proves \eqref{eq:resolvent_derivative} for $n = 1$.
+%
+%Suppose \eqref{eq:resolvent_derivative} is true for some $n \in \N$. Then for distinct numbers $\mu, \lambda \in \C$, we have
+%\begin{equation}
+%\begin{aligned}
+%\frac{(f \circ r_a)^{(n)}(\mu) - (f \circ r_a)^{(n)}(\lambda)}{\mu - \lambda} &= (-1)^n n! f\qty(\frac{r_a(\mu)^{n+1} - r_a(\lambda)^{n+1}}{\mu - \lambda})\\
+%&= (-1)^n n! f\qty[\qty(\frac{r_a(\mu) - r_a(\lambda)}{\mu - \lambda})\sum_{k=0}^n r_a(\mu)^{n-k}r_a(\lambda)^k]\\
+%&= (-1)^{n+1} n! f\qty(r_a(\mu)r_a(\lambda)\sum_{k=0}^n r_a(\mu)^{n-k}r_a(\lambda)^k)
+%\end{aligned}
+%\end{equation}
+%where the expansion in the second step relies on the fact that $[r_a(\mu),r_a(\lambda)] = 0$. Taking the limit as $\mu \rightarrow \lambda$ yields
+%\begin{equation}
+%(f \circ r_a)^{(n+1)}(\lambda) = (-1)^{n+1} (n+1)! f\qty(r_a(\lambda)^{n+2}).
+%\end{equation}
+%This concludes the inductive step and completes the proof.
+\end{proof}
+
+
+\begin{corollary}
+Given $a \in A$, the spectrum $\sigma(a)$ is nonempty and compact.
+\end{corollary}
+
+\begin{proof}
+We know $\sigma(a)$ is closed and bounded since $\rho(a)$ is open and $r(a) \leq \norm{a}$, so it just remains to show that $\sigma(a)$ is nonempty. If $\sigma(a) = \varnothing$, then $\rho(a) = \C$, so $f \circ r_a$ is entire for all $f \in A^*$. Since $f$ is bounded, we have
+\begin{equation}
+\abs{(f \circ r_a)(\lambda)} \leq \norm{f} \norm{r_a(\lambda)}.
+\end{equation}
+Furthermore, since $\lambda \mapsto \norm{r_a(\lambda)}$ is continuous, it is bounded by a constant for $\abs{\lambda} \leq 1 + \norm{a}$ by the extreme value theorem. For $\abs{\lambda} > 1 + \norm{a}$, we have a bound from the Neumann series:
+\begin{equation}
+\norm{r_a(\lambda)} \leq \frac{1}{\abs{\lambda} - \norm{a}} \leq 1.
+\end{equation}
+Thus, $f \circ r_a$ is bounded and entire, so by Liouville's theorem it is constant. But if $\mu \neq \lambda$, then $r_a(\mu) \neq r_a(\lambda)$, for otherwise we would have
+\begin{equation}
+0 = r_a(\mu) - r_a(\lambda) = (\lambda - \mu)r_a(\mu)r_a(\lambda),
+\end{equation}
+which would imply that $r_a(\mu) = r_a(\lambda) = 0$, but $0$ is not invertible. By the Hahn-Banach theorem, there must be some $f \in A^*$ such that $f \circ r_a$ is not constant, which is a contradiction. Therefore $\rho(a) \neq \C$.
+\end{proof}
+
+In fact, using Lemma \ref{lem:resolvent_derivative}, we can say exactly what the spectral radius $\rho(a)$ is.
+
+\begin{theorem}\label{thm:spectral_radius_formula}
+Let $a \in A$. The spectral radius is given by
+\begin{equation}
+r(a) = \lim_{n \rightarrow \infty} \norm{a^n}^{1/n},
+\end{equation}
+where the limit on the right hand side is guaranteed to exist.
+\end{theorem}
+
+\begin{proof}
+The result is trivial if $a = 0$, so assume $a \neq 0$. We will show that
+\begin{equation}\label{eq:spectral_radius_lim_inequality}
+\limsup \norm{a^n}^{1/n} \leq r(a) \leq \liminf \norm{a^n}^{1/n},
+\end{equation}
+which immediately yields the result.
+
+Suppose $\lambda \in \sigma(a)$. If $\lambda^n \in \rho(a^n)$ for some $n \in \N$, then
+\begin{equation}
+\lambda^n - a^n = (\lambda - a) \qty(\lambda^{n-1} + \lambda^{n-2}a + \cdots + \lambda a^{n-2} + a^{n-1})
+\end{equation}
+is invertible. Let $b$ be the rightmost term in parentheses and note that $b$ commutes with $\lambda - a$. But then
+\begin{equation}
+(\lambda - a)b(\lambda^n - a^n)^{-1} = 1 = (\lambda^n - a^n)^{-1}b (\lambda - a),
+\end{equation}
+so $\lambda - a$ has a left inverse and a right inverse. Hence $\lambda - a$ has a two-sided inverse, so $\lambda \in \rho(a)$, which is a contradiction. Therefore $\lambda^n \in \sigma(a^n)$. Since $\rho(a^n) \leq \norm{a^n}$, we see that
+\begin{equation}
+\abs{\lambda} = \qty(\abs{\lambda}^n)^{1/n} \leq \norm{a^n}^{1/n}.
+\end{equation}
+This is true for all $\lambda \in \rho(a)$ and $n \in \N$, so
+\begin{equation}
+\rho(a) \leq \inf_{n \in \N} \norm{a^n}^{1/n} \leq \liminf \norm{a^n}^{1/n}.
+\end{equation}
+
+To prove the other half of \eqref{eq:spectral_radius_lim_inequality}, suppose $\rho(a) > 0$, let $f \in A^*$, and consider the function $g:B_{\rho(a)^{-1}}(0) \rightarrow \C$ defined as
+\begin{equation}
+g(\lambda) = \begin{cases} \hfil f(r_a(\lambda^{-1})) &: \lambda \neq 0\\ \hfil 0 &: \lambda = 0\end{cases}
+\end{equation}
+If $\rho(a) = 0$, we may define $g$ in this way on all of $\C$. This function is holomorphic on the deleted disk $B_{\rho(a)^{-1}}(0) \setminus \qty{0}$ by Lemma \ref{lem:resolvent_derivative} and the fact that $\lambda \mapsto \lambda^{-1}$ is holomorphic on $\C \setminus \qty{0}$. Furthermore, for $\abs{\lambda} < \norm{a}^{-1}/2$, we have 
+\begin{equation}
+\abs{g(\lambda)} \leq \norm{f} \norm{r_a(\lambda^{-1})} \leq \frac{\norm{f}}{\abs{\lambda}^{-1} - \norm{a}} = \frac{\norm{f}\abs{\lambda}}{1 - \norm{a}\abs{\lambda}} \leq 2 \norm{f}\abs{\lambda},
+\end{equation}
+so $g$ is continuous at zero. It is then a consequence of Morera's theorem that $g$ is holomorphic on the whole disk $B_{\rho(a)^{-1}}(0)$. 
+
+Furthermore, for $0 < \abs{\lambda} < \norm{a}^{-1}$, we can use the Neumann series to obtain a power series expansion:
+\begin{equation}
+g(\lambda) = f\qty(\lambda \sum_{n=0}^\infty \qty(\lambda a)^n ) = \lambda \sum_{n=0}^\infty f(a^n) \lambda^n.
+\end{equation}
+Since $g$ is holomorphic on $B_{\rho(a)^{-1}}(0)$ or on $\C$ if $\rho(a) = 0$, the above gives its power series expansion on its entire domain by the unique representability of $g$ by a power series. The radius of convergence of this power series is therefore at least $\rho(a)^{-1}$, so the series converges absolutely for every $\lambda$ in the domain of $g$. Hence, for any $f \in A^*$ and $\lambda \in \C$ with $\abs{\lambda} < \rho(a)^{-1}$, the sequence $\abs{\lambda^n f(a^n)}$ is bounded as $n$ varies across the natural numbers. 
+
+Recall that the map $\Psi: A \rightarrow A^{**}$ defined as $\Psi(a)(f) = f(a)$ is a linear isometry. Then the boundedness of $\abs{\lambda^n f(a^n)}$ for all $f \in A^*$ indicates that the family $\Psi(\lambda^n a^n)$ is pointwise bounded. By the uniform boundedness principle, the family $\Psi(\lambda^n a^n)$ is uniformly bounded, i.e.\ for each $\lambda$ there exists $M_\lambda > 0$ such that
+\begin{equation}
+\abs{\lambda^n f(a^n)} < M_\lambda,
+\end{equation}
+for all $f \in A^*$ with $\norm{f} \leq 1$. By the Hahn-Banach theorem, there exists $f \in A^*$ with $\norm{f} \leq 1$ such that $\abs{f(a^n)} = \norm{a^n}$. Thus, we have $\abs{\lambda}^n \norm{a^n} < M_\lambda$ for all $n \in \N$, or
+\begin{equation}
+\norm{a^n}^{1/n} < M_\lambda^{1/n} \abs{\lambda}^{-1},
+\end{equation}
+assuming $\abs{\lambda} > 0$. Taking the limit supremum of both sides yields
+\begin{equation}
+\limsup \norm{a^n}^{1/n} \leq \limsup M^{1/n}_\lambda \abs{\lambda}^{-1} = \lim_{n \rightarrow \infty} M_\lambda^{1/n} \abs{\lambda}^{-1} = \abs{\lambda}^{-1}.
+\end{equation}
+If $\rho(a) = 0$, this is valid for all $\abs{\lambda} > 0$, which implies $\limsup \norm{a^n}^{1/n} = 0 = \rho(a)$. If $\rho(a) > 0$, this is valid for all $\abs{\lambda}^{-1} > \rho(a)$, which implies that 
+\begin{equation}
+\limsup \norm{a^n}^{1/n} \leq \rho(a),
+\end{equation}
+as desired.
+\end{proof}
+
+The proof that $r(a) \leq \liminf \norm{a^n}^{1/n}$ in Theorem \ref{thm:spectral_radius_formula} contains some interesting observations worth highlighting.
+
+\begin{lemma}\label{lem:invert_product}
+If $a_1,\ldots, a_n, b \in A$ such that
+\begin{equation}
+b = a_1 a_2 \cdots a_n,
+\end{equation}
+and $[a_i, a_j] = 0$ for all $i,j$, then $b$ is invertible if and only if each $a_i$ is invertible.
+\end{lemma}
+
+\begin{proof}
+It is obvious that $b$ is invertible if each $a_i$ is invertible. If $b$ is invertible, then for any $i\leq n$, we have
+\begin{equation}
+\qty(b^{-1}\prod_{j \neq i} a_j)a_i = b^{-1}b = 1 =bb^{-1} =  a_i \qty(\prod_{j \neq i} a_j)b^{-1}.
+\end{equation}
+Thus, $a_i$ has a left inverse and a right inverse, which must be equal.
+\end{proof}
+
+\begin{theorem}\label{thm:polynomial_spectrum}
+Let $p = \sum_{i=0}^n \alpha_i z^i$ be a complex polynomial and let $a \in A$. Then
+\begin{equation}
+\sigma(p(a)) = p(\sigma(a)).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Fix $\lambda \in \C$ and factorize $\lambda - p(a)$:
+\begin{equation}
+\lambda - p(z) = \beta_0 \prod_{i=1}^n (\beta_i - z)
+\end{equation}
+for some $\beta_0,\ldots, \beta_n \in \C$. Then 
+\begin{equation}
+\lambda - p(a) = \beta_0 \prod_{i=1}^n (\beta_i - a).
+\end{equation}
+By Lemma \ref{lem:invert_product}, $\lambda \in \sigma(p(a))$ if and only if $\beta_i \in \sigma(a)$ for some $i \geq 1$. But there exists $i \geq 1$ such that $\beta_i \in \sigma(a)$ if and only if $\lambda \in p(\sigma(a))$, so we're done.
+\end{proof}
+
+
+Theorem \ref{thm:polynomial_spectrum} gives one example of how algebraic manipulations in $A$ affect the spectra of the elements being manipulated. Let us give more results in this vein.
+
+\begin{theorem}
+If $a, b \in A$, then
+\begin{equation}\label{eq:spectrum_of_product}
+\sigma(ab) \cup \qty{0} = \sigma(ba) \cup \qty{0}.
+\end{equation}
+If $a \in A^\times$, then
+\begin{equation}
+\sigma(a^{-1}) = \sigma(a)^{-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suppose $\lambda \in \rho(ab)$. Then using $(\lambda - ba)b = b(\lambda - ab)$ we compute
+\begin{equation}
+\begin{aligned}
+(\lambda - ba)\qty[1 + b(\lambda - ab)^{-1}a] = \qty(\lambda - ba) + ba = \lambda.
+\end{aligned}
+\end{equation}
+and likewise
+\begin{equation}
+\qty[1 + b(\lambda - ab)^{-1}a] (\lambda - ba) = (\lambda - ba)  + ba = \lambda.
+\end{equation}
+Therefore $\lambda \in \rho(ba)$ if $\lambda \neq 0$. Of course, the same result holds with $a$ and $b$ switched. In other words,
+\begin{equation}
+\rho(ab) \setminus \qty{0} = \rho(ba) \setminus \qty{0}
+\end{equation}
+Taking complements yields \eqref{eq:spectrum_of_product}.
+
+If $a \in A^\times$, then clearly $0 \notin \sigma(a)$ and $0 \notin \sigma(a^{-1})$. If $\lambda \neq 0$, then
+\begin{equation}
+\lambda^{-1} - a = \lambda^{-1} a(a^{-1} - \lambda),
+\end{equation}
+which implies $\lambda^{-1} \in \sigma(a)$ if and only if $\lambda \in \sigma(a^{-1})$ by Lemma \ref{lem:invert_product}. Since $\lambda^{-1} \in \sigma(a)$ if and only if $\lambda \in \sigma(a)^{-1}$, this is the desired result.
+\end{proof}
+
+
+\subsection[Spectral Theory in C$^*$-Algebras]{Spectral Theory in C$^*$-Algebras}
+
+We continue where we left off in the previous section by showing how the spectrum behaves with respect to the star operation. We now let $A$ be a unital $C^*$-algebra for the rest of this section.
+
+\begin{proposition}\label{prop:star_spectrum}
+Let $a \in A$. Then
+\begin{equation}
+\sigma(a^*) = \sigma(a)^*.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We note that $\lambda - a^*$ is invertible if and only if $\lambda - a^*$ is invertible by Proposition \ref{prop:inverse_star_commute}. Hence, $\lambda \in \sigma(a^*)$ if and only if $\lambda^* \in \sigma(a)$ if and only if $\lambda \in \sigma(a)^*$.
+\end{proof}
+
+We now investigate the spectra of several special classes of elements of $A$.
+
+\begin{definition}
+An element $a \in A$ is 
+\begin{enumerate}
+	\item[(i)] \emph{normal} if $[a,a^*] = 0$,
+	\item[(ii)] an \emph{isometry} if $a^*a = 1$, and
+	\item[(iii)] \emph{unitary} if $a^*a = aa^* = 1$, i.e.\ $a \in A^\times$ and $a^{-1} = a^*$.
+\end{enumerate}
+Note that both unitary and self-adjoint elements are normal. Furthermore, if $a$ is an isometry or a unitary, then $\norm{a} = 1$ by the $C^*$-property. 
+\end{definition}
+
+
+\begin{corollary}
+If $a \in A$ is normal, then $\rho(a) = \norm{a}$.
+\end{corollary}
+
+\begin{proof}
+We claim that
+\begin{equation}\label{eq:normal_inductive_step}
+\norm{a^{2^n}}^2 = \norm{a}^{2^{n+1}}.
+\end{equation}
+for all normal $a \in A$. For $n = 0$ this is trivial. Suppose it is true for some $n = k-1$ where $k \in \N$. Using normality of $a$, the $C^*$-property, and the fact that $a^*a$ is self-adjoint, we compute
+\begin{equation}
+\begin{aligned}
+\norm{a^{2^k}}^2  &= \norm{\qty(a^{2^k})^*a^{2^k}} = \norm{\qty(a^*)^{2^k}a^{2^k}} = \norm{(a^*a)^{2^k}} \\
+&= \norm{(a^*a)^{2^{k-1}}}^2  = \norm{a^*a}^{2^k} = \norm{a}^{2^{k+1}}.
+\end{aligned}
+\end{equation}
+This proves \eqref{eq:normal_inductive_step}. Now, using the formula for the spectral radius, we obtain
+\begin{equation}
+r(a) = \lim_{n \rightarrow \infty} \norm{a^{2^n}}^{1/2^n} = \lim_{n \rightarrow \infty} \norm{a}^{2^{n}/2^n} = \norm{a},
+\end{equation}
+as desired.
+\end{proof}
+
+\begin{corollary}
+If $a \in A$ is isometric, then $r(a) = 1$.
+\end{corollary}
+
+\begin{proof}
+We note that
+\begin{equation}
+\norm{a^n}^2 = \norm{\qty(a^n)^* \qty(a^n)} = \norm{(a^*)^n \qty(a^n)} = \norm{1} = 1.
+\end{equation}
+Thus,
+\begin{equation}
+r(a) = \lim_{n \rightarrow \infty} \norm{a^n}^{1/n} = \lim_{n \rightarrow \infty} 1 = 1,
+\end{equation}
+as desired.
+\end{proof}
+
+\begin{corollary}
+If $a \in A$ is unitary, then $\sigma(a) \subset S^1$.
+\end{corollary}
+
+\begin{proof}
+We have 
+\begin{equation}
+\sigma(a)^{-1} = \sigma(a^{-1}) = \sigma(a^*) = \sigma(a)^*.
+\end{equation}
+Thus, if $\lambda \in \sigma(a)$, then $\lambda^{-1} = \mu^*$ for some $\mu \in \sigma(a)$. Since $r(a) \leq 1$, we know $1 \leq \abs{\lambda}^{-1} = \abs{\mu} \leq 1$, so $\abs{\lambda} = 1$.
+\end{proof}
+
+
+\begin{theorem}
+If $a \in A$ is self-adjoint, then
+\begin{equation}
+\sigma(a) \subset [-\norm{a}, \norm{a}].
+\end{equation}
+In particular, $\sigma(a^2) = \sigma(a)^2 \subset [0, \norm{a}^2]$.
+\end{theorem}
+
+\begin{proof}
+Let $\lambda \in \R$ such that $\lambda^{-1} = \abs{i\lambda^{-1}} > \norm{a}$. Then $\lambda^{-1} \in \rho(a)$, so $1 + i\lambda a = -i\lambda(i\lambda^{-1}  - a)$ is invertible. Note that $(1 + i\lambda a)^* = 1 - i \lambda a$ is invertible as well. Define
+\begin{equation}
+u = (1 - i\lambda a)(1 + i \lambda a)^{-1}.
+\end{equation}
+Observe that $u^* = (1 - i\lambda a)^{-1}(1 + i \lambda a)$. Using the fact that $1 - i \lambda a$ commutes with $1 + i \lambda a$, we see that
+\begin{equation}
+u^*u = (1- i\lambda a)^{-1} (1 + i \lambda a)(1 - i \lambda a) (1 + i \lambda a)^{-1} = 1.
+\end{equation}
+Since $u$ is the product of two invertible elements, we know $u$ is invertible, and the above shows that $u^{-1} = u^*$, so $u$ is unitary.
+
+Given $\mu \in \C$, $\mu \neq i\lambda^{-1}$, observe that
+\begin{equation}
+\abs{\frac{1 - \cplxi \, \lambda \mu}{1 + \cplxi \, \lambda \mu}} = \sqrt{\frac{(1 + \lambda \, \Im \mu)^2 + (\lambda \, \Re \mu)^2}{(1 - \lambda \, \Im \mu)^2 + (\lambda \, \Re \mu)^2}},
+\end{equation}
+which equals $1$ if and only if $\Im \mu = 0$, i.e.\ $\mu \in \R$. Since $\sigma(u) \subset S^1$, we see that if $\mu \in \C \setminus \R$, then $(1-i \lambda \mu)(1 + i \lambda \mu)^{-1} \in \rho(u)$. In particular, if $\mu \neq i \lambda^{-1}$, then 
+\begin{equation}
+\begin{aligned}
+(1 - i \lambda \mu)(1 + i \lambda \mu)^{-1} - u &= (1 + i \lambda \mu)^{-1}\qty[(1 - i \lambda \mu)(1 + i \lambda a) - (1 + i \lambda \mu)(1 - i\lambda a)](1 + i \lambda a)^{-1}\\
+&= 2i\lambda(1 + i \lambda \mu)^{-1} (a - \mu)(1 + i \lambda a)^{-1}.
+\end{aligned}
+\end{equation}
+If $\mu \in \C \setminus \R$, then the left hand side is invertible, so $\mu - a$ is invertible, so $\mu \in \rho(a)$. Furthermore, $i\lambda^{-1} \notin \sigma(a)$ since $\abs{i\lambda^{-1}} > \norm{a}$. Thus, $\sigma(a) \subset \R$. 
+\end{proof}
+
+\begin{corollary}\label{cor:unique_star_norm}
+If $a \in A$, then
+\begin{equation}
+\norm{a} = \sqrt{r(a^*a)}.
+\end{equation}
+Hence, the norm is completely determined by the algebraic operations, i.e.\ the $C^*$-norm is unique.
+\end{corollary}
+
+\begin{proof}
+Note that $a^*a$ is normal, so 
+\begin{equation}
+\norm{a}^2 = \norm{a^*a} = r(a^*a).
+\end{equation}
+The result follows by taking a square root.
+\end{proof}
+
+
+\begin{theorem}[Spectral Permanence] 
+Let $B$ be a unital $C^*$-subalgebra of $A$. For any $a \in B$, the spectrum of $a$ in $B$ is the same as the spectrum of $a$ in $A$.
+\end{theorem}
+
+\begin{proof}
+Let us temporarily use the notation $\sigma_A(a)$ and $\sigma_B(a)$ to distinguish the spectrum of $a$ in $A$ and $B$ respectively. We shall use the notation $\rho_A(a)$, $\rho_B(a)$, $r_A(a)$, and $r_B(a)$ similarly. If $\lambda \in \sigma_A(a)$, then $\lambda - a$ is not invertible in $A$, so $\lambda - a$ is certainly not invertible in $B$. Thus, $\sigma_A(a) \subset \sigma_B(a)$. 
+
+The reverse inclusion $\sigma_B(a) \subset \sigma_A(a)$ is trivial if $a = 0$, so suppose $a \neq 0$. It is easy to check that $\sigma_B(a) \subset \sigma_A(a)$ follows from the inclusion $B \cap A^\times \subset B^\times$, and this is what we will show. First suppose $a \in B \cap A^\times$ and $a$ is self-adjoint. Let $\lambda_0 = 2i \norm{a}$ and note that $\lambda_0 \in \rho_B(a)$ since $\abs{\lambda_0} > \norm{a}$. We know from Corollary \ref{cor:resolvent_is_open} that $B_{\norm{r_a(\lambda_0)}^{-1}}(\lambda_0) \subset \rho_B(a)$; thus we want to show that $0 \in B_{\norm{r_a(\lambda_0)}^{-1}}(\lambda_0)$ to show that $a \in B^\times$.
+
+Observe that self-adjointness of $a$ implies that $r_a(\lambda_0)^* = r_a(\lambda_0^*)$, from which it follows that $r_a(\lambda_0)$ is normal since $[r_a(\lambda), r_a(\mu)] = 0$ for all $\lambda, \mu \in \rho_B(a)$. Normality then yields
+\begin{equation}
+\norm{r_a(\lambda_0)} = r_A\qty(r_a(\lambda_0)).
+\end{equation}
+But we also know that
+\begin{equation}
+\sigma_A(r_a(\lambda_0)) = \sigma_A(\lambda_0 - a)^{-1} = \qty[\lambda_0 - \sigma_A(a)]^{-1}
+\end{equation}
+Hence, 
+\begin{equation}
+r_A(r_a(\lambda_0)) = \tn{dist}(\lambda_0, \sigma_A(a))^{-1}.
+\end{equation}
+But since $\lambda_0$ is purely imaginary and $\sigma_A(a) \subset \R$, we know that $\tn{dist}(\lambda_0, \sigma_A(a)) \geq \abs{\lambda_0}$! In fact,  we know $0 \notin \sigma_A(a)$ since $a \in A^\times$, so this is a strict inequality and taking inverses yields
+\begin{equation}
+\norm{r_a(\lambda_0)} = \tn{dist}(\lambda_0, \sigma_A(a))^{-1} < \abs{\lambda_0}^{-1}.
+\end{equation}
+This implies $0 \in B_{\norm{r_a(\lambda_0)}^{-1}}(\lambda_0)$, proving the theorem for self-adjoint $a$.
+
+Finally, consider $a \in B \cap A^\times$, not necessarily self-adjoint. However, we see that $a^*a \in B \cap A^\times$ and $a^*a$ is self-adjoint, so $a^*a \in B^\times$. Defining 
+\begin{equation}
+b = (a^* a)^{-1}a^*,
+\end{equation}
+we see that $ba = 1$, so $b = a^{-1}$ since $a$ was assumed to be invertible in $A$. Since $b \in B$ manifestly, we conclude that $a \in B^\times$, as desired.
+\end{proof}
+
+Let us now consider how the spectrum of an element behaves under $*$-homomorphisms. 
+
+\begin{proposition}\label{prop:star_hom_inverse}
+Let $A$ and $B$ be unital $C^*$-algebras and let $\pi:A \rightarrow B$ be a unital $*$-homomorphism. Then $\pi(A^\times)\subset B^\times$ and
+\begin{equation}
+\pi(a^{-1}) = \pi(a)^{-1}
+\end{equation}
+for all $a \in A^\times$. If $\pi$ is bijective, then $\pi(A^\times) = B^\times$.
+\end{proposition}
+
+\begin{proof}
+Let $a \in A^\times$ and observe
+\begin{equation}
+\pi(a^{-1})\pi(a) = \pi(a^{-1}a) = \pi(1) = 1 =\pi(1) = \pi(aa^{-1}) = \pi(a)\pi(a^{-1}).
+\end{equation}
+This proves that $\pi(a) \in B^\times$ and $\pi(a)^{-1} = \pi(a^{-1})$. If $\pi$ is bijective, then $\pi^{-1}(B^\times) \subset A^\times$ by the same argument, so $\pi \pi^{-1}(B^\times) = B^\times \subset \pi(A^\times)$.
+\end{proof}
+
+\begin{proposition}\label{prop:star_hom_spectrum}
+Let $A$ and $B$ be unital $C^*$-algebras and let $\pi:A \rightarrow B$ be a unital $*$-homomorphism. Then
+\begin{equation}
+\sigma(\pi(a)) \subset \sigma(a)
+\end{equation}
+and
+\begin{equation}
+\pi(r_a(\lambda)) = r_{\pi(a)}(\lambda)
+\end{equation}
+for all $\lambda \in \rho(a)$. If $\pi$ is bijective, then $\sigma(\pi(a)) = \sigma(a)$.
+\end{proposition}
+
+\begin{proof}
+Let $\lambda \in \rho(a)$. Then by Proposition \ref{prop:star_hom_inverse}, we know $\pi(\lambda - a) = \lambda - \pi(a) \in B^\times$ and 
+\begin{equation}
+r_{\pi(a)}(\lambda) = (\lambda - \pi(a))^{-1} = \pi(\lambda - a)^{-1} = \pi\qty(r_a(\lambda)).
+\end{equation}
+We see that $\rho(a) \subset \rho(\pi(a))$, so $\sigma(\pi(a)) \subset \sigma(a)$ by taking complements. If $\pi$ is bijective, then $\sigma(a) = \sigma(\pi^{-1}(\pi(a))) \subset \sigma(\pi(a))$ as well.
+\end{proof}
+
+
+
+\begin{proposition}\label{prop:star_hom_cont}
+Let $A$ and $B$ be unital $C^*$-algebras and let $\pi:A \rightarrow B$ be a unital $*$-homomorphism. Then
+\begin{equation}
+\norm{\pi(a)} \leq \norm{a}
+\end{equation}
+for all $a \in A$. In particular, $\pi$ is continuous and $\norm{\pi} = 1$.
+\end{proposition}
+
+
+\begin{proof}
+By Proposition \ref{prop:star_hom_spectrum}, we know that $r(\pi(a)) \leq r(a)$ for all $a \in A$. Then by Corollary \ref{cor:unique_star_norm},
+\begin{equation}
+\norm{\pi(a)} = \sqrt{r(\pi(a)^*\pi(a))} = \sqrt{r\qty(\pi(a^*a))} \leq \sqrt{r(a^*a)} = \norm{a}.
+\end{equation}
+This shows that $\pi$ is continuous, and $\norm{\pi} = 1$ since $\norm{\pi(1)} = \norm{1} = 1$.
+\end{proof}
+
+
+
+With these simple propositions in hand, we can prove a powerful theorem, known as the \emph{continuous functional calculus} for self-adjoint elements.
+
+\begin{theorem}
+Let $A$ be a unital $C^*$-algebra and let $a \in A$ be self-adjoint. There exists a unique unital $*$-homomorphism $C(\sigma(a)) \rightarrow A$, $f \mapsto f(a)$ such that $p(a) = \sum_{i=0}^n \alpha_{i} a^i$ for all complex polynomials $p(z) = \sum_{i=0}^n \alpha_i z^i $. Furthermore, for all $f \in C(\sigma(a))$, we have
+	\begin{enumerate}
+		\item[\tn{(i)}] $\norm{f(a)} = \norm{f}$,
+		\item[\tn{(ii)}] $f(a)$ is in the $C^*$-algebra generated by $1$ and $a$. In particular, $[f(a),a] = 0$, 
+		\item[\tn{(iii)}] $\pi(f(a)) = f(\pi(a))$ for any unital $*$-homomorphism $\pi:A \rightarrow B$,
+		\item[\tn{(iv)}] $\sigma(f(a)) = f(\sigma(a))$.
+	\end{enumerate}
+Finally, if $g \in C(\sigma(f(a)))$, then
+	\begin{enumerate}
+		\item[\tn{(v)}] $(g \circ f)(a) = g(f(a))$.
+	\end{enumerate}	
+\end{theorem}
+
+\noindent Note that $f(\pi(a))$ is well-defined in (iii) since $\sigma(\pi(a)) \subset \sigma(a)$, and $(g \circ f)(a)$ is well-defined by (iv).
+
+\begin{proof}
+It clear that the map $p \mapsto p(a)$ defined on polynomials $p(z) = \sum_{i,j=0}^n \alpha_i z^i $ is linear. Furthermore, since $p(a)$ is self-adjoint for any polynomial $p$, we have
+\begin{equation}
+\begin{aligned}
+\norm{p(a)} &= r(p(a)) \\
+&= \sup\qty{\abs{\lambda}: \lambda \in \sigma(p(a))} \\
+&= \sup\qty{\abs{\lambda}: \lambda \in p(\sigma(a))} \\
+&= \sup\qty{\abs{p(\lambda)}: \lambda \in \sigma(a)}\\
+&= \norm{p},
+\end{aligned}
+\end{equation}
+so the map $p \mapsto p(a)$ is continuous. Since $\sigma(a)$ is a compact subset of $\R$, the Weierstrass approximation theorem (and the Tietze extension theorem) imply that the set of polynomials is dense in $C(\sigma(a))$. Therefore the map $p \mapsto p(a)$ extends uniquely to a linear map $f \mapsto f(a)$ on $C(\sigma(a))$. It follows by standard continuity arguments that $\norm{f(a)} = \norm{f}$ for all $f \in C(\sigma(a))$ since $\norm{p(a)} = \norm{p}$ for all polynomials.
+
+It is clear that for polynomials $p$ and $q$, we have $(pq)(a) = p(a)q(a)$ and $(p^*)(a) = (p(a))^*$, the latter relying on self-adjointness of $a$. That $(fg)(a) = f(a)g(a)$ and $(f^*)(a) = (f(a))^*$ for arbitrary $f, g \in C(\sigma(a))$ again follows by standard continuity arguments using the fact that the polynomials are dense in $C(\sigma(a))$. Thus, $f \mapsto f(a)$ is a unital $*$-homomorphism.
+
+Once again, (ii) and (iii) clearly hold for polynomials. Thus, (ii) holds for $f$ by a standard argument using density of polynomials and completeness of the $C^*$-algebra generated by $1$ and $a$. Likewise, (iii) holds by density of polynomials and by continuity of $*$-homomorphisms as shown in Proposition \ref{prop:star_hom_cont}. 
+
+To prove (iv), let $(p_n)$ be a sequence of polynomials such that $p_n \rightarrow f$. Given $\lambda \in \sigma(a)$, we know
+\begin{equation}
+p_n(\lambda) \in p_n(\sigma(a)) = \sigma(p_n(a)),
+\end{equation}
+so $p_n(\lambda) - p_n(a)$ is not invertible. Since the complement of $A^\times$ is closed, taking the limit as $n\rightarrow \infty$ yields $f(\lambda) - f(a) \notin A^\times$, so $f(\lambda) \in \sigma(f(a))$. Hence $f(\sigma(a)) \subset \sigma(f(a))$. On the other hand, if $\lambda \notin f(\sigma(a))$, then $\lambda - f$ is invertible in $C(\sigma(a))$ with inverse $g \in C(\sigma(a))$. Then
+\begin{equation}
+(\lambda - f(a))g(a) = g(a)\qty(\lambda - f(a)) = 1,
+\end{equation}
+so $\lambda - f(a)$ is invertible, i.e.\ $\lambda \notin \sigma(f(a))$. This proves $\sigma(f(a)) \subset f(\sigma(a))$, as desired.
+
+To prove (v), we note that $g \mapsto g \circ f$ is a unital $*$-homomorphism $C(\sigma(f(a))) \rightarrow C(\sigma(a))$, so $g \mapsto g \circ f \mapsto (g \circ f)(a)$ is a unital $*$-homomorphism $C(\sigma(f(a))) \rightarrow A$. Furthermore, if $p$ is a polynomial, then $(p \circ f)(a) = p(f(a))$ since the map $C(\sigma(a)) \rightarrow A$ respects addition and multiplication. Therefore $(g \circ f)(a) = g(f(a))$ by uniqueness of the $*$-homomorphism $C(\sigma(f(a))) \rightarrow A$.
+\end{proof}
+
+\begin{corollary}
+Let $A$ and $B$ be unital $C^*$-algebras. If $\pi:A \rightarrow B$ is an injective unital $*$-homomorphism, then $\pi$ is an isometry:
+\begin{equation}
+\norm{\pi(a)} = \norm{a}
+\end{equation}
+for all $a \in A$.
+\end{corollary}
+
+\begin{proof}
+Since $\norm{\pi(a)} \leq \norm{a}$ by Proposition \ref{prop:star_hom_cont}, we need only show the reverse inequality. First we show $\norm{a} \leq \norm{\pi(a)}$ for all self-adjoint elements $a \in A$. Suppose $a$ is self-adjoint and $\norm{\pi(a)} < \norm{a}$. Recall that $\rho(a) = \norm{a}$ and $\sigma(a) \subset \R$, so $\norm{a} \in \sigma(a)$ or $-\norm{a} \in \sigma(a)$, and likewise for $\pi(a)$. Choose $f :[-\norm{a}, \norm{a}] \rightarrow \R$ such that $f$ vanishes on $[-\norm{\pi(a)}, \norm{\pi(a)}]$ and $f(\norm{a}) = f(-\norm{a}) = 1$. Then $f(\pi(a)) = \pi(f(a)) = 0$ but $\norm{f(a)} = \norm{f} > 1$, contradicting injectivity of $\pi$. Therefore $\norm{a} = \norm{\pi(a)}$ for self-adjoint $a$.
+
+For arbitrary $a \in A$, we have
+\begin{equation}
+\norm{\pi(a)}^2 = \norm{\pi(a)^*\pi(a)} = \norm{\pi(a^*a)} = \norm{a^*a} = \norm{a}^2,
+\end{equation}
+which concludes the proof.
+\end{proof}
+
+
+\subsection{Positive Elements}
+
+We shall continue to let $A$ be a unital $C^*$-algebra.
+
+\begin{definition}
+An element $a \in A$ is \emph{positive} if $a$ is self-adjoint and $\sigma(a) \subset [0,\infty)$. We let $A_+$ denote the set of all positive elements of $A$.
+\end{definition}
+
+\begin{proposition}\label{prop:positive_norm_condition}
+Let $a \in A$ be self-adjoint and let $\lambda \in \R$ such that $\lambda \geq \norm{a}$. Then $a$ is positive if and only if $\norm{\lambda - a} \leq \lambda$.
+\end{proposition}
+
+\begin{proof}
+If $a \in A_+$, then 
+\begin{equation}
+\norm{\lambda - a} = r(\lambda - a) = \sup \qty{\abs{\mu}: \mu \in \sigma(\lambda - a) = \lambda - \sigma(a)} \leq \lambda
+\end{equation}
+since $\sigma(a) \subset [0,\norm{a}] \subset [0,\lambda]$.
+
+Suppose $\norm{\lambda - a} \leq \lambda$. If $\mu \in \sigma(a)$, then 
+\begin{equation}
+\abs{\lambda - \mu} \leq  r(\lambda - a) = \norm{\lambda - a} < \lambda,
+\end{equation}
+which implies that $ \mu \geq 0$, hence $a \in A_+$.
+\end{proof}
+
+\begin{proposition}
+The set of positive elements $A_+$ is closed.
+\end{proposition}
+
+\begin{proof}
+Let $(a_n)_{n \in \N}$ be a sequence in $A_+$ converging to $a \in A$. Since the star operation is continuous, we have $a_n^* \rightarrow a^*$, but since $a_n^* = a_n$ for all $n \in \N$, we see that $a$ is self-adjoint. Since  the norm is also continuous, we see that $\norm{a_n} \rightarrow \norm{a}$. In particular, there exists $M > 0$ such that $\norm{a_n} < M$ for all $n \in \N$. Then $\norm{a} \leq M$ and $\norm{M - a_n} \leq M$ for all $n \in \N$ by Proposition \ref{prop:positive_norm_condition}, so 
+\begin{equation}
+\norm{M - a} = \lim_{n \rightarrow \infty} \norm{M - a_n} \leq M.
+\end{equation}
+Since $\norm{a} \leq M$ and $\norm{M - a} \leq M$, Proposition \ref{prop:positive_norm_condition} implies that $a$ is positive.
+\end{proof}
+
+\begin{proposition}
+The sum of two positive elements is positive.
+\end{proposition}
+
+\begin{proof}
+If $a, b \in A_+$,  then $a+b$ is self-adjoint and Proposition \ref{prop:positive_norm_condition} implies
+\begin{equation}
+\norm{\norm{a} + \norm{b} - (a + b)} \leq \norm{\norm{a} - a} + \norm{\norm{b} - b} \leq \norm{a} + \norm{b}.
+\end{equation}
+A second application of Proposition \ref{prop:positive_norm_condition} yields $a + b \in A_+$.
+\end{proof}
+
+\begin{proposition}\label{prop:positive_conditions}
+Let $a \in A$ be self-adjoint. The following are equivalent.
+	\begin{enumerate}
+		\item[\tn{(i)}] The element $a$ is positive.
+		\item[\tn{(ii)}] There exists a unique positive $b \in A$ such that $a = b^2$.
+		\item[\tn{(iii)}] There exists a self-adjoint $b \in A$ such that $a = b^2$.
+		\item[\tn{(iv)}] There exists $c \in A$ such that $a = c^*c$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The implications (ii) $\Rightarrow$ (iii) and (iii) $\Rightarrow$ (iv) are trivial. 
+
+(i) $\Rightarrow$ (ii). By the continuous functional calculus, we can take $\sqrt{a}$ and by the composition property and the fact that $\qty(\sqrt{x})^2 = x$ on $\sigma(a)$, we have that $a = \qty(\sqrt{a})^2$. The fact that the square root is real-valued and that the continuous functional calculus is a $*$-homomorphism imply that $\sqrt{a}$ is self-adjoint, and $\sqrt{\sigma(a)} = \sigma(\sqrt{a})$ implies that $\sqrt{a}$ is positive. If $a = b^2$ for any other positive $b \in A$, then the fact that $\sqrt{x^2} = x$ for $x \in \sigma(a)$ and the composition property imply that $\sqrt{a} = \sqrt{b^2} = b$.
+
+(iv) $\Rightarrow$ (i). First we prove a lemma. Given $d \in A$, we claim that $\sigma(-d^*d) \subset [0,\infty)$ implies $d = 0$. Write $d = d_1 + id_2$, where $d_1$ and $d_2$ are self-adjoint. Then
+\begin{equation}
+d^*d + dd^* =  2d_1^2 + 2d_2^2.
+\end{equation}
+If $\sigma(-d^*d) \subset [0,\infty)$, then $\sigma(-dd^*) \subset \sigma(-d^*d) \cup \qty{0} \subset [0,\infty)$. Thus $d^*d = 2d_1^2 + 2d_2^2 - dd^*$ is positive, since it is the sum of positive elements. But then $\sigma(d^*d) = \qty{0}$, which implies that $d^*d = 0$ and therefore $d = 0$ by the $C^*$-property of the norm.
+
+Continuing, we suppose $a = c^*c$ for some $c \in A$. by the continuous functional calculus, the elements $a_+ = (\abs{a} + a)/2$ and $a_- = (\abs{a} - a)/2$ are positive and $a = a_+ - a_-$. Furthermore, observe that
+\begin{equation}
+a_+ a_- = \frac{1}{4}\qty(\abs{a}^2 - a^2) = 0.
+\end{equation}
+Defining $d = ca_-$, we compute 
+\begin{equation}
+-d^*d = -a_- c^* c a_- = -a_-(a_+ - a_-)a_- = (a_-)^3,
+\end{equation}
+which implies that $-d^*d$ is positive. By the previous paragraph, we know $d = 0$. Thus,
+\begin{equation}
+0 = c^* d = c^*c a_- = aa_- = - (a_-)^2
+\end{equation}
+which implies that $a_- = 0$, for example by self-adjointness of $a_-$ and the $C^*$-property of the norm. Thus, $a = a_+$ is positive.
+\end{proof}
+
+\begin{definition}
+We define a partial ordering on $A_+$ by setting $a \leq b$ for $a, b \in A_+$ if and only if $b - a \in A_+$. Reflexivity and antisymmetry are easy to check and transitivity follows since $(c - b) + (b - a) = c - a \in A_+$ given $c - b, b - a \in A_+$. In fact, $A_+$ is a directed set since given $a, b \in A_+$, we have $a+b \in A_+$ and $a, b \leq a + b$. 
+\end{definition}
+
+\begin{proposition}\label{prop:inner_aut_preserves_order}
+Let $a, b \in A_+$ and let $c \in A$. If $a \leq b$, then $c^*ac \leq c^* bc$.
+\end{proposition}
+
+\begin{proof}
+Since $a \in A_+$, there exists $d \in A$ such that $a = d^*d$. Then $c^*ac = c^*d^*dc = (dc)^*dc$, so $c^*ac \in A_+$. Likewise, $c^*bc \in A_+$ since $b \in B_+$. Likewise, $c^*(b - a)c \in A_+$ since $b -a \in A_+$, so $c^*ac \leq c^*bc$. 
+\end{proof}
+
+\begin{proposition}\label{prop:positive_respects_norm}
+If $a \in A_+$ and $\lambda \geq 0$, then $a \leq \lambda$ if and only if $\norm{a} \leq \lambda$.
+\end{proposition}
+
+\begin{proof}
+We have the following equivalences:
+\begin{equation}
+a \leq \lambda \quad \Longleftrightarrow \quad \sigma(\lambda - a) = \lambda - \sigma(a) \subset [0, \infty) \quad \Longleftrightarrow \quad r(a) = \norm{a} \leq \lambda,
+\end{equation}
+as desired.
+\end{proof}
+
+If we replace $\lambda$ in the above proposition by an arbitrary element, then we only have an implication in one direction.
+
+\begin{proposition}
+If $a, b \in A_+$ and $a \leq b$, then $\norm{a} \leq \norm{b}$.
+\end{proposition}
+
+\begin{proof}
+We know $b \leq \norm{b}$ by Proposition \ref{prop:positive_respects_norm}, so $a \leq \norm{b}$ by transitivity. But this implies $\norm{a} \leq \norm{b}$ by another application of Proposition \ref{prop:positive_respects_norm}.
+\end{proof}
+
+\begin{proposition}
+If $a, b \in A_+ \cap A^\times$ and $a \leq b$, then $b^{-1} \leq a^{-1}$.
+\end{proposition}
+
+\begin{proof}
+Note that $a^{-1}, b^{-1} \in A_+$ by the continuous functional calculus. Since $\sqrt{a^{-1}}$ is self-adjoint, we have
+\begin{equation}
+1 = \sqrt{a^{-1}}a \sqrt{a^{-1}} \leq \sqrt{a^{-1}}b\sqrt{a^{-1}}.
+\end{equation} 
+Thus, $\sigma(\sqrt{a^{-1}}b \sqrt{a^{-1}}) \subset [1, \infty)$ and by the continuous functional calculus,
+\begin{equation}
+1 \geq \qty(\sqrt{a^{-1}}b\sqrt{a^{-1}})^{-1} = \sqrt{a^{-1}}^{-1} b^{-1} \sqrt{a^{-1}}^{-1}.
+\end{equation}
+Multiplying by $\sqrt{a^{-1}}$ to the left and right as in the first step now yields $b^{-1} \leq a^{-1}$.
+\end{proof}
+

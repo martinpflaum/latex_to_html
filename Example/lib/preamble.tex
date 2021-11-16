@@ -1,0 +1,80 @@
+\IfFileExists{lisci-art.cls}{%
+\documentclass{lisci-art}
+}{%
+\documentclass[leqno,parskip=half,letterpaper]{scrartcl}
+}
+\usepackage[
+  autooneside=false,% use left and right marks with a onesided document
+  automark,% set \leftmark and \rightmark automatically by \section and \subsection
+  headsepline 
+]{scrlayer-scrpage}
+%\clearpairofpagestyles
+%\chead{}
+%\ihead{\thetitle}% document title on the inner (oneside: left) side
+%\ohead{\leftmark}% section on the outer (oneside: right) side
+%\addtokomafont{pageheadfoot}{\upshape}
+\textheight220mm
+
+%\usepackage{titling}
+
+% The following AMS packages are automatically loaded with
+% the amsart documentclass:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[amsmath,hyperref,amsthm,thmmarks]{ntheorem}
+\usepackage{natbib}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{eucal}
+\usepackage{mathabx}
+
+
+%BOONDOX-cal %provides lowercase caligraphic letters
+\DeclareMathAlphabet{\mathboondoxcal}{U}{BOONDOX-cal}{m}{n}
+\SetMathAlphabet{\mathboondoxcal}{bold}{U}{BOONDOX-cal}{b}{n}
+\DeclareMathAlphabet{\mathbboondoxcal} {U}{BOONDOX-cal}{b}{n}
+
+% For dealing with references we use the comment environment
+\usepackage{verbatim}
+\newenvironment{reference}{\comment}{\endcomment}
+%\newenvironment{reference}{}{}
+\newenvironment{slogan}{\comment}{\endcomment}
+\newenvironment{history}{\comment}{\endcomment}
+
+% For commutative diagrams you can use
+\usepackage{tikz-cd}
+
+\pagestyle{scrheadings}
+
+% For type­setting text in multiple columns
+\usepackage{multicol}
+
+% For cross-file-references
+\usepackage{xr-hyper}
+
+% Package for hypertext links:
+\usepackage{hyperref}
+\usepackage{cleveref} %for cref
+
+% Package for fancy enumerate lists:
+\usepackage{enumitem}
+
+\makeatletter
+ \def\input@path{{lib/}{sections/}{licenses/}}
+\makeatother
+
+% For any local file, say "hello.tex" you want to link to please
+% use \externaldocument[hello-]{hello}
+\externaldocument[fdl-]{fdl}
+
+\let\raggedsection\centering
+
+\numberwithin{equation}{subsection}
+
+\input{theorem-styles}
+
+\input{semantic-macros}
+
+\newcommand{\subsec}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand\para{\par\refstepcounter{subsection}\textbf{\thesubsection}\space}
+
+\newcommand{\add}[1]{\textbf{TO BE ADDED:} #1}

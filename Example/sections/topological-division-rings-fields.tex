@@ -1,0 +1,333 @@
+\section{Topological division rings and fields}
+\label{sec:topological-division-rings-fields}
+
+\para Vector spaces with a compatible topology can not only defined for vector spaces over the ground fields 
+$\R$ and $\C$ but also over fields $\fldK$ carrying an absolute value
+$|\cdot | : \fldK \to \R_{\geq 0}$. This endows the ground field with a topology which will be needed in the
+definition of a topological vector space. We therefore give here a brief introduction to topological division
+rings and fields first.
+
+\begin{definition}
+  Let $R$ be a division ring. By an \emph{absolute value} on $R$ one understands a map $ |\cdot | : R \to \R_{\geq 0}$
+  such that the following axioms hold true.
+  \begin{axiomlist}[VDR]
+  \item 
+  \label{axiom:field-absolute-value-multiplicativity}
+     The function $| \cdot |$ is multiplicative that is 
+     \[ |xy| = |x|  \, | y| \quad \text{for all } x,y \in R \ . \]
+  \item 
+  \label{axiom:field-absolute-value-subadditivity} 
+    The triangle inequality is satisfied which means that 
+    \[ |x + y| \leq  |x| +  | y| \quad  \text{for all } x,y \in R \ . \]
+  \item
+  \label{axiom:field-absolute-value-nondegeneracy} 
+  For all $x \in R$ the relation $|x|=0$ holds true if and only if $x=0$. 
+  \end{axiomlist}
+  A division ring or field endowed with an absolute value is called a \emph{valued division ring} 
+  respectively a \emph{valued field}. 
+  An absolute value $|\cdot|$ on a division ring $R$ and the corresponding valued
+  division ring $(R,|\cdot|)$ are called \emph{non-archimedean} if 
+  the \emph{strong triangle inequality} is satisfied that is if
+  \begin{axiomlist}[VDR]
+  \setcounter{enumi}{3}
+  \item\label{axiom:field-absolute-value-non-archimedean} 
+    $ |x + y| \leq  \max \{ |x| , | y| \} $ for all $x,y \in R$.
+  \end{axiomlist}
+  Otherwise $|\cdot|$ and $(R,|\cdot|)$ are called \emph{archimedean}.
+\end{definition}
+
+
+\begin{lemma}
+  Let $(R,|\cdot|)$ be a valued division ring. Then
+  \begin{romanlist}
+  \item\label{ite:absolute-value-one}
+     $|1|=1$,
+   \item\label{ite:absolute-value-negative}
+     $|-x| =|x|$ for all $x\in R$, and
+  \item\label{ite:absolute-value-difference}
+     $\big| |x| - |y| \big| \leq |x - y|   \leq  |x| + |y|$ for all $x,y\in R$.
+  \end{romanlist}
+\end{lemma}
+
+\begin{proof}
+  \ref{ite:absolute-value-one} holds true since $|1| = |1^2| = |1|^2$ and $|1| \neq 0$ by $1 \neq 0$.
+  To verify \ref{ite:absolute-value-negative} it suffices to show that $|-1| =1$. But that holds true
+  since $|-1|^2 = | (-1)^2| = 1$ and $|-1| \geq 0$.
+  The last claim follows by
+  \[
+  - |x-y| = |x| - (|y-x| +|x|) \leq |x| - |y| \leq  |x-y| + |y | - |y| = |x-y| 
+  \]
+  and
+  \[
+    |x - y|  = | x + (-y)|  \leq  |x| + |-y| = |x| + |y| \ .
+  \]
+\end{proof}
+
+\begin{examples}
+\begin{environmentlist}
+\item
+  Obviously, the \emph{standard absolute values}
+  \[ 
+    |\cdot |_\infty : \Q, \R\to \R_{\geq 0}, \: x \mapsto
+    \begin{cases}
+      x & \text{if } x\geq 0\\
+      -x & \text{if } x< 0
+    \end{cases}
+  \quad\text{and}\quad
+    |\cdot |_\infty : \C\to \R_{\geq 0}, \: z \mapsto \sqrt{z \overline{z}}
+  \]
+  are absolute values on the fields $\Q$, $\R$ and $\C$, respectively. These absolute values are all archimedean
+  since $|1+ 1|_\infty = 2 > 1$. Unless mentioned differently, we always assume 
+  $\Q$, $\R$ and $\C$ to be equipped with the standard absolute values. If no confusion can arise we usually
+  write $|\cdot|$ instead of $|\cdot |_\infty$.
+\item
+  The \emph{standard absolute value} on the quaternions
+  \[
+     |\cdot |_\infty : \H \to \R_{\geq 0} , \: q = a + b \quati + c\quatj + d \quatk \mapsto \sqrt{\overline{q}q} = \sqrt{a^2 +b^2+ c^2 + d^2} \ , 
+  \]
+  where $a,b,c,d$ are real, is an archimedean absolute value. Usually it is briefly denoted $|\cdot|$.   
+\item 
+  For every division ring $R$ the map 
+  \[ |\cdot| :R \to \R, \: x \mapsto
+    \begin{cases}
+    0 & \text{if } x=0 ,\\
+    1 & \text{else} 
+  \end{cases}
+  \]
+  is a non-archimedean absolute value. It is called the \emph{trivial absolute value} on $R$.
+\item
+  An absolute value  $|\cdot|:\fldF \to\R_{\geq 0}$ defined on a finite field $\fldF$ has to be trivial.
+  To see this observe that for each $x\in \fldK^\times$ there
+  exists an $n\in \N$ such that $x^n =1$. This entails  $|x|^n=1$, hence $|x|=1$
+  for all $x\in \fldK^\times$. So $|\cdot|$ is trivial.
+\item 
+  The field of formal Laurent power series $\fldK ((X))$ over a field $\fldK$ can be equipped
+  with an absolute value as follows. Choose $0<\varepsilon < 1$
+  and define the absolute value $\left| \sum_{k\in \Z} a_k X^k\right| $ of an element
+  $\sum_{n\in \Z} a_n X^n\in \fldK ((X)) $ as $\varepsilon^n$, where $n$ is the minimal integer such that $a_n\neq 0$.  
+\item
+  Let $p$ be prime number. For every integer $m\neq 0$ let $\nu_p(m)$ be the exponent of $p$ in the prime factor decomposition of $m$
+  that is $m = p^{\nu_p(n)}n$ where $n$ is relatively prime to $p$.
+  For $m \in \Z$ and $n\in \gzN$ one defines the \emph{$p$-adic absolute value} of the rational number $x = \frac mn$ by
+  \[
+    \left| x \right|_p =
+    \begin{cases}
+      0 & \text{if } m=0 \ ,\\
+      p^{-\nu_p(m) +\nu_p(n)} & \text{else}\ . 
+    \end{cases}
+  \]
+  Note that $ \left| x \right|_p$ does not depend on the particular representation of $x$ as the quotient of integers $m$ and $n$.
+  By definition it is immediately clear that the $p$-adic absolute value is an absolute value on $\Q$ indeed. 
+  It is non-archimedean.
+\end{environmentlist}
+\end{examples}
+
+\begin{proposition}
+  A valued division ring $(R,|\cdot|)$ is non-archimedean if and only if the image of $\Z$ under
+  the canonical map  $\Z\to R$ is bounded. 
+\end{proposition}
+
+\begin{proof}
+  Assume that $(R,|\cdot|)$ is a non-archimedean valued division ring.
+  Then, $|0 \cdot 1| = |0|= 0 $ and, under the assumption that $|(n-1)\cdot 1|\leq 1$ for some $n\in \gzN$,
+  $|n\cdot 1| = | (n-1)\cdot 1 + 1 | = \max \{ |(n-1)\cdot 1| , 1 \} = 1$.
+  Hence by induction and since $|-1| =1$ one obtains that $|n\cdot 1|\leq 1$ for all $n\in \Z$,
+  and the image of $\Z$ in $R$ is bounded.
+
+  To show the converse assume that the image of $\Z$ in $R$ is bounded by some constant $C>0$. Then, for all $x,y\in R$
+  and $n\in \gzN$ by the binomial formula and the triangle inequality
+  \[
+    |x+y|^n =\left|\sum_{k=0}^n {n \choose k} x^k y^{n-k} \right|
+    \leq (n+1) \,C \max \{|x|,|y|\}^n \ .
+  \]
+  Taking the $n$-th root gives $|x+y|\leq \big( (n+1)C\big)^{1/n} \max \{|x|,|y|\}$ which after passing to the limit $n\to\infty$
+  entails  $|x+y| \leq \max \{|x|,|y|\}$ since $\lim\limits_{n\to\infty} \big( (n+1)C\big)^{1/n} = 1$. Hence
+  $(R,|\cdot|)$ is non-archimedean. 
+\end{proof}
+
+\begin{proposition}
+  Let $|\cdot|$ be an absolute value on the division ring $R$. Then for every $\tau>0$ with $\tau\leq 1$ the
+  map $|\cdot|^\tau: R\to\R_{\geq 0}$ is an absolute value on $R$ as well.
+  It is archimedean if and only if $|\cdot|$ is archimedean. 
+\end{proposition}
+
+\begin{proof}
+  To prove that $|\cdot|^\tau$ is an absolute value it suffices to show that $(a+b)^\tau \leq a^\tau + b^\tau$
+  for all $a,b\geq 0$. Without loss of generality we may assume $a \geq b>0$. By dividing through $b^\tau$
+  one sees that the claim is equivalent to $(t +1 )^\tau \leq t^\tau + 1$ for all $t\geq 1$.
+  For $t=1$ this is certainly true. The derivative of the function
+  $h :\rightopenint{1,\infty} \to\R$, $t\mapsto (t +1 )^\tau - t^\tau$ now is
+  given by $h'(t) = \tau \big( (t +1 )^{\tau-1} - t^{\tau-1} \big)$ which is negative
+  since $\tau-1\leq 0$ and $1+ t > t\geq 1$. Hence $h$ is monotone decreasing
+  and $(t +1 )^\tau - t^\tau \leq  1$ for all $t\geq 1$.
+
+  Since $\openint{0,\infty} \to \R$, $t\mapsto t^\tau$ is strictly increasing  and unbounded,
+  the image of $\Z$ in $R$ is unbounded with respect to    $|\cdot|$  if and only if
+  it is with respect to $|\cdot|^\tau$.  
+\end{proof}
+
+\para An absolute value $ |\cdot | : R \to \R_{\geq 0}$ on a division ring $R$ induces the metric
+$d : R \times R \to \R_{\geq 0}$, $(x,y) \mapsto |x-y|$ which then gives 
+rise to a topology on $R$. This topology has the following properties:
+\begin{axiomlist}[TDR]
+  \item\label{axiom:topological-division-ring-continuity-addition}
+     Addition $+ : R \times R \to R$ is continuous.
+  \item\label{axiom:topological-division-ring-continuity-multiplication} 
+     Multiplication $\cdot : R \times R \to R$ is 
+     continuous. 
+  \item\label{axiom:topological-division-ring-continuity-inversion} 
+    Inversion $(\:\cdot\:)^{-1}:R^\times \to R^\times $ is continuous, where $R^\times$ denotes the
+    set of units in $R$ i.e.~$R^\times = R \setminus \{ 0\}$. 
+\end{axiomlist}
+
+\begin{proof}
+   Addition is continuous since  for all $a,b,x,y \in R$ by the triangle inequality
+   \[ d ( x + y , a+ b ) = | x + y -( a+ b)| \leq | x-a| + | y-b| = d(x,a) + d(y,b)\ .\] 
+   Actually, this even shows  that addition is Lipschitz continuous. 
+   Now fix $a,b \in R$ and let $C = \max \{ |a|,|b| \} + 1$. Then for all $x,y \in R$ 
+   with $d(y,b) <  1$
+   \[ d ( x \cdot y , a \cdot b ) = | (x \cdot y - a \cdot y) + (a \cdot y - a \cdot b)| 
+   \leq | x-a| \, |y|  + |a| \, | y-b| \leq C \big(  d(x,a) + d(y,b) \big) \ .\] 
+   Hence multiplication is continuous.
+   Finally, fix $a \in R^\times$ and let $x \in R^\times $ with $d(x,a) <  \frac{|a|}{2}$. Then 
+   $|x| \geq |a| - d(x,a) > \frac{|a|}{2} >0$ and
+   \[ d \left( x^{-1} , a^{-1} \right) =  \left|  x^{-1} - a^{-1} \right| = \left|  x^{-1} \cdot a^{-1} \right| 
+   \, | x-a | = \frac{1}{|x| \, |a|} d( x,a ) <  \frac{2}{|a|^2} d( x,a )  \ .\] 
+   So inversion is also continuous.
+\end{proof}
+
+\begin{definition}
+ A division ring or field $R$ which is equipped with a topology so that 
+ \ref{axiom:topological-division-ring-continuity-addition},
+ \ref{axiom:topological-division-ring-continuity-multiplication} and
+ \ref{axiom:topological-division-ring-continuity-inversion} are satisfied is called a
+ \emph{topological division ring} or a \emph{topological field}, respectively.
+\end{definition} 
+
+\begin{lemma}\label{thm:zero-neighborhood-topological-division-ring-infinite}
+  If $|\cdot|$ is a non-trivial absolute value on the division ring $R$, then there exists an element
+  $t\in R^\times$ such that the sequence $(t^n)_{n\in\N}$ converges to $0$. Furthermore in this case
+  every $0$-neighborhood in $R$ contains infinitely many elements.
+\end{lemma}
+\begin{proof}
+  By non-triviality of $|\cdot|$ there exists $t\in R^\times$ such that $|t|\neq 1$. By possibly
+  passing to $t^{-1}$ we can assume $|t|<1$. Since then $\lim\limits_{n\to\infty} |t|^n =0$,
+  the sequence $(t^n)_{n\in\N}$ converges to $0$.  This implies in particular that 
+  for every $\varepsilon >0$ the open ball $\ball (0,\varepsilon) =\{t \in R \mid |t| < \varepsilon \}$
+  contains infinitely many elements. So the lemma is proved. 
+\end{proof}
+
+
+
+\begin{definition}
+  Two absolute values $|\cdot|$ and $|\cdot|^\prime$ on a division ring $R$ are called \emph{equivalent}
+  if they induce the same topology on $R$. 
+\end{definition}
+
+\begin{theorem}
+  Let $|\cdot|$ and $|\cdot|^\prime$ be two absolute values on the division ring $R$.
+  Then they are equivalent if and only if there exists $e>0$ such that $|\cdot|^\prime =|\cdot|^\tau$.
+  In particular the trivial absolute value is the only one inducing the discrete topology on $R$. 
+\end{theorem}
+
+\begin{proof}
+  Let us first show the following proposition.
+  \begin{enumerate}[label={\textup{({\sffamily A})}},align=left,leftmargin=*]
+  \item\label{ite:absolute-values-preserving-unit-balls} 
+    If $|\cdot|$ and $|\cdot|^\prime$ are equivalent, then  the relation $|x|< 1$ holds true for $x \in R^\times$
+    if and only if $|x|^\prime< 1$. 
+  \end{enumerate}
+  Since $\left| x^{-1}\right| =\frac{1}{|x|}$ and $\left| x^{-1}\right|^\prime =\frac{1}{|x|^\prime}$
+  for all $x \in R^\times$, \ref{ite:absolute-values-preserving-unit-balls}
+  implies that $|x|> 1$ if and only if $|x|^\prime> 1$ and that  $|x|= 1$ if and only if $|x|^\prime = 1$.
+  To verify claim \ref{ite:absolute-values-preserving-unit-balls} assume now that $0 < |x|< 1$.
+  Then  $\lim\limits_{n\to\infty}|x^n|=0$, hence $(x^n)_{n\in\N}$ converges to $0$. By assumption,
+  $\lim\limits_{n\to\infty}|x^n|^\prime=0$ then holds as well which implies that $|x|^\prime<1$.
+  By switching  $|\cdot|$ and $|\cdot|^\prime$  the converse holds true, so
+  \ref{ite:absolute-values-preserving-unit-balls} is proved.
+  
+
+  Next we show that $|\cdot|$ is trivial  if and only if the induced topology on $R$ is discrete.
+  Namely, if  $|\cdot|$ is non-trivial, then there exists $x\in R^\times$ such  that  $|x| \neq 1$. After
+  possibly passing to $\frac 1x$ we can achieve that  $|x| < 1$. So $\lim\limits_{n\to\infty}|x^n|=0$, which
+  means that $(x^n)_{n\in\N}$ is a sequence of non-zero elements of $R$ converging to $0$. But this implies that
+  the singleton $\{ 0\}$ is not  open in the topology induced by $|\cdot|$, hence this topology is non-discrete. 
+  Since obviously the trivial absolute value induces the discrete topology on $R$ the second claim of the theorem is
+  proved.
+  
+  Now assume that $|\cdot|^\prime =|\cdot|^\tau$ for some $\tau>0$. Then a subset $B \subset R$ is a metric
+  open ball with respect to $|\cdot|$ if and only if it is one with respect to $|\cdot|^\prime$
+  since for $x \in R$ and $\varepsilon >0$
+  \begin{equation*}
+  \begin{split}
+    &\big\{ y \in R \bigmid |y -x| < \varepsilon \big\}  = \big\{ y \in R \bigmid |y-x|^\prime < \varepsilon^\tau \big\}
+    \text{ and } \\
+    &\big\{ y \in R \bigmid |y- x|^\prime < \varepsilon \big\}  = \big\{ y \in R \bigmid |y-x| < \varepsilon^{1/\tau} \big\} \ .
+  \end{split}
+  \end{equation*}
+  Hence the open sets with respect to the metric defined by $|\cdot|$ coincide with those defined by $|\cdot|^\prime$ and
+  the two absolute values  are equivalent.
+
+  Let us finally show the other direction and assume that $|\cdot|$ and $|\cdot|^\prime$ are equivalent.
+  By the already proven second claim of the theorem we can restrict to the case where the induced topology is non-discrete
+  which means to the case where both  $|\cdot|$ and $|\cdot|^\prime$ are non-trivial.
+  We show that there exists $\tau >0$ such that $|x|^\prime =  |x|^\tau $ for all $x\in R^\times$ with $ |x|> 1$.
+  This is sufficient, since if $ |x|= 1$, then $|x|^\prime =  1 = |x|^\sigma $ for any $\sigma >0$ 
+  by \ref{ite:absolute-values-preserving-unit-balls}, and since if $x\in R^\times$ with $ |x|< 1$ then
+  $ |x^{-1}| > 1$ and
+  \[
+     |x|^\prime = \frac{1}{\left|x^{-1}\right|^\prime} = \frac{1}{\left|x^{-1}\right|^\tau} = |x|^\tau \ .
+  \]
+  The existence of a $\tau >0$ with the claimed property is equivalent to the function
+  \[
+       R^\times \to \R,\: x \mapsto \frac{\ln |x|^\prime}{\ln |x|}
+  \]
+  being constant. Assume that that is not the case. Then there exist $x,y \in R^\times$
+  with $|x|,|y|>1$ such that
+  $\frac{\ln |x|^\prime}{\ln |x|} \neq \frac{\ln |y|^\prime}{\ln |y|}$. By possibly switching $x$ and $y$ we
+  can assume  $\frac{\ln |x|^\prime}{\ln |x|} < \frac{\ln |y|^\prime}{\ln |y|}$.
+  But that implies $\frac{\ln |x|^\prime}{\ln |y|^\prime} < \frac{\ln |x|}{\ln |y|}$ since the logarithms are positive
+  by assumptions on $x$ and $y$ and \ref{ite:absolute-values-preserving-unit-balls}. Hence there exists a
+  rational number $\frac pq$ with $p,q \in \gzN$ such that
+  \[
+   \frac{\ln |x|^\prime}{\ln |y|^\prime} < \frac pq < \frac{\ln |x|}{\ln |y|} \ . 
+  \]
+  Then $|x^q|^\prime <  |y^p|^\prime$ and $|y^p| <  |x^q|$ which entails
+  \[
+    \left| \frac{x^q}{y^p} \right|^\prime < 1 \text{ and }
+    \left| \frac{x^q}{y^p} \right| > 1 \ .
+  \] 
+  This contradicts \ref{ite:absolute-values-preserving-unit-balls} and the theorem is proved.
+\end{proof}
+
+\begin{remarks}
+  \begin{environmentlist}
+  \item
+    By  Ostrowski's theorem \cite[p.~276]{OstLF}, see also \cite[Thm.~3.1.3]{GouAN}, every non-trivial absolute value
+    on the field $\Q$ of rational numbers is either equivalent to the standard absolute value $|\cdot|_\infty$ or to a
+    $p$-adic absolute value $|\cdot|_p$  for some prime number $p$. Observe that for different primes $p$ and $q$ the
+    absolute values $|\cdot|_p$ and $|\cdot|_q$ are not equivalent.
+  \item
+    Another theorem of Ostrowski \cite[p.~284]{OstLF}, sometimes called big Ostrowski's theorem, tells that for every archimedean
+    valued field $(\fldK,|\cdot|)$ there exists an embedding $\iota :\fldK \hookrightarrow \C$ into the field of complex numbers
+    with its standard absolute value and a positive real number $\tau\leq 1$ such that
+    \[
+         |x| =|\iota(x) |_\infty^\tau \quad \text{for all } x \in \fldK \ .
+    \]
+    In particular this means that every complete archimedean valued field is isomorphic to either $(\R,|\cdot|_\infty^\tau)$ or
+    $(\C,|\cdot|_\infty^\tau)$ for some positive $\tau\leq 1$.
+  \item
+    The $p$-adic absolute values on $\Q$  have extensions to $\R$ by \cite[XII, \S4, Thm.~4.1]{LanA3rd}. 
+    This is a highly non-obvious result. To prove it one has to check first that $|\cdot|_p$ can be extended to an absolute 
+    value $|\cdot|$ on the field $\fldk$ of real numbers algebraic over $\Q$. This extended absolute value is, 
+    and that turns out to be crucial, again non-archimedean. 
+    Now one observes that $|\cdot|$ can be extended to the polynomial ring $\fldk [X]$ by the \emph{Gau{\ss} norm}
+    $|p(X)| = \max_{0\leq i \leq n} \{a_i\}$ where $p(X)= a_n X^n + \ldots + a_1 X + a_0 \in\fldk [X]$.
+    The Gau{\ss} norm obviously extends to an absolute value on the fraction field $\fldk(X)$.
+    Again, this extension is non-archimedean. 
+    Now one recalls that $\R$ is a purely transcendental field extension of $\fldk$ and uses a transfinite induction type
+    argument involving the just constructed  Gau{\ss} norm to extend $|\cdot|$ from $\fldK$ to $\R$.
+    The thus obtained extension of the $p$-adic absolute value to $\R$ is not unique. In its construction, the
+    axiom of choice is used, so one can not even give an explicit formula for such an extension. 
+  \end{environmentlist}
+\end{remarks}

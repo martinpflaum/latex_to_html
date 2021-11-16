@@ -1,0 +1,373 @@
+% Copyright 2020 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum 
+%
+\section{The monoidal structure of the category of Hilbert spaces}
+\label{sec:monoidal-structure-category-hilbert-spaces}
+%
+\para 
+Let $\fldK$ be the field of real or complex numbers. 
+Hilbert spaces over $\fldK$ together with bounded $\fldK$-linear maps 
+between them form a category denoted by $\fldK\text{-}\category{Hilb}$
+or just $\category{Hilb}$ if no confusion can arise. This can be seen
+immediately by observing that the identity map $\idn_\hilbertH$ on a Hilbert space
+is a bounded linear operator  and that the composition $B \circ A : \hilbertH_1 \to\hilbertH_3$
+of two bounded linear operators between Hilbert spaces 
+$A:\hilbertH_1 \to \hilbertH_2 $ and $B :\hilbertH_2 \to \hilbertH_3$ is again a  
+bounded linear operator. 
+We want to endow the category $\category{Hilb}$ with a bifunctor 
+$ \cplttensor : \category{Hilb} \times \category{Hilb} \to \category{Hilb}$
+so that it becomes a monoidal category. The (bi)functor $\cplttensor$ will be 
+called the \emph{Hilbert tensor product}.
+
+Unless mentioned differently, Hilbert spaces, vector spaces and the algebraic tensor product $\otimes$
+in this section are assumed to be taken over the ground field $\fldK$. 
+
+\begin{proposition}
+\label{thm:construction-tensor-inner-product}  
+ Let $\hilbertH_1$ and $\hilbertH_2$ be two Hilbert spaces. 
+ Then there exists a unique inner product 
+ $\inprod{\cdot,\cdot}: (\hilbertH_1 \otimes \hilbertH_2) \times (\hilbertH_1 \otimes \hilbertH_2)
+  \to \fldK $ on the algebraic tensor product $\hilbertH_1\otimes \hilbertH_2$ such that
+  \begin{equation}
+    \label{eq:defining-relation-inner-product-tensor-product}
+    \inprod{v_1 \otimes v_2 , w_1 \otimes w_2} =  \inprod{v_1,w_1} \cdot \inprod{v_2,w_2} 
+    \quad\text{for all } v_1,w_1 \in \hilbertH_1, \: v_2,w_2 \in \hilbertH_2 \ .  
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Let us first provide some preliminary constructions. 
+  Recall that  for every pair of vector spaces $\vectorspV_1$ and $\vectorspV_2$
+  the bilinear map 
+  \begin{equation*}
+    \begin{split}
+    \tau: \Hom (\vectorspV_1 ,\fldK) \times \Hom (\vectorspV_2,\fldK) & \to
+    \Hom (\vectorspV_1 \otimes \vectorspV_2,\fldK), \\
+    (\lambda_1,\lambda_2) & \mapsto \big( \vectorspV_1 \otimes \vectorspV_2 \to \fldK, \: 
+    v_1 \otimes v_2 \mapsto \lambda_1 (v_1) \cdot\lambda_2 (v_2) \big)    
+    \end{split}
+  \end{equation*}
+  induces a linear map
+  \[
+    \widehat{\tau}: \Hom (\vectorspV_1 ,\fldK) \otimes \Hom (\vectorspV_2,\fldK) \to
+    \Hom (\vectorspV_1 \otimes \vectorspV_2,\fldK)  
+  \]
+  by the universal property of the tensor product.
+  This map is an isomorphism. To see this choose a basis $(v_{1i})_{i\in I} $ of $V_1$ and
+  a basis $(v_{2j})_{j\in J} $ of $V_2$. Let  $(v^\prime_{1i})_{i\in I} $ and $(v^\prime_{2j})_{j\in J} $
+  denote the respective dual bases of $V_1^\prime$ and  $V_2^\prime$. Then
+  $\left( v^\prime_{1i} \otimes v^\prime_{2j}\right)_{(i,j)\in I \times J}$ is a basis of
+  $\Hom (\vectorspV_1 ,\fldK) \otimes \Hom (\vectorspV_2,\fldK)$ which under $\widehat{\tau}$
+  is  mapped bijectively to the basis $\left( (v_{1i} \otimes v_{2j})^\prime \right)_{(i,j)\in I \times J}$
+  of $\Hom (\vectorspV_1 \otimes \vectorspV_2,\fldK)$ dual to the basis
+  $\left( v_{1i} \otimes v_{2j}\right)_{(i,j)\in I \times J}$ of $\vectorspV_1 \otimes \vectorspV_2$.
+  Hence $\widehat{\tau}$ is a linear isomorphism as claimed, and we can identify
+  the tensor product $\lambda_1\otimes \lambda_2$ of two linear functionals
+  $\lambda_i: \vectorspV_i\to\fldK$, $i=1,2$ 
+  with its image in $\Hom (\vectorspV_1 \otimes \vectorspV_2,\fldK)$.  
+ 
+  Now observe that for two conjugate-linear maps $\mu_1 :\vectorspV_1 \to \fldK$
+  and $\mu_2 :\vectorspV_2 \to \fldK$ the map 
+  $ \tau^* (\mu_1,\mu_2)  = \overline{\overline{\mu_1}\otimes \overline{\mu_2}} : 
+     \vectorspV_1 \otimes \vectorspV_2 \to \fldK$
+  is conjugate-linear and satisfies 
+  \begin{equation}
+  \label{eq:defining-relation-tensor-product-conjugate-linear-maps}
+     \tau^* (\mu_1,\mu_2) \, (v_1\otimes v_2) = \mu_1(v_1) \cdot \mu_2(v_2) \quad
+     \text{for all } v_1\in\vectorspV_1 ,\: v_2 \in\vectorspV_2 \ . 
+  \end{equation}
+  %If $\varrho : \vectorspV_1 \otimes \vectorspV_2 \to \fldK$ is another conjugate-linear map
+  %with the property that $\varrho (v_1\otimes v_2) = \mu_1(v_1) \cdot \mu_2(v_2)$ for all
+  %$v_i\in\vectorspV_i$, $i=1,2$, then 
+  %$\overline{\varrho} = \overline{\mu_1}\otimes \overline{\mu_2}$, hence $\varrho =  \tau^* (\mu_1,\mu_2) $. 
+  One obtains a map 
+  \[
+    \tau^*: \Hom^* (\vectorspV_1,\fldK) \times \Hom^* (\vectorspV_2,\fldK) 
+    \to \Hom^* (\vectorspV_1 \otimes \vectorspV_2 ,\fldK) \ , 
+  \] 
+  where here the symbol $\Hom^* (\vectorspV,\fldK)$ denotes the space  of all conjugate linear
+  functionals on a vector space $\vectorspV$. Since $\tau^*$ is biadditive and 
+  since $\tau^* (z\mu_1,\mu_2) = \tau^* (\mu_1,z\mu_2)$ for all $\mu_1\in \Hom^*(\vectorspV_1 ,\fldK)$,
+  $\mu_2\in \Hom^*(\vectorspV_2 ,\fldK)$, and $z\in \fldK$, the map $\tau^*$ factors through a linear map 
+   \[
+    \widehat{\tau^*} :\Hom^* (\vectorspV_1 ,\fldK) \otimes \Hom^* (\vectorspV_2,\fldK) \to
+    \Hom^* (\vectorspV_1 \otimes \vectorspV_2,\fldK)  \ .
+  \]
+  Using the above bases $(v_{1i})_{i\in I} $ and $(v_{2j})_{j\in J} $ of $V_1$ and $V_2$ respectively,
+  one observes that $\widehat{\tau^*}$ is an isomorphism since it maps the basis
+  $\left( \overline{v^\prime_{1i}} \otimes \overline{v^\prime_{2j}}\right)_{(i,j)\in I \times J}$ of
+  $\Hom^* (\vectorspV_1 ,\fldK) \otimes \Hom^* (\vectorspV_2,\fldK)$
+  bijectively to the basis $\left( \overline{(v_{1i} \otimes v_{2j})^\prime} \right)_{(i,j)\in I \times J}$
+  of the space $\Hom^* (\vectorspV_1 \otimes \vectorspV_2,\fldK)$.  So $\widehat{\tau^*}$ is also
+  a linear isomorphism, which allows us to identify the tensor product $\mu_1 \otimes \mu_2$
+  of two conjugate linear functionals  $\mu_i: \vectorspV_i\to\fldK$, $i=1,2$ with its image in
+  $\Hom^* (\vectorspV_1 \otimes \vectorspV_2,\fldK)$.
+  
+
+  After these preliminary considerations we consider the map 
+  \[
+    \hilbertH_1\times \hilbertH_2 \to \Hom^* (\hilbertH_1\otimes \hilbertH_2,\fldK) ,
+    \: (v_1,v_2) \mapsto \overline{v_1^\flat} \otimes  \overline{v_2^\flat} = 
+    \tau^* \left( \overline{v_1^\flat} , \overline{v_2^\flat}  \right)=
+    \widehat{\tau^*}  \left( \overline{v_1^\flat} \otimes \overline{v_2^\flat}  \right)\ ,
+  \]
+  which is well-defined and bilinear since the musical isomorphisms
+  ${}^\flat: \hilbertH_l \to \hilbertH_l'$, $v \mapsto  \inprod{ - ,v} $, $l=1,2$,
+  are conjugate-linear and  since $\tau^*$ is bilinear. Hence it factors through a linear map 
+  \[
+    \beta: \hilbertH_1\otimes \hilbertH_2 \to \Hom^* (\hilbertH_1\otimes \hilbertH_2,\fldK) 
+  \]
+  such that
+  \begin{equation}
+  \label{eq:defining-relation-map-beta}
+    \beta (v_1\otimes v_2) (w_1\otimes w_2) =  \inprod{v_1,w_1} \cdot \inprod{v_2,w_2} 
+    \quad \text{for all } v_1,w_1\in \hilbertH_1 , \: v_2,w_2\in \hilbertH_2 \ . 
+  \end{equation}
+  Now put 
+  \[
+   \inprod{\cdot,\cdot} : 
+   (\hilbertH_1 \otimes \hilbertH_2) \times (\hilbertH_1 \otimes \hilbertH_2) 
+   \to \fldK, \: (v,w) \mapsto \beta (v) (w) \ .  
+  \]
+  Then $\inprod{\cdot,\cdot}$ is sesquilinear by construction, and 
+  \eqref{eq:defining-relation-inner-product-tensor-product} holds true by 
+  \eqref{eq:defining-relation-map-beta}.
+
+  Let us show that $\inprod{\cdot,\cdot}$ is positive definite. Let 
+  $v = \sum_{k=1}^n v_{1k} \otimes v_{2k} \in \hilbertH_1 \otimes \hilbertH_2$. 
+  Choose an orthonormal basis $e_1, \ldots , e_m$ of the linear subspace 
+  spanned by $v_{21}, \ldots , v_{2n}$. Expand 
+  $ v_{2k} = \sum_{i=1}^m c_{ki} e_i$ with $c_{k1}, \ldots , c_{km} \in \fldK$. 
+  Then 
+  \begin{equation}
+    \label{eq:expansion-tensor-product-vector-orthonormal-basis-second-component}
+    v = \sum_{k=1}^n v_{1k} \otimes v_{2k} =  \sum_{k=1}^n \sum_{i=1}^m   v_{1k} \otimes  (c_{ki} e_i) =
+    \sum_{i=1}^m \left( \sum_{k=1}^n   c_{ki} v_{1k} \right) \otimes  e_i =
+    \sum_{i=1}^m  w_{1i}  \otimes  e_i \ ,
+  \end{equation}
+  where $ w_{1i} = \sum_{k=1}^n   c_{ki} v_{1k} $. Hence
+  \begin{equation}
+    \label{eq:positivity-tensor-inner-product}
+    \inprod{v,v} =  \inprod{\sum_{i=1}^m  w_{1i}  \otimes  e_i,\sum_{j=1}^m  w_{1j}  \otimes  e_j }  
+    = \sum_{i=1}^m \sum_{j=1}^m  \inprod{w_{1i},  w_{1j}} \, \inprod{ e_i,e_j } =
+     \sum_{i=1}^m \| w_{1i} \|^2 \geq 0 \ .
+  \end{equation}
+  Moreover, if $\inprod{v,v} = 0$, then $w_{1i}=0$ for $i=1,\ldots , m$, which implies 
+  $v=  \sum_{i=1}^m  w_{1i}  \otimes  e_i =0$. 
+  So $ \inprod{\cdot,\cdot}$ is an inner product on $\hilbertH_1\otimes \hilbertH_2$ satisfying
+  \eqref{eq:defining-relation-inner-product-tensor-product}. It is uniquely determined by this 
+  condition since the vectors $v_1\otimes v_2$ with $v_1\in \hilbertH_1$ and $v_2\in \hilbertH_2$  span
+  $\hilbertH_1\otimes \hilbertH_2$.
+\end{proof}
+
+\begin{definition}
+  Let $\hilbertH_1$ and $\hilbertH_2$ be Hilbert spaces.
+  The Hilbert completion of the algebraic tensor product $\hilbertH_1 \otimes \hilbertH_2$
+  equipped with the unique inner product $\inprod{\cdot,\cdot}$  fulfilling 
+  \eqref{eq:defining-relation-inner-product-tensor-product}
+  will be denoted $\hilbertH_1 \cplttensor \hilbertH_2$, its inner product again by $\inprod{\cdot,\cdot}$. One calls the Hilbert space 
+  $\big(\hilbertH_1 \cplttensor \hilbertH_2 ,\inprod{\cdot,\cdot}\big)$
+  the \emph{Hilbert tensor product} of $\hilbertH_1$ and $\hilbertH_2$ or just the
+  \emph{tensor product} of $\hilbertH_1$ and $\hilbertH_2$ if no confusion can arise.
+\end{definition}
+
+\begin{proposition}\label{thm:totality-tensor-product-total-sets}
+  Let $\hilbertH_1$ and $\hilbertH_2$ be Hilbert spaces.
+  \begin{romanlist}
+  \item\label{ite:totality-simple-tensor-products-total-sets}
+    If $A_i \subset \hilbertH_i$ for $i=1,2$ are total in the ambient  Hilbert space,
+    then the set of simple vectors $a_1\otimes a_2$ with $a_1 \hilbertH_1$ and
+    $a_2 \hilbertH_2$ is total in the Hilbert
+    tensor product  $\hilbertH_1 \cplttensor \hilbertH_2$. 
+  \item
+    If $(e_i)_{i\in I}$ and $(f_j)_{j\in J}$ are orthonormal bases of  $\hilbertH_1$ and $\hilbertH_2$,
+    respectively, then $(e_i\otimes f_j)_{(i,j)\in I \times J}$ is an orthonormal basis of the Hilbert
+    tensor product $\hilbertH_1 \cplttensor \hilbertH_2$.
+  \end{romanlist}
+\end{proposition}
+
+
+
+\begin{proof}
+  \begin{adromanlist}
+  \item
+    Recall that a subset $A \subset \hilbertH$ or a family $A = (a_j)_{j\in J}$ of elements of
+    a Hilbert space $\hilbertH$ is called \emph{total} in $\hilbertH$ if the linear span
+    of $A$ is dense in  $\hilbertH$. By density of the algebraic tensor product
+    $\hilbertH_1\otimes \hilbertH_2$ in the Hilbert tensor product
+    $\hilbertH_1\cplttensor \hilbertH_2$, the set of simple tensors $v_1\otimes v_2$
+    with $v_i \in \hilbertH_i$ for $i= 1,2$  is total in $\hilbertH_1\cplttensor \hilbertH_2$.
+    Hence it suffices to find for such $v_i$ and all $\varepsilon >0$
+    vectors $w_i \in \Span A_i$ for $i= 1,2$ such that
+    \[
+                \| v_1\otimes v_2 - w_1\otimes w_2 \| < \frac{\varepsilon}{2} \ . 
+    \]
+    By totality of $A_i$ in $\hilbertH_i$ there exist $w_i \in \Span A_i$  such that
+    \[
+      \| v_1 - w_1 \| < \min \left\{ 1, \frac{\varepsilon}{2(\| v_2 \| +1 ) } \right\}
+      \quad \text{and}\quad
+      \| v_2 - w_2 \| < \frac{\varepsilon}{2(\| v_1 \| +1 ) } \ . 
+    \]
+    Then
+    \[
+      \| v_1\otimes v_2 - w_1\otimes w_2 \| \leq
+      \| v_1 - w_1 \| \, \| v_2 \| +  \|  v_2 - w_2 \| \| w_1 \|  < \varepsilon \ . 
+    \]
+    
+  \item
+  The family $(e_i\otimes f_j)_{(i,j)\in I \times J}$ is orthonormal by definition of the inner product on
+  $\hilbertH_1 \cplttensor \hilbertH_2$. It is total by
+  \ref{ite:totality-simple-tensor-products-total-sets} and therefore a Hilbert basis.
+  \end{adromanlist}
+\end{proof}
+
+\begin{proposition}
+\label{thm:tensor-product-functor-category-hilbert-spaces-bounded-linear-operators}  
+  Assigning to each pair of Hilbert spaces $\hilbertH_1$ and $\hilbertH_2$ the Hilbert tensor product
+  $\hilbertH_1 \cplttensor  \hilbertH_2$
+  and to each pair of bounded linear operators $A_1:\hilbertH_1 \to \hilbertH_3$ and  $A_2:\hilbertH_2 \to \hilbertH_4$
+  between Hilbert spaces the unique bounded extension
+  $A_1 \cplttensor A_2 : \hilbertH_1 \cplttensor \hilbertH_2 \to   \hilbertH_3 \cplttensor  \hilbertH_4$ of the operator
+  $A_1 \otimes A_2 : \hilbertH_1 \otimes \hilbertH_2 \to   \hilbertH_3 \cplttensor  \hilbertH_4$,
+  $v_1 \otimes v_2 \mapsto A_1(v_1) \otimes  A_2(v_2)$
+  comprises a (covariant) bifunctor 
+  \[ \cplttensor : \category{Hilb} \times \category{Hilb} \to \category{Hilb} \ . \]
+  Moreover, $\cplttensor$ is isometric in the sense that
+  \begin{align}
+    \label{eq:completed-tensor-product-isometry-equation-vectors}
+    \| v_1 \otimes v_2\| & = \|v_1\| \, \|v_2\| \quad \text{for all } v_1\in \hilbertH_1, \: v_2 \in \hilbertH_1 \text{ and }\\
+    \label{eq:completed-tensor-product-isometry-equation-bounded-linear-maps}
+    \| A_1 \cplttensor     A_2\| & = \| A_1\| \, \|A_2\| \quad \text{for all }
+       A_1\in \blinOps ( \hilbertH_1, \hilbertH_3 ), \: A_2\in \blinOps ( \hilbertH_2, \hilbertH_4 ) \ . 
+  \end{align}
+\end{proposition}
+
+\begin{proof}
+  We first show that $A_1 \otimes A_2 $ is a bounded operator. To this end observe that
+  $A_1 \otimes A_2 $ can be written as the composition of the two operators $A_1\otimes \idn_{\hilbertH_2}$
+  and $ \idn_{\hilbertH_3} \otimes A_2$. Hence it suffices to show that each of these linear maps is bounded.
+  Let $v = \sum_{k=1}^n v_{1k} \otimes v_{2k} \in \hilbertH_1 \otimes \hilbertH_2$ be of norm $1$.
+  As in the proof of \Cref{thm:construction-tensor-inner-product}  expand 
+  $ v_{2k} = \sum_{i=1}^m c_{ki} e_i$, $k=1,\ldots ,n$, where $e_1, \ldots , e_m$ is an orthonormal basis of
+  $\Span \{ v_{21}, \ldots , v_{2n}\}$  and $c_{k1}, \ldots , c_{km} \in \fldK$. 
+  Equations \eqref{eq:expansion-tensor-product-vector-orthonormal-basis-second-component}
+  and \eqref{eq:positivity-tensor-inner-product} then entail that
+  \begin{displaymath}
+    v = \sum_{i=1}^m  w_{1i}  \otimes  e_i \quad\text{and}\quad
+    1  = \inprod{v,v}  = \sum_{i=1}^m \| w_{1i} \|^2 
+  \end{displaymath}
+  for $ w_{1i} = \sum_{k=1}^n   c_{ki} v_{1k} $, $i=1,\ldots , m$.
+  Hence
+  \[
+    \|( A_1 \otimes \idn_{\hilbertH_2})v \|^2 =  \left\| \sum_{i=1}^m A_1 (w_{1i}) \otimes e_i\right\|^2
+    = \sum_{i=1}^m \| A_1 (w_{1i}) \|^2 \leq \|A_1\|^2 \sum_{i=1}^m \| w_{1i} \|^2  = \|A_1\|^2  \ ,
+  \]
+  so $A_1\otimes \idn_{\hilbertH_2}$ is bounded with norm $\leq \|A_1\|$.
+  By symmetry,  $ \idn_{\hilbertH_3} \otimes A_2$ is  bounded with norm $\leq \|A_2\|$. Hence
+  $A_1 \otimes A_2 = (\idn_{\hilbertH_3} \otimes A_2 )\circ (A_1\otimes \idn_{\hilbertH_2}) $
+  is bounded and
+  \[
+    \| A_1 \otimes A_2 \| \leq \|A_1\| \, \|A_2\| \ .
+  \] 
+  Let us show the converse inequality. For given $\varepsilon >0$ there exist
+  unit vectors $v_i \in \hilbertH_i$, $i=1,2$ such that
+  $\|A_iv_i \|\geq \| A_i \| - \frac{\varepsilon}{2(\| A_1\| +\|A_2\| +1)}$. Then
+  \[
+    \| (A_1 \cplttensor A_2) (v_1\otimes v_2) \| =   \| A_1v_1\| \,  \| A_2v_2\|
+    \geq \| A_1 \| \, \| A_2\| -  \varepsilon \ .
+    % + \frac{\varepsilon^2}{4(\| A_1\| +\|A_2\| +1)^2}
+  \]
+  This implies 
+  \[
+    \| A_1 \otimes A_2 \| \geq \|A_1\| \, \|A_2\| 
+  \]
+  and \eqref{eq:completed-tensor-product-isometry-equation-bounded-linear-maps} follows.
+  Equality \eqref{eq:completed-tensor-product-isometry-equation-vectors} is clear by
+  construction of the Hilbert tensor product.
+
+  Next observe that
+  $\idn_{ \hilbertH_1} \cplttensor \idn_{\hilbertH_2} = \idn_{\hilbertH_1 \cplttensor \hilbertH_2}$
+  by definition.  Given Hilbert spaces $\hilbertH_1,\ldots,\hilbertH_6$
+  and bounded linear operators $A_i: \hilbertH_{i}\to \hilbertH_{i+2}$ and
+  $B_i : \hilbertH_{i+2}\to \hilbertH_{i+4}$ for $i=1,2$, the composition 
+  $(B_1 \otimes B_2 ) \circ (A_1 \otimes A_2)$ coincides with
+  $ (B_1\circ A_1) \otimes (B_2\circ A_2) $ by functoriality of the algebraic tensor product. 
+  By continuity of the operators $A_1 \cplttensor A_2$ and $B_1 \cplttensor B_2$ and
+  by density of $\hilbertH_1\otimes \hilbertH_2$ in $\hilbertH_1\cplttensor \hilbertH_2$
+  the equality 
+  \[
+    (B_1 \cplttensor B_2 ) \circ (A_1 \cplttensor A_2) =
+    (B_1\circ A_1) \cplttensor (B_2\circ A_2)
+  \]
+  follows. Hence $\cplttensor$ is a bifunctor as claimed. 
+\end{proof}
+
+
+\begin{proposition}
+ For every Hilbert space $\hilbertH$ one has two natural isomorphisms 
+  \[
+   \widehat{u}_\hilbertH : \fldK \cplttensor \hilbertH \to \hilbertH ,\: z\otimes v \to z v \quad \text{and} \quad
+   {}_\hilbertH \widehat{u} : \hilbertH \cplttensor \fldK \to \hilbertH ,\: v \otimes z \to z v 
+  \] 
+  called the \emph{left} and the \emph{right  unit}, respectively. Furthermore, for every triple of Hilbert spaces
+  $\hilbertH_1,\hilbertH_2,\hilbertH_3$ there is a natural isomorphism, called \emph{associator}
+  \[
+   \widehat{a}_{\hilbertH_1,\hilbertH_2,\hilbertH_3} : (\hilbertH_1 \cplttensor \hilbertH_2) \cplttensor \hilbertH_3 \to
+   \hilbertH_1 \cplttensor ( \hilbertH_2  \cplttensor \hilbertH_3 ),\:
+   (v_1\otimes v_2)\otimes v_3 \mapsto v_1\otimes (v_2 \otimes v_3 )\ . 
+  \]  
+  These data fulfill the so-called \emph{coherence conditions} that is the \emph{pentagon diagram}
+  \begin{displaymath}
+    \begin{tikzpicture}
+\node (P0) at (90:2.8cm) {$((\hilbertH_1 \cplttensor \hilbertH_2) \cplttensor \hilbertH_3) \cplttensor \hilbertH_4$};
+\node (P1) at (90+72:2.5cm) {$(\hilbertH_1\cplttensor (\hilbertH_2\cplttensor \hilbertH_3))\cplttensor \hilbertH_4$} ;
+\node (P2) at (90+2*72:2.5cm) {$\mathllap{\hilbertH_1\cplttensor ((\hilbertH_2\cplttensor \hilbertH_3)}\cplttensor \hilbertH_4)$};
+\node (P3) at (90+3*72:2.5cm) {$\hilbertH_1\cplttensor (\hilbertH_2\mathrlap{\cplttensor (\hilbertH_3\cplttensor \hilbertH_4))}$};
+\node (P4) at (90+4*72:2.5cm) {$(\hilbertH_1\cplttensor \hilbertH_2)\cplttensor (\hilbertH_3\cplttensor \hilbertH_4)$};
+\draw
+(P0) edge[->,>=angle 90] node[left] {$\widehat{a}_{\hilbertH_1,\hilbertH_2,\hilbertH_3} \cplttensor \, \idn_{\hilbertH_4}\hspace{2mm}$} (P1)
+(P1) edge[->,>=angle 90] node[left] {$\widehat{a}_{\hilbertH_1,\hilbertH_2\cplttensor \hilbertH_3 , \hilbertH_4}$} (P2)
+(P2) edge[->,>=angle 90] node[below] {$\hspace{5mm}\idn_{\hilbertH_1}\cplttensor \, \widehat{a}_{\hilbertH_2,\hilbertH_3,\hilbertH_4}$} (P3)
+(P4) edge[->,>=angle 90] node[right] {$ \widehat{a}_{\hilbertH_1 , \hilbertH_2,\hilbertH_3 \cplttensor  \hilbertH_4}$} (P3)
+(P0) edge[->,>=angle 90] node[right] {$ \widehat{a}_{\hilbertH_1\cplttensor \hilbertH_2, \hilbertH_3 , \hilbertH_4}$} (P4);
+  \end{tikzpicture}
+  \end{displaymath}
+  and the \emph{triangle diagram}
+  \begin{displaymath}
+  \begin{tikzcd}
+      ( \hilbertH_1 \cplttensor \fldK) \cplttensor \hilbertH_2 
+      \ar[rrrr,"\widehat{a}_{\hilbertH_1,\fldK,\hilbertH_3}"] 
+      \ar[drr,"{}_{\hilbertH_1}\!\widehat{u} \, \cplttensor \,\idn_{\hilbertH_2}",swap]& & && 
+      \hilbertH_1 \cplttensor (\fldK \cplttensor \hilbertH_2 )
+      \ar[dll,"\idn_{\hilbertH_1} \cplttensor \, \widehat{u}_{\hilbertH_2}"]  \\
+      & & \hilbertH_1 \cplttensor \hilbertH_2 &  & 
+  \end{tikzcd}
+  \end{displaymath}
+  commute for all Hilbert spaces $\hilbertH_1,\hilbertH_2,\hilbertH_3,\hilbertH_4$.  In other words,
+  the category $\category{Hilb}$ endowed with the Hilbert tensor product $\cplttensor$ is a monoidal  category. 
+\end{proposition}
+
+\begin{proof}
+  The category of $\fldK$-vector spaces with the usual tensor product as tensor functor is monoidal.
+  Denote the corresponding unit isomorphisms and associator by
+  $_{-}u$, $u_{-}$, and $a_{-,-,-}$, respectively. Then observe that by construction
+  $\fldK \cplttensor \hilbertH = \fldK \otimes \hilbertH$ and $\hilbertH \cplttensor \fldK = \hilbertH \otimes \fldK$
+  for every Hilbert space $\hilbertH$. In particular this means that putting  
+  $\widehat{u}_\hilbertH = u_\hilbertH$ and ${}_{\hilbertH}\widehat{u} = {}_{\hilbertH}u$ gives the desired units.
+  Next recall that  $\hilbertH_1 \otimes \hilbertH_2$ is dense in $\hilbertH_1 \cplttensor \hilbertH_2$ 
+  which by \Cref{thm:totality-tensor-product-total-sets} implies density of $(\hilbertH_1 \otimes \hilbertH_2) \otimes \hilbertH_3$
+  and $\hilbertH_1 \otimes (\hilbertH_2 \otimes \hilbertH_3)$ in $(\hilbertH_1 \cplttensor \hilbertH_2) \cplttensor \hilbertH_3$
+  and $\hilbertH_1 \cplttensor (\hilbertH_2 \cplttensor \hilbertH_3)$, respectively.
+  Similarly one argues that $\hilbertH_1 \otimes (\hilbertH_2 \otimes (\hilbertH_3\otimes \hilbertH_4))$
+  is dense in  $\hilbertH_1 \cplttensor (\hilbertH_2 \cplttensor (\hilbertH_3\cplttensor \hilbertH_4))$,
+  % that $(\hilbertH_1 \otimes \hilbertH_2) \otimes (\hilbertH_3\otimes \hilbertH_4)$
+  % is dense in  $(\hilbertH_1 \cplttensor \hilbertH_2) \cplttensor (\hilbertH_3\cplttensor \hilbertH_4)$
+  and so on. Since the associator map
+  $a_{\hilbertH_1,\hilbertH_2,\hilbertH_3} : (\hilbertH_1 \otimes \hilbertH_2) \otimes \hilbertH_3 \to
+  \hilbertH_1 \otimes ( \hilbertH_2  \otimes \hilbertH_3 )$ is bounded, it extends in a unique way to a linear
+  bounded map $\widehat{a}_{\hilbertH_1,\hilbertH_2,\hilbertH_3} : (\hilbertH_1 \cplttensor \hilbertH_2) \cplttensor \hilbertH_3 \to
+  \hilbertH_1 \cplttensor ( \hilbertH_2  \cplttensor \hilbertH_3 )$. Using density, continuity, and commutativity
+  of the pentagon and triangle diagrams for the tensor product functor one concludes that the coherence conditions for
+  $\cplttensor$ with the unit and associator maps $_{-}\widehat{u}$, $\widehat{u}_{-}$, and $\widehat{a}_{-,-,-}$ are satisfied. 
+\end{proof}

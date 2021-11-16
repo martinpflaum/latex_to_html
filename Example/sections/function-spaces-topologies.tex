@@ -1,0 +1,240 @@
+% Copyright 2017 Markus J. Pflaum, licensed under CC BY-NC-ND 4.0
+% main author: 
+%   Markus J. Pflaum
+%
+\section{Function spaces and their topologies}
+\label{sec:function-spaces-topologies}
+
+\begin{proposition}
+  \label{thm:metric-structure-space-bounded-maps}
+  Let $X$ be a topological space and $(Y,d)$ a metric space.
+  Then the following holds true.
+  \begin{romanlist}
+  \item\label{ite:metric-space-bounded-maps}
+  The space
+  \[
+    \bFcts (X,Y) = \big\{ f : X \to Y \bigmid
+    \exists y_0\in Y \, \exists C >0 \, \forall x\in X : \:  d\big(f(x),y_0\big) \leq C\big\}
+    %\sup_{x\in X} d\big(f(x),y_0\big) < \infty \text{ for some } y_0\in Y \big\}
+  \]
+  of bounded functions from $X$ to $Y$ is a metric space with metric
+  \[
+    \varrho : \bFcts (X,Y) \times \bFcts (X,Y) \to \R_{\geq 0} , \: (f,g) \mapsto
+     \sup_{x\in X} d\big( f(x),g(x)\big)   \ .
+  \]
+  \item
+  \label{ite:completeness-space-bounded-maps-range-complete-metric-space}
+    If $(Y,d)$ is complete, then $(\bFcts (X,Y),\varrho)$ is so, too.
+  \item
+  \label{ite:closedness-bounded-continuous-functions-space-bounded-functions}
+    The space
+    \[
+      \shContFcts_\textup{b} (X,Y) = \shContFcts (X,Y) \cap \bFcts (X,Y) 
+    \]
+    of continuous bounded functions from $X$ to $Y$ is a closed subspace of $\bFcts (X,Y)$. 
+  \end{romanlist}
+\end{proposition}
+\begin{proof}
+  Note first that  by the triangle inequality there exists for every $f\in \bFcts (X,Y)$ and $y\in Y$
+  a real number $C_{f,y}>0$ such that
+  \[ 
+    d\big(f(x),y\big) \leq C_{f,x} \quad \text{for all } x\in X \ .
+  \]  
+  \begin{adromanlist}
+  \item
+    Before verifying the axioms of a metric for $\varrho$ we need to show that $\varrho$ is well-defined meaning that
+    $\sup_{x\in X} d\big( f(x),g(x)\big) < \infty$ for all $f,g \in \bFcts (X,Y)$. 
+    To this end fix some $y\in Y$ and observe using the triangle inequality
+    that  
+    \[
+      d\big( f(x),g(x)\big)  \leq d\big( f(x), y\big) + d\big( y, g(x)\big)
+      \leq C_{f,y} + C_{g,y} \quad \text{for all } x \in X \ . 
+    \]
+    Since furthermore $d\big( f(x),g(x)\big) \geq 0$ for all $x\in X$, the map $\varrho$ is well-defined indeed
+    with image in $\R_{\geq 0}$.
+    If $\varrho (f,g) = 0$, then $d \big( f(x),g(x) \big)=0$ for all $x\in X$, hence $f=g$.
+    Obviously, $\varrho$ is symmetric since $d$ is symmetric. Finally, let
+    $f,g,h\in \bFcts (X,Y)$ and check using the triangle inequality for $d$:
+    \begin{equation*}
+      \begin{split}
+      \varrho (f,g) & = \sup_{x\in X} d\big( f(x),g(x)\big)  \leq
+      \sup_{x\in X} \left( d\big( f(x),h (x)\big) + d\big( h(x),g(x)\big)\right)  \leq \\
+      & \leq \sup_{x\in X} d\big( f(x),h (x)\big) + \sup_{x\in X} d\big( h(x),g(x)\big) =
+      d(f,h) + d(h,g) \ . 
+      \end{split}
+    \end{equation*}
+    Hence  $\varrho$ is a metric. 
+   \item
+     Assume $(Y,d)$ to be complete and let $(f_n)_{n\in\N}$ be a  Cauchy sequence in $\bFcts (X,Y)$.
+     Let $\varepsilon >0$ and choose $N_\varepsilon \in \N$ so that
+     \[
+           \varrho (f_n,f_m) < \varepsilon \quad \text{for all } n,m\geq N \ . 
+     \]
+     Then for every $x\in X$ the relation
+     \begin{equation}
+       \label{eq:cauchy-sequence-relation-values}
+       d\big(f_n(x),f_m(x)\big) < \varepsilon \quad \text{for all } n,m\geq N_\varepsilon 
+     \end{equation}
+     holds true, so $(f_n(x))_{n\in \N}$ is a Cauchy sequence in $Y$.
+     By completeness of $(Y,d)$ it has a limit which we denote by $f(x)$.
+     By passing to the limit $m\to \infty$ in \eqref{eq:cauchy-sequence-relation-values}
+     one obtains that
+     \begin{equation}
+       \label{eq:limit-relation-values}
+       d\big(f(x),f_n(x)\big) \leq \varepsilon \quad \text{for all } x \in X \text{ and } n \geq N_\varepsilon \ . 
+     \end{equation}
+     Using the triangle inequality one infers from this for an element $y\in Y$ which we now fix that
+     \[
+       d\big(f(x),y )\big) \leq  d\big(f(x),f_{N_1}(x))\big) + d\big(f_{N_1}(x),y \big) \leq
+       1  +  C_{f_{N_1},y} \ . 
+     \]
+     Hence $f$ is a bounded function. Moreover, \eqref{eq:limit-relation-values} entails
+     that
+     \[
+       \varrho (f,f_n) = \sup_{x\in X} d\big(f(x),f_n(x)\big) \leq \varepsilon
+       \quad \text{for all } n \geq N_\varepsilon \ ,
+     \]
+     so $(f_n)_{n\in \N}$ converges to $f$. 
+   \item
+     We have to show that the limit $f$ of a sequence $(f_n)_{n\in}$ of functions
+     $f_n \in \shContFcts_\textup{b} (X,Y)$ which converges in $(\bFcts (X,Y),\varrho)$ has to be continuous.
+     To this end let $\varepsilon >0$ and choose $N_\varepsilon \in \N$ so that
+     \[
+             \varrho (f_n,f) < \frac{\varepsilon}{3}  \quad \text{for all } n \geq N_\varepsilon \ .
+     \]
+     Let $x_0\in X$. By continuity of $f_{N_\varepsilon}$ there exists a neighborhood $U\subset X$ of $x$ so
+     that
+     \[
+          d\big(f_{N_\varepsilon} (x),f_{N_\varepsilon}(x_0)\big) <  \frac{\varepsilon}{3} \quad \text{for all } x\in U \ . 
+     \]
+     By the triangle inequality one concludes that
+     \[
+       d\big(f (x),f(x_0)\big) \leq 
+       d\big(f(x),f_{N_\varepsilon}(x)\big) + d\big(f_{N_\varepsilon} (x),f_{N_\varepsilon}(x_0)\big) +
+       d\big(f_{N_\varepsilon} (x_0),f(x_0)\big)< \varepsilon 
+     \]
+     for all $x\in U$. Hence $f$ is continuous at $x_0$. Since $x_0\in X$ was arbitrary $f$, is  a continuous map,
+     hence an elemnt of $\shContFcts_\textup{b} (X,Y)$. 
+  \end{adromanlist}\mbox{ }
+\end{proof}
+
+\begin{proposition}
+  Let $X$ be a topological space and $\fldK$ the division algebra of real or complex numbers or of quaternions.
+  Then the following holds true.
+  \begin{romanlist}
+  \item
+    The space $\bFcts (X,\fldK)$ of bounded $\fldK$-valued functions on $X$ can be expressed as
+    \begin{equation}
+      \label{eq:algebra-bounded-functions-values-real-complex-numbers-quaternions}
+      \bFcts (X,\fldK) = 
+      \big\{ f : X \to \fldK \bigmid 
+      \exists C > 0 \, \forall x\in X :\:  |f(x)| \leq C \big\} \ .
+    \end{equation}
+    It carries the structure of a $\fldK$-algebra by pointwise addition and multiplication of functions
+    and becomes  a Banach algebra when equipped with the \emph{supremums-norm}
+    \[
+      \| \cdot \|_\infty : \: \bFcts (X,\fldK) \to \fldK,\quad
+      f \mapsto \sup_{x\in X} |f(x)| \ .
+    \]
+    \item 
+    The subspace $\shContFcts_\textup{b} (X,\fldK) \subset \bFcts (X,\fldK)$ 
+    of bounded continuous $\fldK$-valued functions on $X$ is a closed subalgebra of
+    $\big( \bFcts (X,\fldK) , \| \cdot \|_\infty\big)$,
+    so a Banach algebra as well when endowed with the supremums-norm. 
+    For $X$ compact this means in particular that the algebra $\big( \shContFcts (X,\fldK), \| \cdot \|_\infty\big)$
+    is a Banach algebra.
+  \end{romanlist}
+\end{proposition}
+
+\begin{proof}
+  Eq.~\eqref{eq:algebra-bounded-functions-values-real-complex-numbers-quaternions} is obvious since
+  the distance of two elements $a,b\in \fldK$ is given by $d(a,b) = |a-b|$, so in particular
+  $d(a,0) = |a|$. Let $f,g \in \bFcts (X,\fldK)$ and choose $C_f,C_g \geq 0$ so that
+  $ |f(x)| \leq C_f $ and $ |g(x)| \leq C_g $ for all $x \in X$. Then, by the triangle inequality
+  and absolute homogeneity of the absolute value, 
+  \[
+    | f(x) + g (x)| \leq C_f + C_g , \quad | a\, f(x) | \leq |a| \, C_f , \quad \text{and} \quad
+    | f(x) \cdot g (x)| \leq C_f \cdot C_g \ . 
+  \]
+  Hence the sum and the product of two bounded functions are bounded and so is any scalar multiple of a bounded function.
+  Therefore, $\bFcts (X,\fldK)$ is an algebra over $\fldK$. Using the triangle inequality and absolute homogeneity of the
+  absolute value again one verifies that  $ \|f \|_\infty$ is a norm on  $\bFcts (X,\fldK)$ indeed and that
+  it fulfills $\|fg \|_\infty\leq \|f \|_\infty \cdot \|g \|_\infty$ for all $f,g \in \bFcts (X,\fldK)$. 
+  Furthermore, by definition, $ \|f \|_\infty = \varrho (f,0)$ for all $f \in \bFcts (X,\fldK)$, where $\varrho$ is
+  defined as in \Cref{thm:metric-structure-space-bounded-maps}.
+  Since $(\bFcts (X,\fldK),\varrho) $ is a complete metric space,
+  $(\bFcts (X,\fldK),\|\cdot \|_\infty)$ therefore is a Banach algebra.  This proves the first claim.
+   
+  For the second observe that for $f, g \in \shContFcts_\textup{b} (X,\fldK)$ and $a\in \fldK$ the
+  sum $f+g$, the scalar multiple $af$, and the product $f\cdot g$ are elements of  $\shContFcts_\textup{b} (X,\fldK)$ again.
+  To verify this let $x\in X$ and $\varepsilon >0$. Choose neighborhoods
+  $U_1$ and $U_2$ of $x$ so that
+  \[
+    | f (y) - f(x) |< \min \left\{\frac{\varepsilon}{2}, \frac{\varepsilon}{|a|+1}, \frac{\varepsilon}{2(|g(x)|+1)} \right\}
+    \quad \text{for } y\in U_1
+  \]   
+  and
+  \[
+    | g(y) - g(x) | < \left\{1,\frac{\varepsilon}{2},\frac{\varepsilon}{2(|f(x)|+1)} \right\} \quad\text{for } y\in U_2 \ .
+  \]
+  Then for all $y\in U_1\cap U_2$ 
+  \begin{equation*}
+    \begin{split}
+      | (f+g) (y) - (f+g) (x) | & \leq  | f (y) - f(x) | +  | g (y) - g (x) | < \varepsilon \ , \\
+      | (af) (y) - (af) (x) | & \leq  |a|  \cdot | f (y) - f(x) | < \varepsilon \ , \\
+      | (f\cdot g) (y) - (f\cdot g) (x) | & \leq |g(y)| \cdot | f (y) - f(x) |  +  |f(x) | \cdot | (g (y) - g (x) |
+       < \varepsilon \ .
+    \end{split}
+  \end{equation*}
+  This means that $f+g$, $af$ and $fg$ are continuous in $x$, hence elements of $\shContFcts_\textup{b} (X,\fldK)$
+  since $x \in X$ was arbitrary. So $\shContFcts_\textup{b} (X,\fldK)$ is a subalgebra of $\bFcts (X,\fldK)$.   
+  By \Cref{thm:metric-structure-space-bounded-maps} one knows that $\shContFcts_\textup{b} (X,\fldK)$
+  is a closed subspace of $\bFcts (X,\fldK)$. The rest of the claim is obvious.
+\end{proof}
+
+\para
+As the next step, we introduce seminorms and their topologies on spaces of differentiable functions defined over an
+open set $\Omega\subset\R^n$. We agree that from now on $\Omega$ will always  denote in this section an open subset
+of $\R^n$. For any differentiability order $m\in \N \cup \{ \infty\}$
+the symbol $\shContFcts^m (\Omega)$ stands for the space of $m$-times continuously differentiable complex valued
+functions on $\Omega$. For $i=1,\ldots,n$ we denote by $x^i : \R^n \to \R$  the $i$-th coordinate function
+and, if $m\geq 1$, by $\partial_i : \shDiffFcts{m} (\Omega) \to \shDiffFcts{m-1} (\Omega)$
+the operator which maps $f \in \shContFcts^m (\Omega)$ to the partial derivative
+$\frac{\partial f}{\partial x^i}$. More generally, if $\alpha \in \N^n$ is a multiindex satisfying
+$|\alpha| = \alpha_1+\ldots \alpha_n \leq m$, then we write
+$\partial^\alpha : \shDiffFcts{m} (\Omega) \to \shDiffFcts{m-|\alpha|} (\Omega)$  for the higher order partial derivative
+which maps $f \in \shDiffFcts{m} (\Omega)$ to
+$\frac{\partial^{|\alpha|} f}{\partial x_1^{\alpha_1} \cdot \ldots \cdot \partial x_n^{\alpha_n}}$. Recall that the
+sum and the product of two $m$-times differentiable functions and scalar multiples of  $m$-times differentiable functions
+are again $m$-times differentiable, hence $\shDiffFcts{m} (\Omega)$ forms a $\C$-algebra.
+Now we define $\shDiffExtFcts{m} (\Omega)$ to be the space of continuous functions on the closure $\closure{\Omega}$
+which are $m$-times continuosly differentiable on $\Omega$ so that each of its partial derivatives of order $\leq m$
+has a continuos extension to $\closure{\Omega}$. Since the operators  $\partial_i$ are linear and also derivations
+by the Leibniz rule,  $\shDiffExtFcts{m} (\Omega)$ is a subalgebra of $\shDiffFcts{m} (\Omega)$. In general, these
+algebras do not coincide as for example the function $\frac 1x$ on $\R_{>0}$ shows. It is an element
+of $\shDiffFcts{\infty} (\R_{>0})$ but can not be extended to  a continuous function on $\R_{\geq 0}$,
+so is not an element of $\shDiffExtFcts{\infty} (\R_{>0})$.
+
+If $X \subset \R^n$ is locally closed which means that $X$ is the intersection of an open and a closed susbet of $\R^n$,
+then  define $\shDiffFcts{m} (X)$ as the quotient space $\shDiffFcts{m} (\Omega) / \shVanIdealJ{X} (\Omega)$, where
+$\Omega \subset \R^n$ open is chosen so that $X = \closure{X} \cap \Omega$ and where
+$\shVanIdealJ{X}$ denotes the ideal sheaf of all $m$-times continuously differentiable functions
+vanishing on $X$ that is
+\[
+   \shVanIdealJ{X} (\Omega) = \big\{ f \in \shDiffFcts{m} (\Omega)  \bigmid f|_X = 0 \big\}  \ .
+\]
+Using a smooth partition of unity type of argument one shows that  $\shDiffFcts{m} (X)$ does not depend on the particular
+choice of the neighborhood $\Omega$ in which $X$ is relatively closed and that $\shDiffFcts{m} (X)$ can be naturally
+identified with the space of continuous functions on $X$ which have an extension to an element of
+$\shDiffFcts{m} (\Omega)$.  
+
+\begin{proposition}
+  Let $\Omega \subset \R^n$ be open and bounded and $m\in \gzN$. Then  $\shDiffExtFcts{m} (\Omega)$
+  equipped with the norm
+  \[
+    \| \cdot \|_{\Omega,m} : \shDiffExtFcts{m} (\Omega) \to \R_{\geq 0}, \quad
+    f \mapsto 
+  \]
+  
+  
+\end{proposition}
