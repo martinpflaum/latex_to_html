@@ -34,18 +34,3 @@ middle_expands = [OneArgumentJunkSearch(r"\hspace")]
 article = convert_latex(input,[basic_expands,middle_expands,[Label],[EqRef,Ref,Cite]])
 
 create_final_file(out_file,article_header,discription,article,bibliography)
-
-
-
-
-
-
-
-def none_sence():
-    anoying_msg = ["File is created :) Have fun with your new website.",\
-        "Wow friendly randomized messages! How cool is that?",\
-        "Mmmh still not working? Too bad."]
-    import random
-    print(anoying_msg[random.randint(0,len(anoying_msg)-1)])
-    print("Your website is ready to use in the output folder.")
-none_sence()
